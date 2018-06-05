@@ -1,0 +1,21 @@
+{
+  "generator-ngx-rocket": {
+    "version": "4.2.0",
+    "props": {
+      "location": "path",
+      "appName": "findanvisa",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "material",
+      "layout": "side-menu",
+      "auth": true,
+      "lazy": false,
+      "angulartics": false,
+      "projectName": "findanvisa",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title translate>user.update</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+      <mat-form-field>
+        <input matInput #input class="form-control" placeholder="{{ 'user.fullName' | translate }}" [(ngModel)]="data.fullName" name="fullName"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <div class="row">
+        <div class="column">
+          <mat-form-field>
+            <input matInput #input class="form-control" placeholder="{{ 'user.userName' | translate }}" [(ngModel)]="data.userName" name="userName"
+              required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="{{ 'user.dateBrith' | translate }}" [(ngModel)]="data.dateBrith" name="dateBrith"
+              required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-form-field>
+        <input matInput #input class="form-control" placeholder="{{ 'user.email' | translate }}" [(ngModel)]="data.email" name="email"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="mat-raised-button mat-primary" mat-button [type]="submit" [disabled]="formControl.invalid" [mat-dialog-close]="1"
+      (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
+    <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
+  </mat-card-actions>
+</mat-card>

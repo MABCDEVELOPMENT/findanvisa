@@ -1,0 +1,177 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+@import './assets/styles/color.scss';
+//@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "~material-design-icons/iconfont/material-icons.css";
+
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+// Theme customization
+@import "theme/theme";
+
+// FullCalendar
+//@import "~/fullcalendar/fullcalendar.css";
+
+
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+
+@include mat-core();
+
+$primary: mat-palette($mat-indigo, 500);
+$accent:  mat-palette($mat-pink, 500, A200, A400);
+$warn:    mat-palette($mat-red, 500);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+body {
+  font-family: $mat-font-family;
+  font-weight: normal;
+  margin: 0;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+  margin: 10px;
+  background-color:	#c5cece;;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 80%;
+  margin: 5px
+  
+}
+
+.mat-toolbar {
+  background-color: $systemColor;
+  color: rgb(130, 200, 235);
+  font-stretch: expanded;
+  -webkit-text-fill-color: aliceblue 
+}
+
+.mat-paginator {
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
+  margin: 5px;
+  background-color:	inherit
+  
+}
+
+.mat-row {
+  font-family: $mat-font-family;
+  font-weight: normal;
+  font-size: 8px;
+  height: 1px;
+}
+
+.mat-header-row {
+  position: sticky;
+  position: -webkit-sticky;
+  height: 1px;
+  top: 0;
+  font-family: $mat-font-family;
+  font-weight: bold;
+  font-size: 8px;
+  background-color:	$systemColor;
+  -webkit-text-fill-color: white
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: rgb(17, 14, 151);
+}
+
+.mat-row:nth-child(even){
+    background-color: #c5cece;;
+    font-family: $mat-font-family;
+    font-weight: normal;
+    font-size: 8px;
+    height: 1px;
+    -webkit-text-fill-color: black
+}
+
+.mat-row:nth-child(odd){
+  background-color:	#aaafaf;
+  font-family: $mat-font-family;
+  font-weight: normal;
+  font-size: 8px;
+  height: 1px;
+  -webkit-text-fill-color: black
+}
+
+.top {
+    position:fixed;
+ }
+
+ .container {
+    max-width: inherit;
+    max-height: inherit;
+    background-color:	#c5cece;
+  }
+
+
+  // Shell
+  :host {
+    display: flex;
+    flex: 1;
+  }
+  
+  .mat-sidenav {
+    min-width: 270px;
+    max-width: 28%;
+    background-color:	#c5cece;
+  }
+  
+  .mat-accordion .mat-expansion-panel {
+    background-color:	#c5cece; 
+  }
+  
+  .has-border {
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  .mat-list {
+    padding-top: 0;
+    background-color: inherit;
+  }
+  
+  .mat-list-item {
+    text-decoration: none;
+  
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+  
+  .menu-button {
+    margin-right: 1rem;
+  }

@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+  padding: 1rem;
+  background-color:	#008080;
+  color: #008080;
+  border-color: black;
+  font-stretch: expanded;
+  -webkit-text-fill-color: black
+
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.fc-sun { 
+  color:#337ab7;  
+  border-color: black;  
+  background-color: #ffa58c; }
+
+.fc-day:nth-child(even){
+    background-color:#99C4EE;
+    font-weight: bold;
+  -webkit-text-fill-color: black
+}
+
+.fc-day:nth-child(odd){
+  background-color:	#AAD4FF;
+  font-weight: bold;
+  -webkit-text-fill-color: black
+}

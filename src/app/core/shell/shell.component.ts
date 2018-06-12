@@ -8,6 +8,11 @@ import { I18nService } from '../i18n.service';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import localeEn from '@angular/common/locales/en';
+import { User } from '@app/user/user-model';
+import { MatDialog } from '@angular/material';
+import { LoginDialogComponent } from '@app/core/shell/login/login.component';
+import { Login } from '@app/core/shell/login/login.model';
+
 
 
 
@@ -20,6 +25,7 @@ export class ShellComponent implements OnInit {
 
   constructor(private router: Router,
               private titleService: Title,
+              public dialog: MatDialog,
               private media: ObservableMedia,
               private authenticationService: AuthenticationService,
               private i18nService: I18nService) { }
@@ -37,7 +43,29 @@ export class ShellComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout()
+      .subscribe(() => this.router.navigate(['/home'], { replaceUrl: true }));
+  }
+  
+  /*login() {
+    this.authenticationService.logout()
       .subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+  }*/
+
+  login(login:Login) {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {data: {login: Login},
+      height: 'auto',
+      width: '250px'
+      
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // After dialog is closed we're doing frontend updates
+        // For add we're just pushing a new row inside DataService
+        // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
+        //this.refreshTable();
+      }
+    });
   }
 
   get username(): string | null {

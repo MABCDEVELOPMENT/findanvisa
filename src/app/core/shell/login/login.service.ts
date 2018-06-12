@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {User} from '../user/user-model';
+import {User} from '@app/user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Alert } from 'selenium-webdriver';
 import { environment } from '@env/environment';
-import { Login } from '@app/login/login.model';
+import { Login } from '@app/core/shell/login/login.model';
 
 @Injectable()
 export class LoginService {

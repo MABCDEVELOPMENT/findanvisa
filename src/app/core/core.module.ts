@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MaterialModule } from '@app/material.module';
 import { ShellComponent } from './shell/shell.component';
@@ -16,19 +17,27 @@ import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
+import { LoginDialogComponent } from '@app/core/shell/login/login.component';
+
 
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule, ReactiveFormsModule,
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
     RouterModule
   ],
   declarations: [
-    ShellComponent
+    ShellComponent,
+    LoginDialogComponent
+    
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ],
   providers: [
     AuthenticationService,

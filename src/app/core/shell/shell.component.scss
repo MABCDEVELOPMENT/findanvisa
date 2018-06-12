@@ -1,16 +1,26 @@
+@import '../../../assets/styles/color.scss';
+@import '../../../assets/styles/crud.scss';
 :host {
   display: flex;
   flex: 1;
 }
 
+.mat-sidenav-container {
+  background-color: inherit;
+  -webkit-text-fill-color: inherit;
+}
 .mat-sidenav {
+  font-weight: bold;
+  -webkit-text-fill-color: $systemColor;
   min-width: 270px;
   max-width: 28%;
-  background-color:	#c5cece;
+  background-color:	$systemBackgronwd;
 }
 
-.mat-accordion .mat-expansion-panel {
-  background-color:	#c5cece; 
+.mat-accordion .mat-expansion-panel .mat-expansion-panel-header {
+  font-weight: bold;
+  background-color:	$systemBackgronwd; 
+  -webkit-text-fill-color: $systemColor;
 }
 
 .has-border {
@@ -20,18 +30,21 @@
 .mat-list {
   padding-top: 0;
   background-color: inherit;
+  -webkit-text-fill-color: inherit;
 }
 
 .mat-list-item {
   text-decoration: none;
-
+  -webkit-text-fill-color: inherit;
+  font-weight: bold;
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.15);
   }
 }
 
 .menu-button {
   margin-right: 1rem;
 }
+
 
 

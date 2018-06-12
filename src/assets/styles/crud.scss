@@ -27,20 +27,33 @@
     overflow: hidden !important;
     border-radius: 5px !important;
     padding: 5px !important;
-    background-color: #c5cece;
+    background-color: $systemBackgronwd;
 }
 
 ::ng-deep .mat-dialog-actions {
     // align buttons to right as shown in Material Design guide
     justify-content: flex-end;
     margin-bottom: 5px;
-
+    
     .mat-button {
+        background-color: $systemColor;
+        -webkit-text-fill-color: white;
         margin-bottom: 15px;
-    &:not(:first-child) {
-        margin-left: 1em;
+ 
+    &:disabled(:first-child) {
+        background-color: $systemColor;
+        -webkit-text-fill-color:black;
+    }   
+    &:not(:first-child), :not(:last-child) {
+        -webkit-text-fill-color: white;
       }
     }
+
+
+}
+
+.mat-checkbox.checked {
+    background-color: $systemColor;
 }
   
 ::ng-deep .flex-spacer {
@@ -50,13 +63,18 @@
 ::ng-deep .mat-form-field {
     font-size: 14px;
     margin: 5px;
+    font-weight: bold;
     background-color:	inherit
   }
 ::ng-deep .mat-form-field-placeholder{
-    color: black
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-text-fill-color: $systemColor;
 }
 ::ng-deep .mat-focused .mat-form-field-placeholder{
-    color:$systemColor;
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-text-fill-color: $systemColor;
 }
 ::ng-deep .mat-form-field-underline .mat-form-field-ripple{
    background-color:$systemColor;
@@ -67,7 +85,7 @@
 
 ::ng-deep .mat-button, .mat-raised-button{
     background-color: $systemColor;
-    color: white;
+    text-decoration-color: white;
 } 
 
 ::ng-deep .mat-success {

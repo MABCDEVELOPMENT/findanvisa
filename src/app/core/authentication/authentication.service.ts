@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { LoginService } from '@app/login/login.service';
+import { LoginService } from '@app/core/shell/login/login.service';
 import { User } from '@app/user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Login } from '@app/login/login.model';
+import { Login } from '@app/core/shell/login/login.model';
 
 
 export interface Credentials {

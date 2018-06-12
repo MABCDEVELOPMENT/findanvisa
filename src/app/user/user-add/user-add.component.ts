@@ -40,7 +40,7 @@ export class UserAddDialogComponent implements OnInit {
         userName:  new FormControl('', [Validators.required]),
         dateBrith: new FormControl('', [Validators.required,DateValidator.validDate]),
         email:     new FormControl('', [Validators.required,Validators.email]),
-        cellPhone: new FormControl('', [Validators.required,PhoneValidator.validPhone])
+        cellPhone: new FormControl('', [Validators.required])
     });
   }
 
@@ -50,7 +50,7 @@ export class UserAddDialogComponent implements OnInit {
            this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
            this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
-           this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
+           //this.form.controls.cellPhone.hasError('cellPhone') ? 'invalidPhone' :
             '';
   }
 
@@ -65,6 +65,6 @@ export class UserAddDialogComponent implements OnInit {
   public confirmAdd(): void {
 
     //this.user = new User(null,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date(), 'idkfa',true, null, new Date(),null,new Date());   
-    this.dataService.addUser(this.data);
+    this.dataService.save(this.data);
   }
 }

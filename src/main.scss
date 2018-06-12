@@ -51,7 +51,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 body {
   font-family: $mat-font-family;
-  font-weight: normal;
+  font-weight: bold;
   margin: 0;
 }
 
@@ -61,7 +61,7 @@ body {
   max-height: 500px;
   min-width: 300px;
   margin: 10px;
-  background-color:	#c5cece;;
+  background-color:	$systemBackgronwd;
 }
 
 .mat-table {
@@ -76,6 +76,7 @@ body {
   color: rgb(130, 200, 235);
   font-stretch: expanded;
   -webkit-text-fill-color: aliceblue 
+  
 }
 
 .mat-paginator {
@@ -89,7 +90,8 @@ body {
 
 .mat-row {
   font-family: $mat-font-family;
-  font-weight: normal;
+  -webkit-text-fill-color: $systemColor;
+  font-weight: bold;
   font-size: 8px;
   height: 1px;
 }
@@ -111,7 +113,7 @@ body {
 }
 
 .mat-row:nth-child(even){
-    background-color: #c5cece;;
+    background-color: $systemBackgronwd;
     font-family: $mat-font-family;
     font-weight: normal;
     font-size: 8px;
@@ -135,7 +137,7 @@ body {
  .container {
     max-width: inherit;
     max-height: inherit;
-    background-color:	#c5cece;
+    background-color:	$systemBackgronwd;
   }
 
 
@@ -148,11 +150,11 @@ body {
   .mat-sidenav {
     min-width: 270px;
     max-width: 28%;
-    background-color:	#c5cece;
+    background-color:	$systemBackgronwd;
   }
   
   .mat-accordion .mat-expansion-panel {
-    background-color:	#c5cece; 
+    background-color:	$systemBackgronwd; 
   }
   
   .has-border {

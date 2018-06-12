@@ -39,11 +39,11 @@ export class UserService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addUser (user: User): void {
+  save (user: User): void {
     //this.dialogData = user;
     console.log(JSON.stringify(user));
 
-    this.httpClient.post(this.API_URL+'/add', user).subscribe(data => {
+    this.httpClient.post(this.API_URL+'/save', user).subscribe(data => {
       //this.dialogData = user;
       
       alert('Successfully added');

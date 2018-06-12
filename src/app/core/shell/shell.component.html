@@ -1,127 +1,103 @@
 <div fxFlex>
   <mat-sidenav-container fxFill>
     <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
-      <mat-toolbar >
-        <span translate>APP_NAME</span>
+      <mat-toolbar>
+        <!--<span translate>APP_NAME</span>-->
+        <img style="height: 80%;" src="../../../assets/unilever.jpg" />
+        <div fxFlex></div>
         <div fxFlex></div>
         <div>
-          <button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
-            <mat-icon>person</mat-icon>
-          </button>
+          <mat-list>
+            <mat-list-item>
+              <button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
+                <mat-icon>person</mat-icon>
+
+              </button>
+              <b style="font-size: 6px">{{username}}</b>
+            </mat-list-item>
+
+          </mat-list>
+
+
           <mat-menu #userMenu="matMenu">
-            <mat-list>
-              <mat-list-item>
-                <span translate>Logged in as</span>&nbsp;
-                <b>{{username}}</b>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-            </mat-list>
+
+            <button mat-menu-item (click)="login()" translate>Login</button>
             <button mat-menu-item (click)="logout()" translate>Logout</button>
           </mat-menu>
         </div>
-        <!--<div>
-          <button mat-icon-button [matMenuTriggerFor]="languageMenu">
-            <mat-icon>language</mat-icon>
-          </button>
-          <mat-menu #languageMenu="matMenu">
-            <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
-              {{language}}
-            </button>
-          </mat-menu>
-        </div>-->
       </mat-toolbar>
       <nav>
         <mat-list>
-          <mat-divider></mat-divider>
+          <!--<mat-divider></mat-divider>
           <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
             &nbsp;&nbsp;
             <span translate>Home</span>
           </a>
 
-          <mat-divider></mat-divider>
-          <mat-accordion>
+          <mat-divider></mat-divider>-->
+          <mat-accordion >
 
-            <mat-expansion-panel>
+            <mat-expansion-panel *ngIf="username">
 
               <mat-expansion-panel-header>
-                <span translate>Register</span>
+                <span translate>Inquiries</span>
               </mat-expansion-panel-header>
               <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>Company</span>
+              <a mat-list-item routerLink="/recordsConsultation" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>RecordsConsultation</span>
               </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>CurrentAccounts</span>
+
+              <a mat-list-item routerLink="/processConsulting" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>ProcessConsulting</span>
               </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>Fleet</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>RealEstate</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>Counties</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>FinalOperations</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>People</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>AccountPlan</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>Products</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>GroupOfProducts</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>UnitOfMeasures</span>
-              </a>
-              <mat-divider></mat-divider>
-              <a mat-list-item routerLink="#" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-                <span translate>TypesOfDocuments</span>
+
+              <a mat-list-item routerLink="/ConsultingSynchronization" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>Synchronization</span>
               </a>
 
             </mat-expansion-panel>
 
             <mat-divider></mat-divider>
 
-            <mat-expansion-panel>
+            <mat-expansion-panel *ngIf="username">
 
               <mat-expansion-panel-header>
-                <span translate>Security</span>
+                <span translate>Register</span>
               </mat-expansion-panel-header>
-              <mat-divider></mat-divider>
+
               <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>User</span>
               </a>
 
             </mat-expansion-panel>
+
+            <mat-divider></mat-divider>
+
+            <mat-expansion-panel *ngIf="username">
+
+              <mat-expansion-panel-header>
+                <span translate>Parameters</span>
+              </mat-expansion-panel-header>
+
+              <a mat-list-item routerLink="/genericParameter" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>GenericParameters</span>
+              </a>
+
+              <a mat-list-item routerLink="/updateParameter" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>UpdateParameters</span>
+              </a>
+
+
+            </mat-expansion-panel>
+
           </mat-accordion>
+              <a *ngIf="!username" mat-list-item (click)="login()" routerLinkActive="active">
+                <span translate>Login</span>
+              </a>  
 
-          <mat-divider></mat-divider>
-
-          <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
-            &nbsp;&nbsp;
-            <span translate>About</span>
-
-          </a>
-
-          <mat-divider></mat-divider>
-
+         
+            <button  *ngIf="username" mat-menu-item (click)="logout()" translate>Logout</button>
+         
         </mat-list>
       </nav>
     </mat-sidenav>
@@ -129,17 +105,14 @@
     <mat-sidenav-content class="container">
 
       <mat-toolbar>
-        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" >
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-
         <span>{{title}}</span>
 
-
-
       </mat-toolbar>
-      <div  flex layout="column" layout-align="center center center center">
-          <router-outlet></router-outlet>
+      <div flex layout="column" layout-align="center center center center">
+        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
 

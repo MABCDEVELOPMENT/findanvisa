@@ -1,10 +1,13 @@
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-
-import {Component, Inject} from '@angular/core';
-import {UserService} from '../../user/user.service';
-import {FormControl, Validators} from '@angular/forms';
-
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { UserService } from '../../user/user.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { User } from '@app/user/user-model';
+import { I18nService, extract } from '@app/core';
+import { EmailValidator, CustomValidator } from '@app/shared/validators';
+import { DateValidator } from '@app/shared/validators/date.validator';
+import { PhoneValidator } from '@app/shared/validators/phone.validator';
+;
 
 @Component({
   selector: 'app-edit.dialog',
@@ -12,26 +15,46 @@ import { User } from '@app/user/user-model';
 })
 
 export class UserEditDialogComponent {
-  
-  confirmPassword:string;
+
+  hide: any;
+  hideConf: any;
+  confirmPassword: string;
+  user: User;
+
+  form: FormGroup;
+
+  public mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+  public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(public dialogRef: MatDialogRef<UserEditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              public dataService: UserService) { }
+    @Inject(MAT_DIALOG_DATA) public data: User,
+    public dataService: UserService,
+    public i18n: I18nService) {
 
-  formControl = new FormControl('', [
-    Validators.required
-    //Validators.email,
-  ]);
+  }
+
+  ngOnInit() {
+    this.form = new FormGroup({
+      fullName: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
+      dateBrith: new FormControl('', [Validators.required, DateValidator.validDate]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      cellPhone: new FormControl('', [Validators.required])
+    });
+  }
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      //this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
+    return this.form.controls.email.hasError('required') ? 'fieldEmpty' :
+      this.form.controls.email.hasError('email') ? 'invalidEmail' :
+        this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
+          this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
+            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
+              this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
+                '';
   }
 
   submit() {
-  // emppty stuff
+    // emppty stuff
   }
 
   onNoClick(): void {
@@ -40,7 +63,7 @@ export class UserEditDialogComponent {
 
   public confirmAdd(): void {
 
-    this.dataService.updateUser(this.data);
-    
+    this.dataService.save(this.data);
+
   }
 }

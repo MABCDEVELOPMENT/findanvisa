@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {User} from '@app/user/user-model';
+import {User} from '../user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Alert } from 'selenium-webdriver';
 import { environment } from '@env/environment';
-import { Login } from '@app/core/shell/login/login.model';
+import { Login } from '@app/login/login.model';
 
 @Injectable()
 export class LoginService {
   private readonly API_URL = '/login';
+  private readonly API_URL_FORGOT = '/forgotpassword';
   
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
@@ -32,7 +33,22 @@ export class LoginService {
     //this.dialogData = user;
 
     
-    this.httpClient.post(this.API_URL, new Login(userName,password)).subscribe(data => {
+    this.httpClient.post(this.API_URL, new Login(userName,password,"")).subscribe(data => {
+      //this.dialogData = user;
+        return data;
+      },
+      (err: HttpErrorResponse) => {
+        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+        return null;
+    });
+  }
+
+   // DEMO ONLY, you can find working methods below
+   sendForgotPassword (email: string): any {
+    //this.dialogData = user;
+
+    
+    this.httpClient.post(this.API_URL+'/forgotpassword', email).subscribe(data => {
       //this.dialogData = user;
         return data;
       },

@@ -39,6 +39,7 @@
   "login.userName":"Usuario ou Email",
   "login.password":"Senha",
   "save":"Salvar",
+  "send":"Enviar",
   "cancel":"Cancelar",
   "fieldEmpty":"Este campo deve ser informado!",
   "invalidEmail":"email inválido!",

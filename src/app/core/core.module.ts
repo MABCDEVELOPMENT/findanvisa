@@ -17,7 +17,7 @@ import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
 import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
-import { LoginDialogComponent } from '@app/core/shell/login/login.component';
+
 
 
 
@@ -32,12 +32,8 @@ import { LoginDialogComponent } from '@app/core/shell/login/login.component';
     RouterModule
   ],
   declarations: [
-    ShellComponent,
-    LoginDialogComponent
+    ShellComponent
     
-  ],
-  entryComponents: [
-    LoginDialogComponent
   ],
   providers: [
     AuthenticationService,

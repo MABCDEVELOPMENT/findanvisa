@@ -13,7 +13,6 @@ import { CoreModule, I18nService } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
-import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -35,7 +34,6 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
     SharedModule,
     HomeModule,
     AboutModule,
-    LoginModule,
     DashboardModule,
     UserModule,
     AppRoutingModule

@@ -28,13 +28,13 @@
     border-radius: 5px !important;
     padding: 5px !important;
     background-color: $systemBackgronwd;
+    height: max-content;
 }
 
 ::ng-deep .mat-dialog-actions {
     // align buttons to right as shown in Material Design guide
-    justify-content: flex-end;
-    margin-bottom: 5px;
-    
+    justify-content: center;
+        
     .mat-button {
         background-color: $systemColor;
         -webkit-text-fill-color: white;
@@ -52,17 +52,13 @@
 
 }
 
-.mat-checkbox.checked {
-    background-color: $systemColor;
-}
-  
 ::ng-deep .flex-spacer {
     flex: 1 1 auto;
 }
 
 ::ng-deep .mat-form-field {
     font-size: 14px;
-    margin: 5px;
+    margin: 2px;
     font-weight: bold;
     background-color:	inherit
   }
@@ -71,6 +67,12 @@
     font-size: 14px;
     -webkit-text-fill-color: $systemColor;
 }
+
+::ng-deep .span-label{
+    font-size: 8px;
+    -webkit-text-fill-color: $systemColor;
+}
+
 ::ng-deep .mat-focused .mat-form-field-placeholder{
     font-weight: bold;
     font-size: 14px;

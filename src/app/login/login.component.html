@@ -1,0 +1,47 @@
+<div class="login-container"  >
+    <div class="login-title"> 
+
+       <!--<p fxLayoutAlign="center center" translate> APP_NAME </p>-->
+       <img style="height: 50%;" src="../../../assets/unilever.jpg" />
+    </div>
+  <div class="mat-dialog-container" fxLayout="row" fxLayoutAlign="center">
+     
+    <mat-card fxFlex="90%" fxFlex.sm="66%" fxFlex.md="50%" fxFlex.gt-md="33%" class="login-box">
+      <h2 mat-dialog-title translate>login</h2>
+      <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+        <div class="login-error" [hidden]="!error || isLoading" translate>
+          Username or password incorrect.
+        </div>
+        <br/>
+        <div fxLayout="column">
+          <mat-form-field>
+            <input type="text" matInput formControlName="username" autocomplete="username"
+                   [placeholder]="'Username' | translate"/>
+            <mat-error *ngIf="loginForm.controls.username.valid || loginForm.controls.username.untouched">
+              <span translate>Username is required</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="password" matInput formControlName="password" autocomplete="current-password"
+                   [placeholder]="'Password' | translate" required/>
+            <mat-error *ngIf="loginForm.controls.password.valid || loginForm.controls.password.untouched">
+              <span translate>Password is required</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-slide-toggle color="primary" formControlName="remember" translate>Remember me</mat-slide-toggle>
+          <br/>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+            <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
+            <span translate>Login</span>
+          </button>
+          <br/>
+          <a style="text-align: right"  routerLink="" routerLinkActive="active" (click)="sendEmail()">
+            <span class="span-label" translate>lostpassword</span>
+          </a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  
+</div>
+

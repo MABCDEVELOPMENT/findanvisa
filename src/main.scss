@@ -64,6 +64,7 @@ body {
   background-color:	$systemBackgronwd;
 }
 
+
 .mat-table {
   overflow: auto;
   max-height: 80%;
@@ -175,5 +176,20 @@ body {
   }
   
   .menu-button {
+    background-color: $systemColor;
+    color: white;
     margin-right: 1rem;
   }
+
+  .span-label {
+    font-family: $mat-font-family;
+    font-weight: bold;
+    font-size: 8px;
+    -webkit-text-fill-color: $systemColor 
+  }
+
+  ::ng-deep .mat-dialog-title{
+    background-color: $systemColor;
+    color: white;
+    text-align: center
+}  

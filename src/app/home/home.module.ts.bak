@@ -9,7 +9,7 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
-import { DashboardModule } from '../dashboard/dashboard.module';
+//import { DashboardModule } from '../dashboard/dashboard.module';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
     FlexLayoutModule,
     MaterialModule,
     HomeRoutingModule,
-    DashboardModule
+    //DashboardModule
   ],
   declarations: [
     HomeComponent

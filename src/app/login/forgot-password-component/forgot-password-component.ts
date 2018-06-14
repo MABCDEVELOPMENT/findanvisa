@@ -23,7 +23,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   public send(): void {
-    this.dataService.sendForgotPassword(this.data);
+    this.dataService.sendForgotPassword(this.data['email']);
   }
 
 }

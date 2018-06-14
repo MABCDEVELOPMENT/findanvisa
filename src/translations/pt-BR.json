@@ -6,9 +6,12 @@
   "Logged in as": "Conectado como ",
   "Login": "Entrar",
   "lostpassword":"Esqueci minha senha.",
+  "Redefine":"Redefinir Senha",
   "Logout": "Sair",
   "Password": "Senha",
+  "ConfirmPassword": "Confirme a Senha",
   "Password is required": "Senha é requerida",
+  "RedefinePasswordInvalid":"Senha é requerida ou confimação no confere é igual a senha.",
   "Username": "Nome do Usuário",
   "Username is required": "Nome do Usuário e requerido",
   "Username or password incorrect.": "Usuário ou senha incorreta.",
@@ -43,5 +46,9 @@
   "cancel":"Cancelar",
   "fieldEmpty":"Este campo deve ser informado!",
   "invalidEmail":"email inválido!",
-  "invalidDate":"Data inválida!"
+  "invalidDate":"Data inválida!",
+  "GenericParameter":"Parâmetros Gerais",
+  "genericParameter.version":"Versão do Sistema",
+  "genericParameter.systemName":"Nome do Sistem",
+  "UpdateParameter":"Parâmetros de Atualização" 
 }

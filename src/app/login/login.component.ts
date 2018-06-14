@@ -74,8 +74,10 @@ export class LoginComponent implements OnInit {
           // For add we're just pushing a new row inside DataService
           // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
           //this.refreshTable();
+
         }
       });
+
     }
   }
 

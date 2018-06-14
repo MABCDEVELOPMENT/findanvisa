@@ -9,7 +9,8 @@ import { MaterialModule } from '@app/material.module';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { LoginService }  from './login.service';
-import { ForgotPasswordComponent } from './forgot-password-component/forgot-password-component'
+import { ForgotPasswordComponent } from './forgot-password-component/forgot-password-component';
+import { RedefinePasswordComponent } from './redefine-password/redefine-password.component'
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ForgotPasswordComponent } from './forgot-password-component/forgot-pass
   providers:[LoginService],
   declarations: [
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RedefinePasswordComponent
   ],
   entryComponents:[ForgotPasswordComponent]
 })

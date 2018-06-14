@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from '@app/user/user.module';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { GenericParameterModule } from '@app/generic-parameter/generic-parameter.module';
 
 
 
@@ -38,6 +39,7 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
     LoginModule,
     DashboardModule,
     UserModule,
+    GenericParameterModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

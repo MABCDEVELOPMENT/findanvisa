@@ -4,7 +4,7 @@
   <form (ngSubmit)="submit" [formGroup]="form">
 
     <mat-form-field class="full-width">
-      <input matInput #input class="form-control" type="text" placeholder="{{ 'user.fullName' | translate }}" formControlName="fullName"
+      <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.version' | translate }}" formControlName="fullName"
         [(ngModel)]="data.fullName">
       <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>

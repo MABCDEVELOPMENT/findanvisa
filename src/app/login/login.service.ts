@@ -10,7 +10,7 @@ import { Login } from '@app/login/login.model';
 @Injectable()
 export class LoginService {
   private readonly API_URL = '/login';
-  private readonly API_URL_FORGOT = '/forgotpassword';
+  private readonly API_URL_USER = '/user';
   
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
@@ -44,19 +44,40 @@ export class LoginService {
   }
 
    // DEMO ONLY, you can find working methods below
-   sendForgotPassword (email: string): any {
+   sendForgotPassword (email: string): void {
     //this.dialogData = user;
 
     
     this.httpClient.post(this.API_URL+'/forgotpassword', email).subscribe(data => {
       //this.dialogData = user;
-        return data;
+        //return data;
+        alert('E-mail enviado com sucesso!');
       },
       (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
-        return null;
+        if (err.status == 200) {
+          alert('E-mail enviado com sucesso!');
+        } else {
+          alert('Error occurred.');
+        }
+        
     });
   }
+
+  redefinePassword (user: User): void {
+    
+    this.httpClient.post(this.API_URL_USER+'/save', user).subscribe(data => {
+        alert('Senha alterada com sucesso!');
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status == 200) {
+          alert('Senha alterada com sucesso!');
+        } else {
+          alert('Error occurred.');
+        }
+
+    });
+  }
+
  
 }
 

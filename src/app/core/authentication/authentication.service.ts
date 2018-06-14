@@ -80,6 +80,18 @@ export class AuthenticationService {
     
   }
 
+    /**
+   * Authenticates the user.
+   * @param {LoginContext} context The login parameters.
+   * @return {Observable<Credentials>} The user credentials.
+   */
+  loadUser(id: number): Observable<User> {
+    
+    return this.httpClient.get(this.API_URL+'/loaduser/'+id)
+    .map(response => response)
+    .catch(error=> Observable.throw(error.message));
+    
+  }
 
 
   /**

@@ -79,11 +79,11 @@
                 <span translate>Parameters</span>
               </mat-expansion-panel-header>
 
-              <a mat-list-item routerLink="/genericParameter" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/generic" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>GenericParameters</span>
               </a>
 
-              <a mat-list-item routerLink="/updateParameter" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/update" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>UpdateParameters</span>
               </a>
 
@@ -96,7 +96,7 @@
               </a>  
 
          
-            <button  *ngIf="username" mat-menu-item (click)="logout()" translate>Logout</button>
+              &nbsp;&nbsp;<button  *ngIf="username" mat-menu-item (click)="logout()" translate>Logout</button>
          
         </mat-list>
       </nav>

@@ -13,7 +13,8 @@ export class User extends DataModel {
      insertDate:Date;
      updateUser:User;
      updateDate:Date;
-    constructor( 
+     perfil: number;
+    /*constructor( 
          id: number,
          userName:string,
          fullName:string,
@@ -25,7 +26,8 @@ export class User extends DataModel {
          insertUser:User,
          insertDate:Date,
          updateUser:User,
-         updateDate:Date){
+         updateDate:Date,
+         perfil: number){
         super(id)
         this.id = id;
         this.userName = userName;
@@ -39,5 +41,9 @@ export class User extends DataModel {
         this.insertDate = insertDate;
         this.updateUser = updateUser;
         this.updateDate = updateDate;
+        this.perfil = perfil;
+    };*/
+    constructor(){
+        super(null);
     }
 }

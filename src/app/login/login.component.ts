@@ -7,6 +7,8 @@ import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from '@app/login/forgot-password-component/forgot-password-component';
+import { LoginService } from '@app/login/login.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const log = new Logger('Login');
 
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
               private dialog: MatDialog,
               private formBuilder: FormBuilder,
               private i18nService: I18nService,
+              private loginService: LoginService,
               private authenticationService: AuthenticationService) {
     this.createForm();
   }
@@ -33,7 +36,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login() {
-    this.isLoading = true;
+    /*this.isLoading = true;
+    let userName = this.loginForm.controls["username"];
+    let password = this.loginForm.controls["password"];
+    this.loginService.login(userName.value,password.value).subscribe(){data => 
+      this.authenticationService.credentials()
+    }*/
+
     this.authenticationService.login(this.loginForm.value)
       .pipe(finalize(() => {
         this.loginForm.markAsPristine();
@@ -42,10 +51,12 @@ export class LoginComponent implements OnInit {
       .subscribe(credentials => {
         log.debug(`${credentials.username} successfully logged in`);
         this.router.navigate(['/'], { replaceUrl: true });
-      }, error => {
-        log.debug(`Login error: ${error}`);
-        this.error = error;
+      },err  => {
+        log.debug(`Login error: ${err}`);
+        this.error = err.error;
       });
+
+
   }
 
   forgotPassword() {

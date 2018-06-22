@@ -4,7 +4,7 @@
   <form (ngSubmit)="submit" [formGroup]="form">
 
     <mat-form-field class="full-width">
-      <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.version' | translate }}" formControlName="fullName"
+      <input matInput #input class="form-control" type="text" placeholder="{{ 'user.fullName' | translate }}" formControlName="fullName"
         [(ngModel)]="data.fullName">
       <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>
@@ -36,6 +36,25 @@
       <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"/>
       <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Perfil" [(ngModel)]="data.perfil" formControlName="email" name="perfil">
+        <mat-option *ngFor="let perfil of perfis" [value]="perfil.value">
+          {{perfil.viewValue}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-select placeholder="Ativo" [(ngModel)]="data.active" formControlName="active" name="active">
+        <mat-option *ngFor="let active of actives" [value]="active.value">
+          {{active.viewValue}}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
   </form>
 </mat-dialog-content>
 

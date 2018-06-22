@@ -11,6 +11,8 @@ import { LoginComponent } from './login.component';
 import { LoginService }  from './login.service';
 import { ForgotPasswordComponent } from './forgot-password-component/forgot-password-component';
 import { RedefinePasswordComponent } from './redefine-password/redefine-password.component'
+import { RegisterComponent } from '@app/login/register-user/register.component';
+import { RegisterService } from '@app/login/register-user/register.service';
 
 @NgModule({
   imports: [
@@ -22,11 +24,12 @@ import { RedefinePasswordComponent } from './redefine-password/redefine-password
     MaterialModule,
     LoginRoutingModule
   ],
-  providers:[LoginService],
+  providers:[LoginService,RegisterService],
   declarations: [
     LoginComponent,
     ForgotPasswordComponent,
-    RedefinePasswordComponent
+    RedefinePasswordComponent,
+    RegisterComponent
   ],
   entryComponents:[ForgotPasswordComponent]
 })

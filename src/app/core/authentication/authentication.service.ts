@@ -8,6 +8,7 @@ import { Login } from '@app/login/login.model';
 
 
 
+
 export interface Credentials {
   // Customize received credentials here
   username: string;
@@ -55,13 +56,12 @@ export class AuthenticationService {
         return of(data);
       },
       (err: HttpErrorResponse) => {
-        alert(err.error['errorMessage']);
         data = {
           username: null,
           email: null,
           token: null
         };
-       
+        Observable.throw(err.error);
     });
     return of(data);
     

@@ -1,83 +1,50 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs';
+import 'rxjs/Rx';
 import {User} from '../user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Headers, Http } from '@angular/http';
+ 
+import 'rxjs/add/operator/toPromise';
 
-import { Alert } from 'selenium-webdriver';
+import { Alert, error } from 'selenium-webdriver';
 import { environment } from '@env/environment';
-import { Login } from '@app/login/login.model';
+import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
+
 
 @Injectable()
-export class LoginService {
-  private readonly API_URL = '/login';
-  private readonly API_URL_USER = '/user';
+export class GenericParameterService {
+  private readonly API_URL = '/genericparameter';
   
-  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
-  // Temporarily stores data from dialogs
-  dialogData: any;
-  user: User;
+  private headers = new Headers({'Content-Type': 'application/json'});
   constructor (private httpClient: HttpClient) {
      
   }
 
-  get data(): User[] {
-    return this.dataChange.value;
-  }
-
-  getDialogData() {
-    return this.dialogData;
-  }
-
-  // DEMO ONLY, you can find working methods below
-  login (userName: string,  password: string): any {
-    //this.dialogData = user;
-
-    this.httpClient.post(this.API_URL, new Login(userName,password,"")).subscribe(data => {
-      //this.dialogData = user;
-        return data;
-      },
-      (err: HttpErrorResponse) => {
-        alert(err.error.errorMessage);
-        return null;
-    });
-  }
-
-   // DEMO ONLY, you can find working methods below
-   sendForgotPassword (email: string): void {
-    //this.dialogData = user;
-
+  load(): Observable<GenericParameter> {
     
-    this.httpClient.post(this.API_URL+'/forgotpassword', email).subscribe(data => {
-      //this.dialogData = user;
-        //return data;
-        alert('E-mail enviado com sucesso!');
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status == 200) {
-          alert('E-mail enviado com sucesso!');
-        } else {
-          alert('Error occurred.');
-        }
-        
-    });
-  }
-
-  redefinePassword (user: User): void {
+    return this.httpClient.get(this.API_URL+'/load/')
+    .map(response => response)
+    .catch(error=> Observable.throw(error.message));
     
-    this.httpClient.post(this.API_URL_USER+'/save', user).subscribe(data => {
-        alert('Senha alterada com sucesso!');
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status == 200) {
-          alert('Senha alterada com sucesso!');
-        } else {
-          alert('Error occurred.');
-        }
-
-    });
   }
 
  
+  // DEMO ONLY, you can find working methods below
+  save (genericParameter: GenericParameter): void {
+    //this.dialogData = user;
+    console.log(JSON.stringify(genericParameter));
+
+    this.httpClient.post(this.API_URL+'/save', genericParameter).subscribe(data => {
+      //this.dialogData = user;
+      
+      alert('Successfully save');
+      },
+      (err: HttpErrorResponse) => {
+        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+    });
+  }
+
 }
 
 

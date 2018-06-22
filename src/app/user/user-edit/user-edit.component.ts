@@ -23,6 +23,17 @@ export class UserEditDialogComponent {
 
   form: FormGroup;
 
+  perfis = [
+    {value: 0,  viewValue: 'Administrador'},
+    {value: 1,  viewValue: 'Operador'}
+  ];
+
+  acitves = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
+
+
   public mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
@@ -39,7 +50,9 @@ export class UserEditDialogComponent {
       userName: new FormControl('', [Validators.required]),
       dateBrith: new FormControl('', [Validators.required, DateValidator.validDate]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      cellPhone: new FormControl('', [Validators.required])
+      cellPhone: new FormControl('', [Validators.required]),
+      perfil: new FormControl('', [Validators.required]),
+      active: new FormControl('', [Validators.required])
     });
   }
 
@@ -50,6 +63,8 @@ export class UserEditDialogComponent {
           this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
             this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
               this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
+              this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
+              this.form.controls.active.hasError('required') ? 'fieldEmpty' :
                 '';
   }
 

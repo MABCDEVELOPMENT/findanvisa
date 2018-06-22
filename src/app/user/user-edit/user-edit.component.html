@@ -36,6 +36,8 @@
       <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"/>
       <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>
+
+
   </form>
 </mat-dialog-content>
 

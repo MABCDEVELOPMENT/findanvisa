@@ -4,10 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { extract } from '@app/core';
 import { LoginComponent } from './login.component';
 import { RedefinePasswordComponent } from '@app/login/redefine-password/redefine-password.component';
+import { RegisterComponent } from '@app/login/register-user/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: extract('Login') }},
-  { path: 'redefine', component: RedefinePasswordComponent, data: { title: extract('Redefine') } }
+  { path: 'redefine', component: RedefinePasswordComponent, data: { title: extract('Redefine') }},
+  { path: 'register', component: RegisterComponent, data: { title: extract('registerUser') } 
+}
 ];
 
 @NgModule({

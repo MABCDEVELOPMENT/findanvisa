@@ -24,6 +24,16 @@ export class UserAddDialogComponent implements OnInit {
   
   form: FormGroup;
 
+  perfis = [
+    {value: 0,  viewValue: 'Administrador'},
+    {value: 1,  viewValue: 'Operador'}
+  ];
+
+  actives = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
+
   public  mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public  maskPhone = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
@@ -39,8 +49,9 @@ export class UserAddDialogComponent implements OnInit {
         fullName:  new FormControl('', [Validators.required]),
         userName:  new FormControl('', [Validators.required]),
         dateBrith: new FormControl('', [Validators.required,DateValidator.validDate]),
-        email:     new FormControl('', [Validators.required,Validators.email]),
+        email:     new FormControl('', [Validators.required]),
         cellPhone: new FormControl('', [Validators.required])
+        
     });
   }
 
@@ -50,6 +61,8 @@ export class UserAddDialogComponent implements OnInit {
            this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
            this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
+           this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
+           this.form.controls.active.hasError('required') ? 'fieldEmpty' :
            //this.form.controls.cellPhone.hasError('cellPhone') ? 'invalidPhone' :
             '';
   }

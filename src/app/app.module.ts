@@ -20,6 +20,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from '@app/user/user.module';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { GenericParameterModule } from '@app/generic-parameter/generic-parameter.module';
+import { UpdateParameterModule } from '@app/update-parameter/update-parameter.module';
 
 
 
@@ -40,6 +41,7 @@ import { GenericParameterModule } from '@app/generic-parameter/generic-parameter
     DashboardModule,
     UserModule,
     GenericParameterModule,
+    UpdateParameterModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

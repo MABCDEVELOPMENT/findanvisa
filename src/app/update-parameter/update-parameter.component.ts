@@ -1,28 +1,30 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
+import { UpdateParameter } from '@app/update-parameter/update-parameter.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { I18nService } from '@app/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
+import { UpdateParameterService } from '@app/update-parameter/update-parameter.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-generic-parameter',
-  templateUrl: './generic-parameter.component.html',
-  styleUrls: ['./generic-parameter.component.scss']
+  selector: 'app-update-parameter',
+  templateUrl: './update-parameter.component.html',
+  styleUrls: ['./update-parameter.component.scss']
 })
-export class GenericParameterComponent implements OnInit {
+export class UpdateParameterComponent implements OnInit {
 
   form: FormGroup;
-  data: GenericParameter = new GenericParameter();
+  data: UpdateParameter = new UpdateParameter();
   constructor(private formBuilder: FormBuilder,
-    public genericParameterService : GenericParameterService,
+    private router: Router,
+    public updateParameterService : UpdateParameterService,
     public i18n: I18nService) { }
 
   ngOnInit() {
-    this.genericParameterService.load().subscribe(data => {
+    this.updateParameterService.load().subscribe(data => {
       this.data = data;
     },err  => {
-      this.data = new GenericParameter();
+      this.data = new UpdateParameter();
     });
 
     this.form = this.formBuilder.group({
@@ -79,7 +81,10 @@ export class GenericParameterComponent implements OnInit {
   /*   this.data.updateUser	      = this.form.controls["updateUser"].value;
     this.data.updateDate	      = this.form.controls["updateUser"].value; */
 
-    this.genericParameterService.save(this.data);
+    this.updateParameterService.save(this.data);
   }
 
+  onNoClick() {
+    this.router.navigate(['/'], { replaceUrl: true });
+  }
 }

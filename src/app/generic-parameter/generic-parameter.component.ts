@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { I18nService } from '@app/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
 import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
+import { Router, RouterState } from '@angular/router';
 
 @Component({
   selector: 'app-generic-parameter',
@@ -15,6 +15,7 @@ export class GenericParameterComponent implements OnInit {
   form: FormGroup;
   data: GenericParameter = new GenericParameter();
   constructor(private formBuilder: FormBuilder,
+    private router: Router,
     public genericParameterService : GenericParameterService,
     public i18n: I18nService) { }
 
@@ -82,4 +83,7 @@ export class GenericParameterComponent implements OnInit {
     this.genericParameterService.save(this.data);
   }
 
+  onNoClick() {
+    this.router.navigate(['/'], { replaceUrl: true });
+  }
 }

@@ -1,7 +1,7 @@
 import { DataModel } from "@app/core/model/datamodel";
 import { User } from "@app/user/user-model";
 
-export class GenericParameter {
+export class UpdateParameter {
      id: number;
      version:string;
      systemName:string;

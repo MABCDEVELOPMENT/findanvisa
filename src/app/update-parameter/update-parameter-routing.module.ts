@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Route, extract } from '@app/core';
-import { GenericParameterComponent } from '@app/generic-parameter/generic-parameter.component';
+import { UpdateParameterComponent } from '@app/update-parameter/update-parameter.component';
 
 const routes: Routes = [
   Route.withShell([
-    { path: 'generic', component: GenericParameterComponent, data: { title: extract('GenericParameter') } }
+    { path: 'update', component: UpdateParameterComponent, data: { title: extract('UpdateParameters') } }
   ])
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GenericParameterRoutingModule { }
+export class UpdateParameterRoutingModule { }

@@ -1,0 +1,67 @@
+
+<div class="table-container mat-elevation-z8">
+
+  
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+    </mat-form-field>
+
+
+  <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
+
+
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.id' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Full Name Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
+    </ng-container>
+
+    <!-- cellPhone Column -->
+    <ng-container matColumnDef="acitive">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.active' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.active}} </mat-cell>
+    </ng-container>
+
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let CNPJ; let i=index;">
+        <button mat-icon-button color="accent" (click)="startEdit(i, CNPJ)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+
+        
+      </mat-cell>
+     
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+      
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator [length]="100"
+              [pageSize]="100"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
+ 
+

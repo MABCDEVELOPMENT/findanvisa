@@ -8,6 +8,8 @@ import { I18nService } from '../i18n.service';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import localeEn from '@angular/common/locales/en';
+import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
+import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
 
 
 
@@ -18,13 +20,20 @@ import localeEn from '@angular/common/locales/en';
 })
 export class ShellComponent implements OnInit {
 
+  genericParameter : GenericParameter = new GenericParameter();
   constructor(private router: Router,
               private titleService: Title,
               private media: ObservableMedia,
+              private genericParameterService: GenericParameterService,
               private authenticationService: AuthenticationService,
               private i18nService: I18nService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.genericParameterService.load().subscribe(data => {
+      this.genericParameter = data;
+      this.titleService.setTitle(this.genericParameter.systemName);
+    })
+  }
 
   setLanguage(language: string) {
     if (language=='pt-BR') {

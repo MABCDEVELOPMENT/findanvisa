@@ -3,7 +3,6 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { Route, extract, I18nService } from '@app/core';
 import { HomeComponent } from './home.component';
-import { UpdateParameterService } from '@app/update-parameter/update-parameter.service';
 import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
 import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
 import { Title } from '@angular/platform-browser';

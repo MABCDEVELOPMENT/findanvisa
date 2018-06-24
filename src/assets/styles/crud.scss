@@ -62,6 +62,12 @@
     font-weight: bold;
     background-color:	inherit
   }
+  ::ng-deep .mat-checkbox {
+    font-size: 14px;
+    margin: 2px;
+    font-weight: bold;
+    background-color:	inherit
+  }  
 ::ng-deep .mat-form-field-placeholder{
     font-weight: bold;
     font-size: 14px;

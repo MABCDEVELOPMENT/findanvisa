@@ -21,6 +21,7 @@ import { UserModule } from '@app/user/user.module';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { GenericParameterModule } from '@app/generic-parameter/generic-parameter.module';
 import { UpdateParameterModule } from '@app/update-parameter/update-parameter.module';
+import { CNPJModule } from '@app/cnpj/cnpj.module';
 
 
 
@@ -42,6 +43,7 @@ import { UpdateParameterModule } from '@app/update-parameter/update-parameter.mo
     UserModule,
     GenericParameterModule,
     UpdateParameterModule,
+    CNPJModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

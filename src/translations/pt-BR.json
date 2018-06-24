@@ -68,7 +68,7 @@
   "genericParameter.emailSuport":"E-mail de Suporte",
   "genericParameter.phoneSuport":"Fone Suporte",
   "UpdateParameter":"Parâmetros de Atualização",
-  "registerCnpj": "Registro CNPJ",
+  "registerCnpj.insert": "Registro CNPJ",
   "registerCnpj.cnpj":"CNPJ",  
   "registerCnpj.fullName":"Nome Completo",
   "registerCnpj.category":"Categoria",

@@ -2,7 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CNPJService } from '../../cnpj/cnpj.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { CNPJ } from '@app/cnpj/cnpj-model';
+import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { I18nService, extract } from '@app/core';
 import { EmailValidator, CustomValidator } from '@app/shared/validators';
 import { DateValidator } from '@app/shared/validators/date.validator';
@@ -19,7 +19,7 @@ export class CNPJEditDialogComponent {
   hide: any;
   hideConf: any;
   confirmPassword: string;
-  cnpj: CNPJ;
+  cnpj: RegisterCNPJ;
 
   form: FormGroup;
 
@@ -38,7 +38,7 @@ export class CNPJEditDialogComponent {
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(public dialogRef: MatDialogRef<CNPJEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CNPJ,
+    @Inject(MAT_DIALOG_DATA) public data: RegisterCNPJ,
     public dataService: CNPJService,
     public i18n: I18nService) {
 

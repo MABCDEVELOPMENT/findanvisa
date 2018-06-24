@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
-import {CNPJ} from '../cnpj/cnpj-model';
+import {RegisterCNPJ} from '../cnpj/cnpj-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Headers, Http } from '@angular/http';
  
@@ -15,7 +15,7 @@ import { environment } from '@env/environment';
 export class CNPJService {
   private readonly API_URL = '/cnpj';
   
-  dataChange: Observable<CNPJ[]> = new Observable<CNPJ[]>();
+  dataChange: Observable<RegisterCNPJ[]> = new Observable<RegisterCNPJ[]>();
   // Temporarily stores data from dialogs
   dialogData: any;
   private headers = new Headers({'Content-Type': 'application/json'});
@@ -23,7 +23,7 @@ export class CNPJService {
      
   }
 
-  get data(): Observable<CNPJ[]> {
+  get data(): Observable<RegisterCNPJ[]> {
     return this.dataChange;
   }
 
@@ -32,14 +32,14 @@ export class CNPJService {
   }
 
   /** CRUD METHODS */
-  getAllCNPJs(): Observable<CNPJ[]> {
+  getAllCNPJs(): Observable<RegisterCNPJ[]> {
     return this.httpClient.get(this.API_URL+'/list')
                     .map(response => response)
                     .catch(error=> Observable.throw(error.message));
   }
 
   // DEMO ONLY, you can find working methods below
-  save (cnpj: CNPJ): void {
+  save (cnpj: RegisterCNPJ): void {
     //this.dialogData = cnpj;
     console.log(JSON.stringify(cnpj));
 
@@ -53,7 +53,7 @@ export class CNPJService {
     });
   }
 
-  updateCNPJ (cnpj: CNPJ): void {
+  updateCNPJ (cnpj: RegisterCNPJ): void {
     this.dialogData = cnpj;
   }
 

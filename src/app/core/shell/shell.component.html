@@ -57,8 +57,6 @@
 
             </mat-expansion-panel>
 
-            <mat-divider></mat-divider>
-
             <mat-expansion-panel *ngIf="username">
 
               <mat-expansion-panel-header>
@@ -68,10 +66,13 @@
               <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>User</span>
               </a>
+              <a mat-list-item routerLink="/cnpjList" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>registerCnpj</span>
+              </a>
+              
 
             </mat-expansion-panel>
 
-            <mat-divider></mat-divider>
 
             <mat-expansion-panel *ngIf="username">
 

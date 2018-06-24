@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
 
-import { CNPJ } from '@app/cnpj/cnpj-model';
+import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { CNPJAddDialogComponent } from '@app/cnpj/cnpj-add/cnpj-add.component';
 import { CNPJEditDialogComponent } from '@app/cnpj/cnpj-edit/cnpj-edit.component';
 import { I18nService } from '@app/core';
@@ -20,8 +20,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CNPJListComponent implements AfterViewInit {
   
   error: HttpErrorResponse;
-  displayedColumns = ['id', 'fullName', 'cnpj', 'active', 'actions'];
-  ELEMENT_DATA: CNPJ[]; 
+  displayedColumns = ['cnpj', 'fullName', 'active', 'actions'];
+  ELEMENT_DATA: RegisterCNPJ[]; 
 
   isExpansionDetailRow = (i: number, row: any) => 
   row.hasOwnProperty('detailRow');
@@ -37,6 +37,8 @@ export class CNPJListComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
+  static cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
@@ -53,8 +55,8 @@ export class CNPJListComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  addNew(cnpj: CNPJ) {
-    const dialogRef = this.dialog.open(CNPJAddDialogComponent, {data: {cnpj: CNPJ},
+  addNew(registerCnpj: RegisterCNPJ) {
+    const dialogRef = this.dialog.open(CNPJAddDialogComponent, {data: {registerCNPJ: registerCnpj},
       height: 'max-content',
       width: 'max-content'
     });
@@ -95,7 +97,7 @@ export class CNPJListComponent implements AfterViewInit {
  
   public loadData() {
 
-      this.dataService.getAllCNPJs()
+      /*this.dataService.getAllCNPJs()
                       .subscribe(
                         data => {
                           this.ELEMENT_DATA = data;
@@ -104,7 +106,7 @@ export class CNPJListComponent implements AfterViewInit {
                         error => {
                           this.error = error;
                           alert(error); 
-                        });
+                        });*/
     
   } 
     

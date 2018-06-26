@@ -11,12 +11,14 @@ import { Login } from '@app/login/login.model';
 
 export interface Credentials {
   // Customize received credentials here
+  id: number;
   username: string;
   email: string;
   token: string;
 }
 
 export interface LoginContext {
+  id: number;
   username: string;
   password: string;
   remember?: boolean;
@@ -48,15 +50,17 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
-    let data = { username: context.username,email: "",
+    let data = { id:context.id, username: context.username,email: "",
       token: '123456'}
     this.httpClient.post(this.API_URL, new Login(context.username,context.password,"")).subscribe(dataLogin => {
         let user = dataLogin;
+        data.id = user['id'];
         this.setCredentials(data, context.remember);
         return of(data);
       },
       (err: HttpErrorResponse) => {
         data = {
+          id: null,
           username: null,
           email: null,
           token: null
@@ -86,7 +90,9 @@ export class AuthenticationService {
    * @return {Observable<Credentials>} The user credentials.
    */
   loadUser(id: number): Observable<User> {
-    
+    if (id==null) {
+      id = this.credentials.id;
+    }
     return this.httpClient.get(this.API_URL+'/loaduser/'+id)
     .map(response => response)
     .catch(error=> Observable.throw(error.message));

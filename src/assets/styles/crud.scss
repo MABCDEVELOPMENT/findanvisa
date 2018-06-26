@@ -68,6 +68,20 @@
     font-weight: bold;
     background-color:	inherit
   }  
+  
+  ::ng-deep .mat-radio-group{
+    display: inline-flex;
+    flex-direction: column;
+    
+  }
+
+  ::ng-deep .mat-radio-button {
+    margin: 5px;
+  }
+
+  .selected-value {
+    margin: 15px 0;
+  }
 ::ng-deep .mat-form-field-placeholder{
     font-weight: bold;
     font-size: 14px;

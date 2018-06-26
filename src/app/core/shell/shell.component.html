@@ -67,7 +67,7 @@
                 <span translate>User</span>
               </a>
               <a mat-list-item routerLink="/cnpjList" routerLinkActive="active" (click)="sidenav.close()">
-                <span translate>registerCnpj</span>
+                <span translate>registerCnpj.insert</span>
               </a>
               
 
@@ -95,8 +95,9 @@
               <a *ngIf="!username" mat-list-item (click)="login()" routerLinkActive="active">
                 <span translate>Login</span>
               </a>  
-
-         
+              <a *ngIf="username" mat-list-item routerLink="/userProfile" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>profile</span>
+              </a>
               &nbsp;&nbsp;<button  *ngIf="username" mat-menu-item (click)="logout()" translate>Logout</button>
          
         </mat-list>

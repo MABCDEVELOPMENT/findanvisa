@@ -27,6 +27,14 @@ export class CNPJAddDialogComponent implements OnInit {
     {value: true,   viewValue: 'Sim'},
     {value: false,  viewValue: 'Não'}
   ];
+
+  categorys = [
+    {value: 0,  viewValue: 'Alimentos'},
+    {value: 1,  viewValue: 'Cosmeticos'},
+    {value: 2,  viewValue: 'Saneantes'},
+    {value: 3,  viewValue: 'Todas'}
+  ];
+
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
   constructor(public dialogRef: MatDialogRef<CNPJAddDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: RegisterCNPJ,
@@ -39,6 +47,7 @@ export class CNPJAddDialogComponent implements OnInit {
       this.form  = new FormGroup({
         cnpj:      new FormControl('', [Validators.required]),
         fullName:  new FormControl('', [Validators.required]),
+        category:  new FormControl('', [Validators.required]),
         acitve:    new FormControl('', [])
         
     });
@@ -47,6 +56,7 @@ export class CNPJAddDialogComponent implements OnInit {
   getErrorMessage() {
     return this.form.controls.fullName.hasError('required') ? 'fieldEmpty' :
            this.form.controls.cnpj.hasError('required') ? 'fieldEmpty' :
+           this.form.controls.category.hasError('required') ? 'fieldEmpty' :
             '';
   }
 
@@ -59,6 +69,7 @@ export class CNPJAddDialogComponent implements OnInit {
   }
 
   public confirmAdd(): void {
+
     this.dataService.save(this.data);
   }
 }

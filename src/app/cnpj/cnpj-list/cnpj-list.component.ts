@@ -20,7 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CNPJListComponent implements AfterViewInit {
   
   error: HttpErrorResponse;
-  displayedColumns = ['cnpj', 'fullName', 'active', 'actions'];
+  displayedColumns = ['cnpj', 'fullName', 'category', 'actions'];
   ELEMENT_DATA: RegisterCNPJ[]; 
 
   isExpansionDetailRow = (i: number, row: any) => 
@@ -31,14 +31,24 @@ export class CNPJListComponent implements AfterViewInit {
 
   }
 
+  public actives = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
+
+  public categorys = [
+    'Alimentos',
+    'Cosmeticos',
+    'Saneantes',
+    'Todos'
+  ];
+
   length = 100;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
-  static cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
@@ -67,6 +77,7 @@ export class CNPJListComponent implements AfterViewInit {
         // For add we're just pushing a new row inside DataService
         // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
         //this.refreshTable();
+        this.dataSource.data.push(this.dataService.getDialogData());
       }
     });
   }
@@ -83,21 +94,28 @@ export class CNPJListComponent implements AfterViewInit {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
-        //this.dataSource.refreshTable();
+        this.dataSource.data.push(this.dataService.getDialogData());
+        //this.dataSource.data. refreshTable();
       }
     });
   }
 
-  deleteItem(i: number, id: number, title: string, state: string, url: string) {
-    
+  deleteItem(id: number) {
+    this.dataService.deleteCNPJ(id);
+    this.dataSource.data.push(this.dataService.getDialogData());
   }
 
+  public getActive(active: boolean): string {
+      return active?"Sim":"Não"; 
+  }
 
+  public getCategory(category: number): string {
+    return this.categorys[category]; 
+  }
  
   public loadData() {
 
-      /*this.dataService.getAllCNPJs()
+      this.dataService.getAllCNPJs()
                       .subscribe(
                         data => {
                           this.ELEMENT_DATA = data;
@@ -106,11 +124,13 @@ export class CNPJListComponent implements AfterViewInit {
                         error => {
                           this.error = error;
                           alert(error); 
-                        });*/
+                        });
     
   } 
     
- 
+ maskCnpj(valor: string):string {
+    return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+ }
       
     
 

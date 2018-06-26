@@ -5,7 +5,8 @@ export class RegisterCNPJ extends DataModel {
      id: number;
      cnpj: string;
      fullName:string;
-     active:boolean;
+     active: boolean;
+     category: number;
      insertUser:User;
      insertDate:Date;
      updateUser:User;

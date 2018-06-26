@@ -9,6 +9,9 @@ import 'rxjs/add/operator/toPromise';
 
 import { Alert, error } from 'selenium-webdriver';
 import { environment } from '@env/environment';
+import { AuthenticationService } from '@app/core';
+import { UserService } from '@app/user/user.service';
+import { User } from '@app/user/user-model';
 
 
 @Injectable()
@@ -18,8 +21,11 @@ export class CNPJService {
   dataChange: Observable<RegisterCNPJ[]> = new Observable<RegisterCNPJ[]>();
   // Temporarily stores data from dialogs
   dialogData: any;
+  user:User;
   private headers = new Headers({'Content-Type': 'application/json'});
-  constructor (private httpClient: HttpClient) {
+  constructor (private httpClient: HttpClient,
+              private autenticationService: AuthenticationService,
+              private userService: UserService) {
      
   }
 
@@ -38,13 +44,20 @@ export class CNPJService {
                     .catch(error=> Observable.throw(error.message));
   }
 
+  getCNPJs(): Observable<RegisterCNPJ[]> {
+    let id = this.autenticationService.credentials.id;
+    return this.httpClient.get(this.API_URL+'/listnotuser/'+id)
+                    .map(response => response)
+                    .catch(error=> Observable.throw(error.message));
+  }
+
   // DEMO ONLY, you can find working methods below
   save (cnpj: RegisterCNPJ): void {
-    //this.dialogData = cnpj;
+    this.dialogData = cnpj;
     console.log(JSON.stringify(cnpj));
 
     this.httpClient.post(this.API_URL+'/save', cnpj).subscribe(data => {
-      //this.dialogData = cnpj;
+      this.dialogData = cnpj;
       
       alert('Successfully added');
       },
@@ -53,11 +66,30 @@ export class CNPJService {
     });
   }
 
+  saveCnpjUser(registers: RegisterCNPJ[]) {
+    let id = this.autenticationService.credentials.id;
+    
+    this.httpClient.post(this.API_URL+'/savecnpjuser/'+id, registers).subscribe(data => {
+      alert('Registro salvo com sucesso!');
+   },
+      (err: HttpErrorResponse) => {
+        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+    });
+
+  }
+
   updateCNPJ (cnpj: RegisterCNPJ): void {
     this.dialogData = cnpj;
   }
 
   deleteCNPJ (id: number): void {
-    console.log(id);
+    this.httpClient.delete(this.API_URL+'/delete/'+id).subscribe(data => {
+      //this.dialogData = cnpj;
+      
+      alert('Successfully delete');
+      },
+      (err: HttpErrorResponse) => {
+        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+    });
   }
 }

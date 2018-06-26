@@ -1,4 +1,5 @@
 import { DataModel } from "@app/core/model/datamodel";
+import { RegisterCNPJ } from "@app/cnpj/cnpj-model";
 
 export class User extends DataModel {
      id: number;
@@ -14,6 +15,7 @@ export class User extends DataModel {
      updateUser:User;
      updateDate:Date;
      perfil: number;
+     registersCnpj: RegisterCNPJ[]; 
     /*constructor( 
          id: number,
          userName:string,

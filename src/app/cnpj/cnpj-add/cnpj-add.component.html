@@ -2,33 +2,41 @@
   registerCnpj.insert</h2>
 <mat-dialog-content>
   <form (ngSubmit)="submit" [formGroup]="form">
-
-      <mat-form-field class="full-width">
-          <input matInput #input class="form-control"  [textMask]="{mask: cnpjMask}" type="text" placeholder="{{ 'registerCnpj.cnpj' | translate }}" formControlName="cnpj"
-            [(ngModel)]="data.cnpj">
-          <mat-error *ngIf="form.controls.cnpj.invalid">{{getErrorMessage() | translate}}</mat-error>
-      </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput #input class="form-control" [textMask]="{mask: cnpjMask , guide: false, modelClean: true}" type="text" placeholder="{{ 'registerCnpj.cnpj' | translate }}"
+        formControlName="cnpj" [(ngModel)]="data.cnpj">
+      <mat-error *ngIf="form.controls.cnpj.invalid">{{getErrorMessage() | translate}}</mat-error>
+    </mat-form-field>
 
     <mat-form-field class="full-width">
-        <input matInput #input class="form-control" type="text" placeholder="{{ 'registerCnpj.fullName' | translate }}" formControlName="fullName"
-          [(ngModel)]="data.fullName">
-        <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
+      <input matInput #input class="form-control" type="text" placeholder="{{ 'registerCnpj.fullName' | translate }}" formControlName="fullName"
+        [(ngModel)]="data.fullName">
+      <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>
-    
-    
-        <mat-checkbox class="form-control" [(ngModel)]="data.active" formControlName="fullName">{{ 'registerCnpj.active' | translate }}
-            
-        </mat-checkbox>
-        <!-- <input matInput #input class="form-control" type="text" placeholder="{{ 'registerCnpj.fullName' | translate }}" formControlName="fullName"
-          [(ngModel)]="data.active"> -->
+
+    <div class="selected-value">{{ 'registerCnpj.category' | translate }}</div>
+    <mat-radio-group style="margin-top: 10px;" class="form-control" [(ngModel)]="data.category" formControlName="category">
+        <mat-radio-button class="radio-button" *ngFor="let category of categorys" [value]="category.value">
+          {{category.viewValue}}
+        </mat-radio-button>
         
-    
+    </mat-radio-group>
+    <!-- <br><br>
+    <mat-checkbox class="form-control" [(ngModel)]="data.active" formControlName="active">{{ 'registerCnpj.active' | translate }}
+    </mat-checkbox> -->
+   
+
+
+    <!-- <input matInput #input class="form-control" type="text" placeholder="{{ 'registerCnpj.fullName' | translate }}" formControlName="fullName"
+          [(ngModel)]="data.active"> -->
+
+
 
   </form>
 </mat-dialog-content>
 
-<mat-dialog-actions> 
-  <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" [mat-dialog-close]="1"
-    (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
+<mat-dialog-actions>
+  <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" [mat-dialog-close]="1" (click)="confirmAdd()"
+    translate>{{ 'save' | translate }}</button>
   <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
 </mat-dialog-actions>

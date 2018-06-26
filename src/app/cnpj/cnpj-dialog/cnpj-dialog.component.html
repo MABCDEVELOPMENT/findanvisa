@@ -1,0 +1,18 @@
+<h2 mat-dialog-title translate>
+  registerCnpj.insert</h2>
+  <mat-dialog-content >
+    <form style="height: 80%;" (ngSubmit)="submit" [formGroup]="form">
+
+            <mat-selection-list #list [(ngModel)]="selectedOptions" formControlName="cnpj" (ngModelChange)="onNgModelChange($event)">
+                <mat-list-option *ngFor="let register of cnpjs" [value]="register">
+                    {{register.fullName}}
+                </mat-list-option>
+            </mat-selection-list>
+
+    </form>
+<mat-dialog-actions>
+  <button class="mat-raised-button" mat-button [type]="submit"  [mat-dialog-close]="1" (click)="confirmAdd()"
+    translate>{{ 'Ok' | translate }}</button>
+  <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
+</mat-dialog-actions>
+</mat-dialog-content>

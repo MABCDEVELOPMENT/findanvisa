@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CNPJAddDialogComponent } from './cnpj-add/cnpj-add.component';
 import { CNPJEditDialogComponent } from './cnpj-edit/cnpj-edit.component';
+import { CNPJDialogComponent} from './cnpj-dialog/cnpj-dialog.component';
 import { CNPJService } from '@app/cnpj/cnpj.service';
 import { SharedModule } from '../shared';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -29,8 +30,8 @@ import { TextMaskModule } from 'angular2-text-mask';
   ],
   exports:[CNPJListComponent],
   entryComponents: [
-    CNPJAddDialogComponent,CNPJEditDialogComponent],
-  declarations: [CNPJListComponent, CNPJAddDialogComponent,CNPJEditDialogComponent],
+    CNPJAddDialogComponent,CNPJEditDialogComponent,CNPJDialogComponent],
+  declarations: [CNPJListComponent, CNPJAddDialogComponent,CNPJEditDialogComponent,CNPJDialogComponent],
   providers:[CNPJService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

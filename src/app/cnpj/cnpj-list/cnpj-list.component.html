@@ -7,11 +7,11 @@
 
 
   <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
-
+    
     <!-- CNPJ Column -->
     <ng-container matColumnDef="cnpj">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.cnpj}} </mat-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
     </ng-container>
 
     <!-- Full Name Column -->
@@ -20,13 +20,18 @@
       <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
     </ng-container>
 
-
+    <!-- category Column -->
+    <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+      </ng-container>
 
     <!-- active Column -->
-    <ng-container matColumnDef="active">
+    <!-- <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.active' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.active}} </mat-cell>
-    </ng-container>
+      <mat-cell *matCellDef="let CNPJ"> {{ getActive(CNPJ.active)}} </mat-cell>
+    </ng-container> -->
+
 
 
     <!-- actions -->
@@ -42,7 +47,7 @@
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+        <button mat-icon-button color="accent" (click)="deleteItem(CNPJ.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
 

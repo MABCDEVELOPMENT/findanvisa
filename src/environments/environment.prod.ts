@@ -4,7 +4,7 @@ import env from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version,
-  serverUrl: 'http://localhost:8088',
+  serverUrl: 'http://localhost:4200/findneapi',
   defaultLanguage: 'pt-BR',
   supportedLanguages: [
     'pt-BR',

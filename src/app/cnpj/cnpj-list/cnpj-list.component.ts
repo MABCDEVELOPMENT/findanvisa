@@ -59,10 +59,14 @@ export class CNPJListComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.loadData();
     this.dataSource.sort      = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+  ngAfterViewInit() {
+
+    
   }
 
   addNew(registerCnpj: RegisterCNPJ) {

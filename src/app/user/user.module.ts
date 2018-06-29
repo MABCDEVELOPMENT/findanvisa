@@ -16,6 +16,7 @@ import { SharedModule } from '../shared';
 import { TextMaskModule } from 'angular2-text-mask';
 import { UserProfileComponent } from '@app/user/user-profile/user-profile.component';
 import { User } from '@app/user/user-model';
+import { UserCNPJComponent } from '@app/user/user-cnpj/user-cnpj.component';
 
 @NgModule({
   imports: [
@@ -31,8 +32,8 @@ import { User } from '@app/user/user-model';
   ],
   exports:[UserListComponent],
   entryComponents: [
-    UserAddDialogComponent,UserEditDialogComponent],
-  declarations: [UserListComponent, UserAddDialogComponent,UserEditDialogComponent, UserProfileComponent],
+    UserAddDialogComponent,UserEditDialogComponent,UserCNPJComponent],
+  declarations: [UserListComponent, UserAddDialogComponent,UserEditDialogComponent, UserCNPJComponent,UserProfileComponent],
   providers:[UserService,User],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

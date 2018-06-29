@@ -12,7 +12,7 @@ import { MaterialModule } from '@app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
 import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
-
+import { TextMaskModule } from 'angular2-text-mask';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +22,7 @@ import { GenericParameterService } from '@app/generic-parameter/generic-paramete
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
+    TextMaskModule,
     GenericParameterRoutingModule
   ],
   providers:[GenericParameterService],

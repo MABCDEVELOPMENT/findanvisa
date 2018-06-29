@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   version: '(dev)',
-  serverUrl: 'http://localhost:8088',
+  serverUrl: 'http://localhost:4200/findneapi',
   defaultLanguage: 'pt-BR',
   supportedLanguages: [
     'pt-BR',

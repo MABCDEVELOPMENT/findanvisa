@@ -6,8 +6,8 @@ export class GenericParameter {
      version:string;
      systemName:string;
      socialName: string;
-     cnpj:number;
-     codeZip: number;
+     cnpj:String;
+     codeZip: String;
      address: string;
      number: string;
      neighborhood: string;

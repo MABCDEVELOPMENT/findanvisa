@@ -1,6 +1,7 @@
 {
   "APP_NAME": "Find Anvisa",
   "About": "Sobre",
+  "Inquiries":"Consultas",
   "Hello world !": "Alô Mundo !",
   "Home": "Find Anvisa",
   "Logged in as": "Conectado como ",
@@ -74,5 +75,13 @@
   "registerCnpj.cnpj":"CNPJ",  
   "registerCnpj.fullName":"Nome Completo",
   "registerCnpj.category":"Categoria",
-  "registerCnpj.active":"Ativo"
+  "registerCnpj.active":"Ativo",
+  "queryRecords":"Consulta Registros",
+  "queryRecord.subjectMatter":"Assunto",
+  "queryRecord.process":"Processo",
+  "queryRecord.year":"Ano",
+  "queryRecord.transaction":"Transação",
+  "queryRecord.product":"Produto",
+  "queryRecord.company":"Empresa",
+  "queryRecord.situation":"Situação"
 }

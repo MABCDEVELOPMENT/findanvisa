@@ -9,12 +9,12 @@ import { RegisterComponent } from '@app/login/register-user/register.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: extract('Login') }},
   { path: 'redefine', component: RedefinePasswordComponent, data: { title: extract('Redefine') }},
-  { path: 'register', component: RegisterComponent, data: { title: extract('registerUser') } 
+  { path: 'registerUser', component: RegisterComponent, data: { title: extract('registerUser') } 
 }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule],
   providers: []
 })

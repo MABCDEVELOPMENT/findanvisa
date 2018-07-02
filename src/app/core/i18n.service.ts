@@ -28,7 +28,7 @@ export class I18nService {
   constructor(private translateService: TranslateService) {
     // Embed languages to avoid extra HTTP requests
     translateService.setTranslation('pt-BR', ptBR);
-    translateService.setTranslation('en-US', enUS);
+    //translateService.setTranslation('en-US', enUS);
   }
 
   /**
@@ -80,4 +80,7 @@ export class I18nService {
     return this.translateService.currentLang;
   }
 
+  getBrowserCultureLang() {
+    return 'pt-BR';
+  }
 }

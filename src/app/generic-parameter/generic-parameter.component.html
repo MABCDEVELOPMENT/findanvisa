@@ -22,7 +22,7 @@
         
         <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>  
           <mat-form-field class="cnpj">
-                <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.cnpj' | translate }}" formControlName="cnpj"
+                <input matInput #input class="form-control" [textMask]="{mask: cnpjMask , guide: false, modelClean: true}"  type="text" placeholder="{{ 'genericParameter.cnpj' | translate }}" formControlName="cnpj"
                   [(ngModel)]="data.cnpj">
                 <mat-error *ngIf="form.controls.cnpj.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>

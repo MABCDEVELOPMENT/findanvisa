@@ -22,6 +22,8 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { GenericParameterModule } from '@app/generic-parameter/generic-parameter.module';
 import { UpdateParameterModule } from '@app/update-parameter/update-parameter.module';
 import { CNPJModule } from '@app/cnpj/cnpj.module';
+import { QueryrecordsModule } from '@app/queryrecords/queryrecords.module'; 
+
 
 
 
@@ -44,6 +46,7 @@ import { CNPJModule } from '@app/cnpj/cnpj.module';
     GenericParameterModule,
     UpdateParameterModule,
     CNPJModule,
+    QueryrecordsModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

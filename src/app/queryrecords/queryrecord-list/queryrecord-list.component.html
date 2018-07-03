@@ -1,0 +1,92 @@
+<div class="table-container mat-elevation-z8">
+
+  <mat-form-field>
+    <mat-select placeholder="Selecione a empresa">
+      <mat-option *ngFor="let register of cnpjs" [value]="register">
+        {{register.fullName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+  </mat-form-field>
+
+
+  <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
+
+
+
+    <!-- subjectMatter Column -->
+    <ng-container matColumnDef="subjectMatter">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subjectMatter' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.subjectMatter}} </mat-cell>
+    </ng-container>
+
+    <!-- process Column -->
+    <ng-container matColumnDef="process">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.process}} </mat-cell>
+    </ng-container>
+
+    <!-- year Column -->
+    <ng-container matColumnDef="year">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.year' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.year}} </mat-cell>
+    </ng-container>
+
+    <!-- transaction Column -->
+    <ng-container matColumnDef="transaction">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.transaction' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.transaction}} </mat-cell>
+    </ng-container>
+
+    <!-- product Column -->
+    <ng-container matColumnDef="product">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.product}} </mat-cell>
+    </ng-container>
+
+    <!-- company Column -->
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.company}} </mat-cell>
+    </ng-container>
+
+    <!-- company Column -->
+    <ng-container matColumnDef="situation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.situation}} </mat-cell>
+    </ng-container>
+
+    <!-- actions
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let queryRecord; let i=index;">
+        <button mat-icon-button color="accent" (click)="startEdit(i, queryRecord)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+
+        
+      </mat-cell>
+     
+    </ng-container> -->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

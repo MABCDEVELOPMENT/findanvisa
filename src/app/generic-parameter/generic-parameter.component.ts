@@ -14,6 +14,7 @@ export class GenericParameterComponent implements OnInit {
 
   form: FormGroup;
   data: GenericParameter = new GenericParameter();
+  public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     public genericParameterService : GenericParameterService,
@@ -62,12 +63,13 @@ export class GenericParameterComponent implements OnInit {
   }
 
   save(){
-
     this.data.version     = this.form.controls["version"].value;
     this.data.systemName	= this.form.controls["systemName"].value;
     this.data.socialName	= this.form.controls["socialName"].value;
     this.data.cnpj		    = this.form.controls["cnpj"].value;
+    this.data.cnpj        = this.data.cnpj.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     this.data.codeZip		  = this.form.controls["codeZip"].value;
+    this.data.codeZip		  = this.data.codeZip.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     this.data.address		  = this.form.controls["address"].value;
     this.data.number		  = this.form.controls["number"].value;
     this.data.neighborhood	= this.form.controls["neighborhood"].value;

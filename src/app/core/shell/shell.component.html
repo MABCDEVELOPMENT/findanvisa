@@ -3,7 +3,7 @@
     <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
       <mat-toolbar>
         <!--<span translate>APP_NAME</span>-->
-        <img style="height: 80%;" src="../../../assets/unilever.jpg" />
+        <img style="height: 80%;" src="./assets/unilever.jpg" />
         <div fxFlex></div>
         <div fxFlex></div>
         <div>
@@ -43,7 +43,7 @@
                 <span translate>Inquiries</span>
               </mat-expansion-panel-header>
               <mat-divider></mat-divider>
-              <a mat-list-item routerLink="/recordsConsultation" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/queryRecord" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>RecordsConsultation</span>
               </a>
 

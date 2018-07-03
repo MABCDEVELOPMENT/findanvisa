@@ -134,8 +134,8 @@ export class UserProfileComponent {
 
   addNew(registerCnpj: RegisterCNPJ) {
     const dialogRef = this.dialog.open(CNPJDialogComponent, {data: {registerCNPJ: registerCnpj},
-      height: '400px',
-      width: '400px'
+      height: 'max-content+10px',
+      width: 'max-content'
     });
 
     dialogRef.afterClosed().subscribe(result => {

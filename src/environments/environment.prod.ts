@@ -4,7 +4,7 @@ import env from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version,
-  serverUrl: 'http://findinfo.kinghost.net',
+  serverUrl: 'http://findinfo.kinghost.net/neapi',
   defaultLanguage: 'pt-BR',
   supportedLanguages: [
     'pt-BR'

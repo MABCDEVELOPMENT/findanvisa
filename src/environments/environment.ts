@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   version: '(dev)',
-  serverUrl: 'http://findinfo.kinghost.net',
+  serverUrl: 'http://localhost',
   defaultLanguage: 'pt-BR',
   supportedLanguages: [
     'pt-BR'

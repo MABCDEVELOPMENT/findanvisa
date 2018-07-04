@@ -25,8 +25,8 @@ export class UserAddDialogComponent implements OnInit {
   form: FormGroup;
 
   perfis = [
-    {value: 0,  viewValue: 'Administrador'},
-    {value: 1,  viewValue: 'Operador'}
+    {value: 1,  viewValue: 'Administrador'},
+    {value: 2,  viewValue: 'Operador'}
   ];
 
   actives = [

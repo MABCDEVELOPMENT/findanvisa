@@ -17,6 +17,7 @@ export class GenericParameter {
      responsiblePerson: string;
      emailReponsible: string;
      emailDefault: string;
+     emailPermission: string;
      updateUser:User;
      updateDate:Date;
     //constructor() 

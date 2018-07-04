@@ -104,6 +104,11 @@
             <mat-error *ngIf="form.controls.emailDefault.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
 
+          <mat-form-field class="emailPermission">
+            <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.emailPermission' | translate }}" formControlName="emailPermission"
+              [(ngModel)]="data.emailPermission">
+            <mat-error *ngIf="form.controls.emailPermission.invalid">{{getErrorMessage() | translate}}</mat-error>
+          </mat-form-field>
         </section>
       </form>
       <mat-dialog-actions class="mat-dialog-actions-params"> 

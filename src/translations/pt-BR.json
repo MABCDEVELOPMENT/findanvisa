@@ -68,6 +68,7 @@
   "genericParameter.emailDefault":"E-mail padrão",
   "genericParameter.contactPerson":"Pessoal de Contato",
   "genericParameter.emailSuport":"E-mail de Suporte",
+  "genericParameter.emailPermission":"E-mail Válido",
   "genericParameter.phoneSuport":"Fone Suporte",
   "UpdateParameter":"Parâmetros de Atualização",
   "registerCnpj.insert": "Registro CNPJ",

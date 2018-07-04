@@ -21,11 +21,11 @@ export class RegisterComponent implements OnInit {
   version: string = environment.version;
   error: string;
   registerForm: FormGroup;
-  user : User = new User();
+  user: User = new User();
   constructor(private router: Router,
-              private formBuilder: FormBuilder,
-              private i18nService: I18nService,
-              private registerService: RegisterService) {
+    private formBuilder: FormBuilder,
+    private i18nService: I18nService,
+    private registerService: RegisterService) {
     this.createForm();
   }
 
@@ -34,18 +34,23 @@ export class RegisterComponent implements OnInit {
   private createForm() {
     this.registerForm = this.formBuilder.group({
       fullname: ['', Validators.required],
-      username: ['', Validators.required]
+      email: ['', Validators.required]
     });
   }
 
   register() {
     let fullName = this.registerForm.controls["fullname"].value;
-    let username = this.registerForm.controls["username"].value;
-     this.user.userName = username;
-     this.user.fullName = fullName;
-     this.user.perfil = 1;
-     this.registerService.register(this.user);
-     this.router.navigate(['/'], { replaceUrl: true });
+    let email = this.registerForm.controls["email"].value;
+    let index = fullName.indexOf(" ");
+    if (index == -1) {
+        index = fullName.length() - 1;
+    }
+    this.user.userName = fullName.substr(0, index)
+    this.user.email = email;
+    this.user.fullName = fullName;
+    this.user.perfil = 2;
+    this.registerService.register(this.user);
+    this.router.navigate(['/'], { replaceUrl: true });
 
   }
 

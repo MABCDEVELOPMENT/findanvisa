@@ -10,9 +10,9 @@ const HttpsProxyAgent = require('https-proxy-agent');
  */
 const proxyConfig = [
    {
-     context: '/neapi',
-     pathRewrite: { '^/neapi': '' },
-     target: 'https://findinfo.kinghost.net/neapi',
+     context: '/findanvisa',
+     pathRewrite: { '^/findanvisa': '' },
+     target: 'https://findinfo.kinghost.net:21094',
      //changeOrigin: true,
      secure: false
    }

@@ -5,7 +5,7 @@ import { Route, extract } from '@app/core';
 
 const routes: Routes = [
   Route.withShell([
-  { path: 'cnpjList', component: CNPJListComponent, data: { title: extract('registerCnpj.insert') } }
+  { path: 'public/cnpjList', component: CNPJListComponent, data: { title: extract('registerCnpj.insert') } }
   ])
 ];
 

@@ -43,15 +43,15 @@
                 <span translate>Inquiries</span>
               </mat-expansion-panel-header>
               <mat-divider></mat-divider>
-              <a mat-list-item routerLink="/queryRecord" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/queryRecord" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>RecordsConsultation</span>
               </a>
 
-              <a mat-list-item routerLink="/processConsulting" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/processConsulting" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>ProcessConsulting</span>
               </a>
 
-              <a mat-list-item routerLink="/ConsultingSynchronization" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/ConsultingSynchronization" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>Synchronization</span>
               </a>
 
@@ -63,14 +63,14 @@
                 <span translate>Register</span>
               </mat-expansion-panel-header>
 
-              <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/userList" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>User</span>
               </a>
-              <a mat-list-item routerLink="/cnpjList" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/cnpjList" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>registerCnpj.insert</span>
               </a>
 
-              <a mat-list-item routerLink="/generic" routerLinkActive="active" (click)="sidenav.close()">
+              <a mat-list-item routerLink="/public/generic" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>GenericParameters</span>
               </a>
 
@@ -80,7 +80,7 @@
               <a *ngIf="!username" mat-list-item (click)="login()" routerLinkActive="active">
                 <span translate>Login</span>
               </a>  
-              <a *ngIf="username" mat-list-item routerLink="/userProfile" routerLinkActive="active" (click)="sidenav.close()">
+              <a *ngIf="username" mat-list-item routerLink="/public/userProfile" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>profile</span>
               </a>
               &nbsp;&nbsp;<button  *ngIf="username" mat-menu-item (click)="logout()" translate>Logout</button>

@@ -6,8 +6,8 @@ import { UserProfileComponent } from '@app/user/user-profile/user-profile.compon
 
 const routes: Routes = [
   Route.withShell([
-    { path: 'userList', component: UserListComponent, data: { title: extract('User') }},
-    { path: 'userProfile', component: UserProfileComponent, data: { title: extract('userProfile') } }
+    { path: 'public/userList', component: UserListComponent, data: { title: extract('User') }},
+    { path: 'public/userProfile', component: UserProfileComponent, data: { title: extract('userProfile') } }
   ])
 ];
 

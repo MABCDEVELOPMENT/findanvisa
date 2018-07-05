@@ -43,19 +43,29 @@ export class LoginComponent implements OnInit {
       this.authenticationService.credentials()
     }*/
 
+    // this.authenticationService.login(this.loginForm.value)
+    //   .pipe(finalize(() => {
+    //     this.loginForm.markAsPristine();
+    //     this.isLoading = false;
+    //   }))
+    //   .subscribe(credentials => {
+    //     log.debug(`${credentials.username} successfully logged in`);
+    //     this.router.navigate(['/'], { replaceUrl: true });
+    //   },err  => {
+    //     log.debug(`Login error: ${err}`);
+    //     this.error = err.error;
+    //     alert(this.error);
+    //   });
     this.authenticationService.login(this.loginForm.value)
-      .pipe(finalize(() => {
-        this.loginForm.markAsPristine();
-        this.isLoading = false;
-      }))
-      .subscribe(credentials => {
-        log.debug(`${credentials.username} successfully logged in`);
-        this.router.navigate(['/'], { replaceUrl: true });
-      },err  => {
-        log.debug(`Login error: ${err}`);
-        this.error = err.error;
-      });
-
+    .subscribe(
+      credentials => {
+          this.router.navigate(['/'], { replaceUrl: true });
+        },
+        err  => {
+            //this.error = err.error;
+            alert(this.error);
+            this.isLoading = false;
+        });
 
   }
 
@@ -106,7 +116,7 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       remember: true
     });

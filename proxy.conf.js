@@ -10,19 +10,19 @@ const HttpsProxyAgent = require('https-proxy-agent');
  */
 const proxyConfig = [
    {
-     context: '/findanvisa',
-     pathRewrite: { '^/findanvisa': '' },
-     target: 'https://findinfo.kinghost.net:21094',
+     context: '/neapi',
+     pathRewrite: { '^/neapi': '' },
+     target: 'https://findinfo.kinghost.net/neapi',
      //changeOrigin: true,
      secure: false
    }
-  //  {
-  //    "/": {
-  //      changeOrigin: true,
-  //      target: "http://findinfo.kinghost.net/findanvisa",
-  //      secure: false
-  //    }
-  //  }
+  // {
+  //   "/": {
+  //     changeOrigin: true,
+  //     "target": "http://findinfo.kinghost.net",
+  //     "secure": false
+  //   }
+  // }
 ];
 
 /*

@@ -5,6 +5,7 @@ import { LoginService } from '@app/login/login.service';
 import { User } from '@app/user/user-model';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Login } from '@app/login/login.model';
+import 'rxjs/add/observable/throw';
 
 
 
@@ -20,6 +21,7 @@ export interface Credentials {
 export interface LoginContext {
   id: number;
   username: string;
+  email: string;
   password: string;
   remember?: boolean;
 }
@@ -50,22 +52,16 @@ export class AuthenticationService {
    */
   login(context: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
-    let data = { id:context.id, username: context.username,email: "",
+    let data = { id:context.id, username: context.username,email:context.email,
       token: '123456'}
-    this.httpClient.post(this.API_URL, new Login(context.username,context.password,"")).subscribe(dataLogin => {
+    this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email)).subscribe(dataLogin => {
         let user = dataLogin;
         data.id = user['id'];
         this.setCredentials(data, context.remember);
         return of(data);
       },
-      (err: HttpErrorResponse) => {
-        data = {
-          id: null,
-          username: null,
-          email: null,
-          token: null
-        };
-        Observable.throw(err.error);
+      error => {
+         Observable.throw(error);
     });
     return of(data);
     

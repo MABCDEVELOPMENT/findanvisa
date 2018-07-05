@@ -42,7 +42,8 @@ export class GenericParameterComponent implements OnInit {
       emailClient: new FormControl('', [Validators.required]),
       responsiblePerson:new FormControl('', [Validators.required]),
       emailReponsible: new FormControl('', [Validators.required]),
-      emailDefault: new FormControl('', [Validators.required])
+      emailDefault: new FormControl('', [Validators.required]),
+      emailPermission: new FormControl('', [Validators.required])
     });
   }
 
@@ -60,6 +61,7 @@ export class GenericParameterComponent implements OnInit {
     this.form.controls.responsiblePerson.hasError('required') ? 'fieldEmpty' :
     this.form.controls.emailReponsible.hasError('required') ? 'fieldEmpty' :
     this.form.controls.emailDefault.hasError('required') ? 'fieldEmpty' :
+    this.form.controls.emailPermission.hasError('required') ? 'fieldEmpty' :
     '';
   }
 
@@ -80,6 +82,7 @@ export class GenericParameterComponent implements OnInit {
     this.data.responsiblePerson = this.form.controls["responsiblePerson"].value;	
     this.data.emailReponsible	  = this.form.controls["emailReponsible"].value;
     this.data.emailDefault	    = this.form.controls["emailDefault"].value;
+    this.data.emailPermission	  = this.form.controls["emailPermission"].value;
   /*   this.data.updateUser	      = this.form.controls["updateUser"].value;
     this.data.updateDate	      = this.form.controls["updateUser"].value; */
 

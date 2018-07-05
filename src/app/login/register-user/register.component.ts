@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   error: string;
   registerForm: FormGroup;
   user : User = new User();
+  isLoading: boolean = true;
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private i18nService: I18nService,

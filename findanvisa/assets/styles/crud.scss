@@ -1,0 +1,121 @@
+::ng-deep .column {
+
+    width: 99%;
+
+}
+
+::ng-deep .full-width {
+    width: 99%;
+}
+::ng-deep .auto-width {
+    width: auto;
+}
+/* Clear floats after the columns */
+::ng-deep .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+::ng-deep .mat-dialog-title{
+    background-color: $systemColor;
+    color: white;
+    text-align: center
+}  
+
+::ng-deep .mat-dialog-container {
+    overflow: hidden !important;
+    border-radius: 5px !important;
+    padding: 5px !important;
+    background-color: $systemBackgronwd;
+    height: max-content;
+}
+
+::ng-deep .mat-dialog-actions {
+    // align buttons to right as shown in Material Design guide
+    justify-content: center;
+        
+    .mat-button {
+        background-color: $systemColor;
+        -webkit-text-fill-color: white;
+        margin-bottom: 15px;
+ 
+    &:disabled(:first-child) {
+        background-color: $systemColor;
+        -webkit-text-fill-color:black;
+    }   
+    &:not(:first-child), :not(:last-child) {
+        -webkit-text-fill-color: white;
+      }
+    }
+
+
+}
+
+::ng-deep .flex-spacer {
+    flex: 1 1 auto;
+}
+
+::ng-deep .mat-form-field {
+    font-size: 14px;
+    margin: 2px;
+    font-weight: bold;
+    background-color:	inherit
+  }
+  ::ng-deep .mat-checkbox {
+    font-size: 14px;
+    margin: 2px;
+    font-weight: bold;
+    background-color:	inherit
+  }  
+  
+  ::ng-deep .mat-radio-group{
+    display: inline-flex;
+    flex-direction: column;
+    
+  }
+
+  ::ng-deep .mat-radio-button {
+    margin: 5px;
+  }
+
+  .selected-value {
+    margin: 15px 0;
+  }
+::ng-deep .mat-form-field-placeholder{
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-text-fill-color: $systemColor;
+}
+
+::ng-deep .span-label{
+    font-size: 8px;
+    -webkit-text-fill-color: $systemColor;
+}
+
+::ng-deep .mat-focused .mat-form-field-placeholder{
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-text-fill-color: $systemColor;
+}
+::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+   background-color:$systemColor;
+}
+::ng-deep .mat-form-field-underline{
+    background-color:$systemColor;
+}
+
+::ng-deep .mat-button, .mat-raised-button{
+    background-color: $systemColor;
+    text-decoration-color: white;
+} 
+
+::ng-deep .mat-success {
+    background-color: $systemColor;
+    color: black;
+}
+
+::ng-deep .mat-button-focus {
+    background-color: $systemColor;
+    color: black;
+}

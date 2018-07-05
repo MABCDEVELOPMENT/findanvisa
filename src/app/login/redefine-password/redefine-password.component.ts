@@ -14,6 +14,7 @@ export class RedefinePasswordComponent implements OnInit {
 
   error: string;
   redefineForm: FormGroup;
+  isLoading: boolean = true;
   user: User;
   id: any;
   constructor(private router: Router,

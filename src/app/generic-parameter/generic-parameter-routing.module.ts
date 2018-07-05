@@ -5,7 +5,7 @@ import { GenericParameterComponent } from '@app/generic-parameter/generic-parame
 
 const routes: Routes = [
   Route.withShell([
-    { path: 'generic', component: GenericParameterComponent, data: { title: extract('GenericParameter') } }
+    { path: 'public/generic', component: GenericParameterComponent, data: { title: extract('GenericParameter') } }
   ])
 ];
 

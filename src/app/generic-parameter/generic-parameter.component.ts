@@ -14,6 +14,7 @@ export class GenericParameterComponent implements OnInit {
 
   form: FormGroup;
   data: GenericParameter = new GenericParameter();
+  isLoading: boolean = true;
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
   constructor(private formBuilder: FormBuilder,
     private router: Router,

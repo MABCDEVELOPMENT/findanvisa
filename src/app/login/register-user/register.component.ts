@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   error: string;
   registerForm: FormGroup;
   user: User = new User();
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
@@ -44,12 +44,12 @@ export class RegisterComponent implements OnInit {
     let email = this.registerForm.controls["email"].value;
     let index = fullName.indexOf(" ");
     if (index == -1) {
-        index = fullName.length() - 1;
+        index = fullName.length - 1;
     }
     this.user.userName = fullName.substr(0, index)
     this.user.email = email;
     this.user.fullName = fullName;
-    this.user.perfil = 2;
+    this.user.profile = 2;
     this.registerService.register(this.user);
     this.router.navigate(['/'], { replaceUrl: true });
 

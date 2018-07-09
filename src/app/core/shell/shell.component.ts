@@ -29,10 +29,10 @@ export class ShellComponent implements OnInit {
               private i18nService: I18nService) { }
 
   ngOnInit() { 
-    this.genericParameterService.load().subscribe(data => {
-      this.genericParameter = data;
-      this.titleService.setTitle(this.genericParameter.systemName);
-    })
+    // this.genericParameterService.load().subscribe(data => {
+    //   this.genericParameter = data;
+    //   this.titleService.setTitle(this.genericParameter.systemName);
+    // })
   }
 
   setLanguage(language: string) {

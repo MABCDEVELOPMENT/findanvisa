@@ -35,6 +35,17 @@
       <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
     </ng-container>
 
+    <!-- profile Column -->
+    <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'user.profile' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{ getProfile(user.profile)}} </mat-cell>
+    </ng-container>
+
+   <!-- active Column 
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'user.active' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ getActive(user.active)}} </mat-cell>
+    </ng-container> -->
 
     <!-- actions -->
     <ng-container matColumnDef="actions">

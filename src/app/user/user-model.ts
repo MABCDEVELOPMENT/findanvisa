@@ -14,7 +14,7 @@ export class User extends DataModel {
      insertDate:Date;
      updateUser:User;
      updateDate:Date;
-     perfil: number;
+     profile: number;
      registersCnpj: RegisterCNPJ[]; 
     /*constructor( 
          id: number,

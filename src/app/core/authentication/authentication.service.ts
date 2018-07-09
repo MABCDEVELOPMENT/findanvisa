@@ -15,6 +15,7 @@ export interface Credentials {
   id: number;
   username: string;
   email: string;
+  isAdm: boolean;
   token: string;
 }
 
@@ -22,7 +23,7 @@ export interface LoginContext {
   id: number;
   username: string;
   email: string;
-  password: string;
+  password: string
   remember?: boolean;
 }
 
@@ -50,20 +51,26 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  login(context: LoginContext): Observable<Credentials> {
+  login(context: LoginContext): Promise<any> {
     // Replace by proper authentication call
     let data = { id:context.id, username: context.username,email:context.email,
-      token: '123456'}
-    this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email)).subscribe(dataLogin => {
+     isAdm: false ,token: '123456'}
+    this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email))
+    .toPromise()
+    .then(dataLogin => {
         let user = dataLogin;
         data.id = user['id'];
-        this.setCredentials(data, context.remember);
+        data.username = user['userName'];
+        data.isAdm = (user['profile'] == 1);
+        //this.setCredentials(data, context.remember);
         return of(data);
-      },
-      error => {
-         Observable.throw(error);
+      }
+      
+    ).catch(err => {
+      return of(err)
     });
-    return of(data);
+    
+    return null;
     
   }
 

@@ -24,7 +24,7 @@ export class UserAddDialogComponent implements OnInit {
   
   form: FormGroup;
 
-  perfis = [
+  profiles = [
     {value: 1,  viewValue: 'Administrador'},
     {value: 2,  viewValue: 'Operador'}
   ];
@@ -50,7 +50,8 @@ export class UserAddDialogComponent implements OnInit {
         userName:  new FormControl('', [Validators.required]),
         dateBrith: new FormControl('', [Validators.required,DateValidator.validDate]),
         email:     new FormControl('', [Validators.required]),
-        cellPhone: new FormControl('', [Validators.required])
+        cellPhone: new FormControl('', [Validators.required]),
+        profile:   new FormControl('', [Validators.required])
         
     });
   }
@@ -63,7 +64,7 @@ export class UserAddDialogComponent implements OnInit {
            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
            this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
            this.form.controls.active.hasError('required') ? 'fieldEmpty' :
-           //this.form.controls.cellPhone.hasError('cellPhone') ? 'invalidPhone' :
+           this.form.controls.profile.hasError('profile') ? 'invalidPhone' :
             '';
   }
 

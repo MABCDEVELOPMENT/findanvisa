@@ -20,7 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UserListComponent implements AfterViewInit {
   
   error: HttpErrorResponse;
-  displayedColumns = ['id', 'fullName', 'userName', 'email', 'actions'];
+  displayedColumns = ['id', 'fullName', 'userName', 'email', 'profile' ,'actions'];
   ELEMENT_DATA: User[]; 
 
   isExpansionDetailRow = (i: number, row: any) => 
@@ -36,6 +36,17 @@ export class UserListComponent implements AfterViewInit {
   pageSizeOptions = [5, 10, 25, 100];
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
+  public actives = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
+
+  public profiles = [
+    '',
+    'Administrador',
+    'Operador'
+  ];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -107,7 +118,14 @@ export class UserListComponent implements AfterViewInit {
                         });
     
   } 
-    
+  
+  public getActive(active: boolean): string {
+    return active?"Sim":"Não"; 
+  }
+
+  public getProfile(profile: number): string {
+    return this.profiles[profile]; 
+  }
  
       
     

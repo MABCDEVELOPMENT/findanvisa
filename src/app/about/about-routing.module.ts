@@ -6,7 +6,7 @@ import { AboutComponent } from './about.component';
 
 const routes: Routes = [
   Route.withShell([
-    { path: 'public/about', component: AboutComponent, data: { title: extract('About') } }
+    { path: 'about', component: AboutComponent, data: { title: extract('About') } }
   ])
 ];
 

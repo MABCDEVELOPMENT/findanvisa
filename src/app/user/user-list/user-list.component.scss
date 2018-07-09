@@ -21,10 +21,20 @@
   {
   flex: 0 0 300px;
   }
-  .mat-cell:nth-child(5) { // Edit
+  .mat-cell:nth-child(5), // profile
+  .mat-header-cell:nth-child(5),
+  {
+  flex: 0 0 100px;
+  }
+  // .mat-cell:nth-child(6), // active
+  // .mat-header-cell:nth-child(6),
+  // {
+  // flex: 0 0 300px;
+  // }
+  .mat-cell:nth-child(6) { // Edit
     -webkit-text-fill-color: $systemColor 
   }
-  .mat-header-cell:nth-child(6), // Delete
+  .mat-header-cell:nth-child(7), // Delete
   {
     -webkit-text-fill-color:white;
   flex: 0 0 10%;

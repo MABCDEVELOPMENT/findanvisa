@@ -9,22 +9,23 @@ const HttpsProxyAgent = require('https-proxy-agent');
  * For more details and options, see https://github.com/angular/angular-cli#proxy-to-backend
  */
 const proxyConfig = [
-   {
-     context: '/findanvisa',
-     pathRewrite: { '^/findanvisa': '' },
-     target: 'https://findinfo.kinghost.net:21094',
-     //changeOrigin: true,
-     secure: false
-   }
-  // {
-  //   "/": {
+  //  {
+  //    context: '/neapi',
+  //    pathRewrite: { '^/neapi': '' },
   //     changeOrigin: true,
-  //     "target": "http://findinfo.kinghost.net",
-  //     "secure": false
-  //   }
-  // }
+  //    secure: false,
+  //    "target": "http://findinfo.kinghost.net/",
+  //    "secure": false
+  //  }
+   
+   {
+     "/": {
+       changeOrigin: true,
+       "target": "http://localhost",
+       "secure": false
+     }
+   }
 ];
-
 /*
  * Configures a corporate proxy agent for the API proxy if needed.
  */

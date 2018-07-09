@@ -5,7 +5,7 @@ import { UpdateParameterComponent } from '@app/update-parameter/update-parameter
 
 const routes: Routes = [
   Route.withShell([
-    { path: 'public/update', component: UpdateParameterComponent, data: { title: extract('UpdateParameters') } }
+    { path: 'update', component: UpdateParameterComponent, data: { title: extract('UpdateParameters') } }
   ])
 ];
 

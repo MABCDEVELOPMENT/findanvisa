@@ -5,7 +5,7 @@ import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.co
 
 const routes: Routes = [
   Route.withShell([
-  { path: 'public/queryRecord', component: QueryrecordListComponent, data: { title: extract('queryRecords') } }
+  { path: 'queryRecord', component: QueryrecordListComponent, data: { title: extract('queryRecords') } }
   ])
 ];
 

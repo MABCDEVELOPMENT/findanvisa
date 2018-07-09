@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login() {
+
+    this.authenticationService.login(this.loginForm.value).then(data=>{
+      
+    })
     /*this.isLoading = true;
     let userName = this.loginForm.controls["username"];
     let password = this.loginForm.controls["password"];
@@ -44,28 +48,29 @@ export class LoginComponent implements OnInit {
     }*/
 
     // this.authenticationService.login(this.loginForm.value)
-    //   .pipe(finalize(() => {
-    //     this.loginForm.markAsPristine();
-    //     this.isLoading = false;
-    //   }))
-    //   .subscribe(credentials => {
-    //     log.debug(`${credentials.username} successfully logged in`);
-    //     this.router.navigate(['/'], { replaceUrl: true });
-    //   },err  => {
-    //     log.debug(`Login error: ${err}`);
-    //     this.error = err.error;
-    //     alert(this.error);
-    //   });
-    this.authenticationService.login(this.loginForm.value)
-    .subscribe(
-      credentials => {
-          this.router.navigate(['/'], { replaceUrl: true });
-        },
-        err  => {
-            //this.error = err.error;
-            alert(this.error);
-            this.isLoading = false;
-        });
+    //    .pipe(finalize(() => {
+    //      this.loginForm.markAsPristine();
+    //      this.isLoading = false;
+    //    }))
+    //    .subscribe(credentials => {
+    //      log.debug(`${credentials.username} successfully logged in`);
+    //      this.router.navigate(['/'], { replaceUrl: true });
+    //    },err  => {
+    //      log.debug(`Login error: ${err}`);
+    //      this.error = err.error;
+    //      alert(this.error);
+    //    });
+
+    // this.authenticationService.login(this.loginForm.value)
+    // .subscribe(
+    //   credentials => {
+    //       this.router.navigate(['/'], { replaceUrl: true });
+    //     },
+    //     err  => {
+    //         //this.error = err.error;
+    //         alert(this.error);
+    //         this.isLoading = false;
+    //     });
 
   }
 

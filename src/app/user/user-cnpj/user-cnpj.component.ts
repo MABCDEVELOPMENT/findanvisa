@@ -39,7 +39,7 @@ export class UserCNPJComponent implements OnInit {
     let username = this.registerForm.controls["username"].value;
      this.user.userName = username;
      this.user.fullName = fullName;
-     this.user.perfil = 1;
+     this.user.profile = 1;
      this.userService.save(this.user);
      this.router.navigate(['/'], { replaceUrl: true });
 

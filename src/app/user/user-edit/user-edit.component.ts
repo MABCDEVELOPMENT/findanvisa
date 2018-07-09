@@ -23,7 +23,7 @@ export class UserEditDialogComponent {
 
   form: FormGroup;
 
-  perfis = [
+  profiles = [
     {value: 1,  viewValue: 'Administrador'},
     {value: 2,  viewValue: 'Operador'}
   ];
@@ -51,7 +51,7 @@ export class UserEditDialogComponent {
       dateBrith: new FormControl('', [Validators.required, DateValidator.validDate]),
       email: new FormControl('', [Validators.required, Validators.email]),
       cellPhone: new FormControl('', [Validators.required]),
-      perfil: new FormControl('', [Validators.required]),
+      profile: new FormControl('', [Validators.required]),
       active: new FormControl('', [Validators.required])
     });
   }
@@ -63,7 +63,7 @@ export class UserEditDialogComponent {
           this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
             this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
               this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
-              this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
+              this.form.controls.profile.hasError('required') ? 'fieldEmpty' :
               this.form.controls.active.hasError('required') ? 'fieldEmpty' :
                 '';
   }

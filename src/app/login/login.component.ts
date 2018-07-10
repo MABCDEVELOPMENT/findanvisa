@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
-
+import { Observable } from 'rxjs/Observable';
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { MatDialog } from '@angular/material';
@@ -37,8 +36,14 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    this.authenticationService.login(this.loginForm.value).then(data=>{
-      
+    this.authenticationService.login(this.loginForm.value)
+    .then(data=>{
+      log.debug(`${data.username} successfully logged in`);
+      this.router.navigate(['/'], { replaceUrl: true });
+    }).catch(err=>{
+      this.error = err.error;
+      alert(this.error);
+      this.isLoading = false;
     })
     /*this.isLoading = true;
     let userName = this.loginForm.controls["username"];

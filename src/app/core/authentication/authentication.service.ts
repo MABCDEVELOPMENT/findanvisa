@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { LoginService } from '@app/login/login.service';
 import { User } from '@app/user/user-model';
@@ -51,27 +52,19 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  login(context: LoginContext): Promise<any> {
+  login(context: LoginContext) : void {
     // Replace by proper authentication call
     let data = { id:context.id, username: context.username,email:context.email,
      isAdm: false ,token: '123456'}
-    this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email))
-    .toPromise()
-    .then(dataLogin => {
-        let user = dataLogin;
+     this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email)).subscribe (
+        dataret => {
+        let user = dataret;
         data.id = user['id'];
         data.username = user['userName'];
         data.isAdm = (user['profile'] == 1);
-        //this.setCredentials(data, context.remember);
-        return of(data);
-      }
-      
-    ).catch(err => {
-      return of(err)
-    });
-    
-    return null;
-    
+        
+      },err => { Observable.throw(err) } );
+       
   }
 
   /**

@@ -38,16 +38,18 @@ export class CNPJService {
   }
 
   /** CRUD METHODS */
-  getAllCNPJs(): Observable<RegisterCNPJ[]> {
+  getAllCNPJs(): Promise<any> {
     return this.httpClient.get(this.API_URL+'/list')
-                    .map(response => response)
+                    .toPromise()
+                    .then(response => response)
                     .catch(error=> Observable.throw(error.message));
   }
 
-  getCNPJs(): Observable<RegisterCNPJ[]> {
+  getCNPJs(): Promise<any> {
     let id = this.autenticationService.credentials.id;
     return this.httpClient.get(this.API_URL+'/listnotuser/'+id)
-                    .map(response => response)
+                    .toPromise()
+                    .then(response => response)
                     .catch(error=> Observable.throw(error.message));
   }
 

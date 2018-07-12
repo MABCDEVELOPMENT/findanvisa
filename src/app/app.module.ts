@@ -18,11 +18,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from '@app/user/user.module';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_DATE_LOCALE } from '@angular/material';
 import { GenericParameterModule } from '@app/generic-parameter/generic-parameter.module';
 import { UpdateParameterModule } from '@app/update-parameter/update-parameter.module';
 import { CNPJModule } from '@app/cnpj/cnpj.module';
 import { QueryrecordsModule } from '@app/queryrecords/queryrecords.module'; 
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 
 
@@ -49,7 +50,8 @@ import { QueryrecordsModule } from '@app/queryrecords/queryrecords.module';
     QueryrecordsModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent,ErrorDialogComponent],
+  entryComponents: [ErrorDialogComponent],
   providers: [  {provide: MAT_DATE_LOCALE, useValue: getLanguage}],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

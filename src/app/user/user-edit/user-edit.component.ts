@@ -1,4 +1,4 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
@@ -7,6 +7,7 @@ import { I18nService, extract } from '@app/core';
 import { EmailValidator, CustomValidator } from '@app/shared/validators';
 import { DateValidator } from '@app/shared/validators/date.validator';
 import { PhoneValidator } from '@app/shared/validators/phone.validator';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 ;
 
 @Component({
@@ -20,6 +21,7 @@ export class UserEditDialogComponent {
   hideConf: any;
   confirmPassword: string;
   user: User;
+  error : string;
 
   form: FormGroup;
 
@@ -28,7 +30,7 @@ export class UserEditDialogComponent {
     {value: 2,  viewValue: 'Operador'}
   ];
 
-  acitves = [
+  actives = [
     {value: true,   viewValue: 'Sim'},
     {value: false,  viewValue: 'Não'}
   ];
@@ -40,6 +42,7 @@ export class UserEditDialogComponent {
   constructor(public dialogRef: MatDialogRef<UserEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
     public dataService: UserService,
+    private dialog: MatDialog,
     public i18n: I18nService) {
 
   }
@@ -78,7 +81,21 @@ export class UserEditDialogComponent {
 
   public confirmAdd(): void {
 
-    this.dataService.save(this.data);
+    this.dataService.save(this.data)
+      .then(data=>{
+        this.showMsg("Registro atualizado com sucesso!");
+    }, error => {
+      this.error = error.error.errorMessage;
+      this.showMsg(this.error);
+    });
+    this.dialogRef.close();
 
   }
+  
+  showMsg(msg : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: msg} ,width : '250px',height: '150px'
+    });
+  }
+  
 }

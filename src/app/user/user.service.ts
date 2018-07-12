@@ -32,32 +32,26 @@ export class UserService {
   }
 
   /** CRUD METHODS */
-  getAllUsers(): Observable<User[]> {
-    return this.httpClient.get(this.API_URL+'/list')
-                    .map(response => response)
+  getAllUsers(checked:boolean): Promise<any> {
+    return this.httpClient.get(this.API_URL+'/list/'+checked).toPromise()
+                    .then(response => response)
                     .catch(error=> Observable.throw(error.message));
   }
 
   // DEMO ONLY, you can find working methods below
-  save (user: User): void {
+  save (user: User): Promise<any> {
     //this.dialogData = user;
     console.log(JSON.stringify(user));
 
-    this.httpClient.post(this.API_URL+'/save', user).subscribe(data => {
-      //this.dialogData = user;
-      
-      alert('Successfully added');
-      },
-      (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
-    });
+    return this.httpClient.post(this.API_URL+'/save', user).toPromise()
+    .then(response => response)
+    .catch(error => Observable.throw(error));
   }
 
-  updateUser (user: User): void {
-    this.dialogData = user;
-  }
-
-  deleteUser (id: number): void {
-    console.log(id);
+ 
+  delete (id: number): Promise<any> {
+    return this.httpClient.delete(this.API_URL+'/delete/'+id).toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
   }
 }

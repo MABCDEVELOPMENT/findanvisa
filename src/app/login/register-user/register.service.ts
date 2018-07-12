@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs';
+import 'rxjs/add/observable/throw';
 import {User} from '../../user/user-model';
-import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
-import { Alert } from 'selenium-webdriver';
-import { environment } from '@env/environment';
+
+
 
 
 @Injectable()
@@ -16,18 +19,12 @@ export class RegisterService {
      
   }
   
-  register (user: User): void {
-    //this.dialogData = user;
-    console.log(JSON.stringify(user));
-
-    this.httpClient.post(this.API_URL+'/save', user).subscribe(data => {
-      //this.dialogData = user;
-      
-      alert('Successfully added');
-      },
-      (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
-    });
+  register (user: User): Promise<any>  {
+    
+    return this.httpClient.post(this.API_URL+'/save', user)
+    .toPromise()
+    .then(response => response)
+    .catch(error => Observable.throw(error));
   }
 }
 

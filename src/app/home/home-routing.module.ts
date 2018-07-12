@@ -29,7 +29,7 @@ export class HomeRoutingModule {
     public i18n: I18nService) { }
    
 getTitle() : string {
-  this.genericParameterService.load().subscribe(data => {
+  this.genericParameterService.load().then(data => {
     this.genericParameter = data;
     this.titleService.setTitle(this.genericParameter.systemName);
     return this.titleService.getTitle()

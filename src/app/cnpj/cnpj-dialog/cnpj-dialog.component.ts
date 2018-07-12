@@ -64,7 +64,7 @@ export class CNPJDialogComponent implements OnInit {
   public loadData() {
 
     this.dataService.getCNPJs()
-                    .subscribe(
+                    .then(
                       data => {
                         this.cnpjs = data;
                         

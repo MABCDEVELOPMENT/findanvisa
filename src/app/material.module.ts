@@ -44,10 +44,14 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material';
 
 @NgModule({
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
@@ -87,5 +91,6 @@ import {
     MatToolbarModule,
     MatTooltipModule
   ]
-})
+},
+)
 export class MaterialModule { }

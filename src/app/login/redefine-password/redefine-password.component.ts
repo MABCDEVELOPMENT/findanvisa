@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { I18nService, AuthenticationService } from '@app/core';
 import { LoginService } from '@app/login/login.service';
 import { User } from '@app/user/user-model';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-redefine-password',
@@ -14,12 +16,13 @@ export class RedefinePasswordComponent implements OnInit {
 
   error: string;
   redefineForm: FormGroup;
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   user: User;
   id: any;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     public dataService: LoginService,
+    private dialog: MatDialog,
     private i18nService: I18nService,
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService
@@ -73,20 +76,34 @@ export class RedefinePasswordComponent implements OnInit {
 
   loadUser() {
     this.authenticationService.loadUser(this.id)
-      .subscribe(
+      .then(
         data => {
           this.user = data;
         },
         error => {
-          this.error = error;
-          alert(error);
+          this.error = error.error.errorMessage;
+          this.showMsg(this.error);
         });
   }
   redefinePassword() {
     this.loadUser();
     let pass = this.redefineForm.controls['password'].value;
     this.user.password = pass;
-    this.dataService.redefinePassword(this.user);
-    this.router.navigate(['/'], { replaceUrl: true });
+    this.dataService.redefinePassword(this.user).then(
+      data => {
+        this.showMsg("Solicitação enviada com sucesso!");
+      },
+      error => {
+        this.showMsg("Erro de comunicação!");
+    });
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
+
+  
+
+showMsg(msg : string) : void {
+  this.dialog.open(ErrorDialogComponent, {
+    data: {errorMsg: msg} ,width : '250px',height: '150px'
+  });
+}
 }

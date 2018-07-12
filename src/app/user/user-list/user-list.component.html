@@ -1,15 +1,18 @@
 
 <div class="table-container mat-elevation-z8">
-
-  
-    <mat-form-field>
+  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+    <mat-form-field fxFlex>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
     </mat-form-field>
 
+      <mat-checkbox style="margin-top:50px;" [(ngModel)]="isChecked"
+             name="isChecked"
+             (change)="loadData()"
+             fxFlex>{{ 'user.waitingForApproval' | translate }}</mat-checkbox>
 
+  </div>  
+ 
   <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
-
-
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -41,7 +44,7 @@
         <mat-cell *matCellDef="let user"> {{ getProfile(user.profile)}} </mat-cell>
     </ng-container>
 
-   <!-- active Column 
+   <!-- active Column -->
     <ng-container matColumnDef="active">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'user.active' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let user"> {{ getActive(user.active)}} </mat-cell>
@@ -60,7 +63,7 @@
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+        <button mat-icon-button color="accent" (click)="deleteItem(row.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
 
 import { User } from '@app/user/user-model';
 import { UserAddDialogComponent } from '@app/user/user-add/user-add.component';
@@ -7,6 +7,7 @@ import { UserEditDialogComponent } from '@app/user/user-edit/user-edit.component
 import { I18nService } from '@app/core';
 import { UserService } from '@app/user/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 
 @Component({
@@ -18,18 +19,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 
 export class UserListComponent implements AfterViewInit {
-  
-  error: HttpErrorResponse;
-  displayedColumns = ['id', 'fullName', 'userName', 'email', 'profile' ,'actions'];
-  ELEMENT_DATA: User[]; 
 
-  isExpansionDetailRow = (i: number, row: any) => 
-  row.hasOwnProperty('detailRow');
-  constructor( public dialog: MatDialog,
-               public dataService: UserService,
-               public i18nService: I18nService) { 
+  error: string;
+  displayedColumns = ['id', 'fullName', 'userName', 'email', 'profile', 'active', 'actions'];
+  ELEMENT_DATA: User[];
+
+  isExpansionDetailRow = (i: number, row: any) =>
+    row.hasOwnProperty('detailRow');
+  constructor(public dialog: MatDialog,
+    public dataService: UserService,
+    public i18nService: I18nService) {
 
   }
+
+  isChecked: boolean = false;
 
   length = 100;
   pageSize = 10;
@@ -37,17 +40,18 @@ export class UserListComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-  public actives = [
-    {value: true,   viewValue: 'Sim'},
-    {value: false,  viewValue: 'Não'}
+  actives = [
+    { value: true, viewValue: 'Sim' },
+    { value: false, viewValue: 'Não' }
   ];
 
-  public profiles = [
+  profiles = [
     '',
     'Administrador',
     'Operador'
   ];
-  
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
@@ -60,12 +64,13 @@ export class UserListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.loadData();
-    this.dataSource.sort      = this.sort;
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
   addNew(user: User) {
-    const dialogRef = this.dialog.open(UserAddDialogComponent, {data: {user: User},
+    const dialogRef = this.dialog.open(UserAddDialogComponent, {
+      data: { user: User },
       height: 'max-content',
       width: 'max-content'
     });
@@ -83,7 +88,8 @@ export class UserListComponent implements AfterViewInit {
   startEdit(i: number) {
     let userEdit = this.ELEMENT_DATA[i];
     console.log(JSON.stringify(userEdit));
-    const dialogRef = this.dialog.open(UserEditDialogComponent, {data:userEdit,
+    const dialogRef = this.dialog.open(UserEditDialogComponent, {
+      data: userEdit,
       height: 'max-content+10px',
       width: 'max-content'
     });
@@ -98,37 +104,47 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
-  deleteItem(i: number, id: number, title: string, state: string, url: string) {
-    
+  deleteItem(id: number) {
+    this.dataService.delete(id)
+    .then(
+      data => {
+        this.showMsg("Registro excluido com sucesso!");
+      },
+      error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error);
+      });
+
   }
 
 
- 
-  public loadData() {
 
-      this.dataService.getAllUsers()
-                      .subscribe(
-                        data => {
-                          this.ELEMENT_DATA = data;
-                          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-                        },
-                        error => {
-                          this.error = error;
-                          alert(error); 
-                        });
-    
-  } 
-  
-  public getActive(active: boolean): string {
-    return active?"Sim":"Não"; 
+  loadData() {
+    this.dataService.getAllUsers(this.isChecked)
+      .then(
+        data => {
+          this.ELEMENT_DATA = data;
+          this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        },
+        error => {
+          this.error = error.error.errorMessage;
+          this.showMsg(this.error);
+        });
+
   }
 
-  public getProfile(profile: number): string {
-    return this.profiles[profile]; 
+  getActive(active: boolean): string {
+    return active ? "Sim" : "Não";
   }
- 
-      
-    
 
+  getProfile(profile: number): string {
+    return this.profiles[profile];
+  }
+
+  showMsg(msg: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { errorMsg: msg }, width: '250px', height: '150px'
+    });
+  }
 
 }

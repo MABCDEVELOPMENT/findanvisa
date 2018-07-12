@@ -9,7 +9,7 @@
   .mat-cell:nth-child(2), // fullName
   .mat-header-cell:nth-child(2),
   {
-  flex: 0 0 350px;
+  flex: 0 0 300px;
   }
   .mat-cell:nth-child(3), // userName
   .mat-header-cell:nth-child(3),
@@ -26,20 +26,26 @@
   {
   flex: 0 0 100px;
   }
-  // .mat-cell:nth-child(6), // active
-  // .mat-header-cell:nth-child(6),
-  // {
-  // flex: 0 0 300px;
-  // }
-  .mat-cell:nth-child(6) { // Edit
-    -webkit-text-fill-color: $systemColor 
+  .mat-cell:nth-child(6), // active
+  .mat-header-cell:nth-child(6),
+  {
+  flex: 0 0 80px;
   }
-  .mat-header-cell:nth-child(7), // Delete
+  .mat-cell:nth-child(7) { // Edit
+    -webkit-text-fill-color: $systemColor
+  }
+  .mat-header-cell:nth-child(8), // Delete
   {
     -webkit-text-fill-color:white;
   flex: 0 0 10%;
   }
  
+  .mat-checkbox {
+    font-size: 14px;
+    margin: 20px;
+    font-weight: bold;
+    background-color: inherit;
+ }
 
   
   

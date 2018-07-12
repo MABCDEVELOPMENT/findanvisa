@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { RegisterService } from './register.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/user/user-model';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 const log = new Logger('Register');
 
@@ -24,8 +23,8 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
   isLoading: boolean = false;
   constructor(private router: Router,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private i18nService: I18nService,
     private registerService: RegisterService) {
     this.createForm();
   }
@@ -50,9 +49,21 @@ export class RegisterComponent implements OnInit {
     this.user.email = email;
     this.user.fullName = fullName;
     this.user.profile = 2;
-    this.registerService.register(this.user);
-    this.router.navigate(['/'], { replaceUrl: true });
+    this.registerService.register(this.user).then(data=>{
+        this.showMsg("Registro realizado com sucesso! Você receberar um email para ativação do usuário!");
+        this.router.navigate(['/login'], { replaceUrl: true });
+    }, error => {
+      this.error = error.error.errorMessage;
+      this.showMsg(this.error);
+      this.router.navigate(['/login'], { replaceUrl: true });
+    });
+    
+  }
 
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '250px'
+    });
   }
 
 }

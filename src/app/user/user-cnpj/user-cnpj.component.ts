@@ -5,6 +5,7 @@ import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { UserService } from '../user.service';
 import { User } from '@app/user/user-model';
+import { MatDialog } from '@angular/material';
 
 
 const log = new Logger('UserCNPJ');
@@ -20,10 +21,12 @@ export class UserCNPJComponent implements OnInit {
   error: string;
   registerForm: FormGroup;
   user : User = new User();
+
   isLoading: boolean = true;
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private i18nService: I18nService,
+              private dialog: MatDialog,
               private userService: UserService) {
     this.createForm();
   }
@@ -39,7 +42,7 @@ export class UserCNPJComponent implements OnInit {
     let username = this.registerForm.controls["username"].value;
      this.user.userName = username;
      this.user.fullName = fullName;
-     this.user.profile = 1;
+     this.user.profile = 2;
      this.userService.save(this.user);
      this.router.navigate(['/'], { replaceUrl: true });
 

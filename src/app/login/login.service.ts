@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import 'rxjs';
+import 'rxjs/add/observable/throw';
 import {User} from '../user/user-model';
-import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-
-import { Alert } from 'selenium-webdriver';
-import { environment } from '@env/environment';
+import {HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '@app/login/login.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LoginService {
@@ -43,38 +43,19 @@ export class LoginService {
   }
 
    // DEMO ONLY, you can find working methods below
-   sendForgotPassword (email: string): void {
-    //this.dialogData = user;
-
-    
-    this.httpClient.post(this.API_URL+'/forgotpassword', email).subscribe(data => {
-      //this.dialogData = user;
-        //return data;
-        alert('E-mail enviado com sucesso!');
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status == 200) {
-          alert('E-mail enviado com sucesso!');
-        } else {
-          alert('Error occurred.');
-        }
+   sendForgotPassword (email: string):Promise<any> {
         
-    });
+    return this.httpClient.post(this.API_URL+'/forgotpassword', email)
+    .toPromise()
+    .then(response => response)
+    .catch(error => Observable.throw(error));
   }
 
-  redefinePassword (user: User): void {
-    
-    this.httpClient.post(this.API_URL_USER+'/save', user).subscribe(data => {
-        alert('Senha alterada com sucesso!');
-      },
-      (err: HttpErrorResponse) => {
-        if (err.status == 200) {
-          alert('Senha alterada com sucesso!');
-        } else {
-          alert('Error occurred.');
-        }
-
-    });
+  redefinePassword (user: User): Promise<any> {
+   return this.httpClient.post(this.API_URL_USER+'/save', user)
+   .toPromise()
+   .then(response => response)
+   .catch(error => Observable.throw(error));
   }
 
  

@@ -21,7 +21,7 @@ export class UpdateParameterComponent implements OnInit {
     public i18n: I18nService) { }
 
   ngOnInit() {
-    this.updateParameterService.load().subscribe(data => {
+    this.updateParameterService.load().then(data => {
       this.data = data;
     },err  => {
       this.data = new UpdateParameter();

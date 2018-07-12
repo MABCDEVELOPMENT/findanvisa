@@ -1,12 +1,12 @@
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from '@angular/material';
 import {Component, Inject, OnInit} from '@angular/core';
 import {UserService} from '../../user/user.service';
 import {FormGroup, Validators, FormControl} from '@angular/forms';
 import { User } from '@app/user/user-model';
 import { I18nService, extract } from '@app/core';
-import { EmailValidator,CustomValidator } from '@app/shared/validators';
 import { DateValidator } from '@app/shared/validators/date.validator';
-import { PhoneValidator } from '@app/shared/validators/phone.validator';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+
 
 
 
@@ -21,7 +21,7 @@ export class UserAddDialogComponent implements OnInit {
   hideConf:any;
   confirmPassword:string;
   user:User;
-  
+  error : string;
   form: FormGroup;
 
   profiles = [
@@ -40,6 +40,7 @@ export class UserAddDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<UserAddDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: User,
               public dataService: UserService,
+              private dialog: MatDialog,
               public i18n: I18nService) {
                   
   }
@@ -48,10 +49,11 @@ export class UserAddDialogComponent implements OnInit {
       this.form  = new FormGroup({
         fullName:  new FormControl('', [Validators.required]),
         userName:  new FormControl('', [Validators.required]),
-        dateBrith: new FormControl('', [Validators.required,DateValidator.validDate]),
+        //dateBrith: new FormControl('', [Validators.required,DateValidator.validDate]),
         email:     new FormControl('', [Validators.required]),
-        cellPhone: new FormControl('', [Validators.required]),
-        profile:   new FormControl('', [Validators.required])
+        //cellPhone: new FormControl('', [Validators.required]),
+        profile:   new FormControl('', [Validators.required]),
+        active: new FormControl('', [Validators.required])
         
     });
   }
@@ -62,10 +64,10 @@ export class UserAddDialogComponent implements OnInit {
            this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
            this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
-           this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
            this.form.controls.active.hasError('required') ? 'fieldEmpty' :
            this.form.controls.profile.hasError('profile') ? 'invalidPhone' :
-            '';
+
+           '';
   }
 
   submit() {
@@ -76,9 +78,22 @@ export class UserAddDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public confirmAdd(): void {
+  confirmAdd(): void {
 
-    //this.user = new User(null,  'Afred', 'ALESSANDRO FRED A DE SOUZA', 'fredalessandro@gmail.com', '81984147601', new Date(), 'idkfa',true, null, new Date(),null,new Date());   
-    this.dataService.save(this.data);
+    this.dataService.save(this.data)
+      .then(data=>{
+        this.showMsg("Registro atualizado com sucesso!");
+    }, error => {
+      this.error = error.error.errorMessage;
+      this.showMsg(this.error);
+    });
+    this.dialogRef.close();
+
+  }
+  
+  showMsg(msg : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: msg} ,width : '250px',height: '150px'
+    });
   }
 }

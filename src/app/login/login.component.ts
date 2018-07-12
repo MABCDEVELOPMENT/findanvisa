@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from '@app/login/forgot-password-component/forgot-password-component';
-import { LoginService } from '@app/login/login.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 const log = new Logger('Login');
 
@@ -27,7 +25,6 @@ export class LoginComponent implements OnInit {
               private dialog: MatDialog,
               private formBuilder: FormBuilder,
               private i18nService: I18nService,
-              private loginService: LoginService,
               private authenticationService: AuthenticationService) {
     this.createForm();
   }
@@ -37,62 +34,38 @@ export class LoginComponent implements OnInit {
   login() {
 
     this.authenticationService.login(this.loginForm.value)
-    .then(data=>{
-      log.debug(`${data.username} successfully logged in`);
-      this.router.navigate(['/'], { replaceUrl: true });
-    }).catch(err=>{
-      this.error = err.error;
-      alert(this.error);
-      this.isLoading = false;
-    })
-    /*this.isLoading = true;
-    let userName = this.loginForm.controls["username"];
-    let password = this.loginForm.controls["password"];
-    this.loginService.login(userName.value,password.value).subscribe(){data => 
-      this.authenticationService.credentials()
-    }*/
-
-    // this.authenticationService.login(this.loginForm.value)
-    //    .pipe(finalize(() => {
-    //      this.loginForm.markAsPristine();
-    //      this.isLoading = false;
-    //    }))
-    //    .subscribe(credentials => {
-    //      log.debug(`${credentials.username} successfully logged in`);
-    //      this.router.navigate(['/'], { replaceUrl: true });
-    //    },err  => {
-    //      log.debug(`Login error: ${err}`);
-    //      this.error = err.error;
-    //      alert(this.error);
-    //    });
-
-    // this.authenticationService.login(this.loginForm.value)
-    // .subscribe(
-    //   credentials => {
-    //       this.router.navigate(['/'], { replaceUrl: true });
-    //     },
-    //     err  => {
-    //         //this.error = err.error;
-    //         alert(this.error);
-    //         this.isLoading = false;
-    //     });
+    .then(
+      data => {
+        this.email = data['email'];
+        let user = data;
+        this.authenticationService.credentials.id = user.id;
+        let credentials = this.authenticationService.credentials;
+        this.authenticationService.setCredentials(credentials); 
+        this.router.navigate(['/'], { replaceUrl: true });
+      },
+      error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error); 
+        this.router.navigate(['/login'], { replaceUrl: true });
+      });
 
   }
 
   forgotPassword() {
-    this.authenticationService.getEmail(this.loginForm.value)
-    .subscribe(
+    this.authenticationService.getEmail()
+    .then(
       data => {
         this.email = data['email'];
+        this.sendEmail(this.email);
       },
       error => {
-        this.error = error;
-        alert(error); 
+        this.error = error.error.errorMessage;
+        this.showMsg(error); 
       });
   }
 
-  sendEmail() {
-    this.forgotPassword();
+  sendEmail(email:string) {
+    
     if (this.email) {
       const dialogRef = this.dialog.open(ForgotPasswordComponent, {data: {email: this.email},
         height: '200px',
@@ -101,10 +74,6 @@ export class LoginComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         if (result === 1) {
-          // After dialog is closed we're doing frontend updates
-          // For add we're just pushing a new row inside DataService
-          // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
-          //this.refreshTable();
 
         }
       });
@@ -129,6 +98,12 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       remember: true
+    });
+  }
+
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '200px'
     });
   }
 

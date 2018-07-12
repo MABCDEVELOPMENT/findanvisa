@@ -18,7 +18,7 @@
           <mat-error *ngIf="form.controls.userName.invalid">{{getErrorMessage() | translate}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
               <input matInput class="form-control" [textMask]="{mask: mask}" placeholder="{{ 'user.dateBrith' | translate }}" formControlName="dateBrith"
                 [(ngModel)]="data.dateBrith" required>
               <mat-error *ngIf="form.controls.dateBrith.invalid">{{getErrorMessage() | translate}}</mat-error>
@@ -27,8 +27,8 @@
         <mat-form-field>
             <input matInput class="form-control" [textMask]="{mask: maskPhone}" placeholder="{{ 'user.phone' | translate }}" formControlName="cellPhone"
               [(ngModel)]="data.cellPhone">
-            <!--<mat-error *ngIf="form.controls.cellPhone.invalid">{{getErrorMessage() | translate}}</mat-error>-->
-        </mat-form-field>
+            <mat-error *ngIf="form.controls.cellPhone.invalid">{{getErrorMessage() | translate}}</mat-error>
+        </mat-form-field> -->
     </div>
     </section>
 

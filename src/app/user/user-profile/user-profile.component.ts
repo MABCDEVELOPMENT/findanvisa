@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatTableDataSource, MatSort, MatPaginator, MatDialog }
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { CNPJAddDialogComponent } from '@app/cnpj/cnpj-add/cnpj-add.component';
 import { CNPJDialogComponent } from '@app/cnpj/cnpj-dialog/cnpj-dialog.component';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 ;
 
 @Component({
@@ -27,7 +28,7 @@ export class UserProfileComponent {
   hideConf: any;
   confirmPassword: string;
   user: User;
-  
+  error: string;
   form: FormGroup;
 
 
@@ -115,14 +116,15 @@ export class UserProfileComponent {
 
   loadUser() {
     this.authenticationService.loadUser(null)
-      .subscribe(
+      .then(
         data => {
           this.data = data;
           this.ELEMENT_DATA = this.data['registerCNPJs'];
           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         },
         error => {
-          alert(error);
+          this.error = error.error.errorMessage;
+          this.showMsg(this.error);
         });
   }
 
@@ -152,8 +154,15 @@ export class UserProfileComponent {
   public getCategory(category: number): string {
     return this.categorys[category]; 
   }
+
   maskCnpj(valor: string):string {
     return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+  }
+
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '250px'
+    });
   }
 
 }

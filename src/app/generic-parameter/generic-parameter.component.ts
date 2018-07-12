@@ -22,7 +22,7 @@ export class GenericParameterComponent implements OnInit {
     public i18n: I18nService) { }
 
   ngOnInit() {
-    this.genericParameterService.load().subscribe(data => {
+    this.genericParameterService.load().then(data => {
       this.data = data;
     },err  => {
       this.data = new GenericParameter();

@@ -120,7 +120,7 @@ export class CNPJListComponent implements AfterViewInit {
   public loadData() {
 
       this.dataService.getAllCNPJs()
-                      .subscribe(
+                      .then(
                         data => {
                           this.ELEMENT_DATA = data;
                           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);

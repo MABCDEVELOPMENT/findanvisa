@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs';
-import { of } from 'rxjs/observable/of';
-import { LoginService } from '@app/login/login.service';
-import { User } from '@app/user/user-model';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Login } from '@app/login/login.model';
 import 'rxjs/add/observable/throw';
+import { of } from 'rxjs/observable/of';
+import { User } from '@app/user/user-model';
+import {HttpClient } from '@angular/common/http';
+import { Login } from '@app/login/login.model';
+
 
 
 
@@ -52,30 +52,28 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  login(context: LoginContext) : void {
+  login(context: LoginContext) : Promise<any> {
     // Replace by proper authentication call
     let data = { id:context.id, username: context.username,email:context.email,
      isAdm: false ,token: '123456'}
-     this.httpClient.post(this.API_URL, new Login(context.username,context.password,context.email)).subscribe (
-        dataret => {
-        let user = dataret;
-        data.id = user['id'];
-        data.username = user['userName'];
-        data.isAdm = (user['profile'] == 1);
-        
-      },err => { Observable.throw(err) } );
-       
+      
+    return this.httpClient.post(this.API_URL,new Login(context.username,context.password,context.email))
+    .toPromise()
+    .then(response => response)
+    .catch(error => Observable.throw(error));
+    
   }
 
   /**
-   * Authenticates the user.
+   * Authenticates the user
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  getEmail(context: LoginContext): Observable<User> {
+  getEmail(): Promise<any> {
     
-    return this.httpClient.get(this.API_URL+'/getemail/'+context.username)
-    .map(response => response)
+    return this.httpClient.get(this.API_URL+'/getemail/'+this.credentials.id)
+    .toPromise()
+    .then(response => response)
     .catch(error=> Observable.throw(error.message));
     
   }
@@ -85,12 +83,13 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  loadUser(id: number): Observable<User> {
+  loadUser(id: number): Promise<any> {
     if (id==null) {
       id = this.credentials.id;
     }
     return this.httpClient.get(this.API_URL+'/loaduser/'+id)
-    .map(response => response)
+    .toPromise()
+    .then(response => response)
     .catch(error=> Observable.throw(error.message));
     
   }
@@ -100,7 +99,7 @@ export class AuthenticationService {
    * Logs out the user and clear credentials.
    * @return {Observable<boolean>} True if the user was logged out successfully.
    */
-  logout(): Observable<boolean> {
+  logout():Observable<boolean> {
     // Customize credentials invalidation here
     this.setCredentials();
     return of(true);
@@ -129,7 +128,7 @@ export class AuthenticationService {
    * @param {Credentials=} credentials The user credentials.
    * @param {boolean=} remember True to remember credentials across sessions.
    */
-  private setCredentials(credentials?: Credentials, remember?: boolean) {
+  public setCredentials(credentials?: Credentials, remember?: boolean) {
     this._credentials = credentials || null;
 
     if (credentials) {

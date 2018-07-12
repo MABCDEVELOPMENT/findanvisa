@@ -21,10 +21,11 @@ export class UpdateParameterService {
      
   }
 
-  load(): Observable<UpdateParameter> {
+  load(): Promise<any> {
     
     return this.httpClient.get(this.API_URL+'/load/')
-    .map(response => response)
+    .toPromise()
+    .then(response => response)
     .catch(error=> Observable.throw(error.message));
     
   }

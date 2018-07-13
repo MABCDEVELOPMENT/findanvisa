@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {FormGroup, Validators, FormControl} from '@angular/forms';
 import { I18nService } from '@app/core';
 import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
-import { Router, RouterState } from '@angular/router';
+import { Router } from '@angular/router';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-generic-parameter',
@@ -12,23 +14,27 @@ import { Router, RouterState } from '@angular/router';
 })
 export class GenericParameterComponent implements OnInit {
 
-  form: FormGroup;
-  data: GenericParameter = new GenericParameter();
+  form:  FormGroup;
+  error: string;
+  data:  GenericParameter = new GenericParameter();
   isLoading: boolean = true;
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
-  constructor(private formBuilder: FormBuilder,
-    private router: Router,
+  constructor(private router: Router,
+    private dialog: MatDialog,
     public genericParameterService : GenericParameterService,
-    public i18n: I18nService) { }
+    public i18n: I18nService) { 
+    
+      this.genericParameterService.load().then(data => {
+        this.data = data;
+      }, err => {
+        this.data = new GenericParameter();
+      });
+
+  }
 
   ngOnInit() {
-    this.genericParameterService.load().then(data => {
-      this.data = data;
-    },err  => {
-      this.data = new GenericParameter();
-    });
 
-    this.form = this.formBuilder.group({
+    this.form = new FormGroup({
       version: new FormControl('', [Validators.required]),
       systemName: new FormControl('', [Validators.required]),
       socialName: new FormControl('', [Validators.required]),
@@ -45,6 +51,8 @@ export class GenericParameterComponent implements OnInit {
       emailDefault: new FormControl('', [Validators.required]),
       emailPermission: new FormControl('', [Validators.required])
     });
+
+ 
   }
 
   getErrorMessage() {
@@ -83,13 +91,23 @@ export class GenericParameterComponent implements OnInit {
     this.data.emailReponsible	  = this.form.controls["emailReponsible"].value;
     this.data.emailDefault	    = this.form.controls["emailDefault"].value;
     this.data.emailPermission	  = this.form.controls["emailPermission"].value;
-  /*   this.data.updateUser	      = this.form.controls["updateUser"].value;
-    this.data.updateDate	      = this.form.controls["updateUser"].value; */
-
-    this.genericParameterService.save(this.data);
+ 
+    this.genericParameterService.save(this.data).then(response => {
+         this.showMsg("Registro salvo com sucesso!");
+         this.router.navigate(['/'], { replaceUrl: true });
+      }, error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error); 
+      })  ;
   }
 
   onNoClick() {
     this.router.navigate(['/'], { replaceUrl: true });
+  }
+
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '200px'
+    });
   }
 }

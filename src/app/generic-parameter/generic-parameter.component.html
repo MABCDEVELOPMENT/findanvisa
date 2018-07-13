@@ -5,7 +5,7 @@
 
       <form  [formGroup]="form">
         
-        <section layout="row" layout-sm="column" layout-align="center" layout-wrap>
+
         
           <mat-form-field class="version">
             <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.version' | translate }}" formControlName="version"
@@ -18,9 +18,7 @@
             <mat-error *ngIf="form.controls.systemName.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
         
-        </section>  
         
-        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>  
           <mat-form-field class="cnpj">
                 <input matInput #input class="form-control" [textMask]="{mask: cnpjMask , guide: false, modelClean: true}"  type="text" placeholder="{{ 'genericParameter.cnpj' | translate }}" formControlName="cnpj"
                   [(ngModel)]="data.cnpj">
@@ -32,10 +30,6 @@
             <mat-error *ngIf="form.controls.socialName.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
 
-        
-        </section>  
-        
-        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
         
           <mat-form-field class="codeZip">
             <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.codeZip' | translate }}" formControlName="codeZip"
@@ -61,9 +55,6 @@
               <mat-error *ngIf="form.controls.neighborhood.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
 
-      </section>  
-        
-      <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
 
           <mat-form-field class="city">
             <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.city' | translate }}" formControlName="city"
@@ -88,9 +79,6 @@
                 formControlName="responsiblePerson" [(ngModel)]="data.responsiblePerson">
               <mat-error *ngIf="form.controls.responsiblePerson.invalid">{{getErrorMessage() | translate}}</mat-error>
             </mat-form-field>
-      </section>  
-        
-      <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap>
       
           <mat-form-field class="emailReponsible">
             <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.emailReponsible' | translate }}"
@@ -109,7 +97,7 @@
               [(ngModel)]="data.emailPermission">
             <mat-error *ngIf="form.controls.emailPermission.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
-        </section>
+
       </form>
       <mat-dialog-actions class="mat-dialog-actions-params"> 
           <button style="align-content: center center" class="mat-raised-button" mat-button  [disabled]="form.invalid" 

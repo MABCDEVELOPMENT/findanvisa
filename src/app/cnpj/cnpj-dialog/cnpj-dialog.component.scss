@@ -1,0 +1,37 @@
+@import '../../../assets/styles/color.scss';
+@import '../../../assets/styles/crud.scss';
+
+.mat-cell:nth-child(1), // cnpj
+  .mat-header-cell:nth-child(1),
+  {
+    flex: 0 0 150px;
+  }
+  .mat-cell:nth-child(2), // fullName
+  .mat-header-cell:nth-child(2),
+  {
+  flex: 0 0 350px;
+  }
+  .mat-cell:nth-child(3), // category
+  .mat-header-cell:nth-child(3),
+  {
+  flex: 0 0 200px;
+  }
+
+  .mat-cell:nth-child(4), // active
+  .mat-header-cell:nth-child(4),
+  {
+  flex: 0 0 200px;
+  }
+  
+  .mat-cell:nth-child(5) { // Edit
+    -webkit-text-fill-color: $systemColor 
+  }
+  .mat-header-cell:nth-child(6), // Delete
+  {
+    -webkit-text-fill-color:white;
+  flex: 0 0 10%;
+  }
+ 
+
+  
+  

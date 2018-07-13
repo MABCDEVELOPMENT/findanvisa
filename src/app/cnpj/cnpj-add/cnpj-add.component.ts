@@ -4,11 +4,6 @@ import {CNPJService} from '../../cnpj/cnpj.service';
 import {FormGroup, Validators, FormControl} from '@angular/forms';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { I18nService, extract } from '@app/core';
-import { EmailValidator,CustomValidator } from '@app/shared/validators';
-import { DateValidator } from '@app/shared/validators/date.validator';
-import { PhoneValidator } from '@app/shared/validators/phone.validator';
-
-
 
 
 @Component({

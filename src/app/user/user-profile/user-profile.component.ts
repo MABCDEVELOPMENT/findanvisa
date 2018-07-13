@@ -11,6 +11,7 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { CNPJAddDialogComponent } from '@app/cnpj/cnpj-add/cnpj-add.component';
 import { CNPJDialogComponent } from '@app/cnpj/cnpj-dialog/cnpj-dialog.component';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { Router } from '@angular/router';
 ;
 
 @Component({
@@ -55,6 +56,7 @@ export class UserProfileComponent {
 
   constructor(public dialog: MatDialog,
     public data: User,
+    private router: Router,
     public dataService: UserService,
     private authenticationService: AuthenticationService,
     public i18n: I18nService) {
@@ -97,13 +99,6 @@ export class UserProfileComponent {
     return this.form.controls.email.hasError('required') ? 'fieldEmpty' :
     this.form.controls.email.hasError('email') ? 'invalidEmail' :
         '';
-        // this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
-        // this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
-        // this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
-        // this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
-        // this.form.controls.pefil.hasError('required') ? 'fieldEmpty' :
-        // this.form.controls.active.hasError('required') ? 'fieldEmpty' :
-                //'';
   }
 
   submit() {
@@ -111,7 +106,7 @@ export class UserProfileComponent {
   }
 
   onNoClick(): void {
-    //this.dialogRef.close();
+    this.router.navigate(['/'], { replaceUrl: true });
   }
 
   loadUser() {
@@ -136,8 +131,8 @@ export class UserProfileComponent {
 
   addNew(registerCnpj: RegisterCNPJ) {
     const dialogRef = this.dialog.open(CNPJDialogComponent, {data: {registerCNPJ: registerCnpj},
-      height: 'max-content+10px',
-      width: 'max-content'
+      height: '800px',
+      width: '800px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

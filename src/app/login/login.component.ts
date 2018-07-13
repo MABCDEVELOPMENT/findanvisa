@@ -9,6 +9,15 @@ import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 const log = new Logger('Login');
 
+export interface Credentials {
+  // Customize received credentials here
+  id: number;
+  username: string;
+  email: string;
+  isAdm: boolean;
+  token: string;
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +30,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
   email: string;
+  private credential:Credentials;
   constructor(private router: Router,
               private dialog: MatDialog,
               private formBuilder: FormBuilder,
@@ -38,9 +48,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.email = data['email'];
         let user = data;
-        this.authenticationService.credentials.id = user.id;
-        let credentials = this.authenticationService.credentials;
-        this.authenticationService.setCredentials(credentials); 
+        
+        this.credential = { id:user.id, username: user.userName,email:user.email,
+          isAdm: (user.profile == 1) ,token: '123456'};
+           
+        this.authenticationService.setCredentials(this.credential); 
         this.router.navigate(['/'], { replaceUrl: true });
       },
       error => {

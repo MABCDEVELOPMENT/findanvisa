@@ -1,21 +1,38 @@
 <h2 mat-dialog-title translate>
   registerCnpj.insert</h2>
- 
-  <mat-dialog-content >
-    <form  (ngSubmit)="submit" [formGroup]="form">
 
-            <mat-selection-list #list [(ngModel)]="selectedOptions" formControlName="cnpj" (ngModelChange)="onNgModelChange($event)">
-                <mat-list-option *ngFor="let register of cnpjs" [value]="register">
-                    {{register.fullName}}
-                </mat-list-option>
-            </mat-selection-list>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+  </mat-form-field>
 
-    </form>
 
-</mat-dialog-content>
+  <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
 
-<mat-dialog-actions>
-  <button class="mat-raised-button" mat-button [type]="submit"  [mat-dialog-close]="1" (click)="confirmAdd()"
-    translate>{{ 'Ok' | translate }}</button>
-  <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
-</mat-dialog-actions>
+    <!-- CNPJ Column -->
+    <ng-container matColumnDef="cnpj">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
+    </ng-container>
+
+    <!-- Full Name Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
+    </ng-container>
+
+    <!-- category Column -->
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+
+    </mat-row>
+
+  </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+</mat-paginator>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef,  ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
 
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';

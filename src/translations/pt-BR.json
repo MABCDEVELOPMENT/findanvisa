@@ -79,6 +79,7 @@
   "registerCnpj.fullName":"Nome Completo",
   "registerCnpj.category":"Categoria",
   "registerCnpj.active":"Ativo",
+  "registerCnpj.sendNotification":"Receber Notificação?",
   "queryRecords":"Consulta Registros",
   "queryRecord.subjectMatter":"Assunto",
   "queryRecord.process":"Processo",
@@ -87,6 +88,5 @@
   "queryRecord.product":"Produto",
   "queryRecord.company":"Empresa",
   "queryRecord.situation":"Situação",
-  "selectAll":"Selecionar Todos",
-  "sendNotificationForAll":"Selecionar envio de notificação para todos"
+  "selectAll":"Selecionar Todos"
 }

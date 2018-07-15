@@ -6,6 +6,7 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { I18nService } from '@app/core';
 import { UserService } from '@app/user/user.service';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-cnpj.dialog',
@@ -19,11 +20,12 @@ export class CNPJDialogComponent implements OnInit {
   
 
   error: string;  
-  displayedColumns = ['cnpj', 'fullName', 'category'];
+  displayedColumns = ['select', 'cnpj', 'fullName', 'category', 'sendNotification',];
   
   cnpjs: RegisterCNPJ[];
   selectedOptions:RegisterCNPJ[];
-
+  selection = new SelectionModel<RegisterCNPJ>(true, []);
+  
   selectAll:boolean;
   sendNotificationForAll:boolean;
 
@@ -68,6 +70,19 @@ export class CNPJDialogComponent implements OnInit {
 
   submit() {
   
+  }
+  
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   onNoClick(): void {

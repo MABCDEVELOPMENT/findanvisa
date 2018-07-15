@@ -1,21 +1,35 @@
 @import '../../../assets/styles/color.scss';
 @import '../../../assets/styles/crud.scss';
 
-.mat-cell:nth-child(1), // cnpj
+  .mat-cell:nth-child(1), // select
   .mat-header-cell:nth-child(1),
+  {
+    width: 50px;
+    overflow: visible;
+
+  }
+  .mat-cell:nth-child(2), // cnpj
+  .mat-header-cell:nth-child(2),
   {
     flex: 0 0 150px;
   }
-  .mat-cell:nth-child(2), // fullName
-  .mat-header-cell:nth-child(2),
-  {
-  flex: 0 0 350px;
-  }
-  .mat-cell:nth-child(3), // category
+  .mat-cell:nth-child(3), // fullName
   .mat-header-cell:nth-child(3),
   {
-  flex: 0 0 200px;
+  flex: 0 0 250px;
   }
+  .mat-cell:nth-child(4), // category
+  .mat-header-cell:nth-child(4),
+  {
+  flex: 0 0 100px;
+  }
+  .mat-cell:nth-child(5), // sendNotification
+  .mat-header-cell:nth-child(5),
+  {
+    flex: 0 0 200px;
+    overflow: visible;
+    align-self: center;
+  }  
   .custom-modalbox {
       overflow: hidden !important;
       border-radius: 5px !important;

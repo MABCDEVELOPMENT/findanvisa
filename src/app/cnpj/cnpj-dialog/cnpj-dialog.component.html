@@ -1,55 +1,63 @@
 <h2 mat-dialog-title translate>
   registerCnpj.insert</h2>
-  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
-      <mat-form-field fxFlex>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-      </mat-form-field>
-  
-        <mat-checkbox style="margin-top:50px;" [(ngModel)]="isSelectAll"
-               name="isChecked"
-               (change)="selectAll()"
-               fxFlex>{{ 'selectAll' | translate }}</mat-checkbox>
-        <mat-checkbox style="margin-top:50px;" [(ngModel)]="isSendNotificationForAll"
-               name="isChecked"
-               (change)="selectAllSend()"
-               fxFlex>{{ 'sendNotificationForAll' | translate }}</mat-checkbox>
-    </div>  
-
-      
+<div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+  <mat-form-field fxFlex>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+  </mat-form-field>
 
 
-<mat-dialog-content >
+</div>
 
-    <div class="table-dialog-container" >    
+<mat-dialog-content>
 
-      <mat-table #table [dataSource]="dataSource" matSort>
 
-        <!-- CNPJ Column -->
-        <ng-container matColumnDef="cnpj">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
-        </ng-container>
+  <div class="table-dialog-container">
+    <mat-table #table [dataSource]="dataSource" matSort>
 
-        <!-- Full Name Column -->
-        <ng-container matColumnDef="fullName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
 
-        <!-- category Column -->
-        <ng-container matColumnDef="category">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
-        </ng-container>
+      <!-- CNPJ Column -->
+      <ng-container matColumnDef="cnpj">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
+      </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-      
-    </div>
-    
+      <!-- Full Name Column -->
+      <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
+      </ng-container>
+
+      <!-- category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+      </ng-container>
+
+      <!-- sendNotification Column -->
+      <ng-container matColumnDef="sendNotification">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.sendNotification' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ">
+          <mat-checkbox [(ngModel)]="CNPJ.sendNotification">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 </mat-dialog-content>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 <mat-dialog-actions>
   <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" [mat-dialog-close]="1" (click)="confirmAdd()"
     translate>{{ 'save' | translate }}</button>

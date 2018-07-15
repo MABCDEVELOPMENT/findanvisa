@@ -50,7 +50,7 @@ import {
 
 @NgModule({
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, direction: 'ltr'}}
   ],
   exports: [
     MatAutocompleteModule,

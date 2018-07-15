@@ -15,6 +15,7 @@ import { CNPJDialogComponent} from './cnpj-dialog/cnpj-dialog.component';
 import { CNPJService } from '@app/cnpj/cnpj.service';
 import { SharedModule } from '../shared';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
 
 @NgModule({
   imports: [

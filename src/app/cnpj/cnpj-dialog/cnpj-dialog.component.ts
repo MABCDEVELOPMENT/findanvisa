@@ -1,4 +1,4 @@
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatTableDataSource, MatPaginator, MatSort, MatDialogConfig} from '@angular/material';
 import {Component, Inject, OnInit, ElementRef,  ViewChild } from '@angular/core';
 import {CNPJService} from '../../cnpj/cnpj.service';
 import {FormGroup, FormControl} from '@angular/forms';
@@ -6,9 +6,6 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { I18nService } from '@app/core';
 import { UserService } from '@app/user/user.service';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
-
-
-
 
 @Component({
   selector: 'app-cnpj.dialog',
@@ -20,11 +17,15 @@ export class CNPJDialogComponent implements OnInit {
   hide:any;
   hideConf:any;
   
+
   error: string;  
   displayedColumns = ['cnpj', 'fullName', 'category'];
   
   cnpjs: RegisterCNPJ[];
   selectedOptions:RegisterCNPJ[];
+
+  selectAll:boolean;
+  sendNotificationForAll:boolean;
 
   form: FormGroup;
 
@@ -34,6 +35,7 @@ export class CNPJDialogComponent implements OnInit {
     'Saneantes',
     'Todos'
   ];
+
   
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
   constructor(public dialogRef: MatDialogRef<CNPJDialogComponent>,
@@ -45,10 +47,6 @@ export class CNPJDialogComponent implements OnInit {
                   
   }
   
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions = [5, 10, 25, 100];
-
   dataSource = new MatTableDataSource(this.cnpjs);
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -62,6 +60,7 @@ export class CNPJDialogComponent implements OnInit {
   }
   ngOnInit() {
     this.loadData();
+    this.dataSource.paginator = this.paginator;
     this.form = new FormGroup({
       cnpj: new FormControl('', [])
     });

@@ -86,5 +86,7 @@
   "queryRecord.transaction":"Transação",
   "queryRecord.product":"Produto",
   "queryRecord.company":"Empresa",
-  "queryRecord.situation":"Situação"
+  "queryRecord.situation":"Situação",
+  "selectAll":"Selecionar Todos",
+  "sendNotificationForAll":"Selecionar envio de notificação para todos"
 }

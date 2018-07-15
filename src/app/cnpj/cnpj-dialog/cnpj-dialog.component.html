@@ -1,38 +1,57 @@
 <h2 mat-dialog-title translate>
   registerCnpj.insert</h2>
+  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+      <mat-form-field fxFlex>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+      </mat-form-field>
+  
+        <mat-checkbox style="margin-top:50px;" [(ngModel)]="isSelectAll"
+               name="isChecked"
+               (change)="selectAll()"
+               fxFlex>{{ 'selectAll' | translate }}</mat-checkbox>
+        <mat-checkbox style="margin-top:50px;" [(ngModel)]="isSendNotificationForAll"
+               name="isChecked"
+               (change)="selectAllSend()"
+               fxFlex>{{ 'sendNotificationForAll' | translate }}</mat-checkbox>
+    </div>  
 
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-  </mat-form-field>
+      
 
 
-  <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
+<mat-dialog-content >
 
-    <!-- CNPJ Column -->
-    <ng-container matColumnDef="cnpj">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
-    </ng-container>
+    <div class="table-dialog-container" >    
 
-    <!-- Full Name Column -->
-    <ng-container matColumnDef="fullName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
-    </ng-container>
+      <mat-table #table [dataSource]="dataSource" matSort>
 
-    <!-- category Column -->
-    <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
-    </ng-container>
+        <!-- CNPJ Column -->
+        <ng-container matColumnDef="cnpj">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
+        <!-- Full Name Column -->
+        <ng-container matColumnDef="fullName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
+        </ng-container>
 
-    </mat-row>
+        <!-- category Column -->
+        <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+        </ng-container>
 
-  </mat-table>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
-</mat-paginator>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      
+    </div>
+    
+</mat-dialog-content>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
+<mat-dialog-actions>
+  <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" [mat-dialog-close]="1" (click)="confirmAdd()"
+    translate>{{ 'save' | translate }}</button>
+  <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
+</mat-dialog-actions>

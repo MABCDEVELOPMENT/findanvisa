@@ -16,22 +16,20 @@
   {
   flex: 0 0 200px;
   }
+  .custom-modalbox {
+      overflow: hidden !important;
+      border-radius: 5px !important;
+      //padding: 5px !important;
+      background-color: $systemBackgronwd;
+  }
 
-  .mat-cell:nth-child(4), // active
-  .mat-header-cell:nth-child(4),
-  {
-  flex: 0 0 200px;
+  .table-dialog-container {
+    display: block;
+    flex-direction: column;
+    height: 400px;
+    width: auto;
+    background-color:	$systemBackgronwd;
   }
-  
-  .mat-cell:nth-child(5) { // Edit
-    -webkit-text-fill-color: $systemColor 
-  }
-  .mat-header-cell:nth-child(6), // Delete
-  {
-    -webkit-text-fill-color:white;
-  flex: 0 0 10%;
-  }
- 
 
   
-  
+   

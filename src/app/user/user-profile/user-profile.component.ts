@@ -3,15 +3,12 @@ import { UserService } from '../../user/user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { User } from '@app/user/user-model';
 import { I18nService, extract, AuthenticationService } from '@app/core';
-import { EmailValidator, CustomValidator } from '@app/shared/validators';
-import { DateValidator } from '@app/shared/validators/date.validator';
-import { PhoneValidator } from '@app/shared/validators/phone.validator';
-import { MAT_DIALOG_DATA, MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
-import { CNPJAddDialogComponent } from '@app/cnpj/cnpj-add/cnpj-add.component';
 import { CNPJDialogComponent } from '@app/cnpj/cnpj-dialog/cnpj-dialog.component';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { Router } from '@angular/router';
+import { UserRegisterCNPJ } from '@app/user/userregisterCNPJ-model';
 ;
 
 @Component({
@@ -146,6 +143,19 @@ export class UserProfileComponent {
     });
   }
 
+  deleteItem(register:UserRegisterCNPJ) {
+
+    this.dataService.deleteCNPJ(register)
+      .then(
+        data => {
+          this.showMsg("Cnpj excluido!");
+        },
+        error => {
+          this.error = error.error.errorMessage;
+          this.showMsg(this.error);
+
+        });
+  }
   public getCategory(category: number): string {
     return this.categorys[category]; 
   }

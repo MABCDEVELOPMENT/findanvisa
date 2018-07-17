@@ -2,18 +2,22 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
 import {User} from '../user/user-model';
-import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Headers, Http } from '@angular/http';
  
 import 'rxjs/add/operator/toPromise';
 
 import { Alert, error } from 'selenium-webdriver';
 import { environment } from '@env/environment';
+import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
+import { UserRegisterCNPJ } from '@app/user/userregisterCNPJ-model';
 
 
 @Injectable()
 export class UserService {
   private readonly API_URL = '/user';
+  private readonly API_URL_CNPJ = '/cnpj';
+  
   
   dataChange: Observable<User[]> = new Observable<User[]>();
   // Temporarily stores data from dialogs
@@ -29,6 +33,12 @@ export class UserService {
 
   getDialogData() {
     return this.dialogData;
+  }
+
+  deleteCNPJ (userRegisterCNPJ:UserRegisterCNPJ): Promise<any> {
+    return this.httpClient.post(this.API_URL+'/deleteCnpjUser/',userRegisterCNPJ).toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
   }
 
   /** CRUD METHODS */

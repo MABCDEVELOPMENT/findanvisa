@@ -89,9 +89,12 @@ export class CNPJDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public confirmAdd(): void {
-       this.dataService.saveCnpjUser(this.selectedOptions);
+  confirmAdd(): void {
+    
+     this.dataService.saveCnpjUser(this.selection.selected);
   }
+
+  
   onNgModelChange(event: Event) {
     console.log(event);
   }

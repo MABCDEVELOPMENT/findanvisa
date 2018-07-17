@@ -84,14 +84,9 @@ export class CNPJService {
     this.dialogData = cnpj;
   }
 
-  deleteCNPJ (id: number): void {
-    this.httpClient.delete(this.API_URL+'/delete/'+id).subscribe(data => {
-      //this.dialogData = cnpj;
-      
-      alert('Successfully delete');
-      },
-      (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
-    });
+  deleteCNPJ (id: number): Promise<any> {
+    return this.httpClient.delete(this.API_URL+'/delete/'+id).toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
   }
 }

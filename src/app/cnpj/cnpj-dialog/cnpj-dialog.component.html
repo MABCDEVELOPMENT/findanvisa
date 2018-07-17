@@ -10,6 +10,7 @@
 
 <mat-dialog-content>
 
+  <pre>{{selection | json}}</pre>
   <div class="table-dialog-container">
     <mat-table #table [dataSource]="dataSource" matSort>
 

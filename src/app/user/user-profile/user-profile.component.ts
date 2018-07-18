@@ -19,7 +19,7 @@ import { UserRegisterCNPJ } from '@app/user/userregisterCNPJ-model';
 
 export class UserProfileComponent {
 
-  displayedColumns = ['cnpj', 'fullName', 'category','actions'];
+  displayedColumns = ['cnpj', 'fullName', 'category','sendNotification','actions'];
   ELEMENT_DATA: RegisterCNPJ[]; 
 
   hide: any;
@@ -156,6 +156,11 @@ export class UserProfileComponent {
 
         });
   }
+
+  getSendNotification(active: boolean): string {
+    return active ? "Sim" : "Não";
+  }
+
   public getCategory(category: number): string {
     return this.categorys[category]; 
   }

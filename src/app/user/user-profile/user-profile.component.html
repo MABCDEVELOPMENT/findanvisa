@@ -64,7 +64,12 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
             <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
           </ng-container>
-    
+       
+        <!-- sendNotification Column -->
+        <ng-container matColumnDef="sendNotification">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.sendNotification' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.sendNotification)}} </mat-cell>
+        </ng-container>
     
         <!-- actions -->
         <ng-container matColumnDef="actions">

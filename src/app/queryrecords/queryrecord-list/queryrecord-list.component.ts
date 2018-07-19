@@ -4,8 +4,10 @@ import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '
 import { I18nService, AuthenticationService } from '@app/core';
 import { Queryrecords} from '../queryrecords.model';
 import { QueryrecordsService } from '../queryrecords.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
+import { User } from '@app/user/user-model';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-queryrecord-list',
@@ -14,13 +16,17 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 })
 export class QueryrecordListComponent implements OnInit {
 
-  error: HttpErrorResponse;
+  error: string;
   displayedColumns = ['subjectMatter', 'process', 'year', 'transaction', 'product', 'company', 'situation'];
   ELEMENT_DATA: Queryrecords[];
-  selectedOptions:RegisterCNPJ;
+  selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
+  user:User;
+  form: FormGroup;
 
-  constructor( public dataService: QueryrecordsService,
+  constructor( public dialog: MatDialog,
+               public dataService: QueryrecordsService,
+               private authenticationService: AuthenticationService,
                public i18nService: I18nService) { 
 
   }
@@ -38,23 +44,49 @@ export class QueryrecordListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData(this.selectedOptions);
+    this.loadData(this.selected);
     this.dataSource.sort      = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.loadUser();
+    this.createForm();
   }
 
-  public loadData(selectedOptions:RegisterCNPJ) {
+  createForm() {
+    this.form =  new FormGroup({
+      product: new FormControl('', [Validators.required]),
+      process: new FormControl('', []),
+      brand: new FormControl('', [])
+    });
+  }
+
+  getErrorMessage() {
+    return this.form.controls.product.hasError('required') ? 'fieldEmpty' :
+           '';
+  }
+
+  loadUser() {
+    this.authenticationService.loadUser(null)
+      .then(
+        data => {
+          this.user = data;
+          this.cnpjs = this.user['registerCNPJs'];
+        },
+        error => {
+          this.error = error.error.errorMessage;
+          this.showMsg(this.error);
+        });
+  }
+
+  loadData(selectedOptions:RegisterCNPJ) {
     
-    // this.dataService.getRegisterCNPJ(selectedOptions)
-    //                 .subscribe(
-    //                   data => {
-    //                     this.ELEMENT_DATA = data;
-    //                     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    //                   },
-    //                   error => {
-    //                     this.error = error;
-    //                     alert(error); 
-    //                   });
+    
   
-  } 
+  }
+  
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '250px'
+    });
+  }
+  
 }

@@ -86,6 +86,7 @@
   "queryRecord.year":"Ano",
   "queryRecord.transaction":"Transação",
   "queryRecord.product":"Produto",
+  "queryRecord.brand":"Marca",
   "queryRecord.company":"Empresa",
   "queryRecord.situation":"Situação",
   "selectAll":"Selecionar Todos"

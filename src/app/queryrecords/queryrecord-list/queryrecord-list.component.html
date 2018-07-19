@@ -1,13 +1,36 @@
 <div class="table-container mat-elevation-z8">
+  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+    <mat-form-field>
+      <mat-select [(value)]="selected" [placeholder]="'queryRecord.company' | translate">
+        <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
+          {{ cnpj.fullName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Selecione a empresa">
-      <mat-option *ngFor="let register of cnpjs" [value]="register">
-        {{register.fullName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
+    <mat-form-field>
+      <input type="text" matInput [placeholder]="'Product' | translate" formControlName="product" />
+      <mat-error *ngIf="form.controls.product.invalid">{{getErrorMessage() | translate}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput formControlName="brand" [placeholder]="'queryRecord.brand' | translate"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput formControlName="process" [placeholder]="'queryRecord.process' | translate"
+      />
+    </mat-form-field>
+    <mat-dialog-actions>
+        <div class="button-row">
+          <button mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </mat-dialog-actions>
+  </div>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
   </mat-form-field>

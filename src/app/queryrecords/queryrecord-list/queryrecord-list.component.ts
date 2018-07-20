@@ -24,6 +24,13 @@ export class QueryrecordListComponent implements OnInit {
   user:User;
   form: FormGroup;
 
+
+  categorys = [
+    {value: 0,  viewValue: 'Alimentos'},
+    {value: 1,  viewValue: 'Cosmeticos'},
+    {value: 2,  viewValue: 'Saneantes'}
+  ];
+
   constructor( public dialog: MatDialog,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
@@ -44,11 +51,12 @@ export class QueryrecordListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createForm();
     this.loadData(this.selected);
     this.dataSource.sort      = this.sort;
     this.dataSource.paginator = this.paginator;
     this.loadUser();
-    this.createForm();
+
   }
 
   createForm() {
@@ -83,6 +91,10 @@ export class QueryrecordListComponent implements OnInit {
   
   }
   
+  onChangeCompany() {
+    console.log(this.selected);
+  }
+
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {
       data: {errorMsg: message} ,width : '250px',height: '250px'

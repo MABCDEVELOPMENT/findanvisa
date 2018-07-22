@@ -12,12 +12,14 @@ import { environment } from '@env/environment';
 import { Queryrecords} from './queryrecords.model';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { AuthenticationService } from '@app/core';
+import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
+import { Content } from '@app/queryrecords/modelquery/content.model';
 
 @Injectable()
 export class QueryrecordsService {
-  private readonly API_URL = '/user';
+  private readonly API_URL = '/anvisa';
   
-  dataChange: Observable<Queryrecords[]> = new Observable<Queryrecords[]>();
+  dataChange: Observable<Content[]> = new Observable<Content[]>();
   // Temporarily stores data from dialogs
   dialogData: any;
   private headers = new Headers({'Content-Type': 'application/json'});
@@ -26,24 +28,16 @@ export class QueryrecordsService {
      
   }
 
-  get data(): Observable<Queryrecords[]> {
+  get data(): Observable<Content[]> {
     return this.dataChange;
   }
 
   /** CRUD METHODS */
-  getQueryRegister(registerCNPJ: RegisterCNPJ): Observable<Queryrecords[]> {
-    let user = this.autenticeService.loadUser(null);
-    return this.httpClient.get(this.API_URL+'/product/'+registerCNPJ.cnpj)
-                    .map(response => response)
-                    .catch(error=> Observable.throw(error.message));
+  getQueryRegisters(queryrecordparameter: QueryRecordParameter): Promise<any> {
+
+     return this.httpClient.post(this.API_URL+'/product',queryrecordparameter).toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
   }
-
-  // getQueryRegister(registerCNPJ: RegisterCNPJ): Observable<Queryrecords[]> {
-  //   let user = this.autenticeService.loadUser(null);
-  //   return this.httpClient.get(this.API_URL+'/product/'+registerCNPJ.cnpj)
-  //                   .map(response => response)
-  //                   .catch(error=> Observable.throw(error.message));
-  // }
-
   
 }

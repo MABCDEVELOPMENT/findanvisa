@@ -1,49 +1,37 @@
 @import '../../../assets/styles/color.scss';
 @import '../../../assets/styles/crud.scss';
 
-.mat-cell:nth-child(1), // subjectMatter
-  .mat-header-cell:nth-child(1),
-  {
-  flex: 0 0 200px;
-  }
-  .mat-cell:nth-child(2), // process
-  .mat-header-cell:nth-child(2),
-  {
-  flex: 0 0 100px;
-  }
-  .mat-cell:nth-child(3), // year
-  .mat-header-cell:nth-child(3),
-  {
-  flex: 0 0 40px;
-  }
-  .mat-cell:nth-child(4), // transaction
-  .mat-header-cell:nth-child(4),
-  {
-  flex: 0 0 60px;
-  }
-  .mat-cell:nth-child(5), // produtc
-  .mat-header-cell:nth-child(5),
-  {
-  flex: 0 0 150px;
-  }
-  .mat-cell:nth-child(6), // company
-  .mat-header-cell:nth-child(6),
-  {
-  flex: 0 0 150px;
-  }
-  .mat-cell:nth-child(7), // situation
-  .mat-header-cell:nth-child(7),
-  {
-  flex: 0 0 200px;
-  }
-  .mat-cell:nth-child(8) { // Edit
-    -webkit-text-fill-color: $systemColor 
-  }
-  .mat-header-cell:nth-child(8), // Delete
-  {
-    -webkit-text-fill-color:white;
-  flex: 0 0 10%;
-  }
+  // .mat-cell:nth-child(1), // process
+  // .mat-header-cell:nth-child(1),
+  // {
+  // flex: 0 0 150px;
+  // }
+  // .mat-cell:nth-child(2), // year
+  // .mat-header-cell:nth-child(2),
+  // {
+  // flex: 0 0 40px;
+  // }
+  // .mat-cell:nth-child(3), // transaction
+  // .mat-header-cell:nth-child(3),
+  // {
+  // flex: 0 0 150px;
+  // }
+  // .mat-cell:nth-child(4), // produtc
+  // .mat-header-cell:nth-child(4),
+  // {
+  // flex: 0 0 350px;
+  // }
+  // .mat-cell:nth-child(5), // company
+  // .mat-header-cell:nth-child(5),
+  // {
+  // flex: 0 0 350px;
+  // }
+  // .mat-cell:nth-child(6), // situation
+  // .mat-header-cell:nth-child(6),
+  // {
+  // flex: 0 0 250px;
+  // }
+ 
  
 
   

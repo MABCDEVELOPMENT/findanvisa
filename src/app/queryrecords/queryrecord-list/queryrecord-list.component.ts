@@ -8,6 +8,8 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { User } from '@app/user/user-model';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
+import { Content } from '@app/queryrecords/modelquery/content.model';
 
 @Component({
   selector: 'app-queryrecord-list',
@@ -17,19 +19,23 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class QueryrecordListComponent implements OnInit {
 
   error: string;
-  displayedColumns = ['subjectMatter', 'process', 'year', 'transaction', 'product', 'company', 'situation'];
-  ELEMENT_DATA: Queryrecords[];
+  displayedColumns = ['product','register','process','company','situation','maturity'];
+  ELEMENT_DATA: Content[];
   selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
   user:User;
   form: FormGroup;
-
+  queryRecordParameter:QueryRecordParameter;
+  selectedOption:any;
+  selectedCategory:any;
 
   categorys = [
     {value: 0,  viewValue: 'Alimentos'},
     {value: 1,  viewValue: 'Cosmeticos'},
     {value: 2,  viewValue: 'Saneantes'}
   ];
+
+  options:any = [];
 
   constructor( public dialog: MatDialog,
                public dataService: QueryrecordsService,
@@ -52,7 +58,6 @@ export class QueryrecordListComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.loadData(this.selected);
     this.dataSource.sort      = this.sort;
     this.dataSource.paginator = this.paginator;
     this.loadUser();
@@ -61,9 +66,12 @@ export class QueryrecordListComponent implements OnInit {
 
   createForm() {
     this.form =  new FormGroup({
+      company: new FormControl('',[Validators.required]),
       product: new FormControl('', [Validators.required]),
       process: new FormControl('', []),
-      brand: new FormControl('', [])
+      brand: new FormControl('', []),
+      category: new FormControl('', [Validators.required]),
+      option:new FormControl('', [Validators.required])
     });
   }
 
@@ -85,15 +93,76 @@ export class QueryrecordListComponent implements OnInit {
         });
   }
 
-  loadData(selectedOptions:RegisterCNPJ) {
-    
-    
-  
+  loadData() {
+    this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
+                             this.form.controls.process.value,
+                             this.form.controls.product.value,
+                             this.form.controls.brand.value,
+                             this.form.controls.category.value,null,0)
+    this.dataService.getQueryRegisters(this.queryRecordParameter)
+    .then(
+      data => {
+        this.ELEMENT_DATA = data.content;
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+      },
+      error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error);
+      });
   }
   
   onChangeCompany() {
-    console.log(this.selected);
-  }
+    
+    if (this.selected.category==3) {
+
+        this.categorys = [
+          {value: 0,  viewValue: 'Alimentos'},
+          {value: 1,  viewValue: 'Cosmeticos'},
+          {value: 2,  viewValue: 'Saneantes'}
+        ];
+      
+    } else {
+
+        if (this.selected.category==0) {
+            this.categorys = [{value: 0,  viewValue: 'Alimentos'}];
+            this.options = null;
+        } else if (this.selected.category==1) {
+            this.categorys = [{value: 1,  viewValue: 'Cosmeticos'}];
+            this.options = [
+              {value: 0,  viewValue: 'Produtos'},
+              {value: 1,  viewValue: 'Produtos Notificados'}
+            ]
+        } else if (this.selected.category==2) {
+            this.categorys = [{value: 2,  viewValue: 'Saneantes'}];
+            this.options = [
+              {value: 0,  viewValue: 'Produtos Registrados'},
+              {value: 1,  viewValue: 'Produtos Notificados'},
+              {value: 2,  viewValue: 'Produtos Regularizados'}
+            ]
+        }
+      }
+    }
+
+    onChangeCategory() {
+      
+          if (this.selectedCategory==0) {
+              this.options = null;
+          } else if (this.selectedCategory==1) {
+              this.options = [
+                {value: 0,  viewValue: 'Produtos'},
+                {value: 1,  viewValue: 'Produtos Notificados'}
+              ]
+          } else if (this.selectedCategory==2) {
+              this.options = [
+                {value: 0,  viewValue: 'Produtos Registrados'},
+                {value: 1,  viewValue: 'Produtos Notificados'},
+                {value: 2,  viewValue: 'Produtos Regularizados'}
+              ]
+          }
+
+    }
+
+
 
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

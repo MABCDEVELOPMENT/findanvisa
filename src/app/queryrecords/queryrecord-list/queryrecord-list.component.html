@@ -1,117 +1,95 @@
-<div class="table-container mat-elevation-z8" [formGroup]="form">
-  <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
-    <mat-form-field>
-      <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate" >
-        <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
-          {{ cnpj.fullName }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+<div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px" [formGroup]="form">
 
-    <!-- <mat-form-field>
-        <mat-select [(value)]="selectedCategory" [placeholder]="'queryRecord.category' | translate">
-          <mat-option *ngFor="let category of categorys" [value]="category.value">
-            {{ category.viewValue }}
-          </mat-option>
-        </mat-select>
-    </mat-form-field> -->
+  <mat-form-field>
+    <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
+      formControlName="company">
+      <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
+        {{ cnpj.fullName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field>
+  <mat-form-field *ngIf="selected">
+    <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
+      formControlName="category">
+      <mat-option *ngFor="let category of categorys" [value]="category.value">
+        {{ category.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedCategory && selectedCategory!=0 && options">
+    <mat-select [(value)]="selectedOption" [placeholder]="'queryRecord.option' | translate">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <!-- <mat-form-field>
       <input type="text" matInput [placeholder]="'Product' | translate" formControlName="product" />
       <mat-error *ngIf="form.controls.product.invalid">{{getErrorMessage() | translate}}</mat-error>
     </mat-form-field>
 
-
-
     <mat-form-field>
-      <input type="text" matInput formControlName="brand" [placeholder]="'queryRecord.brand' | translate"
-      />
+      <input type="text" matInput [placeholder]="'queryRecord.brand' | translate" formControlName="brand"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" matInput formControlName="process" [placeholder]="'queryRecord.process' | translate"
-      />
-    </mat-form-field>
-    <mat-dialog-actions>
-        <div class="button-row">
-          <button mat-icon-button>
-            <mat-icon>search</mat-icon>
-          </button>
-        </div>
-      </mat-dialog-actions>
-  </div>
+      <input type="text" matInput  [placeholder]="'queryRecord.process' | translate" formControlName="process"/>
+    </mat-form-field> -->
+
+  <mat-dialog-actions>
+    <div class="button-row">
+      <button mat-icon-button (click)="loadData()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>
+<div class="table-container mat-elevation-z8" [formGroup]="form">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
   </mat-form-field>
 
 
-  <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
-
-
-
-    <!-- subjectMatter Column -->
-    <ng-container matColumnDef="subjectMatter">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subjectMatter' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.subjectMatter}} </mat-cell>
-    </ng-container>
-
-    <!-- process Column -->
-    <ng-container matColumnDef="process">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.process}} </mat-cell>
-    </ng-container>
-
-    <!-- year Column -->
-    <ng-container matColumnDef="year">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.year' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.year}} </mat-cell>
-    </ng-container>
-
-    <!-- transaction Column -->
-    <ng-container matColumnDef="transaction">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.transaction' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.transaction}} </mat-cell>
-    </ng-container>
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <!-- product Column -->
     <ng-container matColumnDef="product">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.product}} </mat-cell>
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.produto.nome}} </mat-cell>
+    </ng-container>
+
+    <!-- year Column -->
+    <ng-container matColumnDef="register">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.produto.numeroRegistroFormatado}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="process">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.processo.numeroProcessoFormatado}} </mat-cell>
     </ng-container>
 
     <!-- company Column -->
     <ng-container matColumnDef="company">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.company}} </mat-cell>
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.empresa.razaoSocial}} </mat-cell>
     </ng-container>
 
     <!-- company Column -->
     <ng-container matColumnDef="situation">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let queryRecord"> {{queryRecord.situation}} </mat-cell>
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.processo.situacao}} </mat-cell>
     </ng-container>
 
-    <!-- actions
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-        </button>
-      </mat-header-cell>
-
-      <mat-cell *matCellDef="let queryRecord; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(i, queryRecord)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
-
-        
-      </mat-cell>
-     
-    </ng-container> -->
+    <!-- company Column -->
+    <ng-container matColumnDef="maturity">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.produto.mesAnoVencimentoFormatado}} </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">
@@ -122,3 +100,4 @@
   <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
+<button mat-raised-button color="primary" (click)="exportAsExcel()">Exportar para Excel</button></div>

@@ -83,11 +83,15 @@
   "queryRecords":"Consulta Registros",
   "queryRecord.subjectMatter":"Assunto",
   "queryRecord.process":"Processo",
+  "queryRecord.register":"Registro",
+  "queryRecord.maturity":"Vencimento",
   "queryRecord.year":"Ano",
   "queryRecord.transaction":"Transação",
   "queryRecord.product":"Produto",
   "queryRecord.brand":"Marca",
+  "queryRecord.option":"Opção de Busca",
   "queryRecord.company":"Empresa",
+  "queryRecord.category":"Categoria",
   "queryRecord.situation":"Situação",
   "selectAll":"Selecionar Todos"
 }

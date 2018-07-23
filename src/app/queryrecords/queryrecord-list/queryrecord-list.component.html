@@ -1,6 +1,6 @@
-<div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px" [formGroup]="form">
+<div style="margin-left: 15px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px" [formGroup]="form">
 
-  <mat-form-field>
+  <mat-form-field >
     <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
       formControlName="company">
       <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
@@ -46,6 +46,10 @@
       <button mat-icon-button (click)="loadData()">
         <mat-icon>search</mat-icon>
       </button>
+      <button mat-icon-button *ngIf="dataSource" (click)="exportAsExcel()">
+          <mat-icon>import_export</mat-icon>
+          Exportar
+      </button>
     </div>
   </mat-dialog-actions>
 </div>
@@ -53,7 +57,6 @@
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
   </mat-form-field>
-
   <div *ngIf="!isNotification; then thenBlock; else elseBlock"> </div>
   <ng-template #thenBlock>
     <mat-table #table [dataSource]="dataSource" matSort>
@@ -157,7 +160,4 @@
   </ng-template>
   <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
-</div>
-<div>
-  <button mat-raised-button (click)="exportAsExcel()">Exportar para Excel</button>
 </div>

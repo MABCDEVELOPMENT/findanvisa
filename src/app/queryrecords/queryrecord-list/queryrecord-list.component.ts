@@ -21,8 +21,9 @@ export class QueryrecordListComponent implements OnInit {
 
   error: string;
   
-  displayedColumns       = ['product','register','process','company','situation','maturity'];
-  displayedColumnsNotify = ['subject','process','product','register','company','situation','maturity'];
+  displayedColumns   = ['product','register','process','company','situation','maturity'];
+  displayeNotify     = ['subject','process','transaction','officehour','product','company','situation','maturity'];
+
   isNotification = false;
 
   ELEMENT_DATA: Content[];
@@ -153,6 +154,8 @@ export class QueryrecordListComponent implements OnInit {
       
           if (this.selectedCategory==0) {
               this.options = null;
+              this.isNotification = false;
+              this.dataSource = null;
           } else if (this.selectedCategory==1) {
             this.options = [
               {value: 0,  viewValue: 'Produtos Registrados'},
@@ -169,24 +172,29 @@ export class QueryrecordListComponent implements OnInit {
 
     }
 
-    displayeProduct = ['product','register','process','company','situation','maturity'];
-    displayeNotify  = ['subject','process','transaction','officehour','product','company','situation','maturity'];
-
     onChangeOption() {
       
-      if (this.selectedCategory==0) {
+      if (this.selectedCategory==0) { // Alimentos só alimentos 
+         
           this.options = null;
-         // this.displayedColumns = this.displayeProduct;
-      } else if (this.selectedCategory==1) {
-        this.options = [
+          this.isNotification = false;
+          this.dataSource = null;
+
+      } else if (this.selectedCategory==1) { // 
+        
+         this.options = [
           {value: 0,  viewValue: 'Produtos Registrados'},
           {value: 1,  viewValue: 'Produtos Notificados'},
           {value: 2,  viewValue: 'Produtos Regularizados'}
         ]
          
       } else if (this.selectedCategory==2) {
-         if (this.selectedOption = 1) {
-             this.isNotification = true;
+         if (this.selectedOption == 0) {
+            this.dataSource = null;
+            this.isNotification = false;
+         } else if (this.selectedOption == 1) {
+            this.dataSource = null;
+            this.isNotification = true;
          }
       }
 

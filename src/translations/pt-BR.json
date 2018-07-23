@@ -85,6 +85,8 @@
   "queryRecord.process":"Processo",
   "queryRecord.register":"Registro",
   "queryRecord.maturity":"Vencimento",
+  "queryRecord.subject":"Assunto",
+  "queryRecord.officehour":"Expediente",
   "queryRecord.year":"Ano",
   "queryRecord.transaction":"Transação",
   "queryRecord.product":"Produto",

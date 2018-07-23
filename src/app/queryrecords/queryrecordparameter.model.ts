@@ -10,6 +10,8 @@ export class QueryRecordParameter {
 	brand:string;
 	
 	category:number;
+
+	option:number;
 	
 	registerNumber:string;
 	
@@ -20,6 +22,7 @@ export class QueryRecordParameter {
 		productName:string,
 		brand:string,
 		category:number,
+		option:number,
 		registerNumber:string,
 		typeProdutc:number){
 		
@@ -28,6 +31,7 @@ export class QueryRecordParameter {
 		this.productName = productName;
 		this.brand = brand;
 		this.category = category;
+		this.option = option;
 		this.registerNumber = registerNumber;
 		this.typeProdutc = typeProdutc;	
 

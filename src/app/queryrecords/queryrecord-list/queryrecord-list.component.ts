@@ -10,7 +10,8 @@ import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
-
+import * as XLSX from 'xlsx';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-queryrecord-list',
   templateUrl: './queryrecord-list.component.html',
@@ -19,7 +20,11 @@ import { Content } from '@app/queryrecords/modelquery/content.model';
 export class QueryrecordListComponent implements OnInit {
 
   error: string;
-  displayedColumns = ['product','register','process','company','situation','maturity'];
+  
+  displayedColumns       = ['product','register','process','company','situation','maturity'];
+  displayedColumnsNotify = ['subject','process','product','register','company','situation','maturity'];
+  isNotification = false;
+
   ELEMENT_DATA: Content[];
   selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
@@ -49,7 +54,7 @@ export class QueryrecordListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-
+  @ViewChild('TABLE') table: ElementRef;
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -98,7 +103,8 @@ export class QueryrecordListComponent implements OnInit {
                              this.form.controls.process.value,
                              this.form.controls.product.value,
                              this.form.controls.brand.value,
-                             this.form.controls.category.value,null,0)
+                             this.form.controls.category.value,
+                             this.form.controls.option.value,null,0)
     this.dataService.getQueryRegisters(this.queryRecordParameter)
     .then(
       data => {
@@ -120,25 +126,25 @@ export class QueryrecordListComponent implements OnInit {
           {value: 1,  viewValue: 'Cosmeticos'},
           {value: 2,  viewValue: 'Saneantes'}
         ];
+
+        this.options = null;
       
     } else {
 
         if (this.selected.category==0) {
+
             this.categorys = [{value: 0,  viewValue: 'Alimentos'}];
             this.options = null;
+
         } else if (this.selected.category==1) {
+
             this.categorys = [{value: 1,  viewValue: 'Cosmeticos'}];
-            this.options = [
-              {value: 0,  viewValue: 'Produtos'},
-              {value: 1,  viewValue: 'Produtos Notificados'}
-            ]
+            this.options = null;
+
         } else if (this.selected.category==2) {
+
             this.categorys = [{value: 2,  viewValue: 'Saneantes'}];
-            this.options = [
-              {value: 0,  viewValue: 'Produtos Registrados'},
-              {value: 1,  viewValue: 'Produtos Notificados'},
-              {value: 2,  viewValue: 'Produtos Regularizados'}
-            ]
+            this.options = null;
         }
       }
     }
@@ -148,21 +154,56 @@ export class QueryrecordListComponent implements OnInit {
           if (this.selectedCategory==0) {
               this.options = null;
           } else if (this.selectedCategory==1) {
-              this.options = [
-                {value: 0,  viewValue: 'Produtos'},
-                {value: 1,  viewValue: 'Produtos Notificados'}
-              ]
+            this.options = [
+              {value: 0,  viewValue: 'Produtos Registrados'},
+              {value: 1,  viewValue: 'Produtos Notificados'},
+              {value: 2,  viewValue: 'Produtos Regularizados'}
+            ]
+             
           } else if (this.selectedCategory==2) {
-              this.options = [
-                {value: 0,  viewValue: 'Produtos Registrados'},
-                {value: 1,  viewValue: 'Produtos Notificados'},
-                {value: 2,  viewValue: 'Produtos Regularizados'}
-              ]
+            this.options = [
+              {value: 0,  viewValue: 'Produtos'},
+              {value: 1,  viewValue: 'Produtos Notificados'}
+            ]  
           }
 
     }
 
+    displayeProduct = ['product','register','process','company','situation','maturity'];
+    displayeNotify  = ['subject','process','transaction','officehour','product','company','situation','maturity'];
 
+    onChangeOption() {
+      
+      if (this.selectedCategory==0) {
+          this.options = null;
+         // this.displayedColumns = this.displayeProduct;
+      } else if (this.selectedCategory==1) {
+        this.options = [
+          {value: 0,  viewValue: 'Produtos Registrados'},
+          {value: 1,  viewValue: 'Produtos Notificados'},
+          {value: 2,  viewValue: 'Produtos Regularizados'}
+        ]
+         
+      } else if (this.selectedCategory==2) {
+         if (this.selectedOption = 1) {
+             this.isNotification = true;
+         }
+      }
+
+}
+
+    exportAsExcel(){
+      this.exportExcel(this.ELEMENT_DATA);
+    }
+    exportExcel(data: any[]){
+      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+      const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      var today = new Date();
+      var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
+      var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+      var name = this.user.userName+"_"+ date + time;
+      XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
+   }
 
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

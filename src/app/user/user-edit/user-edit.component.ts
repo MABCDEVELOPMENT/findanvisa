@@ -51,9 +51,9 @@ export class UserEditDialogComponent {
     this.form = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
       userName: new FormControl('', [Validators.required]),
-      dateBrith: new FormControl('', [Validators.required, DateValidator.validDate]),
+      //dateBrith: new FormControl('', [Validators.required, DateValidator.validDate]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      cellPhone: new FormControl('', [Validators.required]),
+      //cellPhone: new FormControl('', [Validators.required]),
       profile: new FormControl('', [Validators.required]),
       active: new FormControl('', [Validators.required])
     });

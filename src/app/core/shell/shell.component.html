@@ -51,13 +51,13 @@
                 <span translate>ProcessConsulting</span>
               </a>
 
-              <a mat-list-item routerLink="/ConsultingSynchronization" routerLinkActive="active" (click)="sidenav.close()">
+              <a  *ngIf="username && isAdm" mat-list-item routerLink="/ConsultingSynchronization" routerLinkActive="active" (click)="sidenav.close()">
                 <span translate>Synchronization</span>
               </a>
 
             </mat-expansion-panel>
 
-            <mat-expansion-panel *ngIf="username">
+            <mat-expansion-panel *ngIf="username && isAdm">
 
               <mat-expansion-panel-header>
                 <span translate>Register</span>

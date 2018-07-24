@@ -7,6 +7,8 @@ import { RegisterService } from './register.service';
 import { User } from '@app/user/user-model';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { MatDialog } from '@angular/material';
+import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
+import { GenericParameter } from '@app/generic-parameter/generic-parameter.model';
 
 const log = new Logger('Register');
 
@@ -22,11 +24,18 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: User = new User();
   isLoading: boolean = false;
+  parameter:GenericParameter;
   constructor(private router: Router,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private registerService: RegisterService) {
+    private registerService: RegisterService,
+    public genericParameterService : GenericParameterService) {
     this.createForm();
+    this.genericParameterService.load().then(data => {
+      this.parameter = data;
+    }, err => {
+      this.parameter = new GenericParameter();
+    });
   }
 
   ngOnInit() { }
@@ -44,6 +53,12 @@ export class RegisterComponent implements OnInit {
     let index = fullName.indexOf(" ");
     if (index == -1) {
         index = fullName.length - 1;
+    }
+    let indexEmail = email.indexOf("@");
+    let emailPermision = email.substr(indexEmail,email.length-1);
+    if (emailPermision!=this.parameter.emailPermission) {
+        this.showMsg('E-mail inválido!');
+        return;
     }
     this.user.userName = fullName.substr(0, index)
     this.user.email = email;

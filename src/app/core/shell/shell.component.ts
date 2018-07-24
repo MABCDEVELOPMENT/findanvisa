@@ -54,6 +54,11 @@ export class ShellComponent implements OnInit {
     return credentials ? credentials.username : null;
   }
 
+  get isAdm(): boolean {
+    const credentials = this.authenticationService.credentials;
+    return credentials ? credentials.isAdm  : false;
+  }
+
   get languages(): string[] {
     return this.i18nService.supportedLanguages;
   }

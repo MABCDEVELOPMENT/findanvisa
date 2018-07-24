@@ -7,11 +7,13 @@ import { Headers, Http } from '@angular/http';
  
 import 'rxjs/add/operator/toPromise';
 
-import { Alert, error } from 'selenium-webdriver';
+import { Alert, error, promise } from 'selenium-webdriver';
 import { environment } from '@env/environment';
 import { AuthenticationService } from '@app/core';
 import { UserService } from '@app/user/user.service';
 import { User } from '@app/user/user-model';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 
 @Injectable()
@@ -24,6 +26,7 @@ export class CNPJService {
   user:User;
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor (private httpClient: HttpClient,
+              public dialog: MatDialog,
               private autenticationService: AuthenticationService,
               private userService: UserService) {
      
@@ -54,29 +57,29 @@ export class CNPJService {
   }
 
   // DEMO ONLY, you can find working methods below
-  save (cnpj: RegisterCNPJ): void {
+  save (cnpj: RegisterCNPJ): Promise<any> {
     this.dialogData = cnpj;
     console.log(JSON.stringify(cnpj));
 
-    this.httpClient.post(this.API_URL+'/save', cnpj).subscribe(data => {
+    return this.httpClient.post(this.API_URL+'/save', cnpj)
+    .toPromise()
+    .then(data => {
       this.dialogData = cnpj;
       
-      alert('Successfully added');
-      },
+      this.showMsg('Registro gravado com sucesso!');
+      }).catch(
       (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+        this.showMsg('Error occurred. Details: ' + err.name + ' ' + err.message);
     });
   }
 
-  saveCnpjUser(registers: RegisterCNPJ[]) {
+  saveCnpjUser(registers: RegisterCNPJ[]) : Promise<any> {
     let id = this.autenticationService.credentials.id;
     
-    this.httpClient.post(this.API_URL+'/savecnpjuser/'+id, registers).subscribe(data => {
-      alert('Registro salvo com sucesso!');
-   },
-      (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
-    });
+    return this.httpClient.post(this.API_URL+'/savecnpjuser/'+id, registers)
+    .toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
 
   }
 
@@ -88,5 +91,10 @@ export class CNPJService {
     return this.httpClient.delete(this.API_URL+'/delete/'+id).toPromise()
     .then(response => response)
     .catch(error=> Observable.throw(error.message));
+  }
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '200px'
+    });
   }
 }

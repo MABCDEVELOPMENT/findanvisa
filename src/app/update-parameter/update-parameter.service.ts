@@ -10,6 +10,8 @@ import 'rxjs/add/operator/toPromise';
 import { Alert, error } from 'selenium-webdriver';
 import { environment } from '@env/environment';
 import { UpdateParameter } from '@app/update-parameter/update-parameter.model';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 
 @Injectable()
@@ -17,7 +19,8 @@ export class UpdateParameterService {
   private readonly API_URL = '/updateparameter';
   
   private headers = new Headers({'Content-Type': 'application/json'});
-  constructor (private httpClient: HttpClient) {
+  constructor (private httpClient: HttpClient,
+    public dialog: MatDialog) {
      
   }
 
@@ -39,11 +42,15 @@ export class UpdateParameterService {
     this.httpClient.post(this.API_URL+'/save', updateParameter).subscribe(data => {
       //this.dialogData = user;
       
-      alert('Successfully save');
+      this.showMsg('Registro gravado com sucesso!');
       },
       (err: HttpErrorResponse) => {
-        alert('Error occurred. Details: ' + err.name + ' ' + err.message);
+        this.showMsg('Error occurred. Details: ' + err.name + ' ' + err.message);
     });
   }
-
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '200px'
+    });
+  }
 }

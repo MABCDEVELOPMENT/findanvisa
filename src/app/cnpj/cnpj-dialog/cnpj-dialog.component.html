@@ -57,7 +57,7 @@
   </div>
 </mat-dialog-content>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 <mat-dialog-actions>
   <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" [mat-dialog-close]="1" (click)="confirmAdd()"
     translate>{{ 'save' | translate }}</button>

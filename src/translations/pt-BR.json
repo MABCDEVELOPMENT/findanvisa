@@ -85,6 +85,7 @@
   "queryRecord.process":"Processo",
   "queryRecord.register":"Registro",
   "queryRecord.maturity":"Vencimento",
+  "queryRecord.statusMaturity":"Observação",
   "queryRecord.subject":"Assunto",
   "queryRecord.officehour":"Expediente",
   "queryRecord.year":"Ano",

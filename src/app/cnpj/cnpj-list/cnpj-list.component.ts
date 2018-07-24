@@ -7,6 +7,7 @@ import { CNPJEditDialogComponent } from '@app/cnpj/cnpj-edit/cnpj-edit.component
 import { I18nService } from '@app/core';
 import { CNPJService } from '@app/cnpj/cnpj.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 
 @Component({
@@ -100,8 +101,8 @@ export class CNPJListComponent implements AfterViewInit {
     });
   }
 
-  startEdit(i: number) {
-    let cnpjEdit = this.ELEMENT_DATA[i];
+  startEdit(CNPJ:RegisterCNPJ) {
+    let cnpjEdit = CNPJ;//this.ELEMENT_DATA[i];
     console.log(JSON.stringify(cnpjEdit));
     const dialogRef = this.dialog.open(CNPJEditDialogComponent, {data:cnpjEdit,
       height: 'max-content+10px',
@@ -118,8 +119,8 @@ export class CNPJListComponent implements AfterViewInit {
     });
   }
 
-  deleteItem(id: number) {
-    this.dataService.deleteCNPJ(id);
+  deleteItem(CNPJ:RegisterCNPJ) {
+    this.dataService.deleteCNPJ(CNPJ.id);
     this.dataSource.data.push(this.dataService.getDialogData());
   }
 
@@ -143,7 +144,7 @@ export class CNPJListComponent implements AfterViewInit {
                         },
                         error => {
                           this.error = error;
-                          alert(error); 
+                          this.showMsg(error); 
                         });
     
   } 
@@ -151,6 +152,12 @@ export class CNPJListComponent implements AfterViewInit {
  maskCnpj(valor: string):string {
     return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
  }
+
+ showMsg(message : string) : void {
+  this.dialog.open(ErrorDialogComponent, {
+    data: {errorMsg: message} ,width : '250px',height: '200px'
+  });
+}
       
     
 

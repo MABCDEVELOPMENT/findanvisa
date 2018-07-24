@@ -48,13 +48,17 @@ export class LoginComponent implements OnInit {
       data => {
         this.email = data['email'];
         let user = data;
-        
+        if (data.error) {
+           this.error = data.error.error.errorMessage;
+           this.showMsg(this.error);
+           return;
+        }    
         this.credential = { id:user.id, username: user.userName,email:user.email,
           isAdm: (user.profile == 1) ,token: '123456'};
            
         this.authenticationService.setCredentials(this.credential); 
         this.router.navigate(['/'], { replaceUrl: true });
-      },
+      }).catch(
       error => {
         this.error = error.error.errorMessage;
         this.showMsg(this.error); 

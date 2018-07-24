@@ -51,9 +51,10 @@ export class CNPJDialogComponent implements OnInit {
   
   dataSource = new MatTableDataSource(this.cnpjs);
   
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
+
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -62,10 +63,25 @@ export class CNPJDialogComponent implements OnInit {
   }
   ngOnInit() {
     this.loadData();
-    this.dataSource.paginator = this.paginator;
+
     this.form = new FormGroup({
       cnpj: new FormControl('', [])
     });
+    this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
+      const matchFilter:any = [];
+      const filters = JSON.parse(filtersJson);
+
+      filters.forEach((filter:any) => {
+        // check for null values!
+        const val = data[filter.id] === null ? '' : data[filter.id];
+        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+      });
+
+       // Choose one
+        return matchFilter.every(Boolean); // AND condition
+        // return matchFilter.some(Boolean); // OR condition
+    }
+
   }
 
   submit() {
@@ -91,7 +107,16 @@ export class CNPJDialogComponent implements OnInit {
 
   confirmAdd(): void {
     
-     this.dataService.saveCnpjUser(this.selection.selected);
+     this.dataService.saveCnpjUser(this.selection.selected)
+     .then(
+      data => {
+        this.showMsg("Registro(s) salvo com sucesso!");
+      },
+      error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error);
+
+      });
   }
 
   
@@ -109,7 +134,8 @@ export class CNPJDialogComponent implements OnInit {
         data => {
           this.cnpjs = data;
           this.dataSource = new MatTableDataSource(this.cnpjs);
-
+          this.dataSource.sort      = this.sort;
+          this.dataSource.paginator = this.paginator;
         },
         error => {
           this.error = error.error.errorMessage;

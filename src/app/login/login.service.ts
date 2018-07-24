@@ -6,6 +6,8 @@ import {User} from '../user/user-model';
 import {HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '@app/login/login.model';
 import { Observable } from 'rxjs';
+import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Injectable()
 export class LoginService {
@@ -16,7 +18,8 @@ export class LoginService {
   // Temporarily stores data from dialogs
   dialogData: any;
   user: User;
-  constructor (private httpClient: HttpClient) {
+  constructor (private httpClient: HttpClient,
+              public dialog: MatDialog) {
      
   }
 
@@ -37,7 +40,7 @@ export class LoginService {
         return data;
       },
       (err: HttpErrorResponse) => {
-        alert(err.error.errorMessage);
+        this.showMsg(err.error.errorMessage);
         return null;
     });
   }
@@ -57,7 +60,11 @@ export class LoginService {
    .then(response => response)
    .catch(error => Observable.throw(error));
   }
-
+  showMsg(message : string) : void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {errorMsg: message} ,width : '250px',height: '200px'
+    });
+  }
  
 }
 

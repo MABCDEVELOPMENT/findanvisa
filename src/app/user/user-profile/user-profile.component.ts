@@ -66,7 +66,7 @@ export class UserProfileComponent {
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
@@ -77,8 +77,7 @@ export class UserProfileComponent {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort      = this.sort;
-    this.dataSource.paginator = this.paginator;
+
   }
   
   ngOnInit() {
@@ -113,6 +112,8 @@ export class UserProfileComponent {
           this.data = data;
           this.ELEMENT_DATA = this.data['registerCNPJs'];
           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          this.dataSource.sort      = this.sort;
+          this.dataSource.paginator = this.paginator;
         },
         error => {
           this.error = error.error.errorMessage;

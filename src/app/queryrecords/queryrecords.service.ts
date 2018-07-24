@@ -14,6 +14,7 @@ import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { AuthenticationService } from '@app/core';
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
+import { QueryRecordProcessParameter } from '@app/queryrecords/queryrecordprocessparameter.model';
 
 @Injectable()
 export class QueryrecordsService {
@@ -32,12 +33,25 @@ export class QueryrecordsService {
     return this.dataChange;
   }
 
-  /** CRUD METHODS */
   getQueryRegisters(queryrecordparameter: QueryRecordParameter): Promise<any> {
 
      return this.httpClient.post(this.API_URL+'/product',queryrecordparameter).toPromise()
     .then(response => response)
     .catch(error=> Observable.throw(error.message));
   }
+
+  getQueryProcessoRegisters(queryrecordprocessparameter: QueryRecordProcessParameter): Promise<any> {
+
+      return this.httpClient.post(this.API_URL+'/process',queryrecordprocessparameter).toPromise()
+     .then(response => response)
+     .catch(error=> Observable.throw(error.message));
+  }
+
+  getQueryAreas(): Promise<any> {
+
+    return this.httpClient.get(this.API_URL+'/areas').toPromise()
+   .then(response => response)
+   .catch(error=> Observable.throw(error.message));
+ }
   
 }

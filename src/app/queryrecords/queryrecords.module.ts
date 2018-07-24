@@ -12,6 +12,7 @@ import { Queryrecords } from './queryrecords.model';
 import { QueryrecordsService } from './queryrecords.service';
 import { QueryrecordsRoutingModule } from './queryrecords-routing.module';
 import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.component';
+import { QueryrecordprocessListComponent } from '@app/queryrecords/queryrecordprocess-list/queryrecordprocess-list.component';
 
 @NgModule({
   imports: [
@@ -25,8 +26,8 @@ import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.co
     TextMaskModule,
     QueryrecordsRoutingModule
   ],
-  exports:[QueryrecordListComponent],
-  declarations: [QueryrecordListComponent],
+  exports:[QueryrecordListComponent,QueryrecordprocessListComponent],
+  declarations: [QueryrecordListComponent,QueryrecordprocessListComponent],
   providers:[QueryrecordsService,Queryrecords],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

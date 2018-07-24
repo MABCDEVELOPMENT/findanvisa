@@ -96,5 +96,11 @@
   "queryRecord.company":"Empresa",
   "queryRecord.category":"Categoria",
   "queryRecord.situation":"Situação",
+  "queryProcessRecords":"Consulta Processos",
+  "queryRecord.area":"Area",
+  "queryRecord.order":"Ordem",
+  "queryRecord.cnpj":"cnpj",
+  "queryRecord.socialName":"Razao Social",
+
   "selectAll":"Selecionar Todos"
 }

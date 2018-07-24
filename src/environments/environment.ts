@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   version: '(dev)',
-  serverUrl:'http://findinfo.kinghost.net',
+  serverUrl:'http://localhost/neapi',
   defaultLanguage: 'pt-BR',
   supportedLanguages: [
     'pt-BR'

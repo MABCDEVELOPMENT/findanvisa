@@ -182,12 +182,11 @@ export class QueryrecordListComponent implements OnInit {
 
       } else if (this.selectedCategory==1) { // 
         
-         this.options = [
-          {value: 0,  viewValue: 'Produtos Registrados'},
-          {value: 1,  viewValue: 'Produtos Notificados'},
-          {value: 2,  viewValue: 'Produtos Regularizados'}
-        ]
-         
+        if (this.selectedOption == 0) {
+          this.dataSource = null;
+          this.isNotification = true;
+        } 
+        
       } else if (this.selectedCategory==2) {
          if (this.selectedOption == 0) {
             this.dataSource = null;

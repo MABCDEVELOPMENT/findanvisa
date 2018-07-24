@@ -49,7 +49,7 @@ export class CNPJListComponent implements AfterViewInit {
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
@@ -61,8 +61,22 @@ export class CNPJListComponent implements AfterViewInit {
 
   ngOnInit() {
     this.loadData();
-    this.dataSource.sort      = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
+      const matchFilter:any = [];
+      const filters = JSON.parse(filtersJson);
+
+      filters.forEach((filter:any) => {
+        // check for null values!
+        const val = data[filter.id] === null ? '' : data[filter.id];
+        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+      });
+
+       // Choose one
+        return matchFilter.every(Boolean); // AND condition
+        // return matchFilter.some(Boolean); // OR condition
+    }
+
+    
   }
   ngAfterViewInit() {
 
@@ -124,6 +138,8 @@ export class CNPJListComponent implements AfterViewInit {
                         data => {
                           this.ELEMENT_DATA = data;
                           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+                          this.dataSource.sort      = this.sort;
+                          this.dataSource.paginator = this.paginator;
                         },
                         error => {
                           this.error = error;

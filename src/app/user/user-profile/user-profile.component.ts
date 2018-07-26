@@ -124,6 +124,7 @@ export class UserProfileComponent {
   public confirmAdd(): void {
 
     this.dataService.save(this.data);
+    this.loadUser();
 
   }
 
@@ -134,13 +135,13 @@ export class UserProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+  
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
         //this.refreshTable();
         //this.dataSource.data.push(this.dataService.getDialogData());
-      }
+        this.loadUser();
     });
   }
 
@@ -149,6 +150,7 @@ export class UserProfileComponent {
     this.dataService.deleteCNPJ(register)
       .then(
         data => {
+          this.loadUser();
           this.showMsg("Cnpj excluido!");
         },
         error => {

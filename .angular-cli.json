@@ -9,7 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico",
+        "unilever.ico",
         "manifest.json",
         "robots.txt"
       ],

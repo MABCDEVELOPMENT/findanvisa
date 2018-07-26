@@ -78,9 +78,9 @@ export class GenericParameterComponent implements OnInit {
     this.data.systemName	= this.form.controls["systemName"].value;
     this.data.socialName	= this.form.controls["socialName"].value;
     this.data.cnpj		    = this.form.controls["cnpj"].value;
-    this.data.cnpj        = this.data.cnpj.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    
     this.data.codeZip		  = this.form.controls["codeZip"].value;
-    this.data.codeZip		  = this.data.codeZip.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    
     this.data.address		  = this.form.controls["address"].value;
     this.data.number		  = this.form.controls["number"].value;
     this.data.neighborhood	= this.form.controls["neighborhood"].value;
@@ -95,7 +95,7 @@ export class GenericParameterComponent implements OnInit {
     this.genericParameterService.save(this.data).then(response => {
          this.showMsg("Registro salvo com sucesso!");
          this.router.navigate(['/'], { replaceUrl: true });
-      }, error => {
+      }).catch( error => {
         this.error = error.error.errorMessage;
         this.showMsg(this.error); 
       })  ;

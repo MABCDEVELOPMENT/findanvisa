@@ -32,6 +32,7 @@ export class QueryrecordprocessListComponent implements OnInit {
   cnpjs: RegisterCNPJ[];
   user: User;
   areas: any;
+  selectedArea:any;
   form: FormGroup;
   queryRecordProcessParameter: any;
 

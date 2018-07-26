@@ -24,12 +24,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: User = new User();
   isLoading: boolean = false;
-  parameter:GenericParameter;
+  parameter: GenericParameter;
   constructor(private router: Router,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
-    public genericParameterService : GenericParameterService) {
+    public genericParameterService: GenericParameterService) {
     this.createForm();
     this.genericParameterService.load().then(data => {
       this.parameter = data;
@@ -52,32 +52,36 @@ export class RegisterComponent implements OnInit {
     let email = this.registerForm.controls["email"].value;
     let index = fullName.indexOf(" ");
     if (index == -1) {
-        index = fullName.length - 1;
+      index = fullName.length - 1;
     }
-    let indexEmail = email.indexOf("@");
-    let emailPermision = email.substr(indexEmail,email.length-1);
-    if (emailPermision!=this.parameter.emailPermission) {
+
+    if (this.parameter.emailPermission) {
+      let indexEmail = email.indexOf("@");
+      let emailPermision = email.substr(indexEmail, email.length - 1);
+      if (emailPermision != this.parameter.emailPermission) {
         this.showMsg('E-mail inválido!');
         return;
+      }
     }
+
     this.user.userName = fullName.substr(0, index)
     this.user.email = email;
     this.user.fullName = fullName;
     this.user.profile = 2;
-    this.registerService.register(this.user).then(data=>{
-        this.showMsg("Registro realizado com sucesso! Você receberar um email para ativação do usuário!");
-        this.router.navigate(['/login'], { replaceUrl: true });
+    this.registerService.register(this.user).then(data => {
+      this.showMsg("Registro realizado com sucesso! Você receberar um email para ativação do usuário!");
+      this.router.navigate(['/login'], { replaceUrl: true });
     }, error => {
       this.error = error.error.errorMessage;
       this.showMsg(this.error);
       this.router.navigate(['/login'], { replaceUrl: true });
     });
-    
+
   }
 
-  showMsg(message : string) : void {
+  showMsg(message: string): void {
     this.dialog.open(ErrorDialogComponent, {
-      data: {errorMsg: message} ,width : '250px',height: '250px'
+      data: { errorMsg: message }, width: '250px', height: '250px'
     });
   }
 

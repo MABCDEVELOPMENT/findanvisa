@@ -1,12 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
+import { Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 
 import { User } from '@app/user/user-model';
 import { UserAddDialogComponent } from '@app/user/user-add/user-add.component';
 import { UserEditDialogComponent } from '@app/user/user-edit/user-edit.component';
 import { I18nService } from '@app/core';
 import { UserService } from '@app/user/user.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 
@@ -18,7 +17,7 @@ import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 
 
 
-export class UserListComponent implements AfterViewInit {
+export class UserListComponent  {
 
   error: string;
   displayedColumns = ['id', 'fullName', 'userName', 'email', 'profile', 'active', 'actions'];
@@ -28,7 +27,8 @@ export class UserListComponent implements AfterViewInit {
     row.hasOwnProperty('detailRow');
   constructor(public dialog: MatDialog,
     public dataService: UserService,
-    public i18nService: I18nService) {
+    public i18nService: I18nService,
+    public changeDetectorRef: ChangeDetectorRef) {
 
   }
 
@@ -62,11 +62,6 @@ export class UserListComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
-  ngAfterViewInit() {
-   
-
-  }
-
   ngOnInit() {
     this.loadData();
     this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
@@ -94,14 +89,13 @@ export class UserListComponent implements AfterViewInit {
       width: 'max-content'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+    dialogRef.afterClosed().subscribe(() => {
+
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
-        //this.refreshTable();
-      }
+        this.loadData();
     });
+    
   }
 
   startEdit(user:User) {
@@ -113,20 +107,24 @@ export class UserListComponent implements AfterViewInit {
       width: 'max-content'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
+    dialogRef.afterClosed().subscribe(() => {
+         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
         //this.dataSource.refreshTable();
-      }
+        //this.dataSource.data.push(this.dataService.getDialogData());
+        //this.changeDetectorRef.detectChanges;
+        this.loadData();
     });
+
   }
 
   deleteItem(user:User) {
     this.dataService.delete(user.id)
     .then(
       data => {
+          
+        this.loadData();
         this.showMsg("Registro excluido com sucesso!");
       },
       error => {
@@ -144,6 +142,8 @@ export class UserListComponent implements AfterViewInit {
         data => {
           this.ELEMENT_DATA = data;
           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+          this.dataSource.sort      = this.sort;
+          this.dataSource.paginator = this.paginator;
         },
         error => {
           this.error = error.error.errorMessage;

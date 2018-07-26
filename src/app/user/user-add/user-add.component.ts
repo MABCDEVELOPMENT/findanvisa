@@ -81,13 +81,11 @@ export class UserAddDialogComponent implements OnInit {
   confirmAdd(): void {
 
     this.dataService.save(this.data)
-      .then(data=>{
-        this.showMsg("Registro atualizado com sucesso!");
-    }, error => {
-      this.error = error.error.errorMessage;
-      this.showMsg(this.error);
-    });
-    this.dialogRef.close();
+    .then(data=>1).catch(error => {
+    this.error = error.error.errorMessage;
+    this.showMsg(this.error);
+  });
+  this.dialogRef.close();
 
   }
   

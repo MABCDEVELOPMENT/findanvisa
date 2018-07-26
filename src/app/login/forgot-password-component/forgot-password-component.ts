@@ -37,7 +37,6 @@ export class ForgotPasswordComponent implements OnInit {
         this.showDialog("Erro de comunicação!");
       });
     this.dialogRef.close();
-    this.router.navigate(['/login'], { replaceUrl: true });
   }
 
   showDialog(msg : string) : void {

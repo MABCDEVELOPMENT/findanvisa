@@ -6,7 +6,7 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
+          "/unilever.ico",
           "/manifest.json",
           "/index.html"
         ],

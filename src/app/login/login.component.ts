@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.email = data['email'];
         let user = data;
         if (data.error) {
-           this.error = data.error.error.errorMessage;
+           this.error = data.error.errors.errorMessage;
            this.showMsg(this.error);
            return;
         }    
@@ -68,6 +68,11 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
+    if (!this.authenticationService.credentials) { 
+      this.email = this.loginForm.controls.email.value;
+      this.sendEmail(this.email);
+      return;
+    }
     this.authenticationService.getEmail()
     .then(
       data => {

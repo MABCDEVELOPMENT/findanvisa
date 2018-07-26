@@ -7,15 +7,15 @@ export class UserRegisterCNPJ {
     cnpj: RegisterCNPJ;
     sendNotification: boolean;
 
-    constructor(
-        id: number,
-        user: User,
-        cnpj: RegisterCNPJ,
-        sendNotification: boolean){
-        this.id = id;
-        this.cnpj = cnpj;
-        this.user = user;
-        this.sendNotification = sendNotification;
+    // constructor(
+    //     id: number,
+    //     user: User,
+    //     cnpj: RegisterCNPJ,
+    //     sendNotification: boolean){
+    //     this.id = id;
+    //     this.cnpj = cnpj;
+    //     this.user = user;
+    //     this.sendNotification = sendNotification;
 
-    }
+    // }
 }

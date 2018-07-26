@@ -51,10 +51,8 @@ export class UserService {
   // DEMO ONLY, you can find working methods below
   save (user: User): Promise<any> {
     //this.dialogData = user;
-    console.log(JSON.stringify(user));
-
     return this.httpClient.post(this.API_URL+'/save', user).toPromise()
-    .then(response => response)
+    .then(response => {this.dialogData = response})
     .catch(error => Observable.throw(error));
   }
 

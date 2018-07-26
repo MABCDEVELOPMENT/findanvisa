@@ -70,7 +70,6 @@ export class AuthenticationService {
    * @return {Observable<Credentials>} The user credentials.
    */
   getEmail(): Promise<any> {
-    
     return this.httpClient.get(this.API_URL+'/getemail/'+this.credentials.id)
     .toPromise()
     .then(response => response)

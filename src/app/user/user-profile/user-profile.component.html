@@ -1,116 +1,113 @@
 <div style="height: max-content;" class="table-container mat-elevation-z8">
-    <mat-card class="param-container">
-  
-<mat-card-content >
-  <form (ngSubmit)="submit" [formGroup]="form">
-    
-      <div layout="row"  layout-align="space-between center" fix>
+  <mat-card class="param-container">
 
-        <mat-form-field>
-          <input matInput #input class="form-control" type="text" placeholder="{{ 'user.fullName' | translate }}" formControlName="fullName"
-            [(ngModel)]="data.fullName">
-          <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
-        </mat-form-field>
+    <mat-card-content>
+      <form (ngSubmit)="submit" [formGroup]="form">
 
-        <mat-form-field>
-          <input matInput class="form-control" type="text" placeholder="{{ 'user.userName' | translate }}" formControlName="userName"
-            [(ngModel)]="data.userName">
-          <mat-error *ngIf="form.controls.userName.invalid">{{getErrorMessage() | translate}}</mat-error>
-        </mat-form-field>
+        <div layout="row" layout-align="space-between center" fix>
 
-        <!-- <mat-form-field>
-              <input matInput class="form-control" [textMask]="{mask: mask}" placeholder="{{ 'user.dateBrith' | translate }}" formControlName="dateBrith"
-                [(ngModel)]="data.dateBrith" required>
-              <mat-error *ngIf="form.controls.dateBrith.invalid">{{getErrorMessage() | translate}}</mat-error>
-        </mat-form-field>
-        
-        <mat-form-field>
-            <input matInput class="form-control" [textMask]="{mask: maskPhone}" placeholder="{{ 'user.phone' | translate }}" formControlName="cellPhone"
-              [(ngModel)]="data.cellPhone">
-           <mat-error *ngIf="form.controls.cellPhone.invalid">{{getErrorMessage() | translate}}</mat-error>
-        </mat-form-field>--> 
+          <mat-form-field>
+            <input matInput #input class="form-control" type="text" placeholder="{{ 'user.fullName' | translate }}" formControlName="fullName"
+              [(ngModel)]="data.fullName">
+            <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
+          </mat-form-field>
 
-        
-        <mat-form-field >
-          <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"/>
-          <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
-        </mat-form-field>
-    </div>
+          <mat-form-field>
+            <input matInput class="form-control" type="text" placeholder="{{ 'user.userName' | translate }}" formControlName="userName"
+              [(ngModel)]="data.userName">
+            <mat-error *ngIf="form.controls.userName.invalid">{{getErrorMessage() | translate}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"
+              />
+              <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
+            </mat-form-field>
+          <mat-form-field>
+            <input type="password" matInput formControlName="password" autocomplete="current-password" [(ngModel)]="data.password" [placeholder]="'Password' | translate"
+              required/>
+            <mat-error *ngIf="form.controls.password.valid || form.controls.password.untouched">
+              <span translate>Password is required</span>
+            </mat-error>
+          </mat-form-field>
+         
 
-   <div class="table-container mat-elevation-z4">
+        </div>
+
+        <div class="table-container mat-elevation-z4">
 
 
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-      </mat-form-field>
-    
-    
-      <mat-table #table class="mat-table " [dataSource]="dataSource" matSort>
-        
-        <!-- CNPJ Column -->
-        <ng-container matColumnDef="cnpj">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
-        </ng-container>
-    
-        <!-- Full Name Column -->
-        <ng-container matColumnDef="fullName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
-        </ng-container>
-    
-        <!-- category Column -->
-        <ng-container matColumnDef="category">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
-          </ng-container>
-       
-        <!-- sendNotification Column -->
-        <ng-container matColumnDef="sendNotification">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.sendNotification' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.sendNotification)}} </mat-cell>
-        </ng-container>
-    
-        <!-- actions -->
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>
-            <button mat-icon-button color="primary" (click)="addNew()">
-              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-            </button>
-          </mat-header-cell>
-    
-          <mat-cell *matCellDef="let CNPJ; let i=index;">
-            <!-- <button mat-icon-button color="accent" (click)="startEdit(i, CNPJ)">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+          </mat-form-field>
+
+
+          <mat-table #table class="mat-table " [dataSource]="dataSource" matSort>
+
+            <!-- CNPJ Column -->
+            <ng-container matColumnDef="cnpj">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cnpj' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{maskCnpj(CNPJ.cnpj)}} </mat-cell>
+            </ng-container>
+
+            <!-- Full Name Column -->
+            <ng-container matColumnDef="fullName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.fullName' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{CNPJ.fullName}} </mat-cell>
+            </ng-container>
+
+            <!-- category Column -->
+            <ng-container matColumnDef="category">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+            </ng-container>
+
+            <!-- sendNotification Column -->
+            <ng-container matColumnDef="sendNotification">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.sendNotification' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.sendNotification)}} </mat-cell>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary" (click)="addNew()">
+                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                </button>
+              </mat-header-cell>
+
+              <mat-cell *matCellDef="let CNPJ; let i=index;">
+                <!-- <button mat-icon-button color="accent" (click)="startEdit(i, CNPJ)">
               <mat-icon aria-label="Edit">edit</mat-icon>
             </button> -->
-    
-            <button mat-icon-button color="accent" (click)="deleteItem(CNPJ)">
-              <mat-icon aria-label="Delete">delete</mat-icon>
-            </button>
-    
-    
-          </mat-cell>
-    
-        </ng-container>
-    
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;">
-    
-        </mat-row>
-    
-      </mat-table>
-      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    </div>
 
-    
-  </form>
-  <mat-dialog-actions>
-      <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid"
-        (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
-      <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
-    </mat-dialog-actions>
-  </mat-card-content >  
+                <button mat-icon-button color="accent" (click)="deleteItem(CNPJ)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+
+
+              </mat-cell>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+
+            </mat-row>
+
+          </mat-table>
+          <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+
+      </form>
+      <div align="center">
+      <mat-dialog-actions>
+        <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
+        <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
+      </mat-dialog-actions>
+    </div>
+    </mat-card-content>
+
   </mat-card>
 
 </div>
-

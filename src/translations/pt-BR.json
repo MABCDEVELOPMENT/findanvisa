@@ -49,6 +49,7 @@
   "login.password":"Senha",
   "save":"Salvar",
   "send":"Enviar",
+  "goback":"Voltar",
   "cancel":"Cancelar",
   "fieldEmpty":"Este campo deve ser informado!",
   "invalidEmail":"email inválido!",

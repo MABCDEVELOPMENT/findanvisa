@@ -99,11 +99,13 @@
           </mat-form-field>
 
       </form>
+      <div align="center">
       <mat-dialog-actions class="mat-dialog-actions-params"> 
           <button style="align-content: center center" class="mat-raised-button" mat-button  [disabled]="form.invalid" 
             (click)="save()" translate>{{ 'save' | translate }}</button>
-          <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'cancel' | translate }}</button>
+          <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
       </mat-dialog-actions>
+      </div>
     </mat-card-content>
     
   </mat-card>

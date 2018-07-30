@@ -35,8 +35,9 @@ export class UserService {
     return this.dialogData;
   }
 
-  deleteCNPJ (userRegisterCNPJ:UserRegisterCNPJ): Promise<any> {
-    return this.httpClient.post(this.API_URL+'/deleteCnpjUser/',userRegisterCNPJ).toPromise()
+  deleteCNPJ (userRegisterCNPJ:UserRegisterCNPJ,user:User): Promise<any> {
+    let param:any = [user.id,userRegisterCNPJ.id]; 
+    return this.httpClient.post(this.API_URL+'/deleteCnpjUser/', param).toPromise()
     .then(response => response)
     .catch(error=> Observable.throw(error.message));
   }
@@ -52,7 +53,7 @@ export class UserService {
   save (user: User): Promise<any> {
     //this.dialogData = user;
     return this.httpClient.post(this.API_URL+'/save', user).toPromise()
-    .then(response => {this.dialogData = response})
+    .then(response => response)
     .catch(error => Observable.throw(error));
   }
 

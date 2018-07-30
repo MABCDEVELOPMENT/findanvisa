@@ -94,7 +94,7 @@ export class GenericParameterComponent implements OnInit {
  
     this.genericParameterService.save(this.data).then(response => {
          this.showMsg("Registro salvo com sucesso!");
-         this.router.navigate(['/'], { replaceUrl: true });
+        
       }).catch( error => {
         this.error = error.error.errorMessage;
         this.showMsg(this.error); 
@@ -104,6 +104,8 @@ export class GenericParameterComponent implements OnInit {
   onNoClick() {
     this.router.navigate(['/'], { replaceUrl: true });
   }
+
+  
 
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

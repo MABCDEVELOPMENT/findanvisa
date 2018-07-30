@@ -3,9 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs';
 import 'rxjs/add/observable/throw';
 import { of } from 'rxjs/observable/of';
-import { User } from '@app/user/user-model';
 import {HttpClient } from '@angular/common/http';
 import { Login } from '@app/login/login.model';
+import 'rxjs/add/operator/toPromise';
 
 
 
@@ -69,11 +69,15 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  getEmail(): Promise<any> {
-    return this.httpClient.get(this.API_URL+'/getemail/'+this.credentials.id)
-    .toPromise()
-    .then(response => response)
-    .catch(error=> Observable.throw(error.message));
+  getEmail(email:string): Promise<any> {
+    return this.httpClient.get(this.API_URL+'/getuser/'+email)
+    .map((response) => response)
+    .toPromise();
+    // .toPromise()
+    // .then(response => response)
+    // .catch(error=> error);
+
+
     
   }
 

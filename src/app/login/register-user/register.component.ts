@@ -85,4 +85,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  goBack(){
+    this.router.navigate(['/login'], { replaceUrl: true });
+  }
+
 }

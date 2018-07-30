@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/toPromise';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
@@ -26,7 +27,7 @@ export interface Credentials {
 export class LoginComponent implements OnInit {
 
   version: string = environment.version;
-  error: string;
+  error: any;
   loginForm: FormGroup;
   isLoading = false;
   email: string;
@@ -49,18 +50,16 @@ export class LoginComponent implements OnInit {
         this.email = data['email'];
         let user = data;
         if (data.error) {
-           this.error = data.error.errors.errorMessage;
-           this.showMsg(this.error);
+           this.showMsg("Login invalido!");
            return;
         }    
         this.credential = { id:user.id, username: user.userName,email:user.email,
           isAdm: (user.profile == 1) ,token: '123456'};
-           
         this.authenticationService.setCredentials(this.credential); 
         this.router.navigate(['/'], { replaceUrl: true });
       }).catch(
       error => {
-        this.error = error.error.errorMessage;
+        this.error = error;
         this.showMsg(this.error); 
         this.router.navigate(['/login'], { replaceUrl: true });
       });
@@ -68,20 +67,22 @@ export class LoginComponent implements OnInit {
   }
 
   forgotPassword() {
-    if (!this.authenticationService.credentials) { 
-      this.email = this.loginForm.controls.email.value;
-      this.sendEmail(this.email);
-      return;
+    if (this.loginForm.controls.email.invalid) {
+       this.showMsg("Informe e-mail."); 
+       return;
     }
-    this.authenticationService.getEmail()
+    this.authenticationService.getEmail(this.loginForm.controls.email.value)
     .then(
       data => {
         this.email = data['email'];
+        this.isLoading = true;
         this.sendEmail(this.email);
-      },
+        this.isLoading = false;
+      }).catch(
       error => {
-        this.error = error.error.errorMessage;
-        this.showMsg(error); 
+        this.error = JSON.stringify(error);
+        this.showMsg('Usuário Inválido!'); 
+        return;
       });
   }
 

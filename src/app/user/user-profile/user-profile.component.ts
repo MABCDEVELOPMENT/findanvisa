@@ -9,6 +9,7 @@ import { CNPJDialogComponent } from '@app/cnpj/cnpj-dialog/cnpj-dialog.component
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { Router } from '@angular/router';
 import { UserRegisterCNPJ } from '@app/user/userregisterCNPJ-model';
+import { Credentials } from '@app/login/login.component';
 ;
 
 @Component({
@@ -29,6 +30,7 @@ export class UserProfileComponent {
   error: string;
   form: FormGroup;
 
+  private credential:Credentials;
 
   public categorys = [
     'Alimentos',
@@ -85,10 +87,25 @@ export class UserProfileComponent {
     this.form = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
       userName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password:new FormControl( ['', Validators.required])
+    
       //dateBrith: new FormControl('', [Validators.required]),
       //cellPhone: new FormControl('', [])
     });
+  }
+
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey],
+        passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true })
+      }
+      else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    }
   }
 
   getErrorMessage() {
@@ -123,9 +140,22 @@ export class UserProfileComponent {
 
   public confirmAdd(): void {
 
-    this.dataService.save(this.data);
-    this.loadUser();
-
+    this.dataService.save(this.data)
+    .then(
+      data => {
+        this.data = data;
+        
+        this.credential = { id:data.id, username: data.userName,email:data.email,
+          isAdm: (data.profile == 1) ,token: '123456'};
+           
+        this.authenticationService.setCredentials(this.credential); 
+        this.showMsg("Registro salvo com sucesso!");
+      },
+      error => {
+        this.error = error.error.errorMessage;
+        this.showMsg(this.error);
+      });
+    
   }
 
   addNew(registerCnpj: RegisterCNPJ) {
@@ -147,12 +177,12 @@ export class UserProfileComponent {
 
   deleteItem(register:UserRegisterCNPJ) {
 
-    this.dataService.deleteCNPJ(register)
+    this.dataService.deleteCNPJ(register,this.data)
       .then(
         data => {
           this.loadUser();
-          this.showMsg("Cnpj excluido!");
-        },
+          this.showMsg("Cnpj excluido com sucesso!");
+        }).catch(
         error => {
           this.error = error.error.errorMessage;
           this.showMsg(this.error);

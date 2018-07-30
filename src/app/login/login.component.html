@@ -39,7 +39,8 @@
             <span translate>Login</span>
           </button>
           <br/>
-          <a style="text-align: right" routerLink="" routerLinkActive="active" (click)="forgotPassword()">
+          <a style="text-align: right" routerLink="/login" routerLinkActive="active" (click)="forgotPassword()">
+            <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
             <span class="span-label" translate>lostpassword</span>
           </a>
           <a style="text-align: right" routerLink="/registerUser" routerLinkActive="active">

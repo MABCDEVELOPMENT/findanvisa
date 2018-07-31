@@ -4,26 +4,19 @@
       <mat-toolbar>
         <!--<span translate>APP_NAME</span>-->
         <img style="height: 80%;" src="./assets/unilever.jpg" /> 
-        <div fxFlex></div>
+        <div fxFlex></div> 
+          
         <div fxFlex></div>
         <div>
           <mat-list>
-            <mat-list-item>
-              
+            
+            <mat-list-item style="align-self: center;">
                 <mat-icon>person</mat-icon>
-                <!-- <button mat-icon-button [matMenuTriggerFor]="userMenu" translate><button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
-              </button> -->
-              <b style="font-size: 6px">{{username}}</b>
+                <b  style="font-size: 6px">{{username}}</b>
             </mat-list-item>
 
           </mat-list>
 
-
-          <!-- <mat-menu #userMenu="matMenu">
-
-            <button mat-menu-item (click)="login()" translate>Login</button>
-            <button mat-menu-item (click)="logout()" translate>Logout</button>
-          </mat-menu> -->
         </div>
       </mat-toolbar>
       <nav>
@@ -97,7 +90,7 @@
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span>{{title}}</span>
+        <span>{{title+" "+version}}</span>
 
       </mat-toolbar>
       <div flex layout="column" layout-align="center center center center">

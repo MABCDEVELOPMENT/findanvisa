@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent } from '@angular/material';
+import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent, MatSidenav } from '@angular/material';
 
 import { I18nService, AuthenticationService } from '@app/core';
 import { Queryrecords} from '../queryrecords.model';
@@ -12,13 +12,18 @@ import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.mod
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
+import { SidenavService } from '@app/core/sidenav.service';
+
 @Component({
   selector: 'app-queryrecord-list',
   templateUrl: './queryrecord-list.component.html',
   styleUrls: ['./queryrecord-list.component.scss']
 })
-export class QueryrecordListComponent implements OnInit {
+export class QueryrecordListComponent implements OnInit, AfterViewInit {
 
+  public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
+  public cnpjProcessFood    = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/,];
+  public cnpjProcessCosmetc = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
   error: string;
   
   displayedColumns       = ['product','register','process','company','situation','maturity'];
@@ -47,6 +52,7 @@ export class QueryrecordListComponent implements OnInit {
   constructor( public dialog: MatDialog,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
+               private sidenavSevice: SidenavService,
                public i18nService: I18nService) { 
 
   }
@@ -57,6 +63,7 @@ export class QueryrecordListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
   @ViewChild('table') table: ElementRef;
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -83,16 +90,24 @@ export class QueryrecordListComponent implements OnInit {
         // return matchFilter.some(Boolean); // OR condition
     }
 
+    
+
   }
 
+  ngAfterViewInit() {
+    this.sidenavSevice.setSidenav(this.sidenav);
+  } 
+  
+  
   createForm() {
     this.form =  new FormGroup({
       company: new FormControl('',[Validators.required]),
-      product: new FormControl('', [Validators.required]),
+      product: new FormControl('', []),
       process: new FormControl('', []),
       brand: new FormControl('', []),
       category: new FormControl('', [Validators.required]),
-      option:new FormControl('', [Validators.required])
+      option:new FormControl('', [Validators.required]),
+      numberRegister:new FormControl('', [Validators.required])
     });
   }
 
@@ -120,7 +135,8 @@ export class QueryrecordListComponent implements OnInit {
                              this.form.controls.product.value,
                              this.form.controls.brand.value,
                              this.form.controls.category.value,
-                             this.form.controls.option.value,null,0)
+                             this.form.controls.option.value,
+                             this.form.controls.numberRegister.value,0)
     this.dataService.getQueryRegisters(this.queryRecordParameter)
     .then(
       data => {
@@ -128,6 +144,7 @@ export class QueryrecordListComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.sort      = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.sidenavSevice.close();
       },
       error => {
         this.error = error.error.errorMessage;

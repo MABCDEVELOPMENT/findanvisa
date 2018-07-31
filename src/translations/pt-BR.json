@@ -1,5 +1,5 @@
 {
-  "APP_NAME": "Find Anvisa",
+  "APP_NAME": "FIND INFO",
   "About": "Sobre",
   "Inquiries":"Consultas",
   "Hello world !": "Alô Mundo !",
@@ -84,7 +84,9 @@
   "queryRecords":"Consulta Registros",
   "queryRecord.subjectMatter":"Assunto",
   "queryRecord.process":"Processo",
+  "queryRecord.numberProcess":"Nº do Processo",
   "queryRecord.register":"Registro",
+  "queryRecord.numberRegister":"Numero do Registro",
   "queryRecord.maturity":"Vencimento",
   "queryRecord.statusMaturity":"Observação",
   "queryRecord.subject":"Assunto",
@@ -102,6 +104,5 @@
   "queryRecord.order":"Ordem",
   "queryRecord.cnpj":"cnpj",
   "queryRecord.socialName":"Razao Social",
-
   "selectAll":"Selecionar Todos"
 }

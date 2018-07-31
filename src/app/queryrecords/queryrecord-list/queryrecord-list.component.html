@@ -1,49 +1,34 @@
-<div style="margin-left: 15px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
+<div style="margin-left: 15px;" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
   [formGroup]="form">
+  <tr>
+    <td>
+      <mat-form-field>
+        <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
+          formControlName="company">
+          <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
+            {{ cnpj.fullName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
-      formControlName="company">
-      <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
-        {{ cnpj.fullName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field *ngIf="selected">
+        <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
+          formControlName="category">
+          <mat-option *ngFor="let category of categorys" [value]="category.value">
+            {{ category.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field *ngIf="selected">
-    <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
-      formControlName="category">
-      <mat-option *ngFor="let category of categorys" [value]="category.value">
-        {{ category.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field *ngIf="selectedCategory && selectedCategory!=0 && options">
+        <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
+          formControlName="option">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{ option.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field *ngIf="selectedCategory && selectedCategory!=0 && options">
-    <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
-      formControlName="option">
-      <mat-option *ngFor="let option of options" [value]="option.value">
-        {{ option.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-
-  <!-- <mat-form-field>
-      <input type="text" matInput [placeholder]="'Product' | translate" formControlName="product" />
-      <mat-error *ngIf="form.controls.product.invalid">{{getErrorMessage() | translate}}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" matInput [placeholder]="'queryRecord.brand' | translate" formControlName="brand"/>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input type="text" matInput  [placeholder]="'queryRecord.process' | translate" formControlName="process"/>
-    </mat-form-field> -->
-
-  <mat-dialog-actions>
-    <div class="button-row">
       <button mat-icon-button (click)="loadData()">
         <mat-icon>search</mat-icon>
       </button>
@@ -51,8 +36,42 @@
         <mat-icon>import_export</mat-icon>
         Exportar
       </button>
-    </div>
-  </mat-dialog-actions>
+    </td>
+  </tr>
+  <tr>
+  <!--Produtos Regulares e Alimentos-->
+  <ng-template [ngIf]="typeProduct == 0">
+
+    <td>
+      <mat-form-field>
+        <input type="text" matInput [textMask]="{mask: cnpjProcessFood , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
+          formControlName="process" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput [placeholder]="'queryRecord.product' | translate" formControlName="product" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput [placeholder]="'queryRecord.brand' | translate" formControlName="brand" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput [placeholder]="'queryRecord.numberRegister' | translate" formControlName="numberRegister" />
+      </mat-form-field>
+    </td>
+  </ng-template>
+
+  <!--Produtos Notificados-->
+  <ng-template [ngIf]="typeProduct == 1">
+    <td>
+      <mat-form-field>
+        <input type="text" matInput [textMask]="{mask: cnpjProcessCosmetc , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
+          formControlName="process" />
+      </mat-form-field>
+    </td>
+  </ng-template>
+</tr>
 </div>
 <div class="table-container mat-elevation-z8" [formGroup]="form">
   <mat-form-field>
@@ -60,7 +79,7 @@
   </mat-form-field>
 
 
-  <!--Produtos Regulares-->
+  <!--Produtos Regulares e Alimentos-->
   <ng-template [ngIf]="typeProduct == 0">
 
     <mat-table #table [dataSource]="dataSource" matSort>
@@ -212,5 +231,5 @@
   </ng-template>
 
 
- 
+
 </div>

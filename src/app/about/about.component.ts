@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { environment } from '@env/environment';
+import { GenericParameterService } from '@app/generic-parameter/generic-parameter.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -10,9 +12,13 @@ import { environment } from '@env/environment';
 export class AboutComponent implements OnInit {
 
   version: string = environment.version;
+  title: string;
+  constructor() { 
+   
+  }
 
-  constructor() { }
+  ngOnInit() { 
 
-  ngOnInit() { }
+  }
 
 }

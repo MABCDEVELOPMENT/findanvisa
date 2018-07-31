@@ -21,6 +21,7 @@ import { GenericParameterService } from '@app/generic-parameter/generic-paramete
 export class ShellComponent implements OnInit {
 
   genericParameter : GenericParameter = new GenericParameter();
+  version: string= "";
   constructor(private router: Router,
               private titleService: Title,
               private media: ObservableMedia,
@@ -29,10 +30,12 @@ export class ShellComponent implements OnInit {
               private i18nService: I18nService) { }
 
   ngOnInit() { 
-    // this.genericParameterService.load().subscribe(data => {
-    //   this.genericParameter = data;
-    //   this.titleService.setTitle(this.genericParameter.systemName);
-    // })
+    this.genericParameterService.load().then(data => {
+      this.titleService.setTitle(data.systemName);
+      this.version = data.version;
+    }).catch( err => {
+      this.version = "";
+    });
   }
 
   setLanguage(language: string) {
@@ -70,4 +73,5 @@ export class ShellComponent implements OnInit {
   get title(): string {
     return this.titleService.getTitle();
   }
+
 }

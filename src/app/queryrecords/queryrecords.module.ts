@@ -14,6 +14,7 @@ import { QueryrecordsRoutingModule } from './queryrecords-routing.module';
 import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.component';
 import { QueryrecordprocessListComponent } from '@app/queryrecords/queryrecordprocess-list/queryrecordprocess-list.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

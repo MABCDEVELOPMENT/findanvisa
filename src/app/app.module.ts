@@ -24,8 +24,7 @@ import { UpdateParameterModule } from '@app/update-parameter/update-parameter.mo
 import { CNPJModule } from '@app/cnpj/cnpj.module';
 import { QueryrecordsModule } from '@app/queryrecords/queryrecords.module'; 
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
-
-
+import { SidenavService } from '@app/core/sidenav.service';
 
 
 @NgModule({
@@ -52,7 +51,7 @@ import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
   ],
   declarations: [AppComponent,ErrorDialogComponent],
   entryComponents: [ErrorDialogComponent],
-  providers: [  {provide: MAT_DATE_LOCALE, useValue: getLanguage}],
+  providers: [  {provide: MAT_DATE_LOCALE, useValue: getLanguage},SidenavService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

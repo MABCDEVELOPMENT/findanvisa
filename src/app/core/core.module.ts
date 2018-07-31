@@ -33,7 +33,6 @@ import { CacheInterceptor } from './http/cache.interceptor';
   ],
   declarations: [
     ShellComponent
-    
   ],
   providers: [
     AuthenticationService,

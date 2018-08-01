@@ -1,8 +1,8 @@
-<div style="margin-left: 15px;" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
+<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
   [formGroup]="form">
   <tr>
     <td>
-      <mat-form-field>
+      <mat-form-field class="company">
         <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
           formControlName="company">
           <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
@@ -11,7 +11,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field *ngIf="selected">
+      <mat-form-field class="category" *ngIf="selected">
         <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
           formControlName="category">
           <mat-option *ngFor="let category of categorys" [value]="category.value">
@@ -20,7 +20,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field *ngIf="selectedCategory && selectedCategory!=0 && options">
+      <mat-form-field class="option" *ngIf="selectedCategory && selectedCategory!=0 && options">
         <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
           formControlName="option">
           <mat-option *ngFor="let option of options" [value]="option.value">
@@ -38,40 +38,20 @@
       </button>
     </td>
   </tr>
-  <tr>
+
   <!--Produtos Regulares e Alimentos-->
-  <ng-template [ngIf]="typeProduct == 0">
+  <tr>
+    
+    <ng-template [ngIf]="typeProduct == 0">
+         <filter-foot #formFilter></filter-foot>
+     </ng-template>
 
-    <td>
-      <mat-form-field>
-        <input type="text" matInput [textMask]="{mask: cnpjProcessFood , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
-          formControlName="process" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input type="text" matInput [placeholder]="'queryRecord.product' | translate" formControlName="product" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input type="text" matInput [placeholder]="'queryRecord.brand' | translate" formControlName="brand" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input type="text" matInput [placeholder]="'queryRecord.numberRegister' | translate" formControlName="numberRegister" />
-      </mat-form-field>
-    </td>
-  </ng-template>
-
-  <!--Produtos Notificados-->
-  <ng-template [ngIf]="typeProduct == 1">
-    <td>
-      <mat-form-field>
-        <input type="text" matInput [textMask]="{mask: cnpjProcessCosmetc , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
-          formControlName="process" />
-      </mat-form-field>
-    </td>
-  </ng-template>
-</tr>
+    <!--Produtos Registrados-->
+    <ng-template [ngIf]="typeProduct == 1 && typeFilter == 0">
+        <filter-cosmetic-register #formFilter></filter-cosmetic-register>
+    </ng-template>
+    
+  </tr>
 </div>
 <div class="table-container mat-elevation-z8" [formGroup]="form">
   <mat-form-field>
@@ -81,49 +61,7 @@
 
   <!--Produtos Regulares e Alimentos-->
   <ng-template [ngIf]="typeProduct == 0">
-
-    <mat-table #table [dataSource]="dataSource" matSort>
-
-      <!-- product Column -->
-      <ng-container matColumnDef="product">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
-      </ng-container>
-
-      <!-- year Column -->
-      <ng-container matColumnDef="register">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.registro}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="process">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
-      </ng-container>
-
-      <!-- company Column -->
-      <ng-container matColumnDef="company">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.empresa}} </mat-cell>
-      </ng-container>
-
-      <!-- company Column -->
-      <ng-container matColumnDef="situation">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
-      </ng-container>
-
-      <!-- company Column -->
-      <ng-container matColumnDef="maturity">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
-    </mat-table>
-    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <table-foot #table></table-foot>
   </ng-template>
 
   <!--Produtos Notificados-->

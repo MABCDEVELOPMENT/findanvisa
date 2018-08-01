@@ -1,0 +1,42 @@
+<mat-table #table [dataSource]="dataSource" matSort>
+
+  <!-- product Column -->
+  <ng-container matColumnDef="product">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
+  </ng-container>
+
+  <!-- year Column -->
+  <ng-container matColumnDef="register">
+    <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.registro}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="process">
+    <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
+  </ng-container>
+
+  <!-- company Column -->
+  <ng-container matColumnDef="company">
+    <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.empresa}} </mat-cell>
+  </ng-container>
+
+  <!-- company Column -->
+  <ng-container matColumnDef="situation">
+    <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
+  </ng-container>
+
+  <!-- company Column -->
+  <ng-container matColumnDef="maturity">
+    <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+</mat-table>
+<mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

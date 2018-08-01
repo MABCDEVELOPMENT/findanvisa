@@ -1,4 +1,4 @@
-<div style="height: max-content;" class="table-container mat-elevation-z8">
+<div style="height: auto;" class="table-container mat-elevation-z8">
   <mat-card class="param-container">
 
     <mat-card-content>
@@ -6,18 +6,18 @@
 
         <div layout="row" layout-align="space-between center" fix>
 
-          <mat-form-field>
+          <mat-form-field class="fullName">
             <input matInput #input class="form-control" type="text" placeholder="{{ 'user.fullName' | translate }}" formControlName="fullName"
               [(ngModel)]="data.fullName">
             <mat-error *ngIf="form.controls.fullName.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
 
-          <mat-form-field>
+          <mat-form-field class="userName">
             <input matInput class="form-control" type="text" placeholder="{{ 'user.userName' | translate }}" formControlName="userName"
               [(ngModel)]="data.userName">
             <mat-error *ngIf="form.controls.userName.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="email">
               <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"
               />
               <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>

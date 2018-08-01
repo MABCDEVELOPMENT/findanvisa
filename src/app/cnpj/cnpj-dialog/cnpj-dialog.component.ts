@@ -111,8 +111,8 @@ export class CNPJDialogComponent implements OnInit {
      .then(
       data => {
         this.showMsg("Registro(s) salvo com sucesso!");
-      },
-      error => {
+      }).catch(
+        error => {
         this.error = error.error.errorMessage;
         this.showMsg(this.error);
 

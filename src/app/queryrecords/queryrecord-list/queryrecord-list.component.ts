@@ -11,8 +11,10 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import * as XLSX from 'xlsx';
-import { Subject } from 'rxjs';
-import { SidenavService } from '@app/core/sidenav.service';
+
+import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
+import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/table-foot'
+import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 
 @Component({
   selector: 'app-queryrecord-list',
@@ -22,11 +24,10 @@ import { SidenavService } from '@app/core/sidenav.service';
 export class QueryrecordListComponent implements OnInit, AfterViewInit {
 
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
-  public cnpjProcessFood    = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/,];
-  public cnpjProcessCosmetc = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
+  
   error: string;
   
-  displayedColumns       = ['product','register','process','company','situation','maturity'];
+
   displayeNotify         = ['subject','process','transaction','officehour','product','company','situation','maturity','statusMaturity'];
   displayedRegularized   = ['process','product','type','situation','maturity'];
   
@@ -52,62 +53,30 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   constructor( public dialog: MatDialog,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
-               private sidenavSevice: SidenavService,
                public i18nService: I18nService) { 
 
   }
 
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-  
-  @ViewChild('paginator') paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('filter') filter: ElementRef;
-  @ViewChild('table') table: ElementRef;
-  @ViewChild('sidenav') sidenav: MatSidenav;
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
+ 
+  @ViewChild('formFilter') formFilter: any;
+  @ViewChild('table') table: any;
 
   ngOnInit() {
     this.createForm();
     this.loadUser();
 
-    this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
-      const matchFilter:any = [];
-      const filters = JSON.parse(filtersJson);
-
-      filters.forEach((filter:any) => {
-        // check for null values!
-        const val = data[filter.id] === null ? '' : data[filter.id];
-        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
-      });
-
-       // Choose one
-        return matchFilter.every(Boolean); // AND condition
-        // return matchFilter.some(Boolean); // OR condition
-    }
-
-    
-
   }
 
   ngAfterViewInit() {
-    this.sidenavSevice.setSidenav(this.sidenav);
+    
   } 
   
   
   createForm() {
     this.form =  new FormGroup({
       company: new FormControl('',[Validators.required]),
-      product: new FormControl('', []),
-      process: new FormControl('', []),
-      brand: new FormControl('', []),
       category: new FormControl('', [Validators.required]),
-      option:new FormControl('', [Validators.required]),
-      numberRegister:new FormControl('', [Validators.required])
+      option:new FormControl('', [Validators.required])
     });
   }
 
@@ -130,22 +99,25 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   }
 
   loadData() {
-    this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
-                             this.form.controls.process.value,
-                             this.form.controls.product.value,
-                             this.form.controls.brand.value,
-                             this.form.controls.category.value,
-                             this.form.controls.option.value,
-                             this.form.controls.numberRegister.value,0)
+
+    if (this.formFilter instanceof FilterFootComponent) {
+      this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
+        this.formFilter.formFilter.controls.process.value,
+        this.formFilter.formFilter.controls.product.value,
+        this.formFilter.formFilter.controls.brand.value,
+        this.form.controls.category.value,
+        this.form.controls.option.value,
+        this.formFilter.formFilter.controls.numberRegister.value,0)
+
+    }
     this.dataService.getQueryRegisters(this.queryRecordParameter)
     .then(
       data => {
-        this.ELEMENT_DATA = data.content;
-        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-        this.dataSource.sort      = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.sidenavSevice.close();
-      },
+        this.table.ELEMENT_DATA = data.content;
+        this.table.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        this.table.dataSource.sort      = this.table.sort;
+        this.table.dataSource.paginator = this.table.paginator;
+      }).catch(
       error => {
         this.error = error.error.errorMessage;
         this.showMsg(this.error);
@@ -191,7 +163,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
           if (this.selectedCategory==0) {
               this.options = null;
               this.typeProduct = 0;
-              this.dataSource = null;
+              this.table.dataSource = null;
           } else if (this.selectedCategory==1) {
             
             this.options = [
@@ -215,32 +187,32 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
          
           this.options = null;
           this.typeProduct = 0;
-          this.dataSource = null;
+          this.table.dataSource = null;
 
       } else if (this.selectedCategory==1) { // Cosmeticos
         
         if (this.selectedOption == 0) { // Produtos registrados
 
-          this.dataSource = null;
+          this.table.dataSource = null;
           this.typeProduct = 1;
 
         } else if (this.selectedOption == 1) { // Produtos notificados
 
-          this.dataSource = null;
+          this.table.dataSource = null;
           this.typeProduct = 1;
 
         } else if (this.selectedOption == 2) { // Produtos Regularizados
 
-          this.dataSource = null;
+          this.table.dataSource = null;
           this.typeProduct = 2;
 
         }
       } else if (this.selectedCategory==2) { // Saneantes
          if (this.selectedOption == 0) { // Produtos
-            this.dataSource = null;
+            this.table.dataSource = null;
             this.typeProduct = 0;
          } else if (this.selectedOption == 1) { // Produtos Notificados
-            this.dataSource = null;
+            this.table.dataSource = null;
             this.typeProduct = 1;
          }
       }

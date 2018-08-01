@@ -1,38 +1,14 @@
 @import '../../../assets/styles/color.scss';
 @import '../../../assets/styles/crud.scss';
 
-  // .mat-cell:nth-child(1), // process
-  // .mat-header-cell:nth-child(1),
-  // {
-  // flex: 0 0 150px;
-  // }
-  // .mat-cell:nth-child(2), // year
-  // .mat-header-cell:nth-child(2),
-  // {
-  // flex: 0 0 40px;
-  // }
-  // .mat-cell:nth-child(3), // transaction
-  // .mat-header-cell:nth-child(3),
-  // {
-  // flex: 0 0 150px;
-  // }
-  // .mat-cell:nth-child(4), // produtc
-  // .mat-header-cell:nth-child(4),
-  // {
-  // flex: 0 0 350px;
-  // }
-  // .mat-cell:nth-child(5), // company
-  // .mat-header-cell:nth-child(5),
-  // {
-  // flex: 0 0 350px;
-  // }
-  // .mat-cell:nth-child(6), // situation
-  // .mat-header-cell:nth-child(6),
-  // {
-  // flex: 0 0 250px;
-  // }
- 
- 
+.company {
+    width: 230px;
+}
 
-  
-  
+.category {
+    width: 200px;
+}
+
+.option {
+    width: 200px;
+}

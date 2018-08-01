@@ -8,57 +8,21 @@
     width: 20%
 }
 
-.systemName {
-    width: 40%
+.fullName {
+    width: 350px;
+    margin-left: 15px;
 }
 
-.cnpj {
-    width: 20%
+.userName {
+    width: 200px
 }
 
-.socialName {
-    width: 40%
+.email {
+    width: 350px
 }
 
-.codeZip {
-    width: 20%
-}
-
-.address {
-    width: 40%
-}
-
-.number {
-    width: 10%
-}
-
-.neighborhood {
-    width: 20%
-}
-
-.city {
-    width: 20%
-}
-
-.state {
-    width: 5%
-}
-
-
-.emailClient {
-    width: 34%
-}
-
-.responsiblePerson {
-    width: 30% 
-}
-
-.emailReponsible {
-    width: 45% 
-}
-
-.emailDefault {
-    width: 46% 
+.password {
+    width: 150px
 }
 
 .mat-cell:nth-child(1), // cnpj

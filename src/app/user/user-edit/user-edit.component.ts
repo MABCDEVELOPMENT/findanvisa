@@ -35,6 +35,10 @@ export class UserEditDialogComponent {
     {value: false,  viewValue: 'Não'}
   ];
 
+  receiveActivations = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
 
   public mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
@@ -55,7 +59,8 @@ export class UserEditDialogComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       //cellPhone: new FormControl('', [Validators.required]),
       profile: new FormControl('', [Validators.required]),
-      active: new FormControl('', [Validators.required])
+      active: new FormControl('', [Validators.required]),
+      receiveActivation: new FormControl('', [Validators.required])
     });
   }
 
@@ -68,6 +73,7 @@ export class UserEditDialogComponent {
               this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
               this.form.controls.profile.hasError('required') ? 'fieldEmpty' :
               this.form.controls.active.hasError('required') ? 'fieldEmpty' :
+              this.form.controls.receiveActivation.hasError('required') ? 'fieldEmpty' :
                 '';
   }
 

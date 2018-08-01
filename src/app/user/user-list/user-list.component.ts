@@ -45,6 +45,11 @@ export class UserListComponent  {
     { value: false, viewValue: 'Não' }
   ];
 
+  receiveActivations = [
+    { value: true, viewValue: 'Sim' },
+    { value: false, viewValue: 'Não' }
+  ];
+
   profiles = [
     '',
     'Administrador',
@@ -158,6 +163,10 @@ export class UserListComponent  {
 
   getProfile(profile: number): string {
     return this.profiles[profile];
+  }
+
+  getReceiveActivation(active: boolean): string {
+    return active ? "Sim" : "Não";
   }
 
   showMsg(msg: string): void {

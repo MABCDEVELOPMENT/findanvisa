@@ -16,6 +16,7 @@ export class User extends DataModel {
      updateDate:Date;
      profile: number;
      registersCnpj: RegisterCNPJ[]; 
+     receiveActivation:boolean;
     /*constructor( 
          id: number,
          userName:string,

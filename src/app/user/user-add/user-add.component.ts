@@ -34,6 +34,11 @@ export class UserAddDialogComponent implements OnInit {
     {value: false,  viewValue: 'Não'}
   ];
 
+  receiveActivations = [
+    {value: true,   viewValue: 'Sim'},
+    {value: false,  viewValue: 'Não'}
+  ];
+
   public  mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public  maskPhone = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
@@ -53,7 +58,8 @@ export class UserAddDialogComponent implements OnInit {
         email:     new FormControl('', [Validators.required]),
         //cellPhone: new FormControl('', [Validators.required]),
         profile:   new FormControl('', [Validators.required]),
-        active: new FormControl('', [Validators.required])
+        active: new FormControl('', [Validators.required]),
+        receiveActivation: new FormControl('', [Validators.required])
         
     });
   }
@@ -65,6 +71,7 @@ export class UserAddDialogComponent implements OnInit {
            this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
            this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
            this.form.controls.active.hasError('required') ? 'fieldEmpty' :
+           this.form.controls.receiveActivation.hasError('required') ? 'fieldEmpty' :
            this.form.controls.profile.hasError('profile') ? 'invalidPhone' :
 
            '';

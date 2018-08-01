@@ -43,6 +43,7 @@
   "user.confirmPassword":"Confirme Senha",
   "user.profile":"Perfil",
   "user.active":"Ativo",
+  "user.receiveActivation":"Receber e-mail de ativação de usuário?",
   "user.waitingForApproval":"Usuários aguardando aprovação",
   "login":"Login do usuário",
   "login.userName":"Usuario ou Email",

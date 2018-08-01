@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.register(this.user).then(data => {
       this.showMsg("Registro realizado com sucesso! Você receberar um email para ativação do usuário!");
       this.router.navigate(['/login'], { replaceUrl: true });
-    }, error => {
+    }).catch( error => {
       this.error = error.error.errorMessage;
       this.showMsg(this.error);
       this.router.navigate(['/login'], { replaceUrl: true });

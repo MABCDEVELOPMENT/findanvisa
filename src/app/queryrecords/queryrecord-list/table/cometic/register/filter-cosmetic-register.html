@@ -1,6 +1,31 @@
-      <td>
-        <mat-form-field>
-          <input type="text" matInput [textMask]="{mask: cnpjProcessCosmetc , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
-            formControlName="process" />
-        </mat-form-field>
-      </td>
+<td>
+  <mat-form-field>
+    <input type="text" matInput [textMask]="{mask: cnpjProcessMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
+      formControlName="process" />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [textMask]="{mask: authorizationNumberMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.authorizationNumber' | translate"
+      formControlName="authorizationNumber" />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [textMask]="{mask: expedientMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.expedientProcess' | translate"
+      formControlName="expedientProcess" />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [placeholder]="'queryRecord.generatedTransaction' | translate" formControlName="generatedTransaction"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [textMask]="{mask: expedientMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.expeditionPetition' | translate"
+      formControlName="expeditionPetition" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput [placeholder]="'queryRecord.product' | translate" formControlName="product" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput [placeholder]="'queryRecord.numberRegister' | translate" formControlName="numberRegister" />
+  </mat-form-field>
+
+</td>

@@ -11,10 +11,16 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import * as XLSX from 'xlsx';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
-import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/table-foot'
+
+//Categoria Alimento
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
+
+//Categoria Cosmeticos->Produtos Registrados
+import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
+
 
 @Component({
   selector: 'app-queryrecord-list',
@@ -28,7 +34,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   error: string;
   
 
-  displayeNotify         = ['subject','process','transaction','officehour','product','company','situation','maturity','statusMaturity'];
+  
   displayedRegularized   = ['process','product','type','situation','maturity'];
   
   typeProduct = 0;
@@ -51,6 +57,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   options:any = [];
 
   constructor( public dialog: MatDialog,
+               private spinnerService: Ng4LoadingSpinnerService,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
                public i18nService: I18nService) { 
@@ -86,14 +93,17 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   }
 
   loadUser() {
+    this.spinnerService.show();
     this.authenticationService.loadUser(null)
       .then(
         data => {
           this.user = data;
           this.cnpjs = this.user['registerCNPJs'];
+          this.spinnerService.hide();
         },
         error => {
           this.error = error.error.errorMessage;
+          this.spinnerService.hide();
           this.showMsg(this.error);
         });
   }
@@ -107,21 +117,49 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
         this.formFilter.formFilter.controls.brand.value,
         this.form.controls.category.value,
         this.form.controls.option.value,
-        this.formFilter.formFilter.controls.numberRegister.value,0)
+        this.formFilter.formFilter.controls.numberRegister.value,
+        0,
+        //Pametros nulos para Categoria cosmetico produtos registrados
+        null,
+        null,
+        null,
+        null,
+        null,
+        null)
 
+    } else if (this.formFilter instanceof FilteCosmeticRegisterComponent) {
+      this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
+        this.formFilter.formFilter.controls.process.value,
+        this.formFilter.formFilter.controls.product.value,
+        this.formFilter.formFilter.controls.brand.value,
+        this.form.controls.category.value,
+        this.form.controls.option.value,
+        this.formFilter.formFilter.controls.numberRegister.value,
+        0,
+        this.formFilter.formFilter.controls.authorizationNumber.value,
+        this.formFilter.formFilter.controls.expedientProcess.value,
+        this.formFilter.formFilter.controls.generatedTransaction.value,
+        this.formFilter.formFilter.controls.expeditionPetition.value,
+        this.formFilter.formFilter.controls.dateInitial.value,
+        this.formFilter.formFilter.controls.dateFinal.value)
     }
+    this.spinnerService.show();
     this.dataService.getQueryRegisters(this.queryRecordParameter)
     .then(
       data => {
         this.table.ELEMENT_DATA = data.content;
-        this.table.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+        this.table.dataSource = new MatTableDataSource(this.table.ELEMENT_DATA);
         this.table.dataSource.sort      = this.table.sort;
         this.table.dataSource.paginator = this.table.paginator;
+        this.spinnerService.hide();
       }).catch(
       error => {
         this.error = error.error.errorMessage;
+        this.spinnerService.hide();
         this.showMsg(this.error);
+
       });
+      
   }
   
   onChangeCompany() {

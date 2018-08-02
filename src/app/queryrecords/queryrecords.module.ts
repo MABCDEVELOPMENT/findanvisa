@@ -14,9 +14,14 @@ import { QueryrecordsRoutingModule } from './queryrecords-routing.module';
 import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.component';
 import { QueryrecordprocessListComponent } from '@app/queryrecords/queryrecordprocess-list/queryrecordprocess-list.component';
 import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
-import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
+
+//Categoria Alimentos
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/table-foot';
+
+//Categoria Cosmeticos->Produtos Registrados
+import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
+import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/table-cosmetic-register';
 
 
 @NgModule({
@@ -34,15 +39,17 @@ import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foo
   exports: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
     TableComponent, 
-    FilteCosmeticRegisterComponent, 
     FilterFootComponent,
-    TableFootComponent],
+    TableFootComponent,
+    FilteCosmeticRegisterComponent, 
+    TableCosmeticRegisterComponent],
   declarations: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
     TableComponent, 
-    FilteCosmeticRegisterComponent, 
     FilterFootComponent,
-    TableFootComponent],
+    TableFootComponent,
+    FilteCosmeticRegisterComponent,
+    TableCosmeticRegisterComponent],
   providers: [QueryrecordsService, Queryrecords],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

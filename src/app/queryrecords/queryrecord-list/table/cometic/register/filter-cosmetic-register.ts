@@ -6,7 +6,10 @@ import { FormGroup, FormControl } from "@angular/forms";
     templateUrl: './filter-cosmetic-register.html'
 })
 export class FilteCosmeticRegisterComponent {
-    private cnpjProcessCosmetc = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
+    
+    private cnpjProcessMask          = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
+    private authorizationNumberMask  = [  /\d/,'.', /\d/, '.', /\d/ , /\d/, /\d/ ,'.',/\d/ , /\d/];
+    private expedientMask            = [  /\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,'.',/\d/,/\d/,/\d/,/\d/,/\d/,/\d/,/\d/, /\d/, '/', /\d/ , /\d/, /\d/ ,/\d/ ,'-',/\d/ , /\d/];
 
     formFilter: FormGroup;
    
@@ -19,7 +22,13 @@ export class FilteCosmeticRegisterComponent {
           product: new FormControl('', []),
           process: new FormControl('', []),
           brand: new FormControl('', []),
-          numberRegister:new FormControl('', [])
+          numberRegister:new FormControl('', []),
+          authorizationNumber:new FormControl('', []),
+          expedientProcess:new FormControl('', []),
+          generatedTransaction:new FormControl('', []),
+          expeditionPetition:new FormControl('', []),
+          dateInitial:new  FormControl('', []),
+          dateFinal:new  FormControl('', []),  
         });
     }
     

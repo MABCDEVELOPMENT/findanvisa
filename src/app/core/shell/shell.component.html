@@ -86,14 +86,14 @@
 
     <mat-sidenav-content class="container">
 
-      <mat-toolbar>
+      <mat-toolbar >
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{title+" "+version}}</span>
 
       </mat-toolbar>
-      <div flex layout="column" layout-align="center center center center">
+      <div style="position:fixed;" layout="column" layout-align="center center center center">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

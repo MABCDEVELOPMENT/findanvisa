@@ -25,12 +25,14 @@ import { CNPJModule } from '@app/cnpj/cnpj.module';
 import { QueryrecordsModule } from '@app/queryrecords/queryrecords.module'; 
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { SidenavService } from '@app/core/sidenav.service';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    Ng4LoadingSpinnerModule.forRoot(),
     FormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),

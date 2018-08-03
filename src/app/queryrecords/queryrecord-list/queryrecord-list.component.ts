@@ -1,25 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator,MatTableDataSource, MatSort, MatDialog, PageEvent, MatSidenav } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog} from '@angular/material';
 
 import { I18nService, AuthenticationService } from '@app/core';
-import { Queryrecords} from '../queryrecords.model';
+
 import { QueryrecordsService } from '../queryrecords.service';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { User } from '@app/user/user-model';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
+import { FormGroup,  Validators, FormControl } from '@angular/forms';
 import { Content } from '@app/queryrecords/modelquery/content.model';
-import * as XLSX from 'xlsx';
+import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-
-import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
-
-//Categoria Alimento
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
-
-//Categoria Cosmeticos->Produtos Registrados
-import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
+import { FilterService } from '@app/queryrecords/queryrecord-list/table/filter-service';
 
 
 @Component({
@@ -44,7 +37,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   cnpjs:RegisterCNPJ[];
   user:User;
   form: FormGroup;
-  queryRecordParameter:QueryRecordParameter;
+
   selectedOption:any;
   selectedCategory:any;
 
@@ -57,7 +50,9 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   options:any = [];
 
   constructor( public dialog: MatDialog,
+               private router: Router,
                private spinnerService: Ng4LoadingSpinnerService,
+               private filterService: FilterService,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
                public i18nService: I18nService) { 
@@ -108,60 +103,6 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
         });
   }
 
-  loadData() {
-
-    if (this.formFilter instanceof FilterFootComponent) {
-      this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
-        this.formFilter.formFilter.controls.process.value,
-        this.formFilter.formFilter.controls.product.value,
-        this.formFilter.formFilter.controls.brand.value,
-        this.form.controls.category.value,
-        this.form.controls.option.value,
-        this.formFilter.formFilter.controls.numberRegister.value,
-        0,
-        //Pametros nulos para Categoria cosmetico produtos registrados
-        null,
-        null,
-        null,
-        null,
-        null,
-        null)
-
-    } else if (this.formFilter instanceof FilteCosmeticRegisterComponent) {
-      this.queryRecordParameter = new QueryRecordParameter(this.selected.cnpj,
-        this.formFilter.formFilter.controls.process.value,
-        this.formFilter.formFilter.controls.product.value,
-        this.formFilter.formFilter.controls.brand.value,
-        this.form.controls.category.value,
-        this.form.controls.option.value,
-        this.formFilter.formFilter.controls.numberRegister.value,
-        0,
-        this.formFilter.formFilter.controls.authorizationNumber.value,
-        this.formFilter.formFilter.controls.expedientProcess.value,
-        this.formFilter.formFilter.controls.generatedTransaction.value,
-        this.formFilter.formFilter.controls.expeditionPetition.value,
-        this.formFilter.formFilter.controls.dateInitial.value,
-        this.formFilter.formFilter.controls.dateFinal.value)
-    }
-    this.spinnerService.show();
-    this.dataService.getQueryRegisters(this.queryRecordParameter)
-    .then(
-      data => {
-        this.table.ELEMENT_DATA = data.content;
-        this.table.dataSource = new MatTableDataSource(this.table.ELEMENT_DATA);
-        this.table.dataSource.sort      = this.table.sort;
-        this.table.dataSource.paginator = this.table.paginator;
-        this.spinnerService.hide();
-      }).catch(
-      error => {
-        this.error = error.error.errorMessage;
-        this.spinnerService.hide();
-        this.showMsg(this.error);
-
-      });
-      
-  }
-  
   onChangeCompany() {
     
     if (this.selected.category==3) {
@@ -192,6 +133,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
             this.options = null;
         }
       }
+      this.filterService.cnpj = this.selected.cnpj;
       this.onChangeCategory();
       this.onChangeOption();
     }
@@ -199,9 +141,11 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
     onChangeCategory() {
       
           if (this.selectedCategory==0) {
-              this.options = null;
-              this.typeProduct = 0;
-              this.table.dataSource = null;
+ 
+            this.options = null;
+            
+            this.router.navigate(['/queryRecord/filter-foot'], { replaceUrl: false });
+ 
           } else if (this.selectedCategory==1) {
             
             this.options = [
@@ -216,7 +160,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
               {value: 1,  viewValue: 'Produtos Notificados'}
             ]  
           }
-
+          this.filterService.category = this.selectedCategory;
     }
 
     onChangeOption() {
@@ -224,52 +168,32 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
       if (this.selectedCategory==0) { // Alimentos só alimentos 
          
           this.options = null;
-          this.typeProduct = 0;
-          this.table.dataSource = null;
+          return;
 
       } else if (this.selectedCategory==1) { // Cosmeticos
         
         if (this.selectedOption == 0) { // Produtos registrados
 
-          this.table.dataSource = null;
-          this.typeProduct = 1;
+          this.router.navigate(['/queryRecord/filter-cosmetic-register'], { replaceUrl: false });
 
         } else if (this.selectedOption == 1) { // Produtos notificados
 
-          this.table.dataSource = null;
-          this.typeProduct = 1;
 
         } else if (this.selectedOption == 2) { // Produtos Regularizados
 
-          this.table.dataSource = null;
-          this.typeProduct = 2;
 
         }
       } else if (this.selectedCategory==2) { // Saneantes
          if (this.selectedOption == 0) { // Produtos
-            this.table.dataSource = null;
-            this.typeProduct = 0;
+
          } else if (this.selectedOption == 1) { // Produtos Notificados
-            this.table.dataSource = null;
-            this.typeProduct = 1;
+ 
          }
       }
-
+      this.filterService.option = this.selectedOption;
 }
 
-    exportAsExcel(){
-      this.exportExcel(this.ELEMENT_DATA);
-    }
-    exportExcel(data: any[]){
-      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
-      const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-      var today = new Date();
-      var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
-      var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-      var name = this.user.userName+" "+this.selected.fullName+" "+ date + time;
-
-      XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
-   }
+    
 
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

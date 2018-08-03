@@ -1,7 +1,6 @@
 <div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
   [formGroup]="form">
-  <tr>
-    <td>
+  
       <mat-form-field class="company">
         <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
           formControlName="company">
@@ -29,83 +28,11 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-icon-button (click)="loadData()">
-        <mat-icon>search</mat-icon>
-      </button>
-      <button mat-icon-button *ngIf="dataSource" (click)="exportAsExcel()">
-        <mat-icon>import_export</mat-icon>
-        Exportar
-      </button>
-    </td>
-  </tr>
-
+  </div>  
   
-  <tr>
-    
-    <!--Alimentos-->
-    <ng-template [ngIf]="selectedCategory == 0 && !options">
-         <filter-foot #formFilter></filter-foot>
-    </ng-template>
+  <div style="margin: 10px;" [ngClass]="'child-container'">
+        <router-outlet></router-outlet>
+  </div>
 
-    <!-- Cosmeticos e Produtos Registrados -->
-    <ng-template [ngIf]="(selectedCategory == 1 && (options && selectedOption==0))">
-        <filter-cosmetic-register #formFilter></filter-cosmetic-register>
-    </ng-template>
-    
-  </tr>
-</div>
-<div  [formGroup]="form">
+ 
 
-
-
-  <!--Alimentos-->
-  <ng-template [ngIf]="selectedCategory == 0">
-      <table-foot #table></table-foot>
-  </ng-template>
-
-  <!-- Cosmeticos e Produtos Registrados -->
-  <ng-template [ngIf]="(selectedCategory == 1 &&  selectedOption==0)">
-        <table-cosmetic-retister #table></table-cosmetic-retister>
-  </ng-template>
-
-
-  <!--Produtos Registrados-->
-  <ng-template [ngIf]="typeProduct == 20">
-    <mat-table #table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="process">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
-      </ng-container>
-      <!-- product Column -->
-      <ng-container matColumnDef="product">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
-      </ng-container>
-
-      <!-- year Column -->
-      <ng-container matColumnDef="type">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.type' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.tipo}} </mat-cell>
-      </ng-container>
-
-      <!-- company Column -->
-      <ng-container matColumnDef="situation">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
-      </ng-container>
-
-      <!-- company Column -->
-      <ng-container matColumnDef="maturity">
-        <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedRegularized"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedRegularized;">
-      </mat-row>
-
-    </mat-table>
-    <mat-paginator style="height: 20px;" #paginator [pageSizeOptions]="[50, 100, 150]" showFirstLastButtons></mat-paginator>
-  </ng-template>
-
-</div>

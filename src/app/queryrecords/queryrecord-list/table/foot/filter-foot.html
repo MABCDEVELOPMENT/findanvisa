@@ -1,5 +1,5 @@
-      
-      <td  [formGroup]="formFilter">
+<div class="table-container mat-elevation-z18"  [formGroup]="formFilter">
+
         <mat-form-field>
           <input type="text" matInput [textMask]="{mask: cnpjProcessFood , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
             formControlName="process" />
@@ -16,4 +16,10 @@
         <mat-form-field>
           <input type="text" matInput [placeholder]="'queryRecord.numberRegister' | translate" formControlName="numberRegister" />
         </mat-form-field>
-      </td>
+
+        <button mat-icon-button (click)="loadData()">
+            <mat-icon>search</mat-icon>
+        </button>
+
+
+</div>            

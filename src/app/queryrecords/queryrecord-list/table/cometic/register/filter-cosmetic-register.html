@@ -1,4 +1,5 @@
-<td>
+<div style="margin-left: 15px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
+ #formFilter [formGroup]="formFilter">
   <mat-form-field>
     <input type="text" matInput [textMask]="{mask: cnpjProcessMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
       formControlName="process" />
@@ -27,5 +28,7 @@
   <mat-form-field>
     <input type="text" matInput [placeholder]="'queryRecord.numberRegister' | translate" formControlName="numberRegister" />
   </mat-form-field>
-
-</td>
+  <button mat-icon-button (click)="loadData()">
+      <mat-icon>search</mat-icon>
+  </button>
+</div>

@@ -16,12 +16,14 @@ import { QueryrecordprocessListComponent } from '@app/queryrecords/queryrecordpr
 import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
 
 //Categoria Alimentos
+import {FilterService} from '@app/queryrecords/queryrecord-list/table/filter-service';
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/table-foot';
 
 //Categoria Cosmeticos->Produtos Registrados
 import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
 import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/table-cosmetic-register';
+
 
 
 @NgModule({
@@ -50,7 +52,7 @@ import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-li
     TableFootComponent,
     FilteCosmeticRegisterComponent,
     TableCosmeticRegisterComponent],
-  providers: [QueryrecordsService, Queryrecords],
+  providers: [QueryrecordsService, Queryrecords,FilterService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class QueryrecordsModule { }

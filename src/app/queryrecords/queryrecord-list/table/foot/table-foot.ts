@@ -1,6 +1,6 @@
-import { Component, Inject, ViewChild, ElementRef } from "@angular/core";
+import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
 import { TableComponent } from "@app/queryrecords/queryrecord-list/table/table-component";
-import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
+import { MatTableDataSource, MatPaginator, MatSort, MatTableModule } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
@@ -10,9 +10,10 @@ import { extend } from "webdriver-js-extender";
 
 @Component({
     selector: 'table-foot',
-    templateUrl: './table-foot.html'
+    templateUrl: './table-foot.html',
+    styleUrls:['./table-foot.scss']
 })
-export class TableFootComponent  {
+export class TableFootComponent implements OnInit,AfterViewInit  {
 
     ELEMENT_DATA: Content[];  
 
@@ -25,11 +26,13 @@ export class TableFootComponent  {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
+    @ViewChild('table') table: MatTableModule;
 
 
     constructor(private route: ActivatedRoute,
         public parent: FilterService,
-        public spinnerService: Ng4LoadingSpinnerService){
+        public spinnerService: Ng4LoadingSpinnerService,
+        private ref: ChangeDetectorRef){
 
     }
   
@@ -56,13 +59,18 @@ export class TableFootComponent  {
             // return matchFilter.some(Boolean); // OR condition
         }
 
+      }
+      
+      ngAfterViewInit() {
+        
         this.ELEMENT_DATA = this.parent.data['content'];
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.sort      = this.sort;
         this.dataSource.paginator = this.paginator;
-    
+        this.dataSource._updatePaginator;
+
       }
-      
+
       exportAsExcel(){
         this.exportExcel(this.ELEMENT_DATA);
       }

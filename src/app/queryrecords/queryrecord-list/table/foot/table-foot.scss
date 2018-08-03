@@ -1,0 +1,37 @@
+
+
+.mat-cell:nth-child(1), // product
+.mat-header-cell:nth-child(1),
+{
+flex: 0 0 350px;
+}
+.mat-cell:nth-child(2), // register
+.mat-header-cell:nth-child(2),
+{
+flex: 0 0 100px;
+}
+.mat-cell:nth-child(3), // process
+.mat-header-cell:nth-child(3),
+{
+flex: 0 0 150px;
+}
+.mat-cell:nth-child(4), // company
+.mat-header-cell:nth-child(4),
+{
+flex: 0 0 350px;
+}
+.mat-cell:nth-child(5), // situation
+.mat-header-cell:nth-child(5),
+{
+flex: 0 0 150px;
+}
+.mat-cell:nth-child(6), // vencimento
+.mat-header-cell:nth-child(6),
+{
+flex: 0 0 100px;
+}
+
+.table-container {
+    height: 500px;
+    overflow: auto;
+  }

@@ -9,12 +9,12 @@ import { Alert } from "selenium-webdriver";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 
 @Component({
-    selector: 'table-cosmetic-retister',
-    templateUrl: './table-cosmetic-register.html',
-    styleUrls:['./table-cosmetic-register.scss']
+    selector: 'table-saneante-notification',
+    templateUrl: './table-saneante-notification.html',
+    styleUrls:['./table-saneante-notification.scss']
     
 })
-export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
+export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit {
   
     ELEMENT_DATA: Content[];  
 

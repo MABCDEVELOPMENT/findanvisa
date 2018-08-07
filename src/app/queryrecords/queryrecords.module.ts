@@ -23,6 +23,16 @@ import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foo
 //Categoria Cosmeticos->Produtos Registrados
 import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
 import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/table-cosmetic-register';
+import { FilteCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/filter-cosmetic-notification';
+import { TableCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/table-cosmetic-notification';
+import { FilterCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/filter-cosmetic-regularized';
+import { TableCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/table-cosmetic-regularized';
+import { FilterSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/filter-saneante-product';
+import { TableSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/table-saneante-product';
+import { FilteSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/filter-saneante-notification';
+import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/table-saneante-notification';
+import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
+import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 
 
 
@@ -44,14 +54,34 @@ import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-li
     FilterFootComponent,
     TableFootComponent,
     FilteCosmeticRegisterComponent, 
-    TableCosmeticRegisterComponent],
+    TableCosmeticRegisterComponent,
+    FilteCosmeticNotificationComponent,
+    TableCosmeticNotificationComponent,
+    FilterCosmeticRegularizedComponent,
+    TableCosmeticRegularizedComponent,
+    FilterSaneanteProductComponent,
+    TableSaneanteProductComponent,
+    FilteSaneanteNotificationComponent,
+    TableSaneanteNotificationComponent,
+    FilteProcessComponent,
+    TableProcessComponent],
   declarations: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
     TableComponent, 
     FilterFootComponent,
     TableFootComponent,
     FilteCosmeticRegisterComponent,
-    TableCosmeticRegisterComponent],
+    TableCosmeticRegisterComponent,
+    FilteCosmeticNotificationComponent,
+    TableCosmeticNotificationComponent,
+    FilterCosmeticRegularizedComponent,
+    TableCosmeticRegularizedComponent,
+    FilterSaneanteProductComponent,
+    TableSaneanteProductComponent,
+    FilteSaneanteNotificationComponent,
+    TableSaneanteNotificationComponent,
+    FilteProcessComponent,
+    TableProcessComponent],
   providers: [QueryrecordsService, Queryrecords,FilterService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

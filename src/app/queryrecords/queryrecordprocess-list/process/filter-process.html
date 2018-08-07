@@ -1,0 +1,53 @@
+<mat-card style="height: max-content;" class="table-container mat-elevation-z8">
+  <!-- Title of an Card -->
+  <!-- <mat-card-title>
+  
+    </mat-card-title> -->
+
+  <mat-card-content>
+    <form [formGroup]="formFilter">
+      <table layout-alin="center">
+        <tr>
+          <td>
+            <mat-form-field>
+                <mat-select [(value)]="selectedArea"  [placeholder]="'queryRecord.area' | translate"
+                  formControlName="area">
+                  <mat-option *ngFor="let area of areas" [value]="area.id">
+                    {{ area.description }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </td>  
+          <td>
+            <mat-form-field style="width: 200px">
+              <input type="text" matInput [textMask]="{mask: cnpjProcessMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberProcess' | translate"
+                formControlName="process" />
+            </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                <input type="text" matInput [placeholder]="'queryRecord.numberTransaction' | translate" formControlName="transaction"
+                />
+              </mat-form-field>
+          </td>
+          <td>
+              <mat-form-field>
+                <input type="text" matInput [textMask]="{mask: expedientMask , guide: false, modelClean: true}" [placeholder]="'queryRecord.numberOfficehour' | translate"
+                  formControlName="officehour" />
+              </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                  <input type="text" matInput  [placeholder]="'queryRecord.numberKnowledge' | translate"
+                    formControlName="knowledge" />
+                </mat-form-field>
+                <button mat-icon-button (click)="loadData()">
+                    <mat-icon>search</mat-icon>
+                </button>
+              </td>
+        </tr>
+      </table>
+      
+    </form>
+  </mat-card-content>
+</mat-card>

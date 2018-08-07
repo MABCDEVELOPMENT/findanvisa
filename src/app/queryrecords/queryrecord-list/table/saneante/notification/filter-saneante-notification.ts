@@ -10,10 +10,10 @@ import { AuthenticationService, I18nService } from "@app/core";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 
 @Component({
-    selector: 'filter-cosmetic-notification',
-    templateUrl: './filter-cosmetic-notification.html'
+    selector: 'filter-saneante-notification',
+    templateUrl: './filter-saneante-notification.html'
 })
-export class FilteCosmeticNotificationComponent {
+export class FilteSaneanteNotificationComponent {
     
     private cnpjProcessMask          = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
     private authorizationNumberMask  = [  /\d/,'.', /\d/, '.', /\d/ , /\d/, /\d/ ,'.',/\d/ , /\d/];
@@ -87,7 +87,7 @@ export class FilteCosmeticNotificationComponent {
                 data => {
                     this.data = data;
                     this.filterService.data = this.data;
-                    this.router.navigate(['/queryRecord/table-cosmetic-notification'], { replaceUrl: false });
+                    this.router.navigate(['/queryRecord/table-saneante-notification'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(
                     error => {

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { User } from "@app/user/user-model";
 
 @Injectable()
 export class FilterService {
@@ -7,5 +8,6 @@ export class FilterService {
     cnpj:string;
     category:number;
     option:number;
+    user:User
 
  }

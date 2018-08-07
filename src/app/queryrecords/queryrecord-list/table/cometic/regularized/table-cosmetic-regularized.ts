@@ -9,11 +9,11 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { extend } from "webdriver-js-extender";
 
 @Component({
-    selector: 'table-foot',
-    templateUrl: './table-foot.html',
-    styleUrls:['./table-foot.scss']
+    selector: 'table-cosmetic-regularized',
+    templateUrl: './table-cosmetic-regularized.html',
+    styleUrls:['./table-cosmetic-regularized.scss']
 })
-export class TableFootComponent implements OnInit,AfterViewInit  {
+export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  {
 
     ELEMENT_DATA: Content[];  
 
@@ -81,6 +81,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
         var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
         var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
         var name = this.parent.user.userName+" "+ date + time;
+        // this.user.userName+" "+this.selected.fullName+
         XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
      }
     

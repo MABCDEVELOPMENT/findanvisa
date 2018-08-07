@@ -9,9 +9,9 @@ import { Alert } from "selenium-webdriver";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 
 @Component({
-    selector: 'table-cosmetic-retister',
-    templateUrl: './table-cosmetic-register.html',
-    styleUrls:['./table-cosmetic-register.scss']
+    selector: 'table-cosmetic-notification',
+    templateUrl: './table-cosmetic-notification.html',
+    styleUrls:['./table-cosmetic-notification.scss']
     
 })
 export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit {
@@ -82,8 +82,8 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
           var today = new Date();
           var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
           var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-          var name = " "+ date + time;
-          // this.user.userName+" "+this.selected.fullName+
+          var name = this.parent.user.userName+" "+ date + time;
+
           XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
        }
 

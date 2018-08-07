@@ -9,12 +9,12 @@ import { Alert } from "selenium-webdriver";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 
 @Component({
-    selector: 'table-cosmetic-retister',
-    templateUrl: './table-cosmetic-register.html',
-    styleUrls:['./table-cosmetic-register.scss']
+    selector: 'table-process',
+    templateUrl: './table-process.html',
+    styleUrls:['./table-process.scss']
     
 })
-export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
+export class TableProcessComponent implements OnInit, AfterViewInit {
   
     ELEMENT_DATA: Content[];  
 
@@ -22,8 +22,8 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
   
     data:any;
 
-    displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
-   
+    //displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
+    displayedColumns = ['order', 'cnpj', 'socialName', 'process', 'subject'];
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
@@ -83,6 +83,7 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
           var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
           var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
           var name = this.parent.user.userName+" "+ date + time;
+          // +
           XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
        }
 

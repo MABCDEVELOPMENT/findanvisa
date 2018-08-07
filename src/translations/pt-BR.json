@@ -112,5 +112,10 @@
   "queryRecord.order":"Ordem",
   "queryRecord.cnpj":"cnpj",
   "queryRecord.socialName":"Razao Social",
+  "queryRecord.eanCode":"Código EAN",
+  "queryRecord.numberOfficehour":"Nº do Expediente",
+  "queryRecord.numberProtocol":"Nº do Protocolo",
+  "queryRecord.numberKnowledge":"Nº de Conhecimento",
+  "queryRecord.numberTransaction":"Nº da Transação",
   "selectAll":"Selecionar Todos"
 }

@@ -9,11 +9,11 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { extend } from "webdriver-js-extender";
 
 @Component({
-    selector: 'table-foot',
-    templateUrl: './table-foot.html',
-    styleUrls:['./table-foot.scss']
+    selector: 'table-saneante-product',
+    templateUrl: './table-saneante-product.html',
+    styleUrls:['./table-saneante-product.scss']
 })
-export class TableFootComponent implements OnInit,AfterViewInit  {
+export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
 
     ELEMENT_DATA: Content[];  
 

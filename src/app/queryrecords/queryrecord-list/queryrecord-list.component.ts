@@ -70,7 +70,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    
+
   } 
   
   
@@ -143,7 +143,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
           if (this.selectedCategory==0) {
  
             this.options = null;
-            
+            this.filterService.user = this.user;
             this.router.navigate(['/queryRecord/filter-foot'], { replaceUrl: false });
  
           } else if (this.selectedCategory==1) {
@@ -173,21 +173,28 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
       } else if (this.selectedCategory==1) { // Cosmeticos
         
         if (this.selectedOption == 0) { // Produtos registrados
-
+          this.filterService.user = this.user;
           this.router.navigate(['/queryRecord/filter-cosmetic-register'], { replaceUrl: false });
 
         } else if (this.selectedOption == 1) { // Produtos notificados
-
+          this.filterService.user = this.user;
+          this.router.navigate(['/queryRecord/filter-cosmetic-notification'], { replaceUrl: false });          
 
         } else if (this.selectedOption == 2) { // Produtos Regularizados
-
+          this.filterService.user = this.user;
+          this.router.navigate(['/queryRecord/filter-cosmetic-regularized'], { replaceUrl: false });          
 
         }
       } else if (this.selectedCategory==2) { // Saneantes
-         if (this.selectedOption == 0) { // Produtos
+         
+        if (this.selectedOption == 0) { // Produtos
+          this.filterService.user = this.user;
+          this.router.navigate(['/queryRecord/filter-saneante-product'], { replaceUrl: false });
 
          } else if (this.selectedOption == 1) { // Produtos Notificados
- 
+          this.filterService.user = this.user;
+          this.router.navigate(['/queryRecord/filter-saneante-notification'], { replaceUrl: false });
+
          }
       }
       this.filterService.option = this.selectedOption;

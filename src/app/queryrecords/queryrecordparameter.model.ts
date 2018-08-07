@@ -27,7 +27,9 @@ export class QueryRecordParameter {
     expeditionPetition:string;
 	
 	dateInitial:string;
-    dateFinal:string;  
+	dateFinal:string;  
+	
+	eanCode:string;
 
 	constructor(cnpj:string,
 		numberProcess:string,
@@ -43,7 +45,8 @@ export class QueryRecordParameter {
 		generatedTransaction:string,
 		expeditionPetition:string,
 		dateInitial:string,
-		dateFinal:string){
+		dateFinal:string,
+		eanCode:string){
 		
 		this.cnpj = cnpj;
 		this.numberProcess = numberProcess;
@@ -61,6 +64,7 @@ export class QueryRecordParameter {
 		this.expeditionPetition  = expeditionPetition;
 		this.dateInitial         = dateInitial;
 		this.dateInitial         = dateFinal;
+		this.eanCode 			 = eanCode;
 
 	}
 

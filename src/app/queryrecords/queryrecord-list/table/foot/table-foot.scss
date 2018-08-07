@@ -30,7 +30,10 @@ flex: 0 0 150px;
 {
 flex: 0 0 100px;
 }
-
+.mat-row:hover {
+  background-color: blue;
+  --webkit-text-stroke-color: white
+}
 .table-container {
     height: 500px;
     overflow: auto;

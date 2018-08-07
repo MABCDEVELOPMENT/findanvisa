@@ -12,8 +12,7 @@ const routes: Routes = [
   Route.withShell([
   { path: 'queryRecord', component: QueryrecordListComponent, data: { title: extract('queryRecords') },
     children: [
-      { path: 'filter-foot', component: FilterFootComponent },
-      
+      { path: 'filter-foot', component: FilterFootComponent },      
       { path: 'filter-cosmetic-register', component: FilteCosmeticRegisterComponent },
       { path: 'table-foot', component: TableFootComponent},
       { path: 'table-cosmetic-register', component: TableCosmeticRegisterComponent }

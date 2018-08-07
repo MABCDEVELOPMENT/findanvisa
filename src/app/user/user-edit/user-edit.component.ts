@@ -73,8 +73,7 @@ export class UserEditDialogComponent {
               this.form.controls.cellPhone.hasError('phone') ? 'invalidPhone' :
               this.form.controls.profile.hasError('required') ? 'fieldEmpty' :
               this.form.controls.active.hasError('required') ? 'fieldEmpty' :
-              this.form.controls.receiveActivation.hasError('required') ? 'fieldEmpty' :
-                '';
+                 '';
   }
 
   submit() {

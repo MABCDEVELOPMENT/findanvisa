@@ -1,7 +1,7 @@
-<div style="height: auto;" class="table-container mat-elevation-z8">
+<div style="height: 550px;" class="table-container mat-elevation-z8">
   <mat-card class="param-container">
 
-    <mat-card-content>
+    <mat-card-content >
       <form (ngSubmit)="submit" [formGroup]="form">
 
         <div layout="row" layout-align="space-between center" fix>
@@ -41,7 +41,7 @@
           </mat-form-field>
 
 
-          <mat-table #table class="mat-table " [dataSource]="dataSource" matSort>
+          <mat-table #table class="mat-table mat-elevation-z12" [dataSource]="dataSource" matSort>
 
             <!-- CNPJ Column -->
             <ng-container matColumnDef="cnpj">
@@ -96,16 +96,17 @@
 
           </mat-table>
           <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          <div align="center" style="margin-bottom: 5px">
+              <mat-dialog-actions>
+                <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
+                <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
+              </mat-dialog-actions>
+            </div>
         </div>
 
 
       </form>
-      <div align="center">
-      <mat-dialog-actions>
-        <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
-        <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
-      </mat-dialog-actions>
-    </div>
+
     </mat-card-content>
 
   </mat-card>

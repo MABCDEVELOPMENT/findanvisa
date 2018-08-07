@@ -3,7 +3,7 @@
     <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
       <mat-toolbar>
         <!--<span translate>APP_NAME</span>-->
-        <!--<img style="height: 80%;" src="./assets/unilever.jpg" /> -->
+        <img style="height: 80%;" src="./assets/unilever.jpg" /> 
         <div fxFlex></div> 
           
         <div fxFlex></div>
@@ -90,7 +90,7 @@
         <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span>{{title+" "+version}}</span>
+        <span>{{title}}</span>
 
       </mat-toolbar>
       <div style="position:fixed;width: 100%" layout="column" layout-align="center center center center">

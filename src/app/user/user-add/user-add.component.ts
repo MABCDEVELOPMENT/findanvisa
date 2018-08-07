@@ -67,11 +67,10 @@ export class UserAddDialogComponent implements OnInit {
   getErrorMessage() {
     return this.form.controls.email.hasError('required') ? 'fieldEmpty' :
            this.form.controls.email.hasError('email') ? 'invalidEmail' :
-           this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
-           this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
-           this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
+           //this.form.controls.dateBrith.hasError('required') ? 'fieldEmpty' :
+           //this.form.controls.dateBrith.hasError('date') ? 'invalidDate' :
+           //this.form.controls.cellPhone.hasError('required') ? 'fieldEmpty' :
            this.form.controls.active.hasError('required') ? 'fieldEmpty' :
-           this.form.controls.receiveActivation.hasError('required') ? 'fieldEmpty' :
            this.form.controls.profile.hasError('profile') ? 'invalidPhone' :
 
            '';

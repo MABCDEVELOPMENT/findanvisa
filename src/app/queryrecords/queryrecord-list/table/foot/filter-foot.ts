@@ -69,6 +69,8 @@ export class FilterFootComponent implements OnInit {
                 null,
                 null,
                 null,
+                null,
+                //Pametros nulos para Categoria cosmetico produtos notificados
                 null);
 
 

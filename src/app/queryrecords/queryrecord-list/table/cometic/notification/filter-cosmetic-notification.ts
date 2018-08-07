@@ -13,7 +13,7 @@ import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
     selector: 'filter-cosmetic-register',
     templateUrl: './filter-cosmetic-register.html'
 })
-export class FilteCosmeticRegisterComponent {
+export class FilteCosmeticNotificationComponent {
     
     private cnpjProcessMask          = [ /\d/ , /\d/, /\d/ , /\d/, /\d/,'.', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '/', /\d/ , /\d/, /\d/ , /\d/,'-',/\d/ , /\d/];
     private authorizationNumberMask  = [  /\d/,'.', /\d/, '.', /\d/ , /\d/, /\d/ ,'.',/\d/ , /\d/];
@@ -54,6 +54,7 @@ export class FilteCosmeticRegisterComponent {
           expedientProcess:new FormControl('', []),
           generatedTransaction:new FormControl('', []),
           expeditionPetition:new FormControl('', []),
+          eanCode:new FormControl('', []),
           dateStart:new  FormControl('', []),
           dateEnd:new  FormControl('', [])
         });
@@ -70,15 +71,14 @@ export class FilteCosmeticRegisterComponent {
             this.filterService.option,
             this.formFilter.controls.numberRegister.value,
             0,
-            //Pametros nulos para Categoria cosmetico produtos registrados
+            //Pametros nulos para Categoria cosmetico produtos notificados
             this.formFilter.controls.authorizationNumber.value,
             this.formFilter.controls.expedientProcess.value,
             this.formFilter.controls.generatedTransaction.value,
             this.formFilter.controls.expeditionPetition.value,
             this.formFilter.controls.dateStart.value,
             this.formFilter.controls.dateEnd.value,
-            //Pametros nulos para Categoria cosmetico produtos registrados
-            null);
+            this.formFilter.controls.eanCode.value);
 
 
         this.spinnerService.show();

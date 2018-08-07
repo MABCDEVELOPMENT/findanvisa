@@ -14,7 +14,7 @@ import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
     styleUrls:['./table-cosmetic-register.scss']
     
 })
-export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
+export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit {
   
     ELEMENT_DATA: Content[];  
 

@@ -1,6 +1,8 @@
-<mat-card>
+<mat-card class="table-container">
   <!-- Title of an Card -->
-
+  <mat-card-title>
+        
+  </mat-card-title>
 
   <mat-card-content >
     
@@ -60,7 +62,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row  *matRowDef="let row; columns: displayedColumns;">
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
 
       </mat-table>

@@ -9,5 +9,6 @@ export class FilterService {
     category:number;
     option:number;
     user:User
+    detail:any;
 
  }

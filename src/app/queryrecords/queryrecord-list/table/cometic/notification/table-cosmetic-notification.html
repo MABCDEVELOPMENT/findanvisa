@@ -1,28 +1,29 @@
-<mat-card style="height: 550px;" class=" mat-elevation-z14">
+<mat-card>
   <!-- Title of an Card -->
-  <!-- <mat-card-title>
-    
-      </mat-card-title> -->
+  <mat-card-title>
 
-  <mat-card-content class="table-container">
-    <div class="table-container">
-      <table style="width:  100%">
-        <tr>
-          <td style="width:  80%">
-            <mat-form-field style="width:  80%">
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-            </mat-form-field>
-          </td>
-          <td>
-            <button mat-icon-button (click)="exportAsExcel()">
-              <mat-icon>import_export</mat-icon>
-              <b style="font-size: 6px">{{ 'exportAsExcel' | translate }}</b>
-            </button>
-          </td>
-        </tr>
-      </table>
+  </mat-card-title>
+  <div>
+    <table style="width:  100%">
+      <tr>
+        <td style="width:  80%">
+          <mat-form-field style="width:  80%">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+          </mat-form-field>
+        </td>
+        <td>
+          <button mat-icon-button (click)="exportAsExcel()">
+            <mat-icon>import_export</mat-icon>
+            <b style="font-size: 6px">{{ 'exportAsExcel' | translate }}</b>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+    <mat-card-content>
 
-      <mat-table #table [dataSource]="dataSource" matSort>
+
+      <mat-table class="table-container-cosmetic-notification" #table [dataSource]="dataSource" matSort>
 
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
@@ -79,12 +80,12 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row (click)="getRecord(row)"  *matRowDef="let row; columns: displayedColumns;">
+        <mat-row (click)="getRecord(row)" *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
       </mat-table>
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
-    </div>
+
 
   </mat-card-content>
 

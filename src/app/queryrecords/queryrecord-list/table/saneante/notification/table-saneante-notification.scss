@@ -1,53 +1,70 @@
-
+@import '../../../../../../assets/styles/color.scss';
+@import '../../../../../../assets/styles/crud.scss';
   
 .mat-cell:nth-child(1), // subject
 .mat-header-cell:nth-child(1),
 {
 flex: 0 0 200px;
+font-size: 6px;
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
 flex: 0 0 150px;
+font-size: 6px;
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
 flex: 0 0 150px;
+font-size: 6px;
 }
 .mat-cell:nth-child(5), // product
 .mat-header-cell:nth-child(5),
 {
 flex: 0 0 250px;
+font-size: 6px;
 }
 .mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
 flex: 0 0 200px;
+font-size: 6px;
 }
 .mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-cell:nth-child(8), // maturity
 .mat-header-cell:nth-child(8),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-cell:nth-child(9), // statusMaturity
 .mat-header-cell:nth-child(9),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-row:hover {
     background-color: blue;
     -webkit-text-stroke-color: white
 }
-
+.table-container-saneante-notification {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;
+    max-width: auto;
+    margin: 0px;
+    background-color:	$systemBackgronwd;
+    }
 

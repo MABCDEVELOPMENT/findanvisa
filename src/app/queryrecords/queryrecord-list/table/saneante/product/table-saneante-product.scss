@@ -1,24 +1,29 @@
-
+@import '../../../../../../assets/styles/color.scss';
+@import '../../../../../../assets/styles/crud.scss';
 
 .mat-cell:nth-child(1), // product
 .mat-header-cell:nth-child(1),
 {
 flex: 0 0 350px;
+font-size: 6px;
 }
 .mat-cell:nth-child(2), // register
 .mat-header-cell:nth-child(2),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-cell:nth-child(3), // process
 .mat-header-cell:nth-child(3),
 {
 flex: 0 0 150px;
+font-size: 6px;
 }
 .mat-cell:nth-child(4), // company
 .mat-header-cell:nth-child(4),
 {
 flex: 0 0 350px;
+font-size: 6px;
 }
 .mat-cell:nth-child(5), // situation
 .mat-header-cell:nth-child(5),
@@ -29,6 +34,7 @@ flex: 0 0 150px;
 .mat-header-cell:nth-child(6),
 {
 flex: 0 0 100px;
+font-size: 6px;
 }
 .mat-row:hover {
   background-color: blue;
@@ -37,4 +43,12 @@ flex: 0 0 100px;
 .table-container {
     height: 500px;
     overflow: auto;
-  }
+}
+.table-container-saneante-product {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  max-width: auto;
+  margin: 0px;
+  background-color:	$systemBackgronwd;
+}

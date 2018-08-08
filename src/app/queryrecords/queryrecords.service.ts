@@ -15,6 +15,7 @@ import { AuthenticationService } from '@app/core';
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import { QueryRecordProcessParameter } from '@app/queryrecords/queryrecordprocessparameter.model';
+import { QueryRecordDetail } from '@app/queryrecords/queryrecorddetail.model';
 
 @Injectable()
 export class QueryrecordsService {
@@ -23,6 +24,7 @@ export class QueryrecordsService {
   dataChange: Observable<Content[]> = new Observable<Content[]>();
   // Temporarily stores data from dialogs
   dialogData: any;
+  queryRecordDetail: QueryRecordDetail;
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor (private httpClient: HttpClient,
                 public autenticeService: AuthenticationService) {
@@ -53,5 +55,13 @@ export class QueryrecordsService {
    .then(response => response)
    .catch(error=> Observable.throw(error.message));
  }
+
+ getQueryRegistersDetail(category:number,option:number,value:string): Promise<any> {
+  
+  this.queryRecordDetail = new QueryRecordDetail(category,option,value);
+  return this.httpClient.post(this.API_URL+'/productDetial',this.queryRecordDetail).toPromise()
+ .then(response => response)
+ .catch(error=> Observable.throw(error.message));
+}
   
 }

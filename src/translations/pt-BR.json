@@ -117,5 +117,25 @@
   "queryRecord.numberProtocol":"Nº do Protocolo",
   "queryRecord.numberKnowledge":"Nº de Conhecimento",
   "queryRecord.numberTransaction":"Nº da Transação",
-  "selectAll":"Selecionar Todos"
+  "selectAll":"Selecionar Todos",
+  "recordFootDetail.companyName":"Nome da Empresa",
+  "recordFootDetail.cnpj":"CNPJ",
+  "recordFootDetail.productName":"Nome do Produto",
+  "recordFootDetail.class":"Classe Terapêutica",
+  "recordFootDetail.register":"Registro",
+  "recordFootDetail.process":"Processo",
+  "recordFootDetail.maturityRegister":"Vencimento do registro",
+  "recordFootDetail.Brand":"Marca",
+  "recordFootDetail.activePrinciple":"Princípio Ativo",
+  "recordFootDetail.packing":"Embalagem",
+  "recordFootDetail.placeOfFabrication":"Local de Fabricação",
+  "recordFootDetail.routeOfAdministration":"Via de Administração",
+  "recordFootDetail.singleIFA":"IFA único",
+  "recordFootDetail.conservation":"Conservation",
+  "recordFootDetail.restrictionOfPrescription":"Restrição de Prescrição",
+  "recordFootDetail.restrictedUse":"Restrição de uso",
+  "recordFootDetail.destination":"Destinação"
+
+
+
 }

@@ -1,8 +1,9 @@
-<mat-card style="height: 550px;" class=" mat-elevation-z14">
-  <!-- Title of an Card -->
-  <!-- <mat-card-title>
-    
-      </mat-card-title> -->
+<mat-card class="contanier"> 
+    <!-- Title of an Card -->
+  
+  
+    <mat-card-content >
+      
       <div>
           <table style="width:  100%">
             <tr>
@@ -14,14 +15,11 @@
               <td>
                 <button mat-icon-button (click)="exportAsExcel()">
                   <mat-icon>import_export</mat-icon>
-                  <b style="font-size: 6px">{{ 'exportAsExcel' | translate }}</b>
+                  <b>{{ 'exportAsExcel' | translate }}</b>
                 </button>
               </td>
             </tr>
           </table>
-      </div>    
-  <mat-card-content >
-
 
       <mat-table class="table-container-saneante-notification" #table [dataSource]="dataSource" matSort>
 
@@ -85,7 +83,7 @@
       </mat-table>
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
-
+    </div>
   </mat-card-content>
 
 </mat-card>

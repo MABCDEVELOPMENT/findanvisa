@@ -1,27 +1,23 @@
-<mat-card>
-  <!-- Title of an Card -->
-  <!-- <mat-card-title>
-    
-      </mat-card-title> -->
-      <div>
-          <table style="width:  100%">
-            <tr>
-              <td style="width:  80%">
-                <mat-form-field style="width:  80%">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-                </mat-form-field>
-              </td>
-              <td>
-                <button mat-icon-button (click)="exportAsExcel()">
-                  <mat-icon>import_export</mat-icon>
-                  <b style="font-size: 6px">{{ 'exportAsExcel' | translate }}</b>
-                </button>
-              </td>
-            </tr>
-          </table>
-        </div>
-  <mat-card-content>
+<mat-card class="contanier"> 
+    <!-- Title of an Card -->
+  
+    <table style="width:  100%">
+      <tr>
+        <td style="width:  80%">
+          <mat-form-field style="width:  80%">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+          </mat-form-field>
+        </td>
+        <td>
+          <button mat-icon-button (click)="exportAsExcel()">
+            <mat-icon>import_export</mat-icon>
+            <b>{{ 'exportAsExcel' | translate }}</b>
+          </button>
+        </td>
+      </tr>
+    </table>
 
+    <mat-card-content >
 
       <mat-table class="table-container-cosmetic-register" #table [dataSource]="dataSource" matSort>
 
@@ -85,8 +81,7 @@
       </mat-table>
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
-
-
+ 
   </mat-card-content>
 
 </mat-card>

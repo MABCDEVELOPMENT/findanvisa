@@ -1,74 +1,67 @@
-<mat-card class="contanier"> 
-  <!-- Title of an Card -->
-
-
-  <mat-card-content >
-    
-    <div>
-      
+<mat-card>
+  <mat-card-content > 
+      <div>
       <table style="width:  100%">
-        <tr>
-          <td style="width:  80%">
-            <mat-form-field style="width:  80%">
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-            </mat-form-field>
-          </td>
-          <td>
-            <button mat-icon-button (click)="exportAsExcel()">
-              <mat-icon>import_export</mat-icon>
-              <b>{{ 'exportAsExcel' | translate }}</b>
-            </button>
-          </td>
-        </tr>
-      </table>
+          <tr>
+            <td style="width:  50%">
+              <mat-form-field style="width:  50%">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+              </mat-form-field>
+            </td>
+            <td>
+              <button mat-icon-button (click)="exportAsExcel()">
+                <mat-icon>import_export</mat-icon>
+                <b>{{ 'exportAsExcel' | translate }}</b>
+              </button>
+            </td>
+          </tr>
+        </table>
 
-      <mat-table class="table-container-foot"  #table [dataSource]="dataSource" matSort>
+  <mat-table class="table-container-foot" #table [dataSource]="dataSource" matSort>
 
-        <!-- product Column -->
-        <ng-container style="width: 350px" matColumnDef="product">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
-        </ng-container>
+    <!-- product Column -->
+    <ng-container style="width: 350px" matColumnDef="product">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
+    </ng-container>
 
-        <!-- year Column -->
-        <ng-container style="width: 50px" matColumnDef="register">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.registro}} </mat-cell>
-        </ng-container>
+    <!-- year Column -->
+    <ng-container style="width: 50px" matColumnDef="register">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.registro}} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="process">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="process">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
+    </ng-container>
 
-        <!-- company Column -->
-        <ng-container matColumnDef="company">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.empresa}} </mat-cell>
-        </ng-container>
+    <!-- company Column -->
+    <ng-container matColumnDef="company">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.empresa}} </mat-cell>
+    </ng-container>
 
-        <!-- company Column -->
-        <ng-container matColumnDef="situation">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
-        </ng-container>
+    <!-- company Column -->
+    <ng-container matColumnDef="situation">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
+    </ng-container>
 
-        <!-- company Column -->
-        <ng-container matColumnDef="maturity">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
-        </ng-container>
+    <!-- company Column -->
+    <ng-container matColumnDef="maturity">
+      <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
+    </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row  *matRowDef="let row; columns: displayedColumns;">
-        </mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
 
-      </mat-table>
+  </mat-table>
+  <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
+ </div>
 
-      <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
-
-    </div>
-
-  </mat-card-content>
+</mat-card-content>
 
 </mat-card>

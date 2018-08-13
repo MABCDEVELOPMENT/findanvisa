@@ -1,63 +1,63 @@
 @import '../../../../../../assets/styles/color.scss';
 @import '../../../../../../assets/styles/crud.scss';
 
-html { font-size: 100%; }// this is usually 16px by default }
-body { font-size: 0.45em;} // 12px }
-h1 { font-size: 2em;} // 24px }
+// html { font-size: 100%; }// this is usually 16px by default }
+// body { font-size: 0.45em;} // 12px }
+// h1 { font-size: 2em;} // 24px }
 
 .mat-cell:nth-child(1), // subject
 .mat-header-cell:nth-child(1),
 {
-flex: auto auto 200px;
-font-size: 0.625em;
+flex: 200px;
+
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
-flex: auto auto 150px;
-font-size: 0.625em;
+flex: 150px;
+
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
-flex: auto auto 100px;
-font-size: 0.625em;
+flex: 100px;
+
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
-flex: auto auto 100px;
-font-size: 0.625em;
+flex: 100px;
+
 }
 .mat-cell:nth-child(5), // product
 .mat-header-cell:nth-child(5),
 {
-flex: auto auto 200px;
-font-size: 0.625em;
+flex: 200px;
+
 }
 .mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
-flex: auto auto 300px;
-font-size: 0.625em;
+flex: 300px;
+
 }
 .mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
 {
-flex: auto auto 150px;
-font-size: 0.625em;
+flex: 150px;
+
 }
 .mat-cell:nth-child(8), // maturity
 .mat-header-cell:nth-child(8),
 {
-flex: auto auto 100px;
-font-size: 0.625em;
+flex: 100px;
+
 }
 .mat-cell:nth-child(9), // statusMaturity
 .mat-header-cell:nth-child(9),
 {
-flex: auto auto 100px;
-font-size: 0.625em;
+flex: 100px;
+
 }
 .mat-row:hover {
     background-color: blue;
@@ -67,9 +67,10 @@ font-size: 0.625em;
     background-color:	$systemBackgronwd;
 }
 .table-container-cosmetic-register {
-        display: flex;
-        flex-direction: column;
-        height: 50vh;
-        background-color:	$systemBackgronwd;
-  }
+    display: flex;
+    flex-direction: column;
+    height: 55vh;
+    max-height: 55vh;
+    background-color:	$systemBackgronwd;
+}
 

@@ -1,6 +1,6 @@
-<mat-card class="contanier"> 
-    <!-- Title of an Card -->
-  
+<mat-card>
+    <mat-card-content > 
+        <div>
     <table style="width:  100%">
       <tr>
         <td style="width:  80%">
@@ -17,9 +17,7 @@
       </tr>
     </table>
 
-    <mat-card-content >
-
-      <mat-table class="table-container-cosmetic-register" #table [dataSource]="dataSource" matSort>
+   <mat-table class="table-container-cosmetic-register" #table [dataSource]="dataSource" matSort>
 
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
@@ -81,7 +79,7 @@
       </mat-table>
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
- 
+      </div>
   </mat-card-content>
 
 </mat-card>

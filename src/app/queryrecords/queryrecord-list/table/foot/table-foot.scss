@@ -1,44 +1,40 @@
 @import '../../../../../assets/styles/color.scss';
 @import '../../../../../assets/styles/crud.scss';
 
-html { font-size: 100%; }// this is usually 16px by default }
-body { font-size: 0.45em;} // 12px }
-h1 { font-size: 2em;} // 24px }
-
 .mat-cell:nth-child(1), // product
 .mat-header-cell:nth-child(1),
 {
-flex: 0 0 450px;
+flex: 450px;
 
 }
 .mat-cell:nth-child(2), // register
 .mat-header-cell:nth-child(2),
 {
-flex: 0 0 100px;
+flex: 100px;
 
 }
 .mat-cell:nth-child(3), // process
 .mat-header-cell:nth-child(3),
 {
-flex: 0 0 150px;
+flex: 150px;
 
 }
 .mat-cell:nth-child(4), // company
 .mat-header-cell:nth-child(4),
 {
-flex: 0 0 350px;
+flex: 250px;
 
 }
 .mat-cell:nth-child(5), // situation
 .mat-header-cell:nth-child(5),
 {
-flex: 0 0 350px;
+flex: 350px;
 
 }
 .mat-cell:nth-child(6), // vencimento
 .mat-header-cell:nth-child(6),
 {
-flex: 0 0 100px;
+flex: 100px;
 
 }
 .mat-row:hover {
@@ -53,8 +49,12 @@ flex: 0 0 100px;
 .table-container-foot {
   display: flex;
   flex-direction: column;
-
-  max-height: 500px;
-  max-width: auto;
+  height: 55vh;
+  max-height: 55vh;
   background-color:	$systemBackgronwd;
+}
+
+.specificElement {
+  height: 40%;
+  max-height: 40%;
 }

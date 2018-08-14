@@ -95,7 +95,7 @@
   "queryRecord.subject":"Assunto",
   "queryRecord.expedientProcess":"Expediente do Processo",
   "queryRecord.expeditionPetition":"Expediente da Petição",
-  "queryRecord.generatedTransaction":"Transação Gerada",
+  "queryRecord.generatedTransaction":"Transação",
   "queryRecord.officehour":"Expediente",
   "queryRecord.dateStart":"Data Inicial",
   "queryRecord.dateEnd":"Data Final",

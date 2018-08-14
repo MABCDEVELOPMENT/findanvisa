@@ -1,6 +1,6 @@
 @import '../../../assets/styles/color.scss';
 @import '../../../assets/styles/crud.scss';
-
+body { font-size: $font-line-size;}
 example-container {
     display: !important;
     flex-direction: column;

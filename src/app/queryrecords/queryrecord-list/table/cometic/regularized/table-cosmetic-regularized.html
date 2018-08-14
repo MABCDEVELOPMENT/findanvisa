@@ -1,4 +1,4 @@
-<mat-card class="contanier"> 
+<mat-card class="contanier mat-elevation-z8"> 
     <!-- Title of an Card -->
   
   
@@ -23,6 +23,11 @@
 
 
       <mat-table #table class="table-container-cosmetic-regularized" [dataSource]="dataSource" matSort>
+        <!-- process Column -->
+          <ng-container matColumnDef="process">
+              <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
+            </ng-container>
 
         <!-- product Column -->
         <ng-container style="width: 350px" matColumnDef="product">
@@ -30,21 +35,10 @@
           <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
         </ng-container>
 
-        <!-- year Column -->
-        <ng-container style="width: 50px" matColumnDef="register">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.registro}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="process">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
-        </ng-container>
-
-        <!-- company Column -->
-        <ng-container matColumnDef="company">
-          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.empresa}} </mat-cell>
+        <!-- type Column -->
+        <ng-container matColumnDef="type">
+          <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.type' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content"> {{content.tipo}} </mat-cell>
         </ng-container>
 
         <!-- company Column -->

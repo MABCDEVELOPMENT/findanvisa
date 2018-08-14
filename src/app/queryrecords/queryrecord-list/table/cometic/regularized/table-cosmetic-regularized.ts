@@ -21,7 +21,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
   
     data:any;
 
-    displayedColumns       = ['product','register','process','company','situation','maturity'];
+    displayedColumns       = ['process','product','type','situation','maturity'];
     
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;

@@ -33,6 +33,7 @@ import { FilteSaneanteNotificationComponent } from '@app/queryrecords/queryrecor
 import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/table-saneante-notification';
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
+import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
 
 
 
@@ -53,6 +54,7 @@ import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list
     TableComponent, 
     FilterFootComponent,
     TableFootComponent,
+    DetailFootComponent,
     FilteCosmeticRegisterComponent, 
     TableCosmeticRegisterComponent,
     FilteCosmeticNotificationComponent,
@@ -70,6 +72,7 @@ import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list
     TableComponent, 
     FilterFootComponent,
     TableFootComponent,
+    DetailFootComponent,
     FilteCosmeticRegisterComponent,
     TableCosmeticRegisterComponent,
     FilteCosmeticNotificationComponent,

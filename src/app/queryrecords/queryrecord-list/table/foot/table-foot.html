@@ -54,8 +54,8 @@
       <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="getDetail(row)" *matRowDef="let row; columns: displayedColumns;">
     </mat-row>
 
   </mat-table>

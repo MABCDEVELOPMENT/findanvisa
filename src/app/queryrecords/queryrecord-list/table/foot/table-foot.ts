@@ -96,7 +96,6 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             .then(
                 data => {
                     this.parent.detail = this.data;
-                    this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(
                     error => {

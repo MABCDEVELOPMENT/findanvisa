@@ -12,7 +12,7 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 @Component({
     selector: 'detail-foot',
     templateUrl: './detail-foot.html',
-    styleUrls:['./detail-foot.scss']
+    styleUrls:['./datail-foot.scss']
 })
 export class DetailFootComponent implements OnInit,AfterViewInit  {
 

@@ -27,8 +27,7 @@ export class DetailFootComponent implements OnInit,AfterViewInit  {
   
 
     ngOnInit() {
-
-
+        this.content = this.parent.detail;
     }
       
     ngAfterViewInit() {

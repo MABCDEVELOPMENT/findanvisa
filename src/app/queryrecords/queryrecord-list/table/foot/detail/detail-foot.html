@@ -1,11 +1,80 @@
 <mat-card class="table-container">
   <!-- Title of an Card -->
   <mat-card-title>
-      {{content.produto.nome}}
+    {{ 'recordFootDetail.detailOfProduct' | translate }} {{content.nomeComercial}}
   </mat-card-title>
 
-  <mat-card-content >
-    
+  <mat-card-content>
+    <div>
+      <label style="width: 30%">{{ 'recordFootDetail.companyName' | translate }} </label>
+      {{content.razaoSocial}}
+    </div>
+    <br>
+    <div>
+      <label style="width: 30%">{{ 'recordFootDetail.cnpj' | translate }}</label>
+      {{content.cnpj}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.productName' | translate }}</label>
+        {{content.nomeComercial}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.class' | translate }}</label>
+        {{content.classesTerapeuticas}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.register' | translate }}</label>
+        {{content.registro}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.process' | translate }}</label>
+        {{content.processo}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.maturityRegister' | translate }}</label>
+        {{content.mesAnoVencimento}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.brand' | translate }}</label>
+        {{content.marca}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.activePrinciple' | translate }}</label>
+        {{content.principioAtivo}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.packing' | translate }}</label>
+        {{content.embalagem}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.placeOfFabrication' | translate }}</label>
+        {{content.localFabricacao}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.routeOfAdministration' | translate }}</label>
+        {{content.viasAdministrativa}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.singleIFA' | translate }}</label>
+        {{content.ifaUnico}}
+    </div>
+    <br>
+    <div>
+        <label style="width: 30%">{{ 'recordFootDetail.conservation' | translate }}</label>
+        {{content.conservacao}}
+    </div>
+
 
   </mat-card-content>
 

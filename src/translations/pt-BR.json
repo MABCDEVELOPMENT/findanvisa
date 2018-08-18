@@ -136,8 +136,27 @@
   "recordFootDetail.conservation":"Conservation",
   "recordFootDetail.restrictionOfPrescription":"Restrição de Prescrição",
   "recordFootDetail.restrictedUse":"Restrição de uso",
-  "recordFootDetail.destination":"Destinação"
+  "recordFootDetail.destination":"Destinação",
 
+  "recordCosmeticRegisterDetail.detailOfProduct":"DETALHE DO PRODUTO",
+  "recordCosmeticRegisterDetail.companyName":"Nome da Empresa",
+  "recordCosmeticRegisterDetail.cnpj":"CNPJ",
+  "recordCosmeticRegisterDetail.authorization":"Autorização",
+  "recordCosmeticRegisterDetail.productName":"Nome do Produto",
+  "recordCosmeticRegisterDetail.category":"Categoria",
+  "recordCosmeticRegisterDetail.process":"Processo",
+  "recordCosmeticRegisterDetail.maturityRegister":"Vencimento do registro",
+  "recordCosmeticRegisterDetail.publicationRegister":"Publicação do registro",
+  
+  "recordCosmeticRegisterDetail.number":"Nº",
+  "recordCosmeticRegisterDetail.apresentation":"Apresentação",
+  "recordCosmeticRegisterDetail.register":"Register",
+  "recordCosmeticRegisterDetail.tonality":"Tonalidade",
 
-
+  "recordCosmeticRegisterDetail.officehour":"Expediente",
+  "recordCosmeticRegisterDetail.datePublication":"Data da Publicação",
+  "recordCosmeticRegisterDetail.transaction":"Transação",
+  "recordCosmeticRegisterDetail.subject":"Assunto",
+  "recordCosmeticRegisterDetail.situation":"Situação"
+  
 }

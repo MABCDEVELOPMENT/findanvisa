@@ -18,6 +18,7 @@ import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecor
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
+import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/datail-cosmetic-register';
 
 const routes: Routes = [
   Route.withShell([
@@ -25,15 +26,18 @@ const routes: Routes = [
       path: 'queryRecord', component: QueryrecordListComponent, data: { title: extract('queryRecords') },
       children: [
         { path: 'filter-foot', component: FilterFootComponent },
+        { path: 'table-foot', component: TableFootComponent },
+        { path: 'datail-foot', component: DetailFootComponent },
+
         { path: 'filter-cosmetic-register', component: FilteCosmeticRegisterComponent },
+        { path: 'table-cosmetic-register', component: TableCosmeticRegisterComponent },
+        { path: 'datail-cosmetic-register', component: DetailCosmeticRegisterComponent },
+
         { path: 'filter-cosmetic-notification', component: FilteCosmeticNotificationComponent },
         { path: 'filter-cosmetic-regularized', component: FilterCosmeticRegularizedComponent },
         { path: 'filter-saneante-product', component: FilterSaneanteProductComponent },
         { path: 'filter-saneante-notification', component: FilteSaneanteNotificationComponent },
 
-        { path: 'table-foot', component: TableFootComponent },
-        { path: 'datail-foot', component: DetailFootComponent },
-        { path: 'table-cosmetic-register', component: TableCosmeticRegisterComponent },
         { path: 'table-cosmetic-notification', component: TableCosmeticNotificationComponent },
         { path: 'table-cosmetic-regularized', component: TableCosmeticRegularizedComponent },
         { path: 'table-saneante-product', component: TableSaneanteProductComponent },

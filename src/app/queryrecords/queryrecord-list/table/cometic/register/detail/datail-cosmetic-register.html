@@ -1,0 +1,74 @@
+<mat-card class="contanier mat-elevation-z8">
+    <!-- Title of an Card -->
+    <mat-card-title>
+
+        <p align="center" style="height: 100%;">{{ 'recordCosmeticRegisterDetail.detailOfProduct' | translate }}</p>
+
+    </mat-card-title>
+
+    <mat-card-content>
+        <div>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.companyName' | translate }}</td>
+                    <td>{{content.razaoSocial}}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.cnpj' | translate }}</td>
+                    <td> {{content.cnpj}}</td>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.authorization' | translate }}</td>
+                    <td> {{content.autorizacao}}</td>
+                </tr>
+            </table>
+
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.productName' | translate }}</td>
+                    <td>{{content.nomeProduto}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.category' | translate }}</td>
+                    <td>{{content.categoria}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.process' | translate }}</td>
+                    <td>{{content.processo}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.maturityRegister' | translate }}</td>
+                    <td>{{content.vencimento}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.publicationRegister' | translate }}</td>
+                    <td>{{content.publicacao}}</td>
+                </tr>
+            </table>
+            <br>
+            <table class="table-detail" style="width:100%;">
+                    <th>
+                            <td style="width: 10%">{{ 'recordCosmeticRegisterDetail.number' | translate }}</td>
+                            <td style="width: 40%">{{ 'recordCosmeticRegisterDetail.apresentation' | translate }}</td>    
+                            <td style="width: 10%">{{ 'recordCosmeticRegisterDetail.register' | translate }}</td>
+                            <td style="width: 40%">{{ 'recordCosmeticRegisterDetail.tonality' | translate }}</td>    
+                    </th>
+
+                        <tr *ngFor="let apresentacao in content.apresetacoes">
+                                <td>{{ apresentacao.numero }}</td>
+                                <td>{{ apresentacao.apresentacao }}</td>    
+                                <td>{{ apresentacao.registro}}</td>
+                                <td>{{ 'recordCosmeticRegisterDetail.tonalidade' }}</td>    
+                        </tr>
+    
+            </table>
+
+            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+                <mat-dialog-actions>
+                    <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+                </mat-dialog-actions>
+            </div>
+        </div>
+    </mat-card-content>
+
+</mat-card>

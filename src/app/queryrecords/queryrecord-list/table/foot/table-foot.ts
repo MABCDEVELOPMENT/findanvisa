@@ -7,6 +7,7 @@ import { Content } from "@app/queryrecords/modelquery/content.model";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
+import { Location } from "@angular/common";
 
 @Component({
     selector: 'table-foot',
@@ -34,6 +35,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
     constructor(private route: ActivatedRoute,
         public dialog: MatDialog,
         private router: Router,
+        private _location: Location,
         public parent: FilterService,
         public dataService: QueryrecordsService,
         public spinnerService: Ng4LoadingSpinnerService,
@@ -108,6 +110,9 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
      }
 
+     goBack () {
+        this._location.back();
+     }
      showMsg(message: string): void {
       this.dialog.open(ErrorDialogComponent, {
           data: { errorMsg: message }, width: '250px', height: '250px'

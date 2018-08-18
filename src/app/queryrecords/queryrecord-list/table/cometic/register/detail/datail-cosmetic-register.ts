@@ -11,11 +11,11 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'detail-foot',
-    templateUrl: './detail-foot.html',
-    styleUrls:['./datail-foot.scss']
+    selector: 'datail-cosmetic-register',
+    templateUrl: './datail-cosmetic-register.html',
+    styleUrls:['./datail-cosmetic-register.scss']
 })
-export class DetailFootComponent implements OnInit,AfterViewInit  {
+export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
 
     content:any;
 

@@ -34,6 +34,7 @@ import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecor
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
+import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/datail-cosmetic-register';
 
 
 
@@ -57,6 +58,7 @@ import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/fo
     DetailFootComponent,
     FilteCosmeticRegisterComponent, 
     TableCosmeticRegisterComponent,
+    DetailCosmeticRegisterComponent,
     FilteCosmeticNotificationComponent,
     TableCosmeticNotificationComponent,
     FilterCosmeticRegularizedComponent,
@@ -75,6 +77,7 @@ import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/fo
     DetailFootComponent,
     FilteCosmeticRegisterComponent,
     TableCosmeticRegisterComponent,
+    DetailCosmeticRegisterComponent,
     FilteCosmeticNotificationComponent,
     TableCosmeticNotificationComponent,
     FilterCosmeticRegularizedComponent,

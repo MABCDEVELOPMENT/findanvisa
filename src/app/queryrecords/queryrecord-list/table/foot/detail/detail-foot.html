@@ -1,81 +1,78 @@
-<mat-card class="table-container">
+<mat-card class="contanier mat-elevation-z8">
   <!-- Title of an Card -->
   <mat-card-title>
-    {{ 'recordFootDetail.detailOfProduct' | translate }} {{content.nomeComercial}}
+    
+          <p align="center" style="height: 100%;">{{content.nomeComercial}}</p>
+    
   </mat-card-title>
 
   <mat-card-content>
-    <div>
-      <label style="width: 30%">{{ 'recordFootDetail.companyName' | translate }} </label>
-      {{content.razaoSocial}}
-    </div>
-    <br>
-    <div>
-      <label style="width: 30%">{{ 'recordFootDetail.cnpj' | translate }}</label>
-      {{content.cnpj}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.productName' | translate }}</label>
-        {{content.nomeComercial}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.class' | translate }}</label>
-        {{content.classesTerapeuticas}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.register' | translate }}</label>
-        {{content.registro}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.process' | translate }}</label>
-        {{content.processo}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.maturityRegister' | translate }}</label>
-        {{content.mesAnoVencimento}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.brand' | translate }}</label>
-        {{content.marca}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.activePrinciple' | translate }}</label>
-        {{content.principioAtivo}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.packing' | translate }}</label>
-        {{content.embalagem}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.placeOfFabrication' | translate }}</label>
-        {{content.localFabricacao}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.routeOfAdministration' | translate }}</label>
-        {{content.viasAdministrativa}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.singleIFA' | translate }}</label>
-        {{content.ifaUnico}}
-    </div>
-    <br>
-    <div>
-        <label style="width: 30%">{{ 'recordFootDetail.conservation' | translate }}</label>
-        {{content.conservacao}}
-    </div>
+      <div> 
+      <table class="table-detail" style="width:100%;">
+      <tr>
+        <td style="width: 15%">{{ 'recordFootDetail.companyName' | translate }}</td>
+        <td>{{content.razaoSocial}}</td>
+      </tr>  
+      <tr>
+        <td style="width: 15%">{{ 'recordFootDetail.cnpj' | translate }}</td>
+        <td> {{content.cnpj}}</td>
+      </tr>
+      <tr>
+        <td style="width: 15%">{{ 'recordFootDetail.productName' | translate }}</td>
+        <td>{{content.nomeComercial}}</td>
+      </tr>        
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.class' | translate }}</td>
+          <td>{{content.classesTerapeuticas}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.register' | translate }}</td>
+          <td>{{content.registro}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.process' | translate }}</td>
+          <td>{{content.processo}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.maturityRegister' | translate }}</td>
+          <td>{{content.mesAnoVencimento}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.brand' | translate }}</td>
+          <td>{{content.marca}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.activePrinciple' | translate }}</td>
+          <td>{{content.principioAtivo}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.packing' | translate }}</td>
+          <td>{{content.embalagem}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.placeOfFabrication' | translate }}</td>
+          <td>{{content.localFabricacao}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.routeOfAdministration' | translate }}</td>
+          <td>{{content.viasAdministrativa}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.singleIFA' | translate }}</td>
+          <td>{{content.ifaUnico}}</td>
+      </tr> 
+      <tr>
+          <td style="width: 15%">{{ 'recordFootDetail.conservation' | translate }}</td>
+          <td>{{content.conservacao}}</td>
+      </tr> 
+    </table>  
 
-
+    <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </mat-dialog-actions>
+    </div>
+  </div>  
   </mat-card-content>
 
 </mat-card>

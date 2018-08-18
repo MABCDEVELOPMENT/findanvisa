@@ -157,6 +157,18 @@
   "recordCosmeticRegisterDetail.datePublication":"Data da Publicação",
   "recordCosmeticRegisterDetail.transaction":"Transação",
   "recordCosmeticRegisterDetail.subject":"Assunto",
-  "recordCosmeticRegisterDetail.situation":"Situação"
+  "recordCosmeticRegisterDetail.situation":"Situação",
+
+  "recordCosmeticNotificationDetail.detailOfProduct":"DETALHE DO PRODUTO",
+  "recordCosmeticNotificationDetail.subject":"Assunto",
+  "recordCosmeticNotificationDetail.productName":"Produto",
+  "recordCosmeticNotificationDetail.companyName":"Empresa",
+  "recordCosmeticNotificationDetail.process":"Processo",
+  "recordCosmeticNotificationDetail.area":"Área",
+  "recordCosmeticNotificationDetail.dateNotification":"Data de Notificação",
   
-}
+  "recordCosmeticNotificationDetail.apresentation":"Apresentação",
+  "recordCosmeticNotificationDetail.tonality":"Tonalidade",
+  "recordCosmeticNotificationDetail.eans":"Código / Descrição EAN"
+} 
+

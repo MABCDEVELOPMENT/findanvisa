@@ -8,6 +8,7 @@ import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { AuthenticationService, I18nService } from "@app/core";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
+import { Location } from "@angular/common";
 
 @Component({
     selector: 'filter-cosmetic-register',
@@ -34,6 +35,7 @@ export class FilteCosmeticRegisterComponent {
         private router: Router,
         private filterService: FilterService,
         private spinnerService: Ng4LoadingSpinnerService,
+        private _location: Location,
         public dataService: QueryrecordsService,
         private authenticationService: AuthenticationService,
         public i18nService: I18nService) {
@@ -104,5 +106,8 @@ export class FilteCosmeticRegisterComponent {
             data: { errorMsg: message }, width: '250px', height: '250px'
         });
 
+    }
+    goBack () {
+        this._location.back();
     }
 }

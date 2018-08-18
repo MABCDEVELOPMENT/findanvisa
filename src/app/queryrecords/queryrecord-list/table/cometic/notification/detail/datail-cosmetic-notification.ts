@@ -11,15 +11,14 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'datail-cosmetic-register',
-    templateUrl: './datail-cosmetic-register.html',
-    styleUrls:['./datail-cosmetic-register.scss']
+    selector: 'datail-cosmetic-notification',
+    templateUrl: './datail-cosmetic-notification.html',
+    styleUrls:['./datail-cosmetic-notification.scss']
 })
-export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
+export class DetailCosmeticNotificationComponent implements OnInit,AfterViewInit  {
 
     content:any;
     apresentacoes:any;
-    peticoes:any;
 
     constructor(private route: ActivatedRoute,
         public parent: FilterService,
@@ -33,7 +32,6 @@ export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
     ngOnInit() {
         this.content = this.parent.detail;
         this.apresentacoes = this.content.apresentacoes;
-        this.peticoes = this.content.peticoes;
     }
       
     ngAfterViewInit() {

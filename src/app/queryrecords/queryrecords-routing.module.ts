@@ -19,6 +19,7 @@ import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
 import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/datail-cosmetic-register';
+import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/datail-cosmetic-notification';
 
 const routes: Routes = [
   Route.withShell([
@@ -34,11 +35,14 @@ const routes: Routes = [
         { path: 'datail-cosmetic-register', component: DetailCosmeticRegisterComponent },
 
         { path: 'filter-cosmetic-notification', component: FilteCosmeticNotificationComponent },
+        { path: 'table-cosmetic-notification', component: TableCosmeticNotificationComponent },
+        { path: 'datail-cosmetic-notification', component: DetailCosmeticNotificationComponent },
+
         { path: 'filter-cosmetic-regularized', component: FilterCosmeticRegularizedComponent },
         { path: 'filter-saneante-product', component: FilterSaneanteProductComponent },
         { path: 'filter-saneante-notification', component: FilteSaneanteNotificationComponent },
 
-        { path: 'table-cosmetic-notification', component: TableCosmeticNotificationComponent },
+
         { path: 'table-cosmetic-regularized', component: TableCosmeticRegularizedComponent },
         { path: 'table-saneante-product', component: TableSaneanteProductComponent },
         { path: 'table-saneante-notification', component: TableSaneanteNotificationComponent },

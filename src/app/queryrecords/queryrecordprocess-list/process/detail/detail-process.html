@@ -10,6 +10,14 @@
         <div>
             <table class="table-detail" style="width:100%;">
                 <tr>
+                    <td style="width: 15%">{{ 'recorddDetailProcess.companyName' | translate }}</td>
+                    <td> {{content.razaoSocial}}</td>
+                    <td style="width: 15%">{{ 'recorddDetailProcess.cnpj' | translate }}</td>
+                    <td style="width: 15%"> {{content.cnpj}}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                <tr>
                     <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.subject' | translate }}</td>
                     <td>{{content.assunto}}</td>
                 </tr>
@@ -18,7 +26,7 @@
                     <td>{{content.empresa}}</td>
                 </tr>
                 <tr>
-                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.produto' | translate }}</td>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.productName' | translate }}</td>
                     <td> {{content.produto}}</td>
                 </tr>
                 <tr>
@@ -31,27 +39,27 @@
                     <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.companyName' | translate }}</td>
                     <td> {{content.empresa}}</td>
                     <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.area' | translate }}</td>
-                    <td> {{content.area}}</td>
+                    <td style="width: 15%"> {{content.area}}</td>
                 </tr>
             </table>
             <table class="table-detail" style="width:100%;">
-                    <tr>
-                        <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.situation' | translate }}</td>
-                        <td> {{content.situacao}}</td>
-                        <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.datePublication' | translate }}</td>
-                        <td> {{content.dataPublicacao}}</td>
-                    </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.situation' | translate }}</td>
+                    <td> {{content.situacao}}</td>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.dateNotification' | translate }}</td>
+                    <td style="width: 15%"> {{content.dataNotificacao}}</td>
+                </tr>
             </table>
             <br>
             <table class="table-detail" style="width:100%;">
 
                 <tr>
 
-                    
+
                     <td align="left" style="width: 40%">{{ 'recordCosmeticNotificationDetail.apresentation' | translate }}</td>
                     <td align="left" style="width: 30%">{{ 'recordCosmeticNotificationDetail.tonality' | translate }} </td>
                     <td align="center" style="width: 20%">{{ 'recordCosmeticNotificationDetail.eans' | translate }} </td>
-                    
+
 
                 </tr>
 
@@ -63,7 +71,7 @@
 
             </table>
 
-            
+
             <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
                 <mat-dialog-actions>
                     <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>

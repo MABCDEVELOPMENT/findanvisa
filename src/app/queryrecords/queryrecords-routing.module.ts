@@ -18,8 +18,11 @@ import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecor
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
-import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/datail-cosmetic-register';
-import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/datail-cosmetic-notification';
+import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/detail-cosmetic-register';
+import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/detail-cosmetic-notification';
+import { DetailCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/detail/detail-cosmetic-regularized';
+import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/detail/detail-seneante-product';
+import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
 
 const routes: Routes = [
   Route.withShell([
@@ -28,32 +31,35 @@ const routes: Routes = [
       children: [
         { path: 'filter-foot', component: FilterFootComponent },
         { path: 'table-foot', component: TableFootComponent },
-        { path: 'datail-foot', component: DetailFootComponent },
+        { path: 'detail-foot', component: DetailFootComponent },
 
         { path: 'filter-cosmetic-register', component: FilteCosmeticRegisterComponent },
         { path: 'table-cosmetic-register', component: TableCosmeticRegisterComponent },
-        { path: 'datail-cosmetic-register', component: DetailCosmeticRegisterComponent },
+        { path: 'detail-cosmetic-register', component: DetailCosmeticRegisterComponent },
 
         { path: 'filter-cosmetic-notification', component: FilteCosmeticNotificationComponent },
         { path: 'table-cosmetic-notification', component: TableCosmeticNotificationComponent },
-        { path: 'datail-cosmetic-notification', component: DetailCosmeticNotificationComponent },
+        { path: 'detail-cosmetic-notification', component: DetailCosmeticNotificationComponent },
 
         { path: 'filter-cosmetic-regularized', component: FilterCosmeticRegularizedComponent },
-        { path: 'filter-saneante-product', component: FilterSaneanteProductComponent },
-        { path: 'filter-saneante-notification', component: FilteSaneanteNotificationComponent },
-
-
         { path: 'table-cosmetic-regularized', component: TableCosmeticRegularizedComponent },
-        { path: 'table-saneante-product', component: TableSaneanteProductComponent },
-        { path: 'table-saneante-notification', component: TableSaneanteNotificationComponent },
+        { path: 'detail-cosmetic-regularized', component: DetailCosmeticRegularizedComponent },
 
+        { path: 'filter-saneante-product', component: FilterSaneanteProductComponent },
+        { path: 'table-saneante-product', component: TableSaneanteProductComponent },
+        { path: 'detail-saneante-product', component: DetailSaneanteProductComponent },
+
+        { path: 'filter-saneante-notification', component: FilteSaneanteNotificationComponent },
+        { path: 'table-saneante-notification', component: TableSaneanteNotificationComponent },
+        { path: 'detail-saneante-notification', component: DetailSaneanteNotificationComponent },
       ]
     },
     {
       path: 'queryRecordProcess', component: QueryrecordprocessListComponent, data: { title: extract('queryProcessRecords') },
       children: [
         { path: 'filter-process', component: FilteProcessComponent },
-        { path: 'table-process', component: TableProcessComponent }
+        { path: 'table-process', component: TableProcessComponent },
+        { path: 'detail-process', component: TableProcessComponent }
       ]
     }
   ])

@@ -1,0 +1,75 @@
+<mat-card class="contanier mat-elevation-z8">
+    <!-- Title of an Card -->
+    <mat-card-title>
+
+        <p align="center" style="height: 100%;">{{ 'recordCosmeticNotificationDetail.detailOfProduct' | translate }}</p>
+
+    </mat-card-title>
+
+    <mat-card-content>
+        <div>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.subject' | translate }}</td>
+                    <td>{{content.assunto}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.companyName' | translate }}</td>
+                    <td>{{content.empresa}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.productName' | translate }}</td>
+                    <td> {{content.produto}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.productName' | translate }}</td>
+                    <td>{{content.nomeProduto}}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.companyName' | translate }}</td>
+                    <td> {{content.empresa}}</td>
+                    <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.area' | translate }}</td>
+                    <td style="width: 15%">  {{content.area}}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.situation' | translate }}</td>
+                        <td> {{content.situacao}}</td>
+                        <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.dateNotification' | translate }}</td>
+                        <td style="width: 15%"> {{content.dataNotificacao}}</td>
+                    </tr>
+            </table>
+            <br>
+            <table class="table-detail" style="width:100%;">
+
+                <tr>
+
+                    
+                    <td align="left" style="width: 40%">{{ 'recordCosmeticNotificationDetail.apresentation' | translate }}</td>
+                    <td align="left" style="width: 30%">{{ 'recordCosmeticNotificationDetail.tonality' | translate }} </td>
+                    <td align="center" style="width: 20%">{{ 'recordCosmeticNotificationDetail.eans' | translate }} </td>
+                    
+
+                </tr>
+
+                <tr *ngFor="let apresentacao of apresentacoes">
+                    <td align="left">{{ apresentacao.apresentacao }}</td>
+                    <td align="center">{{ apresentacao.tonalidade}}</td>
+                    <td align="left">{{ apresentacao.eans }}</td>
+                </tr>
+
+            </table>
+
+            
+            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+                <mat-dialog-actions>
+                    <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+                </mat-dialog-actions>
+            </div>
+        </div>
+    </mat-card-content>
+
+</mat-card>

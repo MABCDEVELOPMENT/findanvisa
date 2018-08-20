@@ -1,12 +1,13 @@
-import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
-import { TableComponent } from "@app/queryrecords/queryrecord-list/table/table-component";
-import { MatTableDataSource, MatPaginator, MatSort, MatTableModule } from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
+import { Component, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
+import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialog } from "@angular/material";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
 import { Content } from "@app/queryrecords/modelquery/content.model";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
-import { extend } from "webdriver-js-extender";
+import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
+import { Location } from "@angular/common";
+import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 
 @Component({
     selector: 'table-cosmetic-regularized',
@@ -19,7 +20,9 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
-    data:any;
+    data: any;
+
+    error: string;
 
     displayedColumns       = ['process','product','type','situation','maturity'];
     
@@ -29,8 +32,12 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
     @ViewChild('table') table: MatTableModule;
 
 
-    constructor(private route: ActivatedRoute,
+    constructor(public dialog: MatDialog,
+        private route: ActivatedRoute,
         public parent: FilterService,
+        private _location: Location,
+        private router: Router,
+        public dataService: QueryrecordsService,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){
 
@@ -84,5 +91,33 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
         // this.user.userName+" "+this.selected.fullName+
         XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
      }
+
+     showMsg(message: string): void {
+      this.dialog.open(ErrorDialogComponent, {
+          data: { errorMsg: message }, width: '250px', height: '250px'
+      });
+
+     }
+     getDetail(content: any) {
+
+      this.spinnerService.show();
+      this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
+          .then(
+              data => {
+                  this.parent.detail = data['contentObject'];
+                  this.router.navigate(['/queryRecord/detail-cosmetic-regularized'], { replaceUrl: false });
+                  this.spinnerService.hide();
+              }).catch(
+                  error => {
+                      this.error = error.error.errorMessage;
+                      this.spinnerService.hide();
+                      this.showMsg(this.error);
+
+                  });
+
+  }
+  goBack() {
+      this._location.back();
+  }
     
 }

@@ -1,0 +1,146 @@
+<mat-card class="contanier mat-elevation-z8">
+    <!-- Title of an Card -->
+    <mat-card-title>
+
+        <p align="center" style="height: 100%;">{{ 'recordCosmeticRegularizedDetail.detailOfProduct' | translate }}</p>
+
+    </mat-card-title>
+
+    <mat-card-content>
+        <div>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.number' | translate }}</td>
+                    <td style="width: 85%"></td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.holdingCompany' | translate }}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.cnpj' | translate }}</td>
+                    <td style="width: 60%">{{ 'recordCosmeticRegularizedDetail.companyName' | translate }}</td>
+                    <td style="width: 20%">{{ 'recordCosmeticRegularizedDetail.authorization' | translate }}</td>
+                </tr>
+                <tr>
+                    <td> {{content.empresaDetentora.cnpj}}</td>
+                    <td> {{content.empresaDetentora.razaoSocial}}</td>
+                    <td> {{content.empresaDetentora.autorizacao}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 20%">{{ 'recordCosmeticRegularizedDetail.uf' | translate }}</td>
+                    <td style="width: 60%">{{ 'recordCosmeticRegularizedDetail.county' | translate }}</td>
+                    <td style="width: 20%">{{ 'recordCosmeticRegularizedDetail.codeOfTheMunicipality' | translate }}</td>
+                </tr>
+                <tr>
+                    <td> {{content.empresaDetentora.uf}}</td>
+                    <td> {{content.empresaDetentora.cidade}}</td>
+                    <td> {{content.empresaDetentora.codigoMunicipio}}</td>
+                </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.description' | translate }}</td>
+                    </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.process' | translate }}</td>
+                        <td style="width: 85%">{{content.caracterizacaoVigente.processo}}</td>
+                    </tr>
+                    <tr>
+                            <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.productGroup' | translate }}</td>
+                            <td style="width: 85%">{{content.caracterizacaoVigente.grupo}}</td>
+                    </tr>
+                    <tr>
+                            <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.productName' | translate }}</td>
+                            <td style="width: 85%">{{content.caracterizacaoVigente.produto}}</td>
+                    </tr>
+                    <tr>
+                            <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.physicalFormOfProduct' | translate }}</td>
+                            <td style="width: 85%">{{content.caracterizacaoVigente.formaFisica}}</td>
+                    </tr>                    
+            </table>            
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.placeOfFabrication' | translate }}</td>
+                    </tr>
+                    <tr>
+                            <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.national' | translate }}</td>
+                    </tr>
+            </table>
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                            <td align="center" style="width: 20%">{{ 'queryRecord.cnpj' | translate }} </td>
+                            <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.manufacturer' | translate }}</td>
+                            <td align="center" style="width: 20%">{{ 'queryRecord.authorizationNumber' | translate }} </td>
+                    </tr>
+                    <tr>
+                            <td style="width: 20%">{{content.locaisNacionais.cnpj}}</td>
+                            <td style="width: 60%">{{content.locaisNacionais.razaoSocial}}</td>
+                            <td style="width: 20%">{{content.locaisNacionais.autorizacao}}</td>
+                    </tr>
+                    <tr>
+                            <td align="center" style="width: 20%">{{ 'recordCosmeticRegularizedDetail.uf' | translate }} </td>
+                            <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.county' | translate }}</td>
+                            <td align="center" style="width: 20%">{{ 'recordCosmeticRegularizedDetail.codeOfTheMunicipality' | translate }} </td>
+                    </tr>
+                    <tr>
+                            <td style="width: 20%">{{content.locaisNacionais.uf}}</td>
+                            <td style="width: 60%">{{content.locaisNacionais.cidade}}</td>
+                            <td style="width: 20%">{{content.locaisNacionais.codigoMunicipio}}</td>
+                    </tr>
+                                      
+            </table>    
+            <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.presentation' | translate }}</td>
+                    </tr>
+            </table>   
+            <div  fxLayout="column" style="max-height:150px;overflow-y: auto;display: block!important;">
+                <div    *ngFor="let apresentacao of content.apresentacoes;"> 
+
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.destination' | translate }} </td>
+                        <td align="left" style="width: 40%">{{ 'recordCosmeticRegularizedDetail.productShelfLife' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">COMERCIAL</td>
+                        <td style="width: 60%">{{apresentacao.periodoValidade}}</td>
+                    </tr>
+            
+                    <tr>
+                        <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.restrictedUseSale' | translate }} </td>
+                        <td align="left" style="width: 40%">{{ 'recordCosmeticRegularizedDetail.conservationCare' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">{{apresentacao.restricaoUso}}</td>
+                        <td style="width: 60%">{{apresentacao.cuidadoConservacao}}</td>
+                    </tr>
+            
+                    <tr>
+                        <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.primaryPackage' | translate }} </td>
+                        <td align="left" style="width: 40%">{{ 'recordCosmeticRegularizedDetail.secondaryPackaging' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 20%">{{apresentacao.embalagemPrimaria}}</td>
+                        <td style="width: 60%">{{apresentacao.embalagemSecundaria}}</td>
+                    </tr>
+
+                </table>
+                </div>
+            </div>
+            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+                    <mat-dialog-actions>
+                        <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+                    </mat-dialog-actions>
+            </div>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

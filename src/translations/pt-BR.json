@@ -166,9 +166,61 @@
   "recordCosmeticNotificationDetail.process":"Processo",
   "recordCosmeticNotificationDetail.area":"Área",
   "recordCosmeticNotificationDetail.dateNotification":"Data de Notificação",
+  "recordCosmeticNotificationDetail.situation":"Situação",
   
   "recordCosmeticNotificationDetail.apresentation":"Apresentação",
   "recordCosmeticNotificationDetail.tonality":"Tonalidade",
-  "recordCosmeticNotificationDetail.eans":"Código / Descrição EAN"
+  "recordCosmeticNotificationDetail.eans":"Código / Descrição EAN",
+
+ 
+  "recordCosmeticRegularizedDetail.detailOfProduct":"DETALHE DO PRODUTO",
+  "recordCosmeticRegularizedDetail.number":"Nº do Registro",
+
+  "recordCosmeticRegularizedDetail.holdingCompany":"Empresa Detentora",
+  "recordCosmeticRegularizedDetail.cnpj":"CNPJ",
+  "recordCosmeticRegularizedDetail.companyName":"Razão Social",
+  "recordCosmeticRegularizedDetail.authorization":"Autorização",
+  "recordCosmeticRegularizedDetail.uf":"UF",
+  "recordCosmeticRegularizedDetail.county":"Município",
+  "recordCosmeticRegularizedDetail.codeOfTheMunicipality":"Código do Município",
+  
+
+  "recordCosmeticRegularizedDetail.description":"Caracterização",
+  "recordCosmeticRegularizedDetail.process":"Nº do Processo",
+  "recordCosmeticRegularizedDetail.productGroup":"Grupo do Produto",
+  "recordCosmeticRegularizedDetail.productName":"Nome do Produto",
+  "recordCosmeticRegularizedDetail.physicalFormOfProduct":"Forma Física do Produto",
+  
+
+  "recordCosmeticRegularizedDetail.placeOfFabrication":"Local de Fabricação",
+  "recordCosmeticRegularizedDetail.national":"Nacional",
+  "recordCosmeticRegularizedDetail.manufacturer":"Fabricante",
+  "recordCosmeticRegularizedDetail.countyManufacturer":"Município de Fabricação",
+ 
+
+  "recordCosmeticRegularizedDetail.presentation":"Apresentação",
+  "recordCosmeticRegularizedDetail.destination":"Destinação do Produto",
+  "recordCosmeticRegularizedDetail.productAllocation":"Descrição do Produto",
+  "recordCosmeticRegularizedDetail.productShelfLife":"Período de Validade do Produto",
+  "recordCosmeticRegularizedDetail.restrictedUseSale":"Restrição de Uso/Venda",
+  "recordCosmeticRegularizedDetail.conservationCare":"Cuidados de Conservação",
+  "recordCosmeticRegularizedDetail.primaryPackage":"Embalagem Primária",
+  "recordCosmeticRegularizedDetail.secondaryPackaging":"Embalagem Secundária",
+
+  "recorddDetailProcess.company":"Empresa",
+  "recorddDetailProcess.cnpj":"cnpj",
+  "recorddDetailProcess.numberProtocol":"Nº do Protocolo",
+  "recorddDetailProcess.officehour":"Expediente",
+  "recorddDetailProcess.dateEnter":"Data Entrada",
+  "recorddDetailProcess.subjectMatter":"Assunto",
+  "recorddDetailProcess.localizationIn":"Encontra-se na",
+  "recorddDetailProcess.situation":"Situação",
+  "recorddDetailProcess.publication":"Publicação (Resolução)",
+  "recorddDetailProcess.forward":"Enc."
+
+
+
+
+
 } 
 

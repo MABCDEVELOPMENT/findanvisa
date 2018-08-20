@@ -106,7 +106,7 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
             .then(
                 data => {
                     this.parent.detail = data['contentObject'];
-                    this.router.navigate(['/queryRecord/datail-cosmetic-register'], { replaceUrl: false });
+                    this.router.navigate(['/queryRecord/detail-cosmetic-register'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(
                     error => {

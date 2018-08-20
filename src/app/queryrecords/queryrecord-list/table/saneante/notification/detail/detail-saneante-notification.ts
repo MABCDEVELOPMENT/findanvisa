@@ -11,13 +11,14 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'detail-foot',
-    templateUrl: './detail-foot.html',
-    styleUrls:['./detail-foot.scss']
+    selector: 'detail-saneante-notification',
+    templateUrl: './detail-saneante-notification.html',
+    styleUrls:['./detail-saneante-notification.scss']
 })
-export class DetailFootComponent implements OnInit,AfterViewInit  {
+export class DetailSaneanteNotificationComponent implements OnInit,AfterViewInit  {
 
     content:any;
+    apresentacoes:any;
 
     constructor(private route: ActivatedRoute,
         public parent: FilterService,
@@ -30,6 +31,7 @@ export class DetailFootComponent implements OnInit,AfterViewInit  {
 
     ngOnInit() {
         this.content = this.parent.detail;
+        this.apresentacoes = this.content.apresentacoes;
     }
       
     ngAfterViewInit() {

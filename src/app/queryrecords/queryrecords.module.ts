@@ -34,8 +34,11 @@ import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecor
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
-import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/datail-cosmetic-register';
-import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/datail-cosmetic-notification';
+import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/detail-cosmetic-register';
+import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/detail-cosmetic-notification';
+import { DetailCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/detail/detail-cosmetic-regularized';
+import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/detail/detail-seneante-product';
+import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
 
 
 
@@ -62,13 +65,16 @@ import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryreco
     DetailCosmeticRegisterComponent,
     FilteCosmeticNotificationComponent,
     TableCosmeticNotificationComponent,
-    FilterCosmeticRegularizedComponent,
     DetailCosmeticNotificationComponent,
+    FilterCosmeticRegularizedComponent,
     TableCosmeticRegularizedComponent,
+    DetailCosmeticRegularizedComponent,
     FilterSaneanteProductComponent,
     TableSaneanteProductComponent,
+    DetailSaneanteProductComponent,
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
+    DetailSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent],
   declarations: [QueryrecordListComponent, 
@@ -85,10 +91,13 @@ import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryreco
     DetailCosmeticNotificationComponent,
     FilterCosmeticRegularizedComponent,
     TableCosmeticRegularizedComponent,
+    DetailCosmeticRegularizedComponent,
     FilterSaneanteProductComponent,
     TableSaneanteProductComponent,
+    DetailSaneanteProductComponent,
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
+    DetailSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent],
   providers: [QueryrecordsService, Queryrecords,FilterService],

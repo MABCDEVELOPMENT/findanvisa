@@ -1,12 +1,14 @@
 import { Component, ViewChild, ElementRef, ChangeDetectorRef, OnInit, AfterViewInit } from "@angular/core";
 import { MatTableDataSource, MatSort, MatPaginator, MatTableModule, MatDialog } from "@angular/material";
 import { Content } from "@app/queryrecords/modelquery/content.model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
 import { Alert } from "selenium-webdriver";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
+import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
+import { Location } from "@angular/common";
 
 @Component({
     selector: 'table-saneante-notification',
@@ -22,6 +24,8 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
   
     data:any;
 
+    error:string;
+
     displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
    
     @ViewChild(MatSort) sort: MatSort;
@@ -30,9 +34,12 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
     @ViewChild('table') table: MatTableModule;
 
 
-    constructor(public dialog: MatDialog,
-        private route: ActivatedRoute,
+    constructor(private route: ActivatedRoute,
+        public dialog: MatDialog,
+        private router: Router,
+        private _location: Location,
         public parent: FilterService,
+        public dataService: QueryrecordsService,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){
 
@@ -96,5 +103,28 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
         });
 
     }
+    getDetail(content:any) {
+
+        this.spinnerService.show();
+          this.dataService.getQueryRegistersDetail(this.parent.category,this.parent.option,content.processo)
+              .then(
+                  data => {
+                      this.parent.detail = data['contentObject'];
+                      this.router.navigate(['/queryRecord/detail-saneante-notification'], { replaceUrl: false });
+                      this.spinnerService.hide();
+                  }).catch(
+                      error => {
+                          this.error = error.error.errorMessage;
+                          this.spinnerService.hide();
+                          this.showMsg(this.error);
+  
+                      });
+  
+       }
+  
+       goBack () {
+          this._location.back();
+       }
+
 
 }

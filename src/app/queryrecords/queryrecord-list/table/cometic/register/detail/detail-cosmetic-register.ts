@@ -11,9 +11,9 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'datail-cosmetic-register',
-    templateUrl: './datail-cosmetic-register.html',
-    styleUrls:['./datail-cosmetic-register.scss']
+    selector: 'detail-cosmetic-register',
+    templateUrl: './detail-cosmetic-register.html',
+    styleUrls:['./detail-cosmetic-register.scss']
 })
 export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
 

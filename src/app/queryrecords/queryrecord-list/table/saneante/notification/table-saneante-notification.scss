@@ -61,7 +61,9 @@ font-size: $font-line-size;
 }
 .mat-row:hover {
     background-color: blue;
-    -webkit-text-stroke-color: rgb(255, 255, 255)
+    --webkit-text-stroke-color: white;
+    cursor: pointer;
+    cursor: hand;
 }
 .contanier{
     background-color:	$systemBackgronwd;

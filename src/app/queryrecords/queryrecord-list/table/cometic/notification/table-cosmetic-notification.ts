@@ -106,7 +106,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
             .then(
                 data => {
                     this.parent.detail = data['contentObject'];
-                    this.router.navigate(['/queryRecord/datail-cosmetic-register'], { replaceUrl: false });
+                    this.router.navigate(['/queryRecord/detail-cosmetic-notification'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(
                     error => {

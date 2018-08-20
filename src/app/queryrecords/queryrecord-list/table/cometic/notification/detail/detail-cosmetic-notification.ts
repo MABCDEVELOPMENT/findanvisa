@@ -11,9 +11,9 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'datail-cosmetic-notification',
-    templateUrl: './datail-cosmetic-notification.html',
-    styleUrls:['./datail-cosmetic-notification.scss']
+    selector: 'detail-cosmetic-notification',
+    templateUrl: './detail-cosmetic-notification.html',
+    styleUrls:['./detail-cosmetic-notification.scss']
 })
 export class DetailCosmeticNotificationComponent implements OnInit,AfterViewInit  {
 

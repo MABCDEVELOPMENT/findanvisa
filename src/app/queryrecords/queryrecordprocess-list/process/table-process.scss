@@ -36,8 +36,9 @@ flex:500px;
 }
 .mat-row:hover {
     background-color: blue;
-    -webkit-text-stroke-color: white;
-    height: auto;
+    --webkit-text-stroke-color: white;
+    cursor: pointer;
+    cursor: hand;
 }
 .contanier{
     background-color:	$systemBackgronwd;

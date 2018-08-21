@@ -63,5 +63,13 @@ export class QueryrecordsService {
  .then(response => response)
  .catch(error=> Observable.throw(error.message));
 }
+
+getQueryRegistersProcessDetail(category:number,option:number,value:string): Promise<any> {
+  
+  this.queryRecordDetail = new QueryRecordDetail(category,option,value);
+  return this.httpClient.post(this.API_URL+'/processDetail',this.queryRecordDetail).toPromise()
+ .then(response => response)
+ .catch(error=> Observable.throw(error.message));
+}
   
 }

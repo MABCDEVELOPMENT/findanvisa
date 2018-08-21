@@ -98,26 +98,26 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
       });
 
      }
-     getDetail(content: any) {
+    getDetail(content: any) {
 
-      this.spinnerService.show();
-      this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
-          .then(
-              data => {
-                  this.parent.detail = data['contentObject'];
-                  this.router.navigate(['/queryRecord/detail-cosmetic-regularized'], { replaceUrl: false });
-                  this.spinnerService.hide();
-              }).catch(
-                  error => {
-                      this.error = error.error.errorMessage;
-                      this.spinnerService.hide();
-                      this.showMsg(this.error);
+        this.spinnerService.show();
+        this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
+            .then(
+                data => {
+                    this.parent.detail = data['contentObject'];
+                    this.router.navigate(['/queryRecord/detail-cosmetic-regularized'], { replaceUrl: false });
+                    this.spinnerService.hide();
+                }).catch(
+                    error => {
+                        this.error = error.error.errorMessage;
+                        this.spinnerService.hide();
+                        this.showMsg(this.error);
 
-                  });
+                    });
 
-  }
-  goBack() {
-      this._location.back();
-  }
+    }
+    goBack() {
+        this._location.back();
+    }
     
 }

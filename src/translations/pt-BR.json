@@ -207,16 +207,20 @@
   "recordCosmeticRegularizedDetail.primaryPackage":"Embalagem Primária",
   "recordCosmeticRegularizedDetail.secondaryPackaging":"Embalagem Secundária",
 
-  "recorddDetailProcess.company":"Empresa",
-  "recorddDetailProcess.cnpj":"cnpj",
-  "recorddDetailProcess.numberProtocol":"Nº do Protocolo",
-  "recorddDetailProcess.officehour":"Expediente",
-  "recorddDetailProcess.dateEnter":"Data Entrada",
-  "recorddDetailProcess.subjectMatter":"Assunto",
-  "recorddDetailProcess.localizationIn":"Encontra-se na",
-  "recorddDetailProcess.situation":"Situação",
-  "recorddDetailProcess.publication":"Publicação (Resolução)",
-  "recorddDetailProcess.forward":"Enc."
+  "recordDetailProcess.detailOfProcess":"DETALHE DO PROCESSO",
+  "recordDetailProcess.company":"Empresa",
+  "recordDetailProcess.cnpj":"CNPJ",
+  "recordDetailProcess.process":"Processo",
+  "recordDetailProcess.numberProtocol":"Nº do Protocolo",
+  "recordDetailProcess.officehour":"Expediente",
+  "recordDetailProcess.officehourDate":"Expediente (Dt. Expediente)",
+  "recordDetailProcess.dateEnter":"Data Entrada",
+  "recordDetailProcess.subjectMatter":"Assunto",
+  "recordDetailProcess.localizationIn":"Encontra-se na",
+  "recordDetailProcess.situation":"Situação",
+  "recordDetailProcess.publication":"Publicação (Resolução)",
+  "recordDetailProcess.forward":"Enc.",
+  "recordDetailProcess.petitions":"Petições"
 
 
 

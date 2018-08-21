@@ -39,6 +39,7 @@ import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryreco
 import { DetailCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/detail/detail-cosmetic-regularized';
 import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/detail/detail-seneante-product';
 import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
+import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
 
 
 
@@ -76,7 +77,8 @@ import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryreco
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,
     FilteProcessComponent,
-    TableProcessComponent],
+    TableProcessComponent,
+    DetailProcessComponent],
   declarations: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
     TableComponent, 
@@ -99,7 +101,8 @@ import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryreco
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,
     FilteProcessComponent,
-    TableProcessComponent],
+    TableProcessComponent,
+    DetailProcessComponent],
   providers: [QueryrecordsService, Queryrecords,FilterService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

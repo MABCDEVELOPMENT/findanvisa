@@ -23,6 +23,7 @@ import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryreco
 import { DetailCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/detail/detail-cosmetic-regularized';
 import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/detail/detail-seneante-product';
 import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
+import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
 
 const routes: Routes = [
   Route.withShell([
@@ -59,7 +60,7 @@ const routes: Routes = [
       children: [
         { path: 'filter-process', component: FilteProcessComponent },
         { path: 'table-process', component: TableProcessComponent },
-        { path: 'detail-process', component: TableProcessComponent }
+        { path: 'detail-process', component: DetailProcessComponent }
       ]
     }
   ])

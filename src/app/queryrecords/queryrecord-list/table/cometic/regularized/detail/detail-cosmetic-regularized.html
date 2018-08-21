@@ -14,6 +14,7 @@
                     <td style="width: 85%"></td>
                 </tr>
             </table>
+            <div  fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">   
             <table class="table-detail" style="width:100%;">
                 <tr>
                     <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.holdingCompany' | translate }}</td>
@@ -100,7 +101,7 @@
                         <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.presentation' | translate }}</td>
                     </tr>
             </table>   
-            <div  fxLayout="column" style="max-height:40vh;overflow-y: auto;display: block!important;">
+            
                 <div    *ngFor="let apresentacao of content.apresentacoes;"> 
 
                 <table class="table-detail" style="width:100%;">
@@ -134,7 +135,7 @@
                 </table>
                 </div>
             </div>
-            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+            <div align="center" style="position:fixed; width:100%;  bottom:10px;">
                     <mat-dialog-actions>
                         <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
                     </mat-dialog-actions>

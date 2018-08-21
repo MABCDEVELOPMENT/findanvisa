@@ -8,6 +8,7 @@
 
     <mat-card-content>
         <div>
+         <div  fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">
             <table class="table-detail" style="width:100%;">
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.subject' | translate }}</td>
@@ -40,29 +41,23 @@
                         <td> {{content.situacao}}" "{{content.dataNotificacao}}</td>
                     </tr>
             </table>
-            <br>
-            <div  fxLayout="column" style="max-height:40vh;overflow-y: auto;display: block!important;">
             <table class="table-detail" style="width:100%;">
 
                     <tr>
 
-                            <td align="center" style="width: 10%">{{ 'recordCosmeticRegisterDetail.number' | translate }} </td>
-                            <td align="left" style="width: 40%">{{ 'recordCosmeticRegisterDetail.apresentation' | translate }}</td>
-                            <td align="center"   style="width: 20%">{{ 'recordCosmeticRegisterDetail.register' | translate }} </td>
-                            <td align="left"   style="width: 30%">{{ 'recordCosmeticRegisterDetail.tonality' | translate }} </td>
+                            <td align="lefit" style="width: 60%">{{ 'recordSeneanteNotificationDetail.apresentation' | translate }} </td>
+                            <td align="left" style="width: 20%">{{ 'recordSeneanteNotificationDetail.version' | translate }}</td>
+                            <td align="center"   style="width: 20%">{{ 'recordSeneanteNotificationDetail.eans' | translate }} </td>
 
                     </tr>
 
                 <tr *ngFor="let apresentacao of apresentacoes">
-                    <td align="center">{{ apresentacao.numero }}</td>
-                    <td align="left">{{ apresentacao.embalagemPrimaria }}</td>
-                    <td align="center"  >{{ apresentacao.registro}}</td>
-                    <td align="left"  >{{ apresentacao.tonalidade }}</td>
+                    <td align="left">{{ apresentacao.apresentacao }}</td>
+                    <td align="left">{{ apresentacao.versao }}</td>
+                    <td align="left"  >{{ apresentacao.eans}}</td>
                 </tr>
 
             </table>
-
-            <br>
             <table class="table-detail" style="width:100%;">
 
                     <tr>
@@ -76,7 +71,7 @@
 
                 <tr *ngFor="let peticao of peticoes">
                     <td align="center">{{ peticao.expediente }}</td>
-                    <td align="center">{{ peticao.publicacao }}</td>
+                    <td align="center">{{ peticao.data }}</td>
                     <td align="center">{{ peticao.transacao}}</td>
                     <td align="left"  >{{ peticao.assunto }}</td>
                     <td align="left"  >{{ peticao.situacao }}</td>
@@ -85,7 +80,7 @@
             </table>
             </div>
             
-            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10px;">
                 <mat-dialog-actions>
                     <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
                 </mat-dialog-actions>

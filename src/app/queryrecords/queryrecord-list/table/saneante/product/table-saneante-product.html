@@ -63,6 +63,11 @@
         </mat-row>
       </mat-table>
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
+      <div align="center">
+          <mat-dialog-actions>
+            <button  class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+          </mat-dialog-actions>
+      </div> 
     </div>
   </mat-card-content>
 

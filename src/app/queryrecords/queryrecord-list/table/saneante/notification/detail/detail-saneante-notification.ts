@@ -19,6 +19,7 @@ export class DetailSaneanteNotificationComponent implements OnInit,AfterViewInit
 
     content:any;
     apresentacoes:any;
+    peticoes:any;
 
     constructor(private route: ActivatedRoute,
         public parent: FilterService,
@@ -32,6 +33,7 @@ export class DetailSaneanteNotificationComponent implements OnInit,AfterViewInit
     ngOnInit() {
         this.content = this.parent.detail;
         this.apresentacoes = this.content.apresentacoes;
+        this.peticoes = this.content.peticoes;
     }
       
     ngAfterViewInit() {

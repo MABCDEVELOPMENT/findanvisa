@@ -7,7 +7,7 @@
   </mat-card-title>
 
   <mat-card-content>
-      <div> 
+   <div  fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">   
       <table class="table-detail" style="width:100%;">
       <tr>
         <td style="width: 15%">{{ 'recordFootDetail.companyName' | translate }}</td>
@@ -67,12 +67,13 @@
       </tr> 
     </table>  
 
-    <div align="center" style="position:fixed; width:100%; height:70px;  bottom:20px;">
+
+  </div>  
+  <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10px;">
         <mat-dialog-actions>
           <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
         </mat-dialog-actions>
     </div>
-  </div>  
   </mat-card-content>
 
 </mat-card>

@@ -220,9 +220,11 @@
   "recordDetailProcess.situation":"Situação",
   "recordDetailProcess.publication":"Publicação (Resolução)",
   "recordDetailProcess.forward":"Enc.",
-  "recordDetailProcess.petitions":"Petições"
+  "recordDetailProcess.petitions":"Petições",
 
-
+  "recordSeneanteNotificationDetail.apresentation":"Apresentação",
+  "recordSeneanteNotificationDetail.version":"Versão",
+  "recordSeneanteNotificationDetail.eans":"Código / Descrição EAN"
 
 
 

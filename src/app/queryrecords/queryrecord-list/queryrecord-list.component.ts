@@ -104,7 +104,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   }
 
   onChangeCompany() {
-    
+    this.selectedOption = null;
     if (this.selected.category==3) {
 
         this.categorys = [

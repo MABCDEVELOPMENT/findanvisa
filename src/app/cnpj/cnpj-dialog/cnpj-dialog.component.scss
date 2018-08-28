@@ -30,6 +30,27 @@
     overflow: visible;
     align-self: center;
   }  
+  .mat-cell:nth-child(6), // foot
+  .mat-header-cell:nth-child(6),
+  {
+    flex: 0 0 200px;
+    overflow: visible;
+    align-self: center;
+  } 
+  .mat-cell:nth-child(7), // cosmetic
+  .mat-header-cell:nth-child(7),
+  {
+    flex: 0 0 200px;
+    overflow: visible;
+    align-self: center;
+  } 
+  .mat-cell:nth-child(8), // saneante
+  .mat-header-cell:nth-child(8),
+  {
+    flex: 0 0 200px;
+    overflow: visible;
+    align-self: center;
+  } 
   .custom-modalbox {
       overflow: hidden !important;
       border-radius: 5px !important;

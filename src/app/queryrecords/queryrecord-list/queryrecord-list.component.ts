@@ -156,8 +156,8 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
              
           } else if (this.selectedCategory==2) {
             this.options = [
-              {value: 0,  viewValue: 'Risco 1'},
-              {value: 1,  viewValue: 'Risco 2'}
+              {value: 0,  viewValue: 'Risco 2'},
+              {value: 1,  viewValue: 'Risco 1'}
             ]  
           }
           this.filterService.category = this.selectedCategory;

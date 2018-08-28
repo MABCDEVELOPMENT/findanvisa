@@ -11,7 +11,7 @@
 <mat-dialog-content>
 
   <div class="table-dialog-container">
-    
+
     <mat-table #table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="select">
@@ -51,6 +51,35 @@
           </mat-checkbox>
         </mat-cell>
       </ng-container>
+
+      <!-- foot Column -->
+      <ng-container matColumnDef="foot">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ">
+          <mat-checkbox [(ngModel)]="CNPJ.foot">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- cometic Column -->
+      <ng-container matColumnDef="cosmetic">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cosmetic' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ">
+          <mat-checkbox [(ngModel)]="CNPJ.cosmetic">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- saneante Column -->
+      <ng-container matColumnDef="saneante">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let CNPJ">
+          <mat-checkbox [(ngModel)]="CNPJ.foot">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

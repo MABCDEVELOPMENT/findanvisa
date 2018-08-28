@@ -8,6 +8,9 @@ export class RegisterCNPJ extends DataModel {
      active: boolean;
      category: number;
      sendNotification:boolean=true;
+     cosmetc:boolean=false;
+     foot:boolean=false;
+     saneante:boolean=false;
      insertUser:User;
      insertDate:Date;
      updateUser:User;

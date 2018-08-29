@@ -40,12 +40,33 @@
   {
   flex: 0 0 200px;
   }
-  .mat-cell:nth-child(4), // sendNotification
+  .mat-cell:nth-child(4), // foot
   .mat-header-cell:nth-child(4),
+  {
+    flex: 0 0 100px;
+    overflow: visible;
+    align-self: center;
+  } 
+  .mat-cell:nth-child(5), // cosmetic
+  .mat-header-cell:nth-child(5),
+  {
+    flex: 0 0 100px;
+    overflow: visible;
+    align-self: center;
+  } 
+  .mat-cell:nth-child(6), // saneante
+  .mat-header-cell:nth-child(6),
+  {
+    flex: 0 0 100px;
+    overflow: visible;
+    align-self: center;
+  } 
+  .mat-cell:nth-child(7), // sendNotification
+  .mat-header-cell:nth-child(7),
   {
   flex: 0 0 200px;
   }
-  .mat-cell:nth-child(5) { // Edit
+  .mat-cell:nth-child(8) { // Edit
     -webkit-text-fill-color: $systemColor
   }
 

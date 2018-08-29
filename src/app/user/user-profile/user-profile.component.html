@@ -1,7 +1,7 @@
 <div style="height: 550px;" class="table-container mat-elevation-z8">
   <mat-card class="param-container">
 
-    <mat-card-content >
+    <mat-card-content>
       <form (ngSubmit)="submit" [formGroup]="form">
 
         <div layout="row" layout-align="space-between center" fix>
@@ -18,10 +18,10 @@
             <mat-error *ngIf="form.controls.userName.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
           <mat-form-field class="email">
-              <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"
-              />
-              <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
-            </mat-form-field>
+            <input matInput class="form-control" type="email" placeholder="{{ 'user.email' | translate }}" formControlName="email" [(ngModel)]="data.email"
+            />
+            <mat-error *ngIf="form.controls.email.invalid">{{getErrorMessage() | translate}}</mat-error>
+          </mat-form-field>
           <mat-form-field>
             <input type="password" matInput formControlName="password" autocomplete="current-password" [(ngModel)]="data.password" [placeholder]="'Password' | translate"
               required/>
@@ -29,7 +29,7 @@
               <span translate>Password is required</span>
             </mat-error>
           </mat-form-field>
-         
+
 
         </div>
 
@@ -57,8 +57,26 @@
 
             <!-- category Column -->
             <ng-container matColumnDef="category">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
+              <mat-header-cell  *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.category' | translate }}</mat-header-cell>
               <mat-cell *matCellDef="let CNPJ"> {{ getCategory(CNPJ.category)}} </mat-cell>
+            </ng-container>
+
+            <!-- foot Column -->
+            <ng-container CNPJ.category matColumnDef="foot">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.foot)}} </mat-cell>
+            </ng-container>
+
+            <!-- cometic Column -->
+            <ng-container matColumnDef="cosmetic">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cosmetic' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.cosmetic)}} </mat-cell>
+            </ng-container>
+
+            <!-- saneante Column -->
+            <ng-container matColumnDef="saneante">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.saneante' | translate }}</mat-header-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.saneante)}} </mat-cell>
             </ng-container>
 
             <!-- sendNotification Column -->
@@ -66,6 +84,7 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.sendNotification' | translate }}</mat-header-cell>
               <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.sendNotification)}} </mat-cell>
             </ng-container>
+
 
             <!-- actions -->
             <ng-container matColumnDef="actions">
@@ -97,11 +116,12 @@
           </mat-table>
           <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
           <div align="center" style="margin-bottom: 5px">
-              <mat-dialog-actions>
-                <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" (click)="confirmAdd()" translate>{{ 'save' | translate }}</button>
-                <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
-              </mat-dialog-actions>
-            </div>
+            <mat-dialog-actions>
+              <button class="mat-raised-button" mat-button [type]="submit" [disabled]="form.invalid" (click)="confirmAdd()" translate>{{
+                'save' | translate }}</button>
+              <button class="mat-raised-button" mat-button (click)="onNoClick()" tabindex="-1">{{ 'goback' | translate }}</button>
+            </mat-dialog-actions>
+          </div>
         </div>
 
 

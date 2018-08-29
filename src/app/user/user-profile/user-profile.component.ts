@@ -20,7 +20,7 @@ import { Credentials } from '@app/login/login.component';
 
 export class UserProfileComponent {
 
-  displayedColumns = ['cnpj', 'fullName', 'category','sendNotification','actions'];
+  displayedColumns = ['cnpj', 'fullName', 'category',  'foot', 'cosmetic', 'saneante' ,'sendNotification','actions'];
   ELEMENT_DATA: RegisterCNPJ[]; 
 
   hide: any;
@@ -48,7 +48,6 @@ export class UserProfileComponent {
     {value: true,   viewValue: 'Sim'},
     {value: false,  viewValue: 'Não'}
   ];
-
 
   public mask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
@@ -161,7 +160,7 @@ export class UserProfileComponent {
   addNew(registerCnpj: RegisterCNPJ) {
     const dialogRef = this.dialog.open(CNPJDialogComponent, {data: {registerCNPJ: registerCnpj},
       height: '70vh !important',
-      width: '850px'
+      width: '150vh'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -48,7 +48,7 @@
       <ng-container matColumnDef="foot">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
-          <mat-checkbox *ngIf="CNPJ.category == 0 || CNPJ.category == 3"  [(ngModel)]="CNPJ.foot">
+          <mat-checkbox *ngIf="CNPJ.category == 3"  [(ngModel)]="CNPJ.foot">
           </mat-checkbox>
         </mat-cell>
       </ng-container>
@@ -57,7 +57,7 @@
       <ng-container matColumnDef="cosmetic">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cosmetic' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
-          <mat-checkbox *ngIf="CNPJ.category == 1 || CNPJ.category == 3" [(ngModel)]="CNPJ.cosmetic">
+          <mat-checkbox *ngIf="CNPJ.category == 3" [(ngModel)]="CNPJ.cosmetic">
           </mat-checkbox>
         </mat-cell>
       </ng-container>
@@ -66,7 +66,7 @@
       <ng-container matColumnDef="saneante">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.saneante' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
-          <mat-checkbox *ngIf="CNPJ.category == 2 || CNPJ.category == 3" [(ngModel)]="CNPJ.saneante">
+          <mat-checkbox *ngIf="CNPJ.category == 3" [(ngModel)]="CNPJ.saneante">
           </mat-checkbox>
         </mat-cell>
       </ng-container>

@@ -107,11 +107,16 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
     this.selectedOption = null;
     if (this.selected.category==3) {
 
-        this.categorys = [
-          {value: 0,  viewValue: 'Alimentos'},
-          {value: 1,  viewValue: 'Cosmeticos'},
-          {value: 2,  viewValue: 'Saneantes'}
-        ];
+        this.categorys =  [];
+        if (this.selected.foot == true) {
+           this.categorys.push({value: 0,  viewValue: 'Alimentos' });  
+        }
+        if (this.selected.cosmetic == true) {
+          this.categorys.push({value: 1,  viewValue: 'Cosmeticos' });  
+        }
+        if (this.selected.saneante == true) {
+          this.categorys.push({value: 2,  viewValue: 'Saneantes' });  
+        }
 
         this.options = null;
       

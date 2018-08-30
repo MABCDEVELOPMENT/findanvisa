@@ -189,10 +189,16 @@ export class UserProfileComponent {
         });
   }
 
+  getCategorySelect(cnpj: RegisterCNPJ,active: boolean): string {
+    if (cnpj.category != 3) {
+       return "";
+    }
+    return active ? "Sim" : "Não";
+  }
+  
   getSendNotification(active: boolean): string {
     return active ? "Sim" : "Não";
   }
-
   public getCategory(category: number): string {
     return this.categorys[category]; 
   }

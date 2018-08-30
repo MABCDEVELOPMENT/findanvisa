@@ -31,7 +31,7 @@ flex:150px;
 .mat-cell:nth-child(5), // subject
 .mat-header-cell:nth-child(5),
 {
-flex:500px;
+    float: left;
 
 }
 .mat-row:hover {

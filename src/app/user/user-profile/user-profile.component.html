@@ -64,19 +64,19 @@
             <!-- foot Column -->
             <ng-container CNPJ.category matColumnDef="foot">
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
-              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.foot)}} </mat-cell>
+              <mat-cell  *matCellDef="let CNPJ"> {{ getCategorySelect(CNPJ,CNPJ.foot)}} </mat-cell>
             </ng-container>
 
             <!-- cometic Column -->
             <ng-container matColumnDef="cosmetic">
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cosmetic' | translate }}</mat-header-cell>
-              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.cosmetic)}} </mat-cell>
+              <mat-cell *matCellDef="let CNPJ"> {{ getCategorySelect(CNPJ,CNPJ.cosmetic)}} </mat-cell>
             </ng-container>
 
             <!-- saneante Column -->
             <ng-container matColumnDef="saneante">
               <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.saneante' | translate }}</mat-header-cell>
-              <mat-cell *matCellDef="let CNPJ"> {{ getSendNotification(CNPJ.saneante)}} </mat-cell>
+              <mat-cell  *matCellDef="let CNPJ"> {{getCategorySelect(CNPJ,CNPJ.saneante)}} </mat-cell>
             </ng-container>
 
             <!-- sendNotification Column -->

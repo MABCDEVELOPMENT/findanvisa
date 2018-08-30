@@ -73,6 +73,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
         this.ELEMENT_DATA = this.parent.data['content'];
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.sort      = this.sort;
+        this.dataSource.sortingDataAccessor = (data, header) => data[header];
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
 

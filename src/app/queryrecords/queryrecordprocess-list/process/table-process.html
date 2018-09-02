@@ -25,32 +25,34 @@
 
         <!-- subject Column -->
         <ng-container matColumnDef="order">
-          <mat-header-cell style="width: 300px;" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.order' | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.order' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content"> {{content.ordem}} </mat-cell>
         </ng-container>
 
         <!-- process Column -->
         <ng-container matColumnDef="cnpj">
-          <mat-header-cell style="width: 80px" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.cnpj' | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.cnpj' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content"> {{content.cnpj}} </mat-cell>
         </ng-container>
 
         <!-- transaction Column -->
         <ng-container matColumnDef="socialName">
-          <mat-header-cell style="width: 50px" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.socialName' | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.socialName' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content"> {{content.razaoSocial}} </mat-cell>
         </ng-container>
 
         <!-- process Column -->
         <ng-container matColumnDef="process">
-          <mat-header-cell style="width: 80px" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
         </ng-container>
 
         <!-- officehour Column -->
         <ng-container matColumnDef="subject">
-          <mat-header-cell style="width: 50px" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subject' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.assunto}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subject' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content"> 
+                   {{content.assunto}}
+          </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

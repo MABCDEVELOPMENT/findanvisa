@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core'
 import { UserService } from '../../user/user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { User } from '@app/user/user-model';
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { I18nService, extract, AuthenticationService } from '@app/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
@@ -56,6 +57,7 @@ export class UserProfileComponent {
     public data: User,
     private router: Router,
     public dataService: UserService,
+    public spinnerService: Ng4LoadingSpinnerService,
     private authenticationService: AuthenticationService,
     public i18n: I18nService) {
 
@@ -78,10 +80,11 @@ export class UserProfileComponent {
   }
 
   ngAfterViewInit() {
-
+    
   }
   
   ngOnInit() {
+    this.spinnerService.show();
     this.loadUser();
     this.form = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
@@ -92,6 +95,7 @@ export class UserProfileComponent {
       //dateBrith: new FormControl('', [Validators.required]),
       //cellPhone: new FormControl('', [])
     });
+    this.spinnerService.hide();
   }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
@@ -126,19 +130,22 @@ export class UserProfileComponent {
       .then(
         data => {
           this.data = data;
+          
           this.ELEMENT_DATA = this.data['registerCNPJs'];
           this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
           this.dataSource.sort      = this.sort;
           this.dataSource.paginator = this.paginator;
+
         },
         error => {
           this.error = error.error.errorMessage;
+
           this.showMsg(this.error);
         });
   }
 
   public confirmAdd(): void {
-
+    this.spinnerService.show();
     this.dataService.save(this.data)
     .then(
       data => {
@@ -148,13 +155,15 @@ export class UserProfileComponent {
           isAdm: (data.profile == 1) ,token: '123456'};
            
         this.authenticationService.setCredentials(this.credential); 
+        this.spinnerService.hide();
         this.showMsg("Registro salvo com sucesso!");
       },
       error => {
         this.error = error.error.errorMessage;
+        this.spinnerService.hide();
         this.showMsg(this.error);
       });
-    
+
   }
 
   addNew(registerCnpj: RegisterCNPJ) {
@@ -170,8 +179,9 @@ export class UserProfileComponent {
         // this.dataSource.dataChange.value.push(this.dataService.getDialogData());
         //this.refreshTable();
         //this.dataSource.data.push(this.dataService.getDialogData());
-        this.loadUser();
+        
     });
+    this.loadUser();
   }
 
   deleteItem(register:UserRegisterCNPJ) {
@@ -180,7 +190,7 @@ export class UserProfileComponent {
       .then(
         data => {
           this.loadUser();
-          this.showMsg("Cnpj excluido com sucesso!");
+          //this.showMsg("Cnpj excluido com sucesso!");
         }).catch(
         error => {
           this.error = error.error.errorMessage;

@@ -11,8 +11,9 @@ import { FormGroup,  Validators, FormControl } from '@angular/forms';
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 import { FilterService } from '@app/queryrecords/queryrecord-list/table/filter-service';
+import { Observable } from 'rxjs';
+import { map,startWith } from 'rxjs/operators';
 
 
 @Component({
@@ -35,6 +36,8 @@ export class QueryrecordprocessListComponent implements OnInit, AfterViewInit {
   ELEMENT_DATA: Content[];
   selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
+  filteredOptions: Observable<RegisterCNPJ[]>;
+  
   user:User;
   form: FormGroup;
 
@@ -46,8 +49,6 @@ export class QueryrecordprocessListComponent implements OnInit, AfterViewInit {
     {value: 1,  viewValue: 'Cosmeticos'},
     {value: 2,  viewValue: 'Saneantes'}
   ];
-
-  options:any = [];
 
   constructor( public dialog: MatDialog,
                private router: Router,
@@ -65,6 +66,19 @@ export class QueryrecordprocessListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.createForm();
+    this.filteredOptions = this.form.get('company').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+  
+  private _filter(value: string): RegisterCNPJ[] {
+    
+    const filterValue = value.toLowerCase();
+    if (this.cnpjs) {
+      return this.cnpjs.filter(option => option.fullName.toLowerCase().includes(filterValue));
+    }
   }
 
   ngAfterViewInit() {
@@ -99,13 +113,12 @@ export class QueryrecordprocessListComponent implements OnInit, AfterViewInit {
         });
   }
 
-  onChangeCompany() {
+  onChangeCompany(cnpj:RegisterCNPJ) {
       
-      this.filterService.cnpj = this.selected.cnpj; 
+      this.filterService.cnpj = cnpj.cnpj; 
       this.filterService.user = this.user;
       this.router.navigate(['/queryRecordProcess/filter-process'], { replaceUrl: false });
 
-     
   }
 
     

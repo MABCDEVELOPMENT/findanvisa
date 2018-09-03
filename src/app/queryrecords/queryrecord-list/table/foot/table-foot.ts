@@ -120,5 +120,26 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
       });
 
   }
+
+
+  sortColumnOrder(data:any) {
+    data.sort(function(a:any, b:any,column:string) {
+ 
+        if (column=='maturity') {
+            let str1 = a[column].replace(new RegExp('/', 'g'), '');
+            let str2 = b[column].replace(new RegExp('/', 'g'), '');
+            let n1:number = str1; 
+            let n2:number = str2;
+        } else {
+
+          if (a[column] < b[column])
+            return -1;
+          if (a.nome > b.nome)
+            return 1;
+          return 0;
+  
+        }
+      });
+  }
     
 }

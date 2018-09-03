@@ -59,6 +59,13 @@ flex:80px;
 flex:80px;
 
 }
+.mat-row {
+    min-height: max-content;
+    border: 0;
+    text-align: justify;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 .mat-row:hover {
     background-color: blue;
     --webkit-text-stroke-color: white;

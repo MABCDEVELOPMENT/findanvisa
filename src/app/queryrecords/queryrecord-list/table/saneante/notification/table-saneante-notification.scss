@@ -59,6 +59,13 @@ font-size: $font-line-size;
 flex: 100px;
 font-size: $font-line-size;
 }
+.mat-row {
+    min-height: max-content;
+    border: 0;
+    text-align: justify;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 .mat-row:hover {
     background-color: blue;
     --webkit-text-stroke-color: white;
@@ -76,3 +83,6 @@ font-size: $font-line-size;
     background-color:	$systemBackgronwd;
 }
 
+.contanier{
+    background-color:	$systemBackgronwd;
+}

@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 import { FilterService } from '@app/queryrecords/queryrecord-list/table/filter-service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 
 @Component({
@@ -35,6 +37,8 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   ELEMENT_DATA: Content[];
   selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
+  filteredOptions: Observable<RegisterCNPJ[]>;
+
   user:User;
   form: FormGroup;
 
@@ -66,14 +70,25 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.createForm();
     this.loadUser();
-
+    this.filteredOptions = this.form.get('company').valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   ngAfterViewInit() {
 
   } 
   
-  
+  private _filter(value: string): RegisterCNPJ[] {
+    
+    const filterValue = value.toLowerCase();
+    if (this.cnpjs) {
+      return this.cnpjs.filter(option => option.fullName.toLowerCase().includes(filterValue));
+    }
+  }
+
   createForm() {
     this.form =  new FormGroup({
       company: new FormControl('',[Validators.required]),
@@ -103,18 +118,18 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
         });
   }
 
-  onChangeCompany() {
+  onChangeCompany(cnpj:RegisterCNPJ) {
     this.selectedOption = null;
-    if (this.selected.category==3) {
+    if (cnpj.category==3) {
 
         this.categorys =  [];
-        if (this.selected.foot == true) {
+        if (cnpj.foot == true) {
            this.categorys.push({value: 0,  viewValue: 'Alimentos' });  
         }
-        if (this.selected.cosmetic == true) {
+        if (cnpj.cosmetic == true) {
           this.categorys.push({value: 1,  viewValue: 'Cosmeticos' });  
         }
-        if (this.selected.saneante == true) {
+        if (cnpj.saneante == true) {
           this.categorys.push({value: 2,  viewValue: 'Saneantes' });  
         }
 
@@ -122,23 +137,24 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
       
     } else {
 
-        if (this.selected.category==0) {
+        if (cnpj.category==0) {
 
             this.categorys = [{value: 0,  viewValue: 'Alimentos'}];
             this.options = null;
 
-        } else if (this.selected.category==1) {
+        } else if (cnpj.category==1) {
 
             this.categorys = [{value: 1,  viewValue: 'Cosmeticos'}];
             this.options = null;
 
-        } else if (this.selected.category==2) {
+        } else if (cnpj.category==2) {
 
             this.categorys = [{value: 2,  viewValue: 'Saneantes'}];
             this.options = null;
         }
       }
-      this.filterService.cnpj = this.selected.cnpj;
+      this.filterService.cnpj = cnpj.cnpj;
+      this.selected = cnpj;
       this.onChangeCategory();
       this.onChangeOption();
     }

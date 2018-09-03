@@ -1,20 +1,23 @@
-<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
-  [formGroup]="form">
-  
-      <mat-form-field class="company">
-        <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
+<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px"
+  fxLayoutGap.lt-md="20px" [formGroup]="form">
+
+  <mat-form-field class="company">
+    <!-- <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
           formControlName="company">
           <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
             {{ cnpj.fullName }}
           </mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-  </div>  
-  
-  <div style="margin: 10px;" [ngClass]="'child-container'">
-        <router-outlet></router-outlet>
-  </div>
+        </mat-select> -->
+    <input matInput [placeholder]="'queryRecord.company' | translate" [matAutocomplete]="auto" formControlName="company">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let cnpj of filteredOptions | async" [value]="cnpj.fullName" (onSelectionChange)="onChangeCompany(cnpj)">
+          {{ cnpj.fullName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
- 
+</div>
 
+<div style="margin: 10px;" [ngClass]="'child-container'">
+  <router-outlet></router-outlet>
+</div>

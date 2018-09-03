@@ -1,37 +1,40 @@
-<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px" fxLayoutGap.lt-md="20px"
-  [formGroup]="form">
-  
-      <mat-form-field class="company">
-        <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
-          formControlName="company">
-          <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
-            {{ cnpj.fullName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px"
+  fxLayoutGap.lt-md="20px" [formGroup]="form">
 
-      <mat-form-field class="category" *ngIf="selected">
-        <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
-          formControlName="category">
-          <mat-option *ngFor="let category of categorys" [value]="category.value">
-            {{ category.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field class="company">
+    <!-- <mat-select [(value)]="selected" (selectionChange)="onChangeCompany()" [placeholder]="'queryRecord.company' | translate"
+                formControlName="company">
+                <mat-option *ngFor="let cnpj of cnpjs" [value]="cnpj">
+                  {{ cnpj.fullName }}
+                </mat-option>
+              </mat-select> -->
+    <input matInput [placeholder]="'queryRecord.company' | translate" [matAutocomplete]="auto" formControlName="company">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let cnpj of filteredOptions | async" [value]="cnpj.fullName" (onSelectionChange)="onChangeCompany(cnpj)">
+        {{ cnpj.fullName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-      <mat-form-field class="option" *ngIf="selectedCategory && selectedCategory!=0 && options">
-        <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
-          formControlName="option">
-          <mat-option *ngFor="let option of options" [value]="option.value">
-            {{ option.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field class="category" *ngIf="selected">
+    <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
+      formControlName="category">
+      <mat-option *ngFor="let category of categorys" [value]="category.value">
+        {{ category.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  </div>  
-  <div style="height: 40%;">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-form-field class="option" *ngIf="selectedCategory && selectedCategory!=0 && options">
+    <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
+      formControlName="option">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
- 
-
+</div>
+<div style="height: 40%;">
+  <router-outlet></router-outlet>
+</div>

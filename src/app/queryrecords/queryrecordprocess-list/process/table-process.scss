@@ -7,48 +7,58 @@ body { font-size: $font-line-size;}
 .mat-cell:nth-child(1), // order
 .mat-header-cell:nth-child(1),
 {
-flex:10px;
+    flex: 0 0 5vw;
 
 }
 .mat-cell:nth-child(2), // cnpj
 .mat-header-cell:nth-child(2),
 {
-flex:50px;
+    flex: 0 0  10vw;
 
 }
 .mat-cell:nth-child(3), // company
 .mat-header-cell:nth-child(3),
 {
-flex:250px;
+    flex: 0 0  20vw;
 
 }
 .mat-cell:nth-child(4), // process
 .mat-header-cell:nth-child(4),
 {
-flex:150px;
+    flex: 0 0 10vw;
 
 }
-.mat-cell:nth-child(5), // subject
-.mat-header-cell:nth-child(5),
-{
-    float: left;
+.mat-cell:nth-child(5) {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.mat-header-cell:nth-child(5){
 
+    flex: 0 0 45vw;
+    
+}
+.mat-row {
+    min-height: max-content;
+    border: 0;
+    text-align: justify;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 .mat-row:hover {
     background-color: blue;
     --webkit-text-stroke-color: white;
+    color: white;
     cursor: pointer;
     cursor: hand;
 }
-.contanier{
-    background-color:	$systemBackgronwd;
-  }
 .table-container-process {
     display: flex;
     flex-direction: column;
     height: 50vh;
     max-height: 50vh;
     background-color:	$systemBackgronwd;
-  }
-
+}
+.contanier{
+    background-color:	$systemBackgronwd;
+}
 

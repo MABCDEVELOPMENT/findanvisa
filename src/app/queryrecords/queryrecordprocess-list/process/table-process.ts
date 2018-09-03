@@ -14,7 +14,6 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
     selector: 'table-process',
     templateUrl: './table-process.html',
     styleUrls: ['./table-process.scss']
-
 })
 export class TableProcessComponent implements OnInit, AfterViewInit {
 

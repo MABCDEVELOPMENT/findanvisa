@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, ChangeDetectorRef, OnInit, AfterViewInit } from "@angular/core";
-import { MatTableDataSource, MatSort, MatPaginator, MatTableModule, MatDialog } from "@angular/material";
+import { MatTableDataSource, MatSort, MatPaginator, MatTableModule, MatDialog, Sort } from "@angular/material";
 import { Content } from "@app/queryrecords/modelquery/content.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
@@ -33,6 +33,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     @ViewChild('filter') filter: ElementRef;
     @ViewChild('table') table: MatTableModule;
 
+    sortedData: Content[];
 
     constructor(public dialog: MatDialog,
         private route: ActivatedRoute,
@@ -123,5 +124,9 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     goBack() {
         this._location.back();
     }
+
+
+    
+
 
 }

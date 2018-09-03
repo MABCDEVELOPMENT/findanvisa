@@ -21,7 +21,7 @@
           </tr>
         </table>
 
-      <mat-table class="table-container-process" #table [dataSource]="dataSource" matSort>
+      <mat-table class="table-container-process" #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
         <!-- subject Column -->
         <ng-container matColumnDef="order">

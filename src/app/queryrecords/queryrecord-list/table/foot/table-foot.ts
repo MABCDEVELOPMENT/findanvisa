@@ -1,5 +1,5 @@
 import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
-import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialog } from "@angular/material";
+import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialog, Sort } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
@@ -31,6 +31,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
     @ViewChild('filter') filter: ElementRef;
     @ViewChild('table') table: MatTableModule;
 
+    sortedData: Content[];
 
     constructor(private route: ActivatedRoute,
         public dialog: MatDialog,
@@ -66,9 +67,12 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             // return matchFilter.some(Boolean); // OR condition
         }
 
+        this.sortedData = this.ELEMENT_DATA.slice();
+
       }
       
       ngAfterViewInit() {
+        
         
         this.ELEMENT_DATA = this.parent.data['content'];
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
@@ -111,14 +115,49 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
      }
 
-     goBack () {
+    goBack () {
         this._location.back();
-     }
+    }
+    
      showMsg(message: string): void {
       this.dialog.open(ErrorDialogComponent, {
           data: { errorMsg: message }, width: '250px', height: '250px'
       });
+    }
 
-  }
+    sortData(sort: Sort) {
+        const data = this.ELEMENT_DATA.slice();
+        if (!sort.active || sort.direction === '') {
+          this.sortedData = data;
+          return;
+        }
+        //['product','register','process','company','situation','maturity'];
+        this.sortedData = data.sort((a, b) => {
+          const isAsc = sort.direction === 'asc';
+          switch (sort.active) {
+            case 'product': return compare(a['produto'], b['produto'], isAsc);
+            case 'register': return compare(a['registro'], b['registro'], isAsc);
+            case 'process': return compare(a['processo'], b['processo'], isAsc);
+            case 'company': return compare(a['empresa'], b['empresa'], isAsc);
+            case 'situation': return compare(a['situacao'], b['situacao'], isAsc);
+            case 'maturity': {
+                let str:string = a['vencimento'];
+                str = str.replace('/','');
+                let numberA = Number(str);
+                str = b['vencimento'];
+                str = str.replace('/','');
+                let numberB = Number(str);
+                return compare(numberA, numberB, isAsc);
+            }
+            default: return 0;
+          }
+        });
+    }
+
+
     
+}
+
+function compare(a:any, b:any, isAsc:any) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

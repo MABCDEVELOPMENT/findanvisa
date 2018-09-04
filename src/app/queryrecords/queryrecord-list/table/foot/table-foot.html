@@ -17,7 +17,7 @@
           </tr>
         </table>
 
-  <mat-table class="table-container-foot" #table [dataSource]="dataSource">
+  <mat-table class="table-container-foot" #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <!-- product Column -->
     <ng-container style="width: 350px" matColumnDef="product">
@@ -51,7 +51,7 @@
     <!-- company Column -->
     <ng-container matColumnDef="maturity">
       <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-      <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
+      <mat-cell *matCellDef="let content"> {{content.dataVencimento | date:'MM/yyyy'}} </mat-cell>
     </ng-container>
 
     <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>

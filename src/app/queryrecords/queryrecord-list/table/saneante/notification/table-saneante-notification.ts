@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, ChangeDetectorRef, OnInit, AfterViewInit } from "@angular/core";
-import { MatTableDataSource, MatSort, MatPaginator, MatTableModule, MatDialog } from "@angular/material";
+import { MatTableDataSource, MatSort, MatPaginator, MatTableModule, MatDialog, Sort } from "@angular/material";
 import { Content } from "@app/queryrecords/modelquery/content.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
@@ -18,7 +18,9 @@ import { Location } from "@angular/common";
 })
 export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit {
   
-    ELEMENT_DATA: Content[];  
+    ELEMENT_DATA: any[] = [];  
+
+    sortedData: any[];
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
@@ -42,6 +44,8 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
         public dataService: QueryrecordsService,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){
+        
+        this.sortedData = this.ELEMENT_DATA.slice();
 
     }
 
@@ -52,7 +56,9 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
       }
   
       ngOnInit() {
-  
+          
+          this.sortedData = this.ELEMENT_DATA.slice();
+
           this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
             const matchFilter:any = [];
             const filters = JSON.parse(filtersJson);
@@ -125,6 +131,47 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
        goBack () {
           this._location.back();
        }
+       
+       sortData(sort: Sort) {
+        const data = this.ELEMENT_DATA.slice();
+        if (!sort.active || sort.direction === '') {
+          this.sortedData = data;
+          return;
+        }
 
+        //['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
+        this.sortedData = this.ELEMENT_DATA.sort((a, b) => {
+          const isAsc = sort.direction === 'asc';
+          switch (sort.active) {
+            case 'subject':   return compare(a['assunto'],  b['assunto'],  isAsc);
+            case 'process':   return compare(a['processo'], b['processo'], isAsc);
+            case 'officehour':   return compare(new Number(a['expedienteProcesso']), new Number(b['expedienteProcesso']),  isAsc);
+            case 'transaction':   return compare(new Number(a['transacao']), new Number(b['transacao']),  isAsc);
+            case 'product': return compare(a['produto'], b['produto'], isAsc);
+            case 'company': return compare(a['empresa'], b['empresa'], isAsc);
+            case 'situation': return compare(a['situacao'], b['situacao'], isAsc);
+            case 'maturity': {
+                return compareDate(a['vencimento'], b['vencimento'], isAsc);
+            }
+            case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);
+            default: return 0;
+          }
+        });
 
+        this.dataSource = new MatTableDataSource(this.sortedData);
+        //this.dataSource.sort = this.sort;
+       // this.dataSource.sortingDataAccessor = (data, header) => data[header];
+        this.dataSource.paginator = this.paginator;
+        this.dataSource._updatePaginator;
+
+    }
+   
+}
+
+function compare(a:any, b:any, isAsc:any) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+function compareDate(a:Date, b:Date, isAsc:boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

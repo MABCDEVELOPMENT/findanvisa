@@ -1,6 +1,6 @@
 import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
 import { TableComponent } from "@app/queryrecords/queryrecord-list/table/table-component";
-import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialog } from "@angular/material";
+import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialog, Sort } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
@@ -18,7 +18,9 @@ import { Location } from "@angular/common";
 })
 export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
 
-    ELEMENT_DATA: Content[];  
+    ELEMENT_DATA: any[] = [];  
+
+    sortedData: any[];
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
@@ -42,6 +44,8 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
       public dataService: QueryrecordsService,
       public spinnerService: Ng4LoadingSpinnerService,
       private ref: ChangeDetectorRef){
+      
+      this.sortedData = this.ELEMENT_DATA.slice();
 
     }
   
@@ -52,6 +56,8 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
     }
 
     ngOnInit() {
+        
+        this.sortedData = this.ELEMENT_DATA.slice();
 
         this.dataSource.filterPredicate = (data: any, filtersJson: string) => {
           const matchFilter:any = [];
@@ -120,4 +126,44 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
           data: { errorMsg: message }, width: '250px', height: '250px'
       });
     }
+    sortData(sort: Sort) {
+      const data = this.ELEMENT_DATA.slice();
+      if (!sort.active || sort.direction === '') {
+        this.sortedData = data;
+        return;
+      }
+
+      //['product','register','process','company','situation','maturity'];
+      this.sortedData = this.ELEMENT_DATA.sort((a, b) => {
+        const isAsc = sort.direction === 'asc';
+        switch (sort.active) {
+
+          case 'product': return compare(a['produto'], b['produto'], isAsc);
+          case 'register':return compare(new Number(a['registro']), new Number(b['registro']),  isAsc);
+          case 'process': return compare(new Number(a['processo']), new Number(b['processo']),  isAsc);
+          case 'company': return compare(a['empresa'], b['empresa'], isAsc);
+          case 'situation': return compare(a['situacao'], b['situacao'], isAsc);
+          case 'maturity': {
+              return compareDate(a['vencimento'], b['vencimento'], isAsc);
+          }
+          default: return 0;
+        }
+      });
+
+      this.dataSource = new MatTableDataSource(this.sortedData);
+      //this.dataSource.sort = this.sort;
+     // this.dataSource.sortingDataAccessor = (data, header) => data[header];
+      this.dataSource.paginator = this.paginator;
+      this.dataSource._updatePaginator;
+
+  }
+ 
+}
+
+function compare(a:any, b:any, isAsc:any) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+function compareDate(a:Date, b:Date, isAsc:boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

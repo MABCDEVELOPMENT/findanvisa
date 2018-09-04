@@ -8,61 +8,62 @@
 .mat-cell:nth-child(1), // subject
 .mat-header-cell:nth-child(1),
 {
-flex: 200px;
+flex: 25vh;
 
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
-flex: 150px;
+flex: 15vh;
 
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
-flex: 100px;
+flex: 10vh;
 
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
-flex: 100px;
+flex: 10vh;
 
 }
 .mat-cell:nth-child(5), // product
 .mat-header-cell:nth-child(5),
 {
-flex: 200px;
+flex: 40vh;
 
 }
 .mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
-flex: 300px;
+flex: 35vh;
 
 }
 .mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
 {
-flex: 150px;
+flex: 15vh;
 
 }
 .mat-cell:nth-child(8), // maturity
 .mat-header-cell:nth-child(8),
 {
-flex: 100px;
+flex: 5vh;
 
 }
 .mat-cell:nth-child(9), // statusMaturity
 .mat-header-cell:nth-child(9),
 {
-flex: 100px;
+flex: 5vh;
 
 }
 .mat-row {
     min-height: max-content;
+    max-height: max-content;
     border: 0;
-    text-align: justify;
+
     margin-top: 2px;
     margin-bottom: 2px;
 }

@@ -124,8 +124,40 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         this._location.back();
     }
 
+    sortData(sort: Sort) {
+        const data = this.ELEMENT_DATA.slice();
+        if (!sort.active || sort.direction === '') {
+          this.sortedData = data;
+          return;
+        }
 
-    
+        //['order', 'cnpj', 'socialName', 'process', 'subject'];
+        this.sortedData = this.ELEMENT_DATA.sort((a, b) => {
+          const isAsc = sort.direction === 'asc';
+          switch (sort.active) {
+            case 'order':   return compare(new Number(a['ordem']), new Number(b['ordem']),  isAsc);
+            case 'cnpj':   return compare(a['cnpj'], b['cnpj'], isAsc);
+            case 'socialName':   return compare(a['razaoSocial'], b['razaoSocial'], isAsc);
+            case 'process':   return compare(new Number(a['processo']), new Number(b['processo']),  isAsc);
+            case 'subject':   return compare(a['assunto'], b['assunto'], isAsc);
+            default: return 0;
+          }
+        });
 
+        this.dataSource = new MatTableDataSource(this.sortedData);
+        //this.dataSource.sort = this.sort;
+       // this.dataSource.sortingDataAccessor = (data, header) => data[header];
+        this.dataSource.paginator = this.paginator;
+        this.dataSource._updatePaginator;
 
+    }
+   
+}
+
+function compare(a:any, b:any, isAsc:any) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+function compareDate(a:Date, b:Date, isAsc:boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

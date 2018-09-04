@@ -21,7 +21,7 @@
             </tr>
           </table>
 
-      <mat-table class="table-container-saneante-notification" #table [dataSource]="dataSource" matSort>
+      <mat-table class="table-container-saneante-notification" #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
@@ -68,7 +68,7 @@
         <!-- maturity Column -->
         <ng-container matColumnDef="maturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <!-- statusMaturity Column -->

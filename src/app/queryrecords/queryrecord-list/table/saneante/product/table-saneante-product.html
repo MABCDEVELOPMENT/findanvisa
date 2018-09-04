@@ -1,27 +1,27 @@
-<mat-card class="contanier mat-elevation-z8"> 
-    <!-- Title of an Card -->
-  
-  
-    <mat-card-content >
-      
-      <div>
-        <table style="width:  100%">
-          <tr>
-            <td style="width:  80%">
-              <mat-form-field style="width:  80%">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-              </mat-form-field>
-            </td>
-            <td>
-              <button mat-icon-button (click)="exportAsExcel()">
-                <mat-icon>import_export</mat-icon>
-                <b>{{ 'exportAsExcel' | translate }}</b>
-              </button>
-            </td>
-          </tr>
-        </table>
+<mat-card class="contanier mat-elevation-z8">
+  <!-- Title of an Card -->
 
-      <mat-table #table class="table-container-saneante-product" [dataSource]="dataSource" matSort>
+
+  <mat-card-content>
+
+    <div>
+      <table style="width:  100%">
+        <tr>
+          <td style="width:  80%">
+            <mat-form-field style="width:  80%">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-icon-button (click)="exportAsExcel()">
+              <mat-icon>import_export</mat-icon>
+              <b>{{ 'exportAsExcel' | translate }}</b>
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <mat-table #table class="table-container-saneante-product" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
         <!-- product Column -->
         <ng-container style="width: 350px" matColumnDef="product">
@@ -64,10 +64,10 @@
       </mat-table>
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
       <div align="center">
-          <mat-dialog-actions>
-            <button  class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
-          </mat-dialog-actions>
-      </div> 
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </mat-dialog-actions>
+      </div>
     </div>
   </mat-card-content>
 

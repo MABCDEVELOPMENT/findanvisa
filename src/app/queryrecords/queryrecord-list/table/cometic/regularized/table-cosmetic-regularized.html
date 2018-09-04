@@ -22,7 +22,7 @@
     </table>
 
 
-      <mat-table #table class="table-container-cosmetic-regularized" [dataSource]="dataSource" matSort>
+      <mat-table #table class="table-container-cosmetic-regularized" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
         <!-- process Column -->
           <ng-container matColumnDef="process">
               <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
@@ -50,7 +50,7 @@
         <!-- company Column -->
         <ng-container matColumnDef="maturity">
           <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.vencimento}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

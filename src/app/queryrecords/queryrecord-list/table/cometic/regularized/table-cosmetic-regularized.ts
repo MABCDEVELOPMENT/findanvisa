@@ -8,6 +8,8 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
+import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
 
 @Component({
     selector: 'table-cosmetic-regularized',
@@ -22,6 +24,8 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
+    queryRecordProcessParameter: QueryRecordProcessParameter;
+
     data: any;
 
     error: string;
@@ -37,6 +41,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
     constructor(public dialog: MatDialog,
         private route: ActivatedRoute,
         public parent: FilterService,
+        public parentProcess: FilterProcessService,
         private _location: Location,
         private router: Router,
         public dataService: QueryrecordsService,
@@ -102,6 +107,33 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
       });
 
      }
+
+    loadProcess(process:string) {
+        this.queryRecordProcessParameter = new QueryRecordProcessParameter(null,
+            null,
+            process,
+            null,
+            null,
+            null,
+            null);
+
+        this.spinnerService.show();
+        this.dataService.getQueryProcessoRegisters(this.queryRecordProcessParameter)
+            .then(
+                data => {
+                    this.data = data;
+                    this.parentProcess.data = this.data;
+                    this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
+                    this.spinnerService.hide();
+                }).catch(
+                    error => {
+                        this.error = error.error.errorMessage;
+                        this.spinnerService.hide();
+                        this.showMsg(this.error);
+
+                    });
+    }
+    
     getDetail(content: any) {
 
         this.spinnerService.show();

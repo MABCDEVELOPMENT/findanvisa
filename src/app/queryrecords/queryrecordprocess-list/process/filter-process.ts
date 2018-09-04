@@ -8,6 +8,7 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { AuthenticationService, I18nService } from "@app/core";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 
 @Component({
     selector: 'filter-process',
@@ -35,7 +36,7 @@ export class FilteProcessComponent implements OnInit, AfterViewInit {
 
     constructor(public dialog: MatDialog,
         private router: Router,
-        private filterService: FilterService,
+        private filterService: FilterProcessService,
         private spinnerService: Ng4LoadingSpinnerService,
         public dataService: QueryrecordsService,
         private authenticationService: AuthenticationService,

@@ -9,6 +9,7 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { extend } from "webdriver-js-extender";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 
 @Component({
     selector: 'detail-process',
@@ -21,7 +22,7 @@ export class DetailProcessComponent implements OnInit,AfterViewInit  {
     apresentacoes:any;
 
     constructor(private route: ActivatedRoute,
-        public parent: FilterService,
+        public parent: FilterProcessService,
         private _location: Location,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){

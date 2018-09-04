@@ -10,6 +10,8 @@ import { extend } from "webdriver-js-extender";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { Location } from "@angular/common";
+import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 
 @Component({
     selector: 'table-saneante-product',
@@ -23,6 +25,8 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
     sortedData: any[];
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
+    queryRecordProcessParameter: QueryRecordProcessParameter;
   
     data:any;
 
@@ -41,6 +45,7 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
       private router: Router,
       private _location: Location,
       public parent: FilterService,
+      public parentProcess: FilterProcessService,
       public dataService: QueryrecordsService,
       public spinnerService: Ng4LoadingSpinnerService,
       private ref: ChangeDetectorRef){
@@ -99,6 +104,31 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
         XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
      }
 
+    loadProcess(process:string) {
+      this.queryRecordProcessParameter = new QueryRecordProcessParameter(null,
+          null,
+          process,
+          null,
+          null,
+          null,
+          null);
+
+      this.spinnerService.show();
+      this.dataService.getQueryProcessoRegisters(this.queryRecordProcessParameter)
+          .then(
+              data => {
+                  this.data = data;
+                  this.parentProcess.data = this.data;
+                  this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
+                  this.spinnerService.hide();
+              }).catch(
+                  error => {
+                      this.error = error.error.errorMessage;
+                      this.spinnerService.hide();
+                      this.showMsg(this.error);
+
+                  });
+     }
      getDetail(content:any) {
 
       this.spinnerService.show();

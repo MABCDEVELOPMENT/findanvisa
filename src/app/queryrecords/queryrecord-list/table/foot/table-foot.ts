@@ -7,6 +7,8 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { Location } from "@angular/common";
+import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 
 @Component({
     selector: 'table-foot',
@@ -21,6 +23,8 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
+    queryRecordProcessParameter: QueryRecordProcessParameter;
+
     data:any;
 
     error:string;
@@ -39,6 +43,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
         private router: Router,
         private _location: Location,
         public parent: FilterService,
+        public parentProcess: FilterProcessService,
         public dataService: QueryrecordsService,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){
@@ -113,7 +118,33 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
                     });
 
-     }
+    }
+
+    loadProcess(process:string) {
+        this.queryRecordProcessParameter = new QueryRecordProcessParameter(null,
+            null,
+            process,
+            null,
+            null,
+            null,
+            null);
+
+        this.spinnerService.show();
+        this.dataService.getQueryProcessoRegisters(this.queryRecordProcessParameter)
+            .then(
+                data => {
+                    this.data = data;
+                    this.parentProcess.data = this.data;
+                    this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
+                    this.spinnerService.hide();
+                }).catch(
+                    error => {
+                        this.error = error.error.errorMessage;
+                        this.spinnerService.hide();
+                        this.showMsg(this.error);
+
+                    });
+    }
 
     goBack () {
         this._location.back();

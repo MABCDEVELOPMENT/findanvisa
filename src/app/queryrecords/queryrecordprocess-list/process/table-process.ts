@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
-import { Alert } from "selenium-webdriver";
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { Location } from "@angular/common";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
+import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 
 @Component({
     selector: 'table-process',
@@ -36,7 +36,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
 
     constructor(public dialog: MatDialog,
         private route: ActivatedRoute,
-        public parent: FilterService,
+        public parentProcess: FilterProcessService,
         private _location: Location,
         private router: Router,
         public dataService: QueryrecordsService,
@@ -72,7 +72,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
 
-        this.ELEMENT_DATA = this.parent.data['content'];
+        this.ELEMENT_DATA = this.parentProcess.data['content'];
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -90,7 +90,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         var today = new Date();
         var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
         var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-        var name = this.parent.user.userName + " " + date + time;
+        var name = this.parentProcess.user.userName + " " + date + time;
         // +
         XLSX.writeFile(workbook, name + '.xls', { bookType: 'xls', type: 'buffer' });
     }
@@ -105,10 +105,10 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     getDetail(content: any) {
 
         this.spinnerService.show();
-        this.dataService.getQueryRegistersProcessDetail(this.parent.category, this.parent.option, content.processo)
+        this.dataService.getQueryRegistersProcessDetail(this.parentProcess.category, this.parentProcess.option, content.processo)
             .then(
                 data => {
-                    this.parent.detail = data['contentObject'];
+                    this.parentProcess.detail = data['contentObject'];
                     this.router.navigate(['/queryRecordProcess/detail-process'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(

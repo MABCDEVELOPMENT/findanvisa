@@ -22,49 +22,52 @@
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subject' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.assunto}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.assunto}} </mat-cell>
         </ng-container>
 
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.processo}}           
+            <button mat-icon-button (click)="loadProcess(content.processo)">
+              <mat-icon>search</mat-icon>
+            </button></mat-cell>
         </ng-container>
 
         <!-- officehour Column -->
         <ng-container matColumnDef="officehour">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.officehour' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.expedienteProcesso}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.expedienteProcesso}} </mat-cell>
         </ng-container>
 
         <!-- transaction Column -->
         <ng-container matColumnDef="transaction">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.generatedTransaction' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.transacao}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.transacao}} </mat-cell>
         </ng-container>
 
         <!-- product Column -->
         <ng-container matColumnDef="product">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.produto}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.produto}} </mat-cell>
         </ng-container>
 
         <!-- company Column -->
         <ng-container matColumnDef="company">
           <mat-header-cell *matHeaderCellDef>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.razaoSocial}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.razaoSocial}} </mat-cell>
         </ng-container>
 
         <!-- situation Column -->
         <ng-container matColumnDef="situation">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.situacao}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.situacao}} </mat-cell>
         </ng-container>
 
         <!-- maturity Column -->
         <ng-container matColumnDef="maturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <!-- statusMaturity Column
@@ -74,7 +77,7 @@
         </ng-container> -->
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row (click)="getDetail(row)"  *matRowDef="let row; columns: displayedColumns;">
+        <mat-row   *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
       </mat-table>
 

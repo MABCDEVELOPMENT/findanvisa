@@ -40,6 +40,7 @@ import { DetailCosmeticRegularizedComponent } from '@app/queryrecords/queryrecor
 import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/detail/detail-seneante-product';
 import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
 import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
+import { FilterProcessService } from '@app/queryrecords/queryrecordprocess-list/process/filter-service-process';
 
 
 
@@ -103,7 +104,7 @@ import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-lis
     FilteProcessComponent,
     TableProcessComponent,
     DetailProcessComponent],
-  providers: [QueryrecordsService, Queryrecords,FilterService],
+  providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class QueryrecordsModule { }

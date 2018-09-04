@@ -14,6 +14,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FilterService } from '@app/queryrecords/queryrecord-list/table/filter-service';
 import { Observable } from 'rxjs';
 import { map,startWith } from 'rxjs/operators';
+import { FilterProcessService } from '@app/queryrecords/queryrecordprocess-list/process/filter-service-process';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class QueryrecordprocessListComponent implements OnInit, AfterViewInit {
   constructor( public dialog: MatDialog,
                private router: Router,
                private spinnerService: Ng4LoadingSpinnerService,
-               private filterService: FilterService,
+               private filterService: FilterProcessService,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
                public i18nService: I18nService) { 

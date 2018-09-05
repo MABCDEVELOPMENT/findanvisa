@@ -7,10 +7,6 @@ import {HttpClient } from '@angular/common/http';
 import { Login } from '@app/login/login.model';
 import 'rxjs/add/operator/toPromise';
 
-
-
-
-
 export interface Credentials {
   // Customize received credentials here
   id: number;
@@ -76,9 +72,6 @@ export class AuthenticationService {
     // .toPromise()
     // .then(response => response)
     // .catch(error=> error);
-
-
-    
   }
 
     /**

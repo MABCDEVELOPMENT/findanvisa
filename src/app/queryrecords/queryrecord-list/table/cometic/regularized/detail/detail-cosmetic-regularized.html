@@ -27,7 +27,7 @@
                     <td style="width: 20%">{{ 'recordCosmeticRegularizedDetail.authorization' | translate }}</td>
                 </tr>
                 <tr>
-                    <td> {{content.empresaDetentora.cnpj}}</td>
+                    <td> <!-- {{content.empresaDetentora.cnpj}}--></td> 
                     <td> {{content.empresaDetentora.razaoSocial}}</td>
                     <td> {{content.empresaDetentora.autorizacao}}</td>
                 </tr>
@@ -50,7 +50,7 @@
             <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.process' | translate }}</td>
-                        <td style="width: 85%">{{content.caracterizacaoVigente.processo}}</td>
+                        <td style="width: 85%">{{content.caracterizacaoVigente.processo | mask: '000000.00000/00'}}</td>
                     </tr>
                     <tr>
                             <td style="width: 15%">{{ 'recordCosmeticRegularizedDetail.productGroup' | translate }}</td>
@@ -65,7 +65,7 @@
                             <td style="width: 85%">{{content.caracterizacaoVigente.formaFisica}}</td>
                     </tr>                    
             </table>            
-            <table class="table-detail" style="width:100%;">
+            <table *ngIf="content.locaisNacionais!=null" class="table-detail" style="width:100%;">
                     <tr>
                         <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.placeOfFabrication' | translate }}</td>
                     </tr>
@@ -73,13 +73,13 @@
                             <td align="center" style="width: 100%">{{ 'recordCosmeticRegularizedDetail.national' | translate }}</td>
                     </tr>
             </table>
-            <table class="table-detail" style="width:100%;">
+            <table *ngIf="content.locaisNacionais!=null" class="table-detail" style="width:100%;">
                     <tr>
                             <td align="center" style="width: 20%">{{ 'queryRecord.cnpj' | translate }} </td>
                             <td align="left" style="width: 60%">{{ 'recordCosmeticRegularizedDetail.manufacturer' | translate }}</td>
                             <td align="center" style="width: 20%">{{ 'queryRecord.authorizationNumber' | translate }} </td>
                     </tr>
-                    <tr>
+                    <tr >
                             <td style="width: 20%">{{content.locaisNacionais.cnpj}}</td>
                             <td style="width: 60%">{{content.locaisNacionais.razaoSocial}}</td>
                             <td style="width: 20%">{{content.locaisNacionais.autorizacao}}</td>

@@ -15,7 +15,7 @@
       </tr>  
       <tr>
         <td style="width: 15%">{{ 'recordFootDetail.cnpj' | translate }}</td>
-        <td> {{content.cnpj}}</td>
+        <td> {{content.cnpj | mask: '99.999.999/9999-99'}}</td>
       </tr>
       <tr>
         <td style="width: 15%">{{ 'recordFootDetail.productName' | translate }}</td>
@@ -31,7 +31,7 @@
       </tr> 
       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.process' | translate }}</td>
-          <td>{{content.processo}}</td>
+          <td>{{content.processo | mask: '000000.00000/00'}}</td>
       </tr> 
       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.maturityRegister' | translate }}</td>

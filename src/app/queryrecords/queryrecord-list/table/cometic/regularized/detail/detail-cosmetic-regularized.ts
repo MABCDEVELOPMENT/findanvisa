@@ -35,5 +35,5 @@ export class DetailCosmeticRegularizedComponent implements OnInit,AfterViewInit 
     goBack () {
         this._location.back();
     }
-
+    
 }

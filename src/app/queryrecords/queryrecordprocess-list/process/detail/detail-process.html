@@ -14,7 +14,7 @@
                     <td style="width: 15%">{{ 'recordDetailProcess.company' | translate }}</td>
                     <td> {{content.empresa.razaoSocial}}</td>
                     <td style="width: 15%">{{ 'recordDetailProcess.cnpj' | translate }}</td>
-                    <td style="width: 15%"> {{content.empresa.cnpj}}</td>
+                    <td style="width: 15%"> {{content.empresa.cnpj | mask: '99.999.999/9999-99'}}</td>
                 </tr>
             </table>
             <table class="table-detail" style="width:100%;">
@@ -26,7 +26,7 @@
                     <td style="width: 40%">{{ 'recordDetailProcess.subjectMatter' | translate }}</td>
                 </tr>
                 <tr>
-                    <td> {{content.processo.numero}}</td>
+                    <td> {{content.processo.numero | mask: '000000.00000/00'}}</td>
                     <td> {{content.processo.peticao.protocolo}}</td>
                     <td> {{content.processo.peticao.expediente}}</td>
                     <td> {{content.processo.peticao.dataEntrada}}</td>

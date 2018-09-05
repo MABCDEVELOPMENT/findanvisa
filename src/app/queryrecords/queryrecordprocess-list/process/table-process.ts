@@ -151,6 +151,10 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         this.dataSource._updatePaginator;
 
     }
+
+    maskCnpj(valor: string):string {
+        return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+    }
    
 }
 

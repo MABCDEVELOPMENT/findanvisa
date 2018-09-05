@@ -39,5 +39,9 @@ export class DetailFootComponent implements OnInit,AfterViewInit  {
     goBack () {
         this._location.back();
     }
+    
+    maskCnpj(valor: string):string {
+        return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+    }
 
 }

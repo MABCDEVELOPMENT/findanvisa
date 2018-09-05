@@ -32,7 +32,7 @@
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo}} 
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '000000.00000/00'}} 
               <button mat-icon-button (click)="loadProcess(content.processo)">
                   <mat-icon>search</mat-icon>
               </button>
@@ -60,7 +60,7 @@
         <!-- company Column -->
         <ng-container matColumnDef="company">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.cnpj+" - "+content.razaoSocial}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.cnpj | mask: '99.999.999/9999-99' }}+" - "+{{content.razaoSocial}} </mat-cell>
         </ng-container>
 
         <!-- situation Column -->

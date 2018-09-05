@@ -17,7 +17,7 @@
             <table class="table-detail" style="width:100%;">
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.cnpj' | translate }}</td>
-                    <td> {{content.cnpj}}</td>
+                    <td> {{content.cnpj | mask: '99.999.999/9999-99'}}</td>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.authorization' | translate }}</td>
                     <td> {{content.autorizacao}}</td>
                 </tr>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.process' | translate }}</td>
-                    <td>{{content.processo}}</td>
+                    <td>{{content.processo | mask : '000000.00000/00'}}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.maturityRegister' | translate }}</td>

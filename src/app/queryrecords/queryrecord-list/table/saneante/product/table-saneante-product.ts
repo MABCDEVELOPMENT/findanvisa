@@ -187,7 +187,7 @@ export class TableSaneanteProductComponent implements OnInit,AfterViewInit  {
       this.dataSource._updatePaginator;
 
   }
- 
+
 }
 
 function compare(a:any, b:any, isAsc:any) {

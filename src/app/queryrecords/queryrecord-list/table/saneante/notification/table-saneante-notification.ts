@@ -196,6 +196,7 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
 
     }
    
+    
 }
 
 function compare(a:any, b:any, isAsc:any) {

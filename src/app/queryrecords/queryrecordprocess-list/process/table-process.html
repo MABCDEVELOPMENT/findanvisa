@@ -32,7 +32,7 @@
         <!-- process Column -->
         <ng-container matColumnDef="cnpj">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.cnpj' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.cnpj}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.cnpj | mask: '99.999.999/9999-99'}} </mat-cell>
         </ng-container>
 
         <!-- transaction Column -->
@@ -44,7 +44,7 @@
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '000000.00000/00'}} </mat-cell>
         </ng-container>
 
         <!-- officehour Column -->

@@ -37,7 +37,7 @@
 
         <ng-container matColumnDef="process">
           <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo | mask: '000000.00000/00'}} 
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000'}} 
               <button mat-icon-button (click)="loadProcess(content.processo)">
                   <mat-icon>search</mat-icon>
               </button>

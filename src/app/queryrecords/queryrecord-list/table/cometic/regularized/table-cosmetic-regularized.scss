@@ -4,31 +4,31 @@
 .mat-cell:nth-child(1), // process 
 .mat-header-cell:nth-child(1),
 {
-flex:80px;
+flex:10vh;
 
 }
 .mat-cell:nth-child(2), // product
 .mat-header-cell:nth-child(2),
 {
-flex:400px;
+flex:40vh;
 
 }
 .mat-cell:nth-child(3), // type
 .mat-header-cell:nth-child(3),
 {
-flex:200px;
+flex:10vh;
 
 }
 .mat-cell:nth-child(4), // situation
 .mat-header-cell:nth-child(4),
 {
-flex:250px;
+flex:20vh;
 
 }
 .mat-cell:nth-child(5), // vencimento
 .mat-header-cell:nth-child(5),
 {
-flex:100px;
+flex:15vh;
 
 }
 .mat-row {

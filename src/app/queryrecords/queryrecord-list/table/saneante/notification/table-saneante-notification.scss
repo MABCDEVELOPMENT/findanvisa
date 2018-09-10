@@ -8,55 +8,55 @@
 .mat-cell:nth-child(1), // subject
 .mat-header-cell:nth-child(1),
 {
-flex: 250px;
+flex: 30vh;
 
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
-flex: 200px;
+flex: 22vh;
 
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
-flex: 100px;
+flex: 15vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
-flex: 150px;
+flex: 10vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(5), // product
 .mat-header-cell:nth-child(5),
 {
-flex: 350px;
+flex: 35vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
-flex: 350px;
+flex: 25vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
 {
-flex: 120px;
+flex: 25vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(8), // maturity
 .mat-header-cell:nth-child(8),
 {
-flex: 100px;
+flex: 10vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(9), // statusMaturity
 .mat-header-cell:nth-child(9),
 {
-flex: 100px;
+flex: 10vh;
 font-size: $font-line-size;
 }
 .mat-row {

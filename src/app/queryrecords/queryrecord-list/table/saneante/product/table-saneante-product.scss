@@ -8,37 +8,37 @@
 .mat-cell:nth-child(1), // product
 .mat-header-cell:nth-child(1),
 {
-flex:370px;
+flex:60vh;
 
 }
 .mat-cell:nth-child(2), // register
 .mat-header-cell:nth-child(2),
 {
-flex:100px;
+flex:10vh;
 
 }
 .mat-cell:nth-child(3), // process
 .mat-header-cell:nth-child(3),
 {
-flex:200px;
+flex:15vh;
 
 }
 .mat-cell:nth-child(4), // company
 .mat-header-cell:nth-child(4),
 {
-flex:350px;
+flex:30vh;
 
 }
 .mat-cell:nth-child(5), // situation
 .mat-header-cell:nth-child(5),
 {
-flex:250px;
+flex:25vh;
 
 }
 .mat-cell:nth-child(6), // vencimento
 .mat-header-cell:nth-child(6),
 {
-flex:100px;
+flex:10vh;
 
 }
 .mat-row {

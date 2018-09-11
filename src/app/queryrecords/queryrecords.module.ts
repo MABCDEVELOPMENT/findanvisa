@@ -42,6 +42,7 @@ import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryreco
 import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
 import { FilterProcessService } from '@app/queryrecords/queryrecordprocess-list/process/filter-service-process';
 import {NgxMaskModule} from 'ngx-mask';
+import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/label/label-seneante-product';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import {NgxMaskModule} from 'ngx-mask';
     FilterSaneanteProductComponent,
     TableSaneanteProductComponent,
     DetailSaneanteProductComponent,
+    LabelSaneanteProductComponent,
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,
@@ -99,6 +101,7 @@ import {NgxMaskModule} from 'ngx-mask';
     FilterSaneanteProductComponent,
     TableSaneanteProductComponent,
     DetailSaneanteProductComponent,
+    LabelSaneanteProductComponent,
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,

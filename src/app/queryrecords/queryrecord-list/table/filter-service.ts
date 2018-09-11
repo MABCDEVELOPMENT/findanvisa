@@ -10,5 +10,7 @@ export class FilterService {
     option:number;
     user:User
     detail:any;
+    processo:any;
+    rotulo:any;
 
  }

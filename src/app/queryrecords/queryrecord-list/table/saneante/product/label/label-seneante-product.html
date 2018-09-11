@@ -1,0 +1,27 @@
+<mat-card class="contanier mat-elevation-z8">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    
+          <p align="center" style="height: 100%;">{{content.nomeComercial}}</p>
+    
+  </mat-card-title>
+
+  <mat-card-content>
+   <div  fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">   
+      
+        <img [src]="imageToShow"
+        alt="Place image title"
+        *ngIf="!isImageLoading; else noImageFound">
+   <ng-template #noImageFound>
+        <img src="fallbackImage.png" alt="Fallbackimage">
+   </ng-template>
+
+  </div>  
+  <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10vh;">
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </mat-dialog-actions>
+    </div>
+  </mat-card-content>
+
+</mat-card>

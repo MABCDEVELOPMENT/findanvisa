@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
 import { TableComponent } from "@app/queryrecords/queryrecord-list/table/table-component";
 import { MatTableDataSource, MatPaginator, MatSort, MatTableModule } from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import * as XLSX from 'xlsx';
 import { Content } from "@app/queryrecords/modelquery/content.model";
@@ -22,6 +22,7 @@ export class DetailSaneanteProductComponent implements OnInit,AfterViewInit  {
     constructor(private route: ActivatedRoute,
         public parent: FilterService,
         private _location: Location,
+        private router: Router,
         public spinnerService: Ng4LoadingSpinnerService,
         private ref: ChangeDetectorRef){
 
@@ -34,6 +35,17 @@ export class DetailSaneanteProductComponent implements OnInit,AfterViewInit  {
       
     ngAfterViewInit() {
 
+    }
+
+
+    getLabel(id:any) {
+
+        this.spinnerService.show();
+        this.parent.processo = this.content.processo;
+        this.parent.rotulo = id;
+        this.router.navigate(['/queryRecord/label-saneante-product'], { replaceUrl: false });
+        this.spinnerService.hide();
+  
     }
 
     goBack () {

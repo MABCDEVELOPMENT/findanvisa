@@ -35,12 +35,24 @@
       </tr> 
       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.maturityRegister' | translate }}</td>
-          <td>{{content.mesAnoVencimento}}</td>
+          <td>{{content.mesAnoVencimento | mask: '00/0000'}}</td>
       </tr> 
-      <tr>
+    </table>
+
+    <table class="table-detail" style="width:100%;">  
+                <tr>
+                    <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
+                </tr>
+                <tr *ngFor="let rotulo of content.rotulos; index as i">
+                     <td><a mat-button (click)="getLabel(rotulo)">Visualizar {{i+1}}º rótulo</a></td>
+                </tr>
+    </table> 
+
+    <table class="table-detail" style="width:100%;">
+      <!-- <tr>
           <td style="width: 15%">{{ 'recordFootDetail.brand' | translate }}</td>
           <td>{{content.marca}}</td>
-      </tr> 
+      </tr>  -->
       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.activePrinciple' | translate }}</td>
           <td>{{content.principioAtivo}}</td>

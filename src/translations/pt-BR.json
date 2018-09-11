@@ -140,7 +140,7 @@
   "recordFootDetail.restrictionOfPrescription":"Restrição de Prescrição",
   "recordFootDetail.restrictedUse":"Restrição de uso",
   "recordFootDetail.destination":"Destinação",
-
+  "recordFootDetail.label":"Rotulo",
   "recordCosmeticRegisterDetail.detailOfProduct":"DETALHE DO PRODUTO",
   "recordCosmeticRegisterDetail.companyName":"Nome da Empresa",
   "recordCosmeticRegisterDetail.cnpj":"CNPJ",

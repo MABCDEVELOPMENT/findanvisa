@@ -12,7 +12,7 @@ const proxyConfig = [
      {
        context: '/neapi',
        pathRewrite: { '^/neapi': '' },
-       changeOrigin: true,
+       changeOrigin: false,
        secure: false,
        "target": "http://findinfo.kinghost.net/neapi",
        "secure": false

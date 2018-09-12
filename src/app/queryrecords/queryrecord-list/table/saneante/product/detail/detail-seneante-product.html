@@ -44,7 +44,11 @@
                     <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
                 </tr>
                 <tr *ngFor="let rotulo of content.rotulos; index as i">
-                     <td><a mat-button (click)="getLabel(rotulo)">Visualizar {{i+1}}º rótulo</a></td>
+                     <td >
+                          <button class="btn btn-primary" (click)="getLabel(rotulo)">
+                            Visualizar {{i+1}}º rótulo
+                          </button>
+                    </td>
                 </tr>
     </table> 
 
@@ -84,6 +88,7 @@
   <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10vh;">
         <mat-dialog-actions>
           <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+
         </mat-dialog-actions>
     </div>
   </mat-card-content>

@@ -1,16 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
-import {User} from '../user/user-model';
-import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
 import { Headers, Http } from '@angular/http';
- 
 import 'rxjs/add/operator/toPromise';
-
-import { Alert, error } from 'selenium-webdriver';
-import { environment } from '@env/environment';
-import { Queryrecords} from './queryrecords.model';
-import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { AuthenticationService } from '@app/core';
 import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.model';
 import { Content } from '@app/queryrecords/modelquery/content.model';
@@ -56,13 +49,22 @@ export class QueryrecordsService {
    .catch(error=> Observable.throw(error.message));
  }
 
- getQueryRegistersDetail(category:number,option:number,value:string): Promise<any> {
+ getQueryLabel(label:string): Promise<any> {
+
+  return this.httpClient.get(this.API_URL+'/productLabel/'+label).toPromise()
+ .then(response => response)
+ .catch(error=> Observable.throw(error.message));
+}
+
+getQueryRegistersDetail(category:number,option:number,value:string): Promise<any> {
   
   this.queryRecordDetail = new QueryRecordDetail(category,option,value);
   return this.httpClient.post(this.API_URL+'/productDetial',this.queryRecordDetail).toPromise()
  .then(response => response)
  .catch(error=> Observable.throw(error.message));
 }
+
+
 
 getQueryRegistersProcessDetail(category:number,option:number,value:string): Promise<any> {
   

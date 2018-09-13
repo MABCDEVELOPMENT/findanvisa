@@ -1,62 +1,179 @@
 <mat-card class="contanier mat-elevation-z8">
-  <!-- Title of an Card -->
-  <mat-card-title>
-    
-          <p align="center" style="height: 100%;">{{content.nomeComercial}}</p>
-    
-  </mat-card-title>
+    <!-- Title of an Card -->
+    <mat-card-title>
 
-  <mat-card-content>
-   <div  fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">   
-      <table class="table-detail" style="width:100%;">
-      <tr>
-        <td style="width: 15%">{{ 'recordFootDetail.companyName' | translate }}</td>
-        <td>{{content.razaoSocial}}</td>
-      </tr>  
-      <tr>
-        <td style="width: 15%">{{ 'recordFootDetail.cnpj' | translate }}</td>
-        <td> {{content.cnpj | mask: '99.999.999/9999-99' }}</td>
-      </tr>
-      <tr>
-        <td style="width: 15%">{{ 'recordFootDetail.productName' | translate }}</td>
-        <td>{{content.nomeComercial}}</td>
-      </tr>        
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.class' | translate }}</td>
-          <td>{{content.classesTerapeuticas}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.register' | translate }}</td>
-          <td>{{content.registro}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.process' | translate }}</td>
-          <td>{{content.processo | mask: '00000.000000/0000'}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.maturityRegister' | translate }}</td>
-          <td>{{content.mesAnoVencimento | mask: '00/0000'}}</td>
-      </tr> 
-    </table>
+        <p align="center" style="height: 100%;">{{content.nomeComercial}}</p>
 
-    <table class="table-detail" style="width:100%;">  
+    </mat-card-title>
+
+    <mat-card-content>
+        <div fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">
+            <table class="table-detail" style="width:100%;">
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.companyName' | translate }}</td>
+                    <td>{{content.razaoSocial}}</td>
+                </tr>
+            </table>    
+            <table class="table-detail" style="width:100%;">    
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.cnpj' | translate }}</td>
+                    <td style="width: 35%"> {{content.cnpj | mask: '99.999.999/9999-99' }}</td>
+                    <td style="width: 15%">{{ 'recordFootDetail.authorization' | translate }}</td>
+                    <td style="width: 35%"> {{content.numeroAutorizacao | mask: '9.99.999-9' }}</td>
+                </tr>
+            </table>    
+            <table class="table-detail" style="width:100%;">       
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.productName' | translate }}</td>
+                    <td>{{content.nomeComercial}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.class' | translate }}</td>
+                    <td>{{content.classesTerapeuticas}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.register' | translate }}</td>
+                    <td>{{content.registro}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.process' | translate }}</td>
+                    <td>{{content.processo | mask: '00000.000000/0000'}}</td>
+                </tr>
+                <tr>
+                    <td style="width: 15%">{{ 'recordFootDetail.maturityRegister' | translate }}</td>
+                    <td>{{content.mesAnoVencimento | mask: '00/0000'}}</td>
+                </tr>
+            </table>
+
+            <table class="table-detail" style="width:100%;">
                 <tr>
                     <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
                 </tr>
                 <tr *ngFor="let rotulo of content.rotulos; index as i">
-                     <td >
-                          <button class="btn btn-primary" (click)="getLabel(rotulo)">
+                    <td>
+                        <button class="btn btn-primary" (click)="getLabel(rotulo)">
                             Visualizar {{i+1}}º rótulo
-                          </button>
+                        </button>
                     </td>
                 </tr>
-    </table> 
+            </table>
+            <div *ngFor="let apresentacao of content.apresentacoes">
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 25%">{{ 'recordFootDetail.apresentation' | translate }} 
+                            <tr *ngIf="apresentacao.ativa">Ativa</tr>
+                            <tr *ngIf="apresentacao.inativa">Inativa</tr>
+                            <tr *ngIf="apresentacao.emAnalise">Em Analise</tr>
+                            
+                        </td>
+                        <td style="width: 25%">{{ 'recordFootDetail.pharmaceuticalForm' | translate }}</td>
+                        <td style="width: 25%">{{ 'recordFootDetail.nApres' | translate }}</td>
+                        <td style="width: 25%">{{ 'recordFootDetail.datePublication' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%">{{apresentacao.apresentacao}}</td>
+                        <td style="width: 25%"><tr *ngFor="let forma of apresentacao.formasFarmaceuticas">
+                                                    {{forma}}
+                                              </tr>
+                        </td>
+                        <td style="width: 25%; text-align: center">{{apresentacao.numero}}</td>
+                        <td style="width: 25%; text-align: center">{{apresentacao.dataPublicacao | date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                            <td style="width: 25%">{{'recordFootDetail.validate' | translate}}</td>
+                            <td style="width: 25%">{{apresentacao.validade}} {{'recordFootDetail.months' | translate}}</td>
+                            <td style="width: 25%;">{{'recordFootDetail.register' | translate}}</td>
+                            <td style="width: 25%;">{{apresentacao.registro}}</td>
+                    </tr>
+                
+                </table>
+                <table class="table-detail" style="width:100%;">
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.activePrinciple' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let principioAtivo of apresentacao.principiosAtivos">{{principioAtivo}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.placeOfFabrication' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr>{{'recordFootDetail.primary' | translate }} : {{apresentacao.embalagemPrimaria.tipo}}</tr>
+                                    <tr>{{apresentacao.embalagemSecundaria}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.placeOfFabrication' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr>{{'recordFootDetail.national' | translate }}</tr>
+                                    <tr *ngFor="let nacional of apresentacao.fabricantesNacionais">{{nacional.fabricante}} - {{nacional.cidade}} - {{nacional.pais}}</tr>
+                                    <tr>{{'recordFootDetail.internacional' | translate }}</tr>
+                                    <tr *ngFor="let internacional of apresentacao.fabricantesInternacionais">{{internacional}}</tr>
+                                </td>
+                                
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.routeOfAdministration' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let viaAdministracao of apresentacao.viasAdministracao">{{viaAdministracao}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.singleIFA' | translate}}</td>
 
-    <table class="table-detail" style="width:100%;">
-      <!-- <tr>
+                                      
+                                <td style="width: 75%" *ngIf="apresentacao.ifaUnico">Sim</td>
+                                <td style="width: 75%" *ngIf="!apresentacao.ifaUnico">Não</td>      
+                                
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.conservation' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let conserva of apresentacao.conservacao">{{conserva}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.restrictionOfPrescription' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let prescricao of apresentacao.restricaoPrescricao">{{prescricao}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.restrictedUse' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let uso of apresentacao.restricaoUso">{{uso}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.destination' | translate}}</td>
+                                <td style="width: 75%">
+                                    <tr *ngFor="let destina of apresentacao.destinacao">{{destina}}</tr>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.restrictedHospital' | translate}}</td>
+                                <td style="width: 75%">{{apresentacao.restricaoHospitais}}</td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.tarja' | translate}}</td>
+                                <td style="width: 75%">{{apresentacao.tarja}}</td>
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.referenceDrug' | translate}}</td>
+                                <td style="width: 75%" *ngIf="apresentacao.medicamentoReferencia=='S'">Sim</td>
+                                <td style="width: 75%" *ngIf="apresentacao.medicamentoReferencia=='N'">Não</td>                                 
+                        </tr>
+                        <tr>
+                                <td style="width: 25%">{{'recordFootDetail.fractionalPresentation' | translate}}</td>
+                                <td style="width: 75%" *ngIf="apresentacao.apresentacaoFracionada=='S'">Sim</td>
+                                <td style="width: 75%" *ngIf="apresentacao.apresentacaoFracionada=='N'">Não</td> 
+                        </tr>
+                </table>        
+            </div>
+            <!-- <table class="table-detail" style="width:100%;">
+       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.brand' | translate }}</td>
           <td>{{content.marca}}</td>
-      </tr>  -->
+      </tr>  
       <tr>
           <td style="width: 15%">{{ 'recordFootDetail.activePrinciple' | translate }}</td>
           <td>{{content.principioAtivo}}</td>
@@ -81,16 +198,16 @@
           <td style="width: 15%">{{ 'recordFootDetail.conservation' | translate }}</td>
           <td>{{content.conservacao}}</td>
       </tr> 
-    </table>  
+    </table>   -->
 
 
-  </div>  
-  <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10vh;">
-        <mat-dialog-actions>
-          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </div>
+        <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10vh;">
+            <mat-dialog-actions>
+                <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
 
-        </mat-dialog-actions>
-    </div>
-  </mat-card-content>
+            </mat-dialog-actions>
+        </div>
+    </mat-card-content>
 
 </mat-card>

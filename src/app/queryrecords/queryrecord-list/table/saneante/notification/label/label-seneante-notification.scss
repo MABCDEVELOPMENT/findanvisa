@@ -1,0 +1,21 @@
+@import '../../../../../../../assets/styles/color.scss';
+@import '../../../../../../../assets/styles/crud.scss';
+
+.mat-card-title{
+    display: flex;
+    flex-direction: column;
+    background-color: $systemColor;
+    -webkit-text-fill-color: $systemTextColor;
+    height: 70px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    max-height: 80vh;
+    background-color:	$systemBackgronwd;
+}
+
+ 

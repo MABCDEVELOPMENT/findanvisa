@@ -43,6 +43,7 @@ import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-lis
 import { FilterProcessService } from '@app/queryrecords/queryrecordprocess-list/process/filter-service-process';
 import {NgxMaskModule} from 'ngx-mask';
 import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/label/label-seneante-product';
+import { LabelSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/label/label-seneante-notification';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-lis
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,
+    LabelSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent,
     DetailProcessComponent],
@@ -105,6 +107,7 @@ import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-lis
     FilteSaneanteNotificationComponent,
     TableSaneanteNotificationComponent,
     DetailSaneanteNotificationComponent,
+    LabelSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent,
     DetailProcessComponent],

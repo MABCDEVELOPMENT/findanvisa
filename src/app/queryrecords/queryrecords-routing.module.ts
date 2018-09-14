@@ -25,6 +25,7 @@ import { DetailSaneanteProductComponent } from '@app/queryrecords/queryrecord-li
 import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/detail/detail-saneante-notification';
 import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
 import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/label/label-seneante-product';
+import { LabelSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/label/label-seneante-notification';
 
 const routes: Routes = [
   Route.withShell([
@@ -55,6 +56,7 @@ const routes: Routes = [
         { path: 'filter-saneante-notification', component: FilteSaneanteNotificationComponent },
         { path: 'table-saneante-notification', component: TableSaneanteNotificationComponent },
         { path: 'detail-saneante-notification', component: DetailSaneanteNotificationComponent },
+        { path: 'label-saneante-notification', component: LabelSaneanteNotificationComponent },
       ]
     },
     {

@@ -1,0 +1,24 @@
+<mat-card class="contanier mat-elevation-z8">
+  <!-- Title of an Card -->
+  <mat-card-title>
+    
+          <p align="center" style="height: 60%;">{{content.nomeComercial}}</p>
+    
+  </mat-card-title>
+  <mat-card-content>
+   <div  fxLayout="column" style="max-height:60vh;overflow-y: auto;display: block!important;">   
+      
+        <img  style="object-fit: fill;" mat-card-image src={{imageToShow}}>
+  </div>  
+  <div align="center" style="position:fixed; width:100%; height:10px;  bottom:10vh;">
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+          <button class="mat-raised-button" mat-button (click)="download()">
+                <mat-icon>save_alt</mat-icon>
+                <b>{{ 'download' | translate }}</b>
+          </button>
+        </mat-dialog-actions>
+    </div>
+  </mat-card-content>
+
+</mat-card>

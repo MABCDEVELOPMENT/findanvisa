@@ -38,6 +38,18 @@
                     </tr>
                 </table>
                 <table class="table-detail" style="width:100%;">
+                        <tr>
+                            <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
+                        </tr>
+                        <tr *ngFor="let rotulo of content.rotulos; index as i">
+                            <td>
+                                <button class="btn btn-primary" (click)="getLabel(rotulo)">
+                                    Visualizar {{i+1}}º rótulo
+                                </button>
+                            </td>
+                        </tr>
+                </table>
+                <table class="table-detail" style="width:100%;">
 
                     <tr>
 
@@ -51,12 +63,11 @@
                     <tr *ngFor="let apresentacao of apresentacoes">
                         <td align="left">{{ apresentacao.apresentacao }}</td>
                         <td align="left">{{ apresentacao.versao }}</td>
-                        <td align="left">{{ apresentacao.eans}}</td>
+                        <td align="left"><tr *ngFor="let ean of apresentacoes.eans">{{ean.codigo}} - {{ean.descricao}}</tr> </td>
                     </tr>
 
                 </table>
                 <table class="table-detail" style="width:100%;">
-
                     <tr>
 
                         <td align="center" style="width: 15%">{{ 'recordCosmeticRegisterDetail.officehour' | translate }}

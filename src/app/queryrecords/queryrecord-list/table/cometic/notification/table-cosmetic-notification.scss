@@ -8,54 +8,63 @@
 .mat-cell:nth-child(1), // subject
 .mat-header-cell:nth-child(1),
 {
-    flex: 25vh;
+    flex: 35vh;
+    font-size: $font-line-size;
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
-    flex: 22vh;
+    flex: 25vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
-    flex: 10vh;
+    flex: 15vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
     flex: 10vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(5), // product
 .mat-header-cell:nth-child(5),
 {
     flex: 40vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
     flex: 35vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
 {
     flex: 15vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(8), // maturity
 .mat-header-cell:nth-child(8),
 {
-    flex: 5vh;
+    flex: 10vh;
+    font-size: $font-line-size;
 
 }
 .mat-cell:nth-child(9), // maturity
 .mat-header-cell:nth-child(9),
 {
     flex: 5vh;
+    font-size: $font-line-size;
 
 }
 .mat-row {
@@ -77,8 +86,8 @@
 .table-container-cosmetic-notification {
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    max-height: 50vh;
+    height: 40vh;
+    max-height: 40vh;
     background-color:	$systemBackgronwd;
 }
 

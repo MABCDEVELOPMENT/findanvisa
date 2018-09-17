@@ -46,16 +46,19 @@
             </table>
 
             <table class="table-detail" style="width:100%;">
-                <tr>
-                    <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
-                </tr>
-                <tr *ngFor="let rotulo of content.rotulos; index as i">
-                    <td>
-                        <button class="btn btn-primary" (click)="getLabel(rotulo)">
-                            Visualizar {{i+1}}º rótulo
-                        </button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
+                    </tr>
+                    <tr *ngFor="let rotulo of content.rotulos; index as i">
+                        <td>
+                            <!-- <button class="btn btn-primary" (click)="getLabel(rotulo)">
+                                Visualizar {{i+1}}º rótulo
+                            </button> -->
+
+                            <a href="https://consultas.anvisa.gov.br/api/consulta/produtos/3/{{content.processo}}/rotulo/{{rotulo}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
+
+                        </td>
+                    </tr>
             </table>
             <div *ngFor="let apresentacao of content.apresentacoes">
                 <table class="table-detail" style="width:100%;">
@@ -169,40 +172,11 @@
                         </tr>
                 </table>        
             </div>
-            <!-- <table class="table-detail" style="width:100%;">
-       <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.brand' | translate }}</td>
-          <td>{{content.marca}}</td>
-      </tr>  
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.activePrinciple' | translate }}</td>
-          <td>{{content.principioAtivo}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.packing' | translate }}</td>
-          <td>{{content.embalagem}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.placeOfFabrication' | translate }}</td>
-          <td>{{content.localFabricacao}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.routeOfAdministration' | translate }}</td>
-          <td>{{content.viasAdministrativa}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.singleIFA' | translate }}</td>
-          <td>{{content.ifaUnico}}</td>
-      </tr> 
-      <tr>
-          <td style="width: 15%">{{ 'recordFootDetail.conservation' | translate }}</td>
-          <td>{{content.conservacao}}</td>
-      </tr> 
-    </table>   -->
+            
 
 
         </div>
-        <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10vh;">
+        <div align="center" style="margin-top:5px;">
             <mat-dialog-actions>
                 <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
 

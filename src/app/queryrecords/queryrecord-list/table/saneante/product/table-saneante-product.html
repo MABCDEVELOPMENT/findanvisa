@@ -24,13 +24,13 @@
       <mat-table #table class="table-container-saneante-product" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
         <!-- product Column -->
-        <ng-container style="width: 350px" matColumnDef="product">
+        <ng-container style="width: 40vh" matColumnDef="product">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.produto}} </mat-cell>
         </ng-container>
 
         <!-- year Column -->
-        <ng-container style="width: 50px" matColumnDef="register">
+        <ng-container style="width: 50vh" matColumnDef="register">
           <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.register' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.registro}} </mat-cell>
         </ng-container>

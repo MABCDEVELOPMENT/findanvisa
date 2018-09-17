@@ -31,7 +31,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
 
     error: string;
 
-    displayedColumns = ['subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity', 'statusMaturity'];
+    displayedColumns = ['subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity']; //, 'statusMaturity'
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;

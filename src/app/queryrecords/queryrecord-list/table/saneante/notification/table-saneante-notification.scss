@@ -9,24 +9,24 @@
 .mat-header-cell:nth-child(1),
 {
 flex: 30vh;
-
+font-size: $font-line-size;
 }
 .mat-cell:nth-child(2), // process
 .mat-header-cell:nth-child(2),
 {
-flex: 22vh;
-
+flex: 25vh;
+font-size: $font-line-size;
 }
 .mat-cell:nth-child(3), // officehour
 .mat-header-cell:nth-child(3),
 {
-flex: 15vh;
+flex: 12vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(4), // transaction
 .mat-header-cell:nth-child(4),
 {
-flex: 10vh;
+flex: 15vh;
 font-size: $font-line-size;
 }
 .mat-cell:nth-child(5), // product
@@ -79,8 +79,8 @@ font-size: $font-line-size;
 .table-container-saneante-notification {
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    max-height: 50vh;
+    height: 40vh;
+    max-height: 40vh;
     background-color:	$systemBackgronwd;
 }
 

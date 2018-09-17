@@ -38,7 +38,7 @@ export class LabelSaneanteProductComponent implements OnInit,AfterViewInit  {
 
     ngOnInit() {
         this.content = this.parent.detail;
-        this.imageToShow = environment.serverUrl+ "/findimage/rotulo_"+this.parent.rotulo+".jpg";
+        this.imageToShow = environment.serverUrl+ "/findimage/produto/rotulo_"+this.parent.rotulo+".jpg";
     }
       
     ngAfterViewInit() {

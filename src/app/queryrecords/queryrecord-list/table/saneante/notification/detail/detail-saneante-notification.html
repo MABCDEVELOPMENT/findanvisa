@@ -8,7 +8,7 @@
 
     <mat-card-content>
         <div>
-            <div fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">
+            <div fxLayout="column" style="max-height:60vh;overflow-y: auto;display: block!important;">
                 <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticNotificationDetail.subject' | translate }}</td>
@@ -43,9 +43,12 @@
                         </tr>
                         <tr *ngFor="let rotulo of content.rotulos; index as i">
                             <td>
-                                <button class="btn btn-primary" (click)="getLabel(rotulo)">
+                                <!-- <button class="btn btn-primary" (click)="getLabel(rotulo)">
                                     Visualizar {{i+1}}º rótulo
-                                </button>
+                                </button> -->
+
+                                <a href="https://consultas.anvisa.gov.br/api/consulta/saneantes/notificados/{{content.processo}}/rotulo/{{rotulo}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
+
                             </td>
                         </tr>
                 </table>
@@ -53,8 +56,7 @@
 
                     <tr>
 
-                        <td align="lefit" style="width: 60%">{{ 'recordSeneanteNotificationDetail.apresentation' | translate
-                            }} </td>
+                        <td align="lefit" style="width: 60%">{{ 'recordSeneanteNotificationDetail.apresentation' | translate }} </td>
                         <td align="left" style="width: 20%">{{ 'recordSeneanteNotificationDetail.version' | translate }}</td>
                         <td align="center" style="width: 20%">{{ 'recordSeneanteNotificationDetail.eans' | translate }} </td>
 
@@ -63,7 +65,7 @@
                     <tr *ngFor="let apresentacao of apresentacoes">
                         <td align="left">{{ apresentacao.apresentacao }}</td>
                         <td align="left">{{ apresentacao.versao }}</td>
-                        <td align="left"><tr *ngFor="let ean of apresentacoes.eans">{{ean.codigo}} - {{ean.descricao}}</tr> </td>
+                        <td align="left"><tr *ngFor="let ean of apresentacao.eans">{{ean.codigo}} / {{ean.descricao}}</tr> </td>
                     </tr>
 
                 </table>
@@ -91,7 +93,7 @@
                 </table>
             </div>
 
-            <div align="center" style="position:fixed; width:100%; height:70px;  bottom:10px;">
+            <div align="center" style="margin-top:5px;">
                 <mat-dialog-actions>
                     <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate
                         }}</button>

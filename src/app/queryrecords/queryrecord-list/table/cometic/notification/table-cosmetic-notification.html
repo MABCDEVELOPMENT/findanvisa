@@ -73,10 +73,10 @@
         </ng-container>
 
         <!-- statusMaturity Column -->
-        <ng-container matColumnDef="statusMaturity">
+        <!-- <ng-container matColumnDef="statusMaturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.statusMaturity' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.statusVencimento}} </mat-cell>
-        </ng-container>
+        </ng-container> -->
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;">

@@ -8,19 +8,19 @@
 .mat-cell:nth-child(1), // product
 .mat-header-cell:nth-child(1),
 {
-flex:60vh;
+flex:40vh;
 
 }
 .mat-cell:nth-child(2), // register
 .mat-header-cell:nth-child(2),
 {
-flex:10vh;
+flex:15vh;
 
 }
 .mat-cell:nth-child(3), // process
 .mat-header-cell:nth-child(3),
 {
-flex:15vh;
+flex:25vh;
 
 }
 .mat-cell:nth-child(4), // company
@@ -61,7 +61,7 @@ flex:10vh;
 .table-container-saneante-product {
   display: flex;
   flex-direction: column;
-  height: 50vh;
-  max-height: 50vh;
+  height: 40vh;
+  max-height: 40vh;
   background-color:	$systemBackgronwd;
 }

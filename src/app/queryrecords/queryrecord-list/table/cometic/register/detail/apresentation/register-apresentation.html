@@ -33,26 +33,26 @@
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.placeOfFabrication' | translate }}</td>
                         <td>
-                        <table style="width:100%;"> 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.cnpj' | translate}}</td></tr>
-                            <tr><td>{{content.cnpj | mask: '99.999.999/9999-99'}}</td></tr>
+                        <table style="width:100%;" *ngFor="let fabricante of content.fabricantesNacionais"> 
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.cnpj' | translate}}</tr>
+                            <tr>{{fabricante.cnpj | mask: '99.999.999/9999-99'}}</tr>
 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.socialname' | translate}}</td></tr>
-                            <tr><td>{{content.razaoSocial }}</td></tr>
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.socialname' | translate}}</tr>
+                            <tr>{{fabricante.razaoSocial }}</tr>
 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.county' | translate}}<td></tr>
-                            <tr><td>{{content.cidade}}</td></tr>
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.county' | translate}}</tr>
+                            <tr>{{fabricante.cidade}}</tr>
 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.uf' | translate}}</td></tr>
-                            <tr><td>{{content.uf}}</td></tr>
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.uf' | translate}}</tr>
+                            <tr>{{fabricante.uf}}</tr>
 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.country' | translate}}</td></tr>
-                            <tr><td>{{content.pais}}</td></tr>
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.country' | translate}}</tr>
+                            <tr>{{fabricante.pais}}</tr>
 
-                            <tr><td>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.type' | translate}}</td></tr>
-                            <tr><td>{{content.tipo}}</td></tr>
+                            <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.type' | translate}}</tr>
+                            <tr>{{fabricante.tipo}}</tr>
                         </table>       
-                        </td>
+                    </td>
                 </tr>
 
                 <tr>

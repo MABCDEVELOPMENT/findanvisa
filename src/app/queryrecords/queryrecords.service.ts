@@ -58,8 +58,16 @@ export class QueryrecordsService {
 
 getQueryRegistersDetail(category:number,option:number,value:string): Promise<any> {
   
-  this.queryRecordDetail = new QueryRecordDetail(category,option,value);
+  this.queryRecordDetail = new QueryRecordDetail(null,category,option,value);
   return this.httpClient.post(this.API_URL+'/productDetial',this.queryRecordDetail).toPromise()
+ .then(response => response)
+ .catch(error=> Observable.throw(error.message));
+}
+
+getQueryRegistersDetailCosmeticItem(process:string,option:number,value:string): Promise<any> {
+  
+  this.queryRecordDetail = new QueryRecordDetail(process,null,option,value);
+  return this.httpClient.post(this.API_URL+'/findProductCosmetcDetail',this.queryRecordDetail).toPromise()
  .then(response => response)
  .catch(error=> Observable.throw(error.message));
 }
@@ -68,7 +76,7 @@ getQueryRegistersDetail(category:number,option:number,value:string): Promise<any
 
 getQueryRegistersProcessDetail(category:number,option:number,value:string): Promise<any> {
   
-  this.queryRecordDetail = new QueryRecordDetail(category,option,value);
+  this.queryRecordDetail = new QueryRecordDetail(null,category,option,value);
   return this.httpClient.post(this.API_URL+'/processDetail',this.queryRecordDetail).toPromise()
  .then(response => response)
  .catch(error=> Observable.throw(error.message));

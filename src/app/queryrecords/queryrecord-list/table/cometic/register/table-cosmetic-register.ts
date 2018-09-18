@@ -152,6 +152,7 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
                     });
 
     }
+    
     goBack() {
         this._location.back();
     }

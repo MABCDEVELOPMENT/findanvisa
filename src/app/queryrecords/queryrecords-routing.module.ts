@@ -26,6 +26,7 @@ import { DetailSaneanteNotificationComponent } from '@app/queryrecords/queryreco
 import { DetailProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/detail/detail-process';
 import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/label/label-seneante-product';
 import { LabelSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/label/label-seneante-notification';
+import { RegisterApresentationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/apresentation/register-apresentation';
 
 const routes: Routes = [
   Route.withShell([
@@ -39,6 +40,8 @@ const routes: Routes = [
         { path: 'filter-cosmetic-register', component: FilteCosmeticRegisterComponent },
         { path: 'table-cosmetic-register', component: TableCosmeticRegisterComponent },
         { path: 'detail-cosmetic-register', component: DetailCosmeticRegisterComponent },
+        { path: 'detail-cosmetic-register-apresentation', component: RegisterApresentationComponent },
+        
 
         { path: 'filter-cosmetic-notification', component: FilteCosmeticNotificationComponent },
         { path: 'table-cosmetic-notification', component: TableCosmeticNotificationComponent },

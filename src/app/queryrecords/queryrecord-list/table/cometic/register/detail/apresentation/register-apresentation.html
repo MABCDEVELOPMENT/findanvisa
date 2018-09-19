@@ -13,27 +13,27 @@
 
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.produto' | translate }}</td>
-                    <td>{{content.nomeProduto}}</td>
+                    <td>{{contentItem.nomeProduto}}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.process' | translate }}</td>
-                    <td>{{content.processo | mask : '00000.000000/0000'}}</td>
+                    <td>{{contentItem.processo | mask : '00000.000000/0000'}}</td>
                 </tr>
 
                 <tr>
-                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.apresentation' | translate }}</td>
-                    <td>{{content.apresentacao}}</td>
+                    <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.name' | translate }}</td>
+                    <td>{{contentItem.apresentacao}}</td>
                 </tr>
 
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.category' | translate }}</td>
-                    <td>{{content.categoria}}</td>
+                    <td>{{contentItem.categoria}}</td>
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.placeOfFabrication' | translate }}</td>
                         <td>
-                        <table style="width:100%;" *ngFor="let fabricante of content.fabricantesNacionais"> 
+                        <table style="width:100%;" *ngFor="let fabricante of contentItem.fabricantesNacionais"> 
                             <tr>{{'recordCosmeticRegisterDetail.detailOfProductApresentation.cnpj' | translate}}</tr>
                             <tr>{{fabricante.cnpj | mask: '99.999.999/9999-99'}}</tr>
 
@@ -57,58 +57,48 @@
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.category' | translate }}</td>
-                        <td>{{content.categoria}}</td>
+                        <td>{{contentItem.categoria}}</td>
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.physicalForm' | translate }}</td>
-                        <td>{{content.formaFisica}}</td>
+                        <td>{{contentItem.formaFisica}}</td>
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.tonality' | translate }}</td>
-                        <td>{{content.tonalidade}}</td>
+                        <td>{{contentItem.tonalidade}}</td>
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.productShelfLife' | translate }}</td>
-                        <td>{{content.prazoValidade}}</td>
+                        <td>{{contentItem.prazoValidade}} Meses</td>
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.conservation' | translate }}</td>
                         <td>
-                                <tr *ngFor="let conserva of content.conservacao">
+                                <tr *ngFor="let conserva of contentItem.conservacao">
                                     {{conserva}}
                                 </tr>
                         </td>
-                </tr>
-
-                <tr>
-                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.conservation' | translate }}</td>
-                        <td>
-                                <tr *ngFor="let conserva of content.conservacao">
-                                    {{conserva}}
-                                </tr>
-                        </td>
-
                 </tr>
 
                 <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.destination' | translate }}</td>
                         <td>
-                                <tr *ngFor="let destina of content.destinacao">
-                                    {{conserva}}
+                                <tr *ngFor="let destina of contentItem.destinacao">
+                                    {{destina}}
                                 </tr>
                         </td>
                         
                 </tr>
 
                 <tr>
-                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.destination' | translate }}</td>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.Restriction' | translate }}</td>
                         <td>
-                                <tr *ngFor="let destina of content.destinacao">
-                                    {{conserva}}
+                                <tr *ngFor="let restric of contentItem.restricao">
+                                    {{restric}}
                                 </tr>
                         </td>
                         

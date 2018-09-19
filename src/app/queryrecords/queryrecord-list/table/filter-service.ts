@@ -10,6 +10,7 @@ export class FilterService {
     option:number;
     user:User
     detail:any;
+    datailItem:any;
     processo:any;
     rotulo:any;
 

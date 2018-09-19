@@ -51,8 +51,26 @@ export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
         this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,0,value)
             .then(
                 data => {
-                    this.parent.detail = data['contentObject'];
+                    this.parent.datailItem = data['contentObject'];
                     this.router.navigate(['/queryRecord/detail-cosmetic-register-apresentation'], { replaceUrl: false });
+                    this.spinnerService.hide();
+                }).catch(
+                    error => {
+                        this.error = error.error.errorMessage;
+                        this.spinnerService.hide();
+                        this.showMsg(this.error);
+
+                    });
+
+    }
+    getDetailPetition(value: any) {
+
+        this.spinnerService.show();
+        this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,1,value)
+            .then(
+                data => {
+                    this.parent.datailItem = data['contentObject'];
+                    this.router.navigate(['/queryRecord/detail-cosmetic-register-petition'], { replaceUrl: false });
                     this.spinnerService.hide();
                 }).catch(
                     error => {

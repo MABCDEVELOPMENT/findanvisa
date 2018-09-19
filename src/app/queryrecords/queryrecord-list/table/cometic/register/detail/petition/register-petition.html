@@ -1,0 +1,143 @@
+<mat-card class="contanier mat-elevation-z8">
+    <!-- Title of an Card -->
+    <mat-card-title>
+
+        <p align="center" style="height: 100%;">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition' | translate
+            }}</p>
+
+    </mat-card-title>
+
+    <mat-card-content>
+        <div>
+            <div fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">
+                
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.companyName' |
+                            translate }}</td>
+                        <td>{{contentItem.razaoSocial}}</td>
+                    </tr>
+                </table>    
+                
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.cnpj' |
+                            translate }}</td>
+                        <td style="width: 35%">{{contentItem.cnpj | mask: '99.999.999/9999-99'}}</td>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.autorization' |
+                            translate }}</td>
+                        <td>{{contentItem.autorizacao}}</td>
+                    </tr>
+                </table>    
+                
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.produto' |
+                            translate }}</td>
+                        <td style="width: 85%">{{contentItem.nomeProduto}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.category' |
+                            translate }}</td>
+                        <td style="width: 85%">{{contentItem.categoria}}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.register' |
+                            translate }}</td>
+                        <td style="width: 85%">{{contentItem.registro}}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.petition' |
+                            translate }}</td>
+                        <td style="width: 85%">{{contentItem.peticao | mask : '00000000/00'}}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.maturity' |
+                            translate }}</td>
+                        <td style="width: 85%"> {{contentItem.vencimento | date : 'dd/MM/yyyy'}}</td>
+                    </tr>
+                </table>    
+                
+               <!--  <table class="table-detail" style="width:100%;">
+                        <tr>
+                            <td align="center" style="width: 25%">{{
+                                'recordCosmeticRegisterDetail.detailOfProductPetition.name' |
+                                translate }} </td>
+                            <td align="center" style="width: 15%">{{
+                                'recordCosmeticRegisterDetail.detailOfProductPetition.tonality' |
+                                translate }} </td>
+                            <td align="center" style="width: 25%">{{
+                                'recordCosmeticRegisterDetail.detailOfProductPetition.physicalForm' |
+                                translate }} </td>
+                            <td align="center" style="width: 25%">{{ 'recordCosmeticRegisterDetail.number' | translate
+                                }} </td>
+                            <td align="center" style="width: 10%">{{ 'recordCosmeticRegisterDetail.datePublication' |
+                                translate }} </td>
+                        </tr>
+                </table>
+                <table style="width:100%;">      
+                        <tr *ngFor="let apresenta of apresents">
+
+                                <tr>
+                                    <td align="center" style="width: 25%">{{apresenta.nome}} </td>
+                                    <td align="center" style="width: 15%">{{apresenta.tonalidade}} </td>
+                                    <td align="center" style="width: 25%">{{apresenta.formaFisica}} </td>
+                                    <td align="center" style="width: 25%">{{apresenta.registro}} </td>
+                                    <td align="center" style="width: 10%">{{apresenta.dataPublicao}} </td>
+                                </tr>
+                                
+                                <tr>
+                                                <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.productShelfLife' | translate }}</td>
+                                                <td>{{apresenta.prazoValidade}}  Meses</td>
+
+                                                <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.productShelfLife' | translate }}</td>
+                                                <td>{{apresenta.register}}</td>
+                                </tr> 
+                                <table class="table-detail" style="width:100%;">
+                                <tr>
+                                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.packing' | translate }}</td>
+                                        <td>{{apresenta.embalagemPrimaria}}</td>
+                                </tr> 
+                                </table> 
+                        </tr>        
+                </table>    -->
+                <table class="table-detail">
+                    <tr>
+                        <td style="width: 15%">{{
+                            'recordCosmeticRegisterDetail.detailOfProductPetition.placeOfFabrication' | translate }}</td>
+                        <td>
+                            <table style="width:100%;" *ngFor="let fabricante of contentItem.fabricantesNacionais">
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.cnpj' | translate}}</tr>
+                                <tr>{{fabricante.cnpj | mask: '99.999.999/9999-99'}}</tr>
+
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.socialname' | translate}}</tr>
+                                <tr>{{fabricante.razaoSocial }}</tr>
+
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.county' | translate}}</tr>
+                                <tr>{{fabricante.cidade}}</tr>
+
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.uf' | translate}}</tr>
+                                <tr>{{fabricante.uf}}</tr>
+
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.country' | translate}}</tr>
+                                <tr>{{fabricante.pais}}</tr>
+
+                                <tr>{{'recordCosmeticRegisterDetail.detailOfProductPetition.type' | translate}}</tr>
+                                <tr>{{fabricante.tipo}}</tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div align="center" style="margin-top:5px;">
+                <mat-dialog-actions>
+                    <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' |
+                        translate }}</button>
+                </mat-dialog-actions>
+            </div>
+        </div>
+    </mat-card-content>
+
+</mat-card>

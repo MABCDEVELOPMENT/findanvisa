@@ -5,14 +5,14 @@ import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-s
 import { Location } from "@angular/common";
 
 @Component({
-    selector: 'register-apresentation',
-    templateUrl: './register-apresentation.html',
-    styleUrls:['./register-apresentation.scss']
+    selector: 'register-petition',
+    templateUrl: './register-petition.html',
+    styleUrls:['./register-petition.scss']
 })
-export class RegisterApresentationComponent implements OnInit,AfterViewInit  {
+export class RegisterPetitionComponent implements OnInit,AfterViewInit  {
 
     contentItem:any;
-    apresentacoes:any;
+    apresents:any;
     peticoes:any;
 
     constructor(private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class RegisterApresentationComponent implements OnInit,AfterViewInit  {
 
     ngOnInit() {
         this.contentItem = this.parent.datailItem;
-        this.apresentacoes = this.contentItem.apresentacoes;
+        this.apresents = this.parent.datailItem.apresentacoes;
         this.peticoes = this.contentItem.peticoes;
     }
       

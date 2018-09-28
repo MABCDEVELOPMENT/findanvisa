@@ -10,15 +10,15 @@
     <mat-card-content>
         <div>
             <div fxLayout="column" style="max-height:50vh;overflow-y: auto;display: block!important;">
-                
+
                 <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.companyName' |
                             translate }}</td>
                         <td>{{contentItem.razaoSocial}}</td>
                     </tr>
-                </table>    
-                
+                </table>
+
                 <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.cnpj' |
@@ -28,8 +28,8 @@
                             translate }}</td>
                         <td>{{contentItem.autorizacao}}</td>
                     </tr>
-                </table>    
-                
+                </table>
+
                 <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.produto' |
@@ -58,52 +58,59 @@
                             translate }}</td>
                         <td style="width: 85%"> {{contentItem.vencimento | date : 'dd/MM/yyyy'}}</td>
                     </tr>
-                </table>    
-                
-               <!--  <table class="table-detail" style="width:100%;">
-                        <tr>
-                            <td align="center" style="width: 25%">{{
-                                'recordCosmeticRegisterDetail.detailOfProductPetition.name' |
-                                translate }} </td>
-                            <td align="center" style="width: 15%">{{
-                                'recordCosmeticRegisterDetail.detailOfProductPetition.tonality' |
-                                translate }} </td>
-                            <td align="center" style="width: 25%">{{
-                                'recordCosmeticRegisterDetail.detailOfProductPetition.physicalForm' |
-                                translate }} </td>
-                            <td align="center" style="width: 25%">{{ 'recordCosmeticRegisterDetail.number' | translate
-                                }} </td>
-                            <td align="center" style="width: 10%">{{ 'recordCosmeticRegisterDetail.datePublication' |
-                                translate }} </td>
-                        </tr>
                 </table>
-                <table style="width:100%;">      
-                        <tr *ngFor="let apresenta of apresents">
 
+                <table class="table-detail" style="width:100%;">
+                    <tr>
+                        <td align="center" style="width: 25%">{{
+                            'recordCosmeticRegisterDetail.detailOfProductPetition.name' |
+                            translate }} </td>
+                        <td align="center" style="width: 15%">{{
+                            'recordCosmeticRegisterDetail.detailOfProductPetition.tonality' |
+                            translate }} </td>
+                        <td align="center" style="width: 25%">{{
+                            'recordCosmeticRegisterDetail.detailOfProductPetition.physicalForm' |
+                            translate }} </td>
+                        <td align="center" style="width: 25%">{{ 'recordCosmeticRegisterDetail.number' | translate
+                            }} </td>
+                        <td align="center" style="width: 10%">{{ 'recordCosmeticRegisterDetail.datePublication' |
+                            translate }} </td>
+                    </tr>
+                </table>
+                <table class="table-detail"  style="width:100%;">
+                    <tr *ngFor="let apresenta of apresents; let i = index;">
+                        <td>
+                    <tr>
+                        <td align="left" style="width: 25%">{{apresenta.nome}} </td>
+                        <td align="center" style="width: 15%">{{apresenta.tonalidade}} </td>
+                        <td align="center" style="width: 25%">{{apresenta.formaFisica}} </td>
+                        <td align="center" style="width: 25%">{{apresenta.registro}} </td>
+                        <td align="center" style="width: 10%">{{apresenta.dataPublicao}} </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 25%">{{
+                            'recordCosmeticRegisterDetail.detailOfProductPetition.productShelfLife' | translate }}</td>
+                        <td>{{apresenta.prazoValidade}} Meses</td>
+
+                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.register' |
+                            translate }}</td>
+                        <td style="width: 60%">{{apresenta.registro}}</td>
+                    </tr>
+                    <!-- <tr tyle="width:100%;">
+                            <table class="table-detail" style="width:100%;">
                                 <tr>
-                                    <td align="center" style="width: 25%">{{apresenta.nome}} </td>
-                                    <td align="center" style="width: 15%">{{apresenta.tonalidade}} </td>
-                                    <td align="center" style="width: 25%">{{apresenta.formaFisica}} </td>
-                                    <td align="center" style="width: 25%">{{apresenta.registro}} </td>
-                                    <td align="center" style="width: 10%">{{apresenta.dataPublicao}} </td>
+                                    <td style="width: 25%">{{
+                                        'recordCosmeticRegisterDetail.detailOfProductPetition.packing' | translate }}</td>
+                                    <td style="width: 75%">{{apresenta.embalagemPrimaria}}</td>
                                 </tr>
-                                
-                                <tr>
-                                                <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.productShelfLife' | translate }}</td>
-                                                <td>{{apresenta.prazoValidade}}  Meses</td>
+                            </table>
+                        </tr>  -->
+                    </td>
+                    </tr>
 
-                                                <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.productShelfLife' | translate }}</td>
-                                                <td>{{apresenta.register}}</td>
-                                </tr> 
-                                <table class="table-detail" style="width:100%;">
-                                <tr>
-                                        <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductPetition.packing' | translate }}</td>
-                                        <td>{{apresenta.embalagemPrimaria}}</td>
-                                </tr> 
-                                </table> 
-                        </tr>        
-                </table>    -->
-                <table class="table-detail">
+                </table>
+                <table class="table-detail" style="width:100%;">
                     <tr>
                         <td style="width: 15%">{{
                             'recordCosmeticRegisterDetail.detailOfProductPetition.placeOfFabrication' | translate }}</td>

@@ -51,7 +51,7 @@ export class AuthenticationService {
   login(context: LoginContext) : Promise<any> {
     // Replace by proper authentication call
     let data = { id:context.id, username: context.username,email:context.email,
-     isAdm: false ,token: '123456'}
+     isAdm: false ,token: '123456', remember: context.remember}
       
     return this.httpClient.post(this.API_URL,new Login(context.username,context.password,context.email))
     .toPromise()

@@ -3,7 +3,7 @@ import { User } from "@app/user/user-model";
 
 export class GenericParameter {
      id: number;
-     version:string;
+     versao:string;
      systemName:string;
      socialName: string;
      cnpj:String;

@@ -74,7 +74,7 @@ export class GenericParameterComponent implements OnInit {
   }
 
   save(){
-    this.data.version     = this.form.controls["version"].value;
+    this.data.versao     = this.form.controls["version"].value;
     this.data.systemName	= this.form.controls["systemName"].value;
     this.data.socialName	= this.form.controls["socialName"].value;
     this.data.cnpj		    = this.form.controls["cnpj"].value;

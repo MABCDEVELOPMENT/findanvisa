@@ -17,6 +17,7 @@ export interface Credentials {
   email: string;
   isAdm: boolean;
   token: string;
+  remember?: boolean;
 }
 
 @Component({
@@ -40,7 +41,9 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+  }
 
   login() {
 
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
            return;
         }    
         this.credential = { id:user.id, username: user.userName,email:user.email,
-          isAdm: (user.profile == 1) ,token: '123456'};
+          isAdm: (user.profile == 1) ,token: '123456',remember: this.loginForm.controls['remember'].value};
         this.authenticationService.setCredentials(this.credential); 
         this.router.navigate(['/'], { replaceUrl: true });
       }).catch(

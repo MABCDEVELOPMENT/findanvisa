@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.process' | translate }}</td>
-                        <td>{{content.processo | mask : '00000.000000/0000'}}</td>
+                        <td>{{content.processo | mask : '00000.000000/0000-00'}}</td>
                     </tr>
                     <tr>
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.maturityRegister' | translate }}</td>
@@ -64,7 +64,7 @@
 
                     <tr *ngFor="let apresentacao of apresentacoes">
                         <td align="center">
-                            <button mat-icon-button (click)="getDetailApresentation(apresentacao.codigo)">
+                            <button mat-icon-button (click)="getDetailApresentation(apresentacao)">
                                 <mat-icon>search</mat-icon>
                             </button>
                             {{ apresentacao.numero }}
@@ -76,7 +76,7 @@
 
                 </table>
 
-                <table class="table-detail" style="width:100%;">
+                <table *ngIf="peticoes" class="table-detail" style="width:100%;">
 
                     <tr>
 
@@ -94,7 +94,7 @@
 
                     <tr *ngFor="let peticao of peticoes">
                         <td align="center">
-                                        <button mat-icon-button (click)="getDetailPetition(peticao.expediente)">
+                                        <button mat-icon-button (click)="getDetailPetition(peticao)">
                                             <mat-icon>search</mat-icon>
                                         </button>
                         {{ peticao.expediente }}</td>

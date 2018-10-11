@@ -43,7 +43,7 @@
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000'}} </mat-cell>
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000-00'}} </mat-cell>
         </ng-container>
 
         <!-- officehour Column -->

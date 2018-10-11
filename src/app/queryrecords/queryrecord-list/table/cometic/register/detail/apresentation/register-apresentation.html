@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.process' | translate }}</td>
-                    <td>{{contentItem.processo | mask : '00000.000000/0000'}}</td>
+                    <td>{{contentItem.processo | mask : '00000.000000/0000-00'}}</td>
                 </tr>
 
                 <tr>
@@ -79,7 +79,7 @@
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.conservation' | translate }}</td>
                         <td>
                                 <tr *ngFor="let conserva of contentItem.conservacao">
-                                    {{conserva}}
+                                    {{conserva.valor}}
                                 </tr>
                         </td>
                 </tr>
@@ -88,7 +88,7 @@
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.destination' | translate }}</td>
                         <td>
                                 <tr *ngFor="let destina of contentItem.destinacao">
-                                    {{destina}}
+                                    {{destina.valor}}
                                 </tr>
                         </td>
                         
@@ -98,7 +98,7 @@
                         <td style="width: 15%">{{ 'recordCosmeticRegisterDetail.detailOfProductApresentation.Restriction' | translate }}</td>
                         <td>
                                 <tr *ngFor="let restric of contentItem.restricao">
-                                    {{restric}}
+                                    {{restric.valor}}
                                 </tr>
                         </td>
                         

@@ -137,7 +137,10 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
     getDetail(content: any) {
 
         this.spinnerService.show();
-        this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
+        this.parent.detail = content['contentCosmeticRegisterDetail'];
+        this.router.navigate(['/queryRecord/detail-cosmetic-register'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
             .then(
                 data => {
                     this.parent.detail = data['contentObject'];
@@ -149,7 +152,7 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
     

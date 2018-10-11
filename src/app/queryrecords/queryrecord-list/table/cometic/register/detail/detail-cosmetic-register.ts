@@ -45,10 +45,13 @@ export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
         this.peticoes = this.content.peticoes;
     }
     
-    getDetailApresentation(value: any) {
+    getDetailApresentation(apresentacao: any) {
 
         this.spinnerService.show();
-        this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,0,value)
+        this.parent.datailItem = apresentacao['cosmeticRegisterPresentationDetail'];
+        this.router.navigate(['/queryRecord/detail-cosmetic-register-apresentation'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,0,value)
             .then(
                 data => {
                     this.parent.datailItem = data['contentObject'];
@@ -60,13 +63,16 @@ export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
-    getDetailPetition(value: any) {
+    getDetailPetition(petition: any) {
 
         this.spinnerService.show();
-        this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,1,value)
+        this.parent.datailItem = petition['cosmeticRegisterPetitionDetail'];
+        this.router.navigate(['/queryRecord/detail-cosmetic-register-petition'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*this.dataService.getQueryRegistersDetailCosmeticItem(this.content.processo,1,value)
             .then(
                 data => {
                     this.parent.datailItem = data['contentObject'];
@@ -78,7 +84,7 @@ export class DetailCosmeticRegisterComponent implements OnInit,AfterViewInit  {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
 

@@ -30,7 +30,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
 
     error: string;
 
-    displayedColumns       = ['process','product','type','situation','maturity'];
+    displayedColumns       = ['updateDate','process','product','type','situation','maturity'];
     
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -137,6 +137,11 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
     getDetail(content: any) {
 
         this.spinnerService.show();
+        this.parent.detail = content['contentCosmeticRegularizedDetail'];
+        this.router.navigate(['/queryRecord/detail-cosmetic-regularized'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*
+        this.spinnerService.show();
         this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
             .then(
                 data => {
@@ -149,7 +154,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
     goBack() {
@@ -175,6 +180,11 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
                 case 'maturity': {
 
                     return compareDate(a['vencimento'], b['vencimento'], isAsc);
+
+                }
+                case 'updateDate': {
+
+                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
 
                 }
                 default: return 0;

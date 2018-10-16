@@ -4,38 +4,44 @@
 .mat-cell:nth-child(1), // product
 .mat-header-cell:nth-child(1),
 {
-flex: 40vh;
-
+flex: 8vh;
+font-size: $font-line-size;
 }
-.mat-cell:nth-child(2), // register
+.mat-cell:nth-child(2), // product
 .mat-header-cell:nth-child(2),
 {
-flex: 15vh;
-
+flex: 40vh;
+font-size: $font-line-size;
 }
-.mat-cell:nth-child(3), // process
+.mat-cell:nth-child(3), // register
 .mat-header-cell:nth-child(3),
 {
-flex: 25vh;
-
+flex: 15vh;
+font-size: $font-line-size;
 }
-.mat-cell:nth-child(4), // company
+.mat-cell:nth-child(4), // process
 .mat-header-cell:nth-child(4),
 {
-flex: 30vh;
-
+flex: 25vh;
+font-size: $font-line-size;
 }
-.mat-cell:nth-child(5), // situation
+.mat-cell:nth-child(5), // company
 .mat-header-cell:nth-child(5),
 {
 flex: 30vh;
-
+font-size: $font-line-size;
 }
-.mat-cell:nth-child(6), // vencimento
+.mat-cell:nth-child(6), // situation
 .mat-header-cell:nth-child(6),
 {
+flex: 30vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(7), // vencimento
+.mat-header-cell:nth-child(7),
+{
 flex: 10vh;
-
+font-size: $font-line-size;
 }
 .mat-row {
   min-height: max-content;

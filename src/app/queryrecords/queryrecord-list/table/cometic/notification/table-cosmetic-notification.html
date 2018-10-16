@@ -1,24 +1,30 @@
-<mat-card class="contanier mat-elevation-z8"> 
-    <mat-card-content > 
-        <div>
-    <table style="width:  100%">
-      <tr>
-        <td style="width:  80%">
-          <mat-form-field style="width:  80%">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-          </mat-form-field>
-        </td>
-        <td>
-          <button mat-icon-button (click)="exportAsExcel()">
-            <mat-icon>import_export</mat-icon>
-            <b>{{ 'exportAsExcel' | translate }}</b>
-          </button>
-        </td>
-      </tr>
-    </table>
+<mat-card class="contanier mat-elevation-z8">
+  <mat-card-content>
+    <div>
+      <table style="width:  100%">
+        <tr>
+          <td style="width:  80%">
+            <mat-form-field style="width:  80%">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-icon-button (click)="exportAsExcel()">
+              <mat-icon>import_export</mat-icon>
+              <b>{{ 'exportAsExcel' | translate }}</b>
+            </button>
+          </td>
+        </tr>
+      </table>
 
 
       <mat-table class="table-container-cosmetic-notification" #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+        <!-- updateDate Column -->
+        <ng-container matColumnDef="updateDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'updateDate' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.updateDate}} </mat-cell>
+        </ng-container>
 
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
@@ -29,10 +35,10 @@
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000-00'}} 
-              <button mat-icon-button (click)="loadProcess(content.processo)">
-                  <mat-icon>search</mat-icon>
-              </button>
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000-00'}}
+            <button mat-icon-button (click)="loadProcess(content.processo)">
+              <mat-icon>search</mat-icon>
+            </button>
           </mat-cell>
         </ng-container>
 
@@ -69,7 +75,8 @@
         <!-- maturity Column -->
         <ng-container matColumnDef="maturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.vencimento | date:'dd/MM/yyyy'}}
+          </mat-cell>
         </ng-container>
 
         <!-- statusMaturity Column -->
@@ -85,12 +92,12 @@
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
       <div align="center">
-          <mat-dialog-actions>
-            <button  class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
-          </mat-dialog-actions>
-      </div> 
-   </div>
-   
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </mat-dialog-actions>
+      </div>
+    </div>
+
   </mat-card-content>
 
 </mat-card>

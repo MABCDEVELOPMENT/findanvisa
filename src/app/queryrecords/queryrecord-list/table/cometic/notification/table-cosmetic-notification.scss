@@ -4,64 +4,69 @@
 // html { font-size: 100%; }// this is usually 16px by default }
 // body { font-size: 0.45em;} // 12px }
 // h1 { font-size: 2em;} // 24px }
-
-.mat-cell:nth-child(1), // subject
+.mat-cell:nth-child(1), // update
 .mat-header-cell:nth-child(1),
+{
+    flex: 10vh;
+    font-size: $font-line-size;
+}
+.mat-cell:nth-child(2), // subject
+.mat-header-cell:nth-child(2),
 {
     flex: 35vh;
     font-size: $font-line-size;
 }
-.mat-cell:nth-child(2), // process
-.mat-header-cell:nth-child(2),
+.mat-cell:nth-child(3), // process
+.mat-header-cell:nth-child(3),
 {
     flex: 25vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(3), // officehour
-.mat-header-cell:nth-child(3),
+.mat-cell:nth-child(4), // officehour
+.mat-header-cell:nth-child(4),
 {
     flex: 15vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(4), // transaction
-.mat-header-cell:nth-child(4),
+.mat-cell:nth-child(5), // transaction
+.mat-header-cell:nth-child(5),
 {
     flex: 10vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(5), // product
-.mat-header-cell:nth-child(5),
+.mat-cell:nth-child(6), // product
+.mat-header-cell:nth-child(6),
 {
     flex: 40vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(6), // company
-.mat-header-cell:nth-child(6),
+.mat-cell:nth-child(7), // company
+.mat-header-cell:nth-child(7),
 {
     flex: 35vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(7), // situation
-.mat-header-cell:nth-child(7),
+.mat-cell:nth-child(8), // situation
+.mat-header-cell:nth-child(8),
 {
     flex: 15vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(8), // maturity
-.mat-header-cell:nth-child(8),
+.mat-cell:nth-child(9), // maturity
+.mat-header-cell:nth-child(9),
 {
     flex: 10vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(9), // maturity
-.mat-header-cell:nth-child(9),
+.mat-cell:nth-child(10), // maturity
+.mat-header-cell:nth-child(10),
 {
     flex: 5vh;
     font-size: $font-line-size;

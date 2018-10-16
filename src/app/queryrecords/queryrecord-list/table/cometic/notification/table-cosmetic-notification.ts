@@ -31,7 +31,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
 
     error: string;
 
-    displayedColumns = ['subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity']; //, 'statusMaturity'
+    displayedColumns = ['updateDate','subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity']; //, 'statusMaturity'
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -137,6 +137,11 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
     getDetail(content: any) {
 
         this.spinnerService.show();
+        this.parent.detail = content['contentCosmeticNotificationDetail'];
+        this.router.navigate(['queryRecord/detail-cosmetic-notification'], { replaceUrl: false });
+        this.spinnerService.hide();
+
+       /* this.spinnerService.show();
         this.dataService.getQueryRegistersDetail(this.parent.category, this.parent.option, content.processo)
             .then(
                 data => {
@@ -149,7 +154,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
     
@@ -178,6 +183,11 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
                 case 'maturity': {
 
                     return compareDate(a['vencimento'], b['vencimento'], isAsc);
+
+                }
+                case 'updateDate': {
+
+                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
 
                 }
                 case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);

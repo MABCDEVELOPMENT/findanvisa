@@ -29,7 +29,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
     error:string;
 
-    displayedColumns       = ['product','register','process','company','situation','maturity'];
+    displayedColumns       = ['updateDate','product','register','process','company','situation','maturity'];
     
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -103,7 +103,12 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
      getDetail(content:any) {
 
-      this.spinnerService.show();
+        this.spinnerService.show();
+        this.parent.detail = content['contentFootDetail'];
+        this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
+        this.spinnerService.hide();  
+
+      /*this.spinnerService.show();
         this.dataService.getQueryRegistersDetail(this.parent.category,this.parent.option,content.processo)
             .then(
                 data => {
@@ -116,7 +121,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
 
@@ -174,6 +179,10 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             case 'maturity': {
                
                 return compareDate(a['dataVencimento'], b['dataVencimento'], isAsc);
+            }
+            case 'updateDate': {
+               
+                return compareDate(a['updateDate'], b['updateDate'], isAsc);
             }
             default: return 0;
           }

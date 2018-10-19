@@ -25,11 +25,17 @@
       <mat-table #table class="table-container-cosmetic-regularized" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
         
         <!-- updateDate Column -->
-        <ng-container matColumnDef="updateDate">
+        <ng-container matColumnDef="dataAlteracao">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'updateDate' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.updateDate}} </mat-cell>
+            <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataAlteracao}} </mat-cell>
           </ng-container>
-          
+  
+          <!-- updateDate Column -->
+          <ng-container matColumnDef="dataRegistro">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerDate' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataRegistro}} </mat-cell>
+          </ng-container>
+
         <!-- process Column -->
           <ng-container matColumnDef="process">
               <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>

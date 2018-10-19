@@ -31,7 +31,7 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
 
     error: string;
 
-    displayedColumns = ['updateDate','subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity'];
+    displayedColumns = ['dataAlteracao','dataRegistro','qtdRegistro','subject', 'process', 'officehour', 'transaction', 'product', 'situation', 'maturity'];
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -183,11 +183,15 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
                     return compareDate(a['vencimento'], b['vencimento'], isAsc);
 
                 }
-                case 'updateDate': {
-
-                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
-
+                case 'dataAlteracao': {
+               
+                    return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
                 }
+                case 'dataRegistro': {
+                   
+                    return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
+                }
+                case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
                 case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);
                 default: return 0;
             }

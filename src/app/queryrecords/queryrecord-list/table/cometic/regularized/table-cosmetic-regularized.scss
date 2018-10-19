@@ -8,6 +8,13 @@ flex:10vh;
 font-size: $font-line-size;
 
 }
+.mat-cell:nth-child(2), // register 
+.mat-header-cell:nth-child(2),
+{
+flex:10vh;
+font-size: $font-line-size;
+
+}
 .mat-cell:nth-child(2), // process 
 .mat-header-cell:nth-child(2),
 {

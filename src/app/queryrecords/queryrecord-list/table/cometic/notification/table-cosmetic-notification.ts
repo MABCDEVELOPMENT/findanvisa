@@ -31,7 +31,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
 
     error: string;
 
-    displayedColumns = ['updateDate','subject', 'process', 'officehour', 'transaction', 'product', 'company', 'situation', 'maturity']; //, 'statusMaturity'
+    displayedColumns = ['dataAlteracao','dataRegistro','subject', 'process', 'officehour', 'transaction', 'product',  'situation', 'maturity']; //,'company', 'statusMaturity'
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -185,9 +185,14 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
                     return compareDate(a['vencimento'], b['vencimento'], isAsc);
 
                 }
-                case 'updateDate': {
+                case 'dataAlteracao': {
 
-                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
+                    return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
+
+                }
+                case 'dataRegistro': {
+
+                    return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
 
                 }
                 case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);

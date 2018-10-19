@@ -1,44 +1,50 @@
 @import '../../../../../assets/styles/color.scss';
 @import '../../../../../assets/styles/crud.scss';
 
-.mat-cell:nth-child(1), // product
+.mat-cell:nth-child(1), // date update
 .mat-header-cell:nth-child(1),
 {
 flex: 8vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(2), // product
+.mat-cell:nth-child(2), // date register
 .mat-header-cell:nth-child(2),
+{
+flex: 8vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(3), // product
+.mat-header-cell:nth-child(3),
 {
 flex: 40vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(3), // register
-.mat-header-cell:nth-child(3),
+.mat-cell:nth-child(4), // register
+.mat-header-cell:nth-child(4),
 {
 flex: 15vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(4), // process
-.mat-header-cell:nth-child(4),
+.mat-cell:nth-child(5), // process
+.mat-header-cell:nth-child(5),
 {
 flex: 25vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(5), // company
-.mat-header-cell:nth-child(5),
-{
-flex: 30vh;
-font-size: $font-line-size;
-}
-.mat-cell:nth-child(6), // situation
+.mat-cell:nth-child(6), // company
 .mat-header-cell:nth-child(6),
 {
 flex: 30vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(7), // vencimento
+.mat-cell:nth-child(7), // situation
 .mat-header-cell:nth-child(7),
+{
+flex: 30vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(8), // vencimento
+.mat-header-cell:nth-child(8),
 {
 flex: 10vh;
 font-size: $font-line-size;

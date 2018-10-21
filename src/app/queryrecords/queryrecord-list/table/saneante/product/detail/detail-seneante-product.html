@@ -55,7 +55,7 @@
                                 Visualizar {{i+1}}º rótulo
                             </button> -->
 
-                            <a href="https://consultas.anvisa.gov.br/api/consulta/produtos/3/{{content.processo}}/rotulo/{{rotulo}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
+                            <a href="https://consultas.anvisa.gov.br/api/consulta/produtos/3/{{content.processo}}/rotulo/{{rotulo.valor}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
 
                         </td>
                     </tr>
@@ -76,11 +76,11 @@
                     <tr>
                         <td style="width: 25%">{{apresentacao.apresentacao}}</td>
                         <td style="width: 25%"><tr *ngFor="let forma of apresentacao.formasFarmaceuticas">
-                                                    {{forma}}
+                                                    {{forma.valor}}
                                               </tr>
                         </td>
                         <td style="width: 25%; text-align: center">{{apresentacao.numero}}</td>
-                        <td style="width: 25%; text-align: center">{{apresentacao.dataPublicacao | date:'dd/MM/yyyy'}}</td>
+                        <td style="width: 25%; text-align: center">{{apresentacao.dataPublicacao}}</td>
                     </tr>
                     <tr>
                             <td style="width: 25%">{{'recordFootDetail.validate' | translate}}</td>
@@ -94,7 +94,7 @@
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.activePrinciple' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let principioAtivo of apresentacao.principiosAtivos">{{principioAtivo}}</tr>
+                                    <tr *ngFor="let principioAtivo of apresentacao.principiosAtivos">{{principioAtivo.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>
@@ -110,14 +110,14 @@
                                     <tr>{{'recordFootDetail.national' | translate }}</tr>
                                     <tr *ngFor="let nacional of apresentacao.fabricantesNacionais">{{nacional.fabricante}} - {{nacional.cidade}} - {{nacional.pais}}</tr>
                                     <tr>{{'recordFootDetail.internacional' | translate }}</tr>
-                                    <tr *ngFor="let internacional of apresentacao.fabricantesInternacionais">{{internacional}}</tr>
+                                    <tr *ngFor="let internacional of apresentacao.fabricantesInternacionais">{{internacional.valor}}</tr>
                                 </td>
                                 
                         </tr>
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.routeOfAdministration' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let viaAdministracao of apresentacao.viasAdministracao">{{viaAdministracao}}</tr>
+                                    <tr *ngFor="let viaAdministracao of apresentacao.viasAdministracao">{{viaAdministracao.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>
@@ -131,25 +131,25 @@
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.conservation' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let conserva of apresentacao.conservacao">{{conserva}}</tr>
+                                    <tr *ngFor="let conserva of apresentacao.conservacao">{{conserva.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.restrictionOfPrescription' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let prescricao of apresentacao.restricaoPrescricao">{{prescricao}}</tr>
+                                    <tr *ngFor="let prescricao of apresentacao.restricaoPrescricao">{{prescricao.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.restrictedUse' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let uso of apresentacao.restricaoUso">{{uso}}</tr>
+                                    <tr *ngFor="let uso of apresentacao.restricaoUso">{{uso.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>
                                 <td style="width: 25%">{{'recordFootDetail.destination' | translate}}</td>
                                 <td style="width: 75%">
-                                    <tr *ngFor="let destina of apresentacao.destinacao">{{destina}}</tr>
+                                    <tr *ngFor="let destina of apresentacao.destinacao">{{destina.valor}}</tr>
                                 </td>
                         </tr>
                         <tr>

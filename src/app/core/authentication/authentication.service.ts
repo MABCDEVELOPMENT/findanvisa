@@ -66,7 +66,7 @@ export class AuthenticationService {
    * @return {Observable<Credentials>} The user credentials.
    */
   getEmail(email:string): Promise<any> {
-    return this.httpClient.get(this.API_URL+'/getuser/'+email)
+    return this.httpClient.post(this.API_URL+'/getuser/',new Login(null,null,email))
     .map((response) => response)
     .toPromise();
     // .toPromise()

@@ -1,97 +1,116 @@
-<mat-card class="contanier mat-elevation-z8"> 
-    <!-- Title of an Card -->
-  
-  
-    <mat-card-content >
-      
-      <div>
-          <table style="width:  100%">
-            <tr>
-              <td style="width:  80%">
-                <mat-form-field style="width:  80%">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
-                </mat-form-field>
-              </td>
-              <td>
-                <button mat-icon-button (click)="exportAsExcel()">
-                  <mat-icon>import_export</mat-icon>
-                  <b>{{ 'exportAsExcel' | translate }}</b>
-                </button>
-              </td>
-            </tr>
-          </table>
+<mat-card class="contanier mat-elevation-z8">
+  <!-- Title of an Card -->
+
+
+  <mat-card-content>
+
+    <div>
+      <table style="width:  100%">
+        <tr>
+          <td style="width:  80%">
+            <mat-form-field style="width:  80%">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Digite o que procura">
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-icon-button (click)="exportAsExcel()">
+              <mat-icon>import_export</mat-icon>
+              <b>{{ 'exportAsExcel' | translate }}</b>
+            </button>
+          </td>
+        </tr>
+      </table>
 
       <mat-table class="table-container-saneante-notification" #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+        <!-- updateDate Column -->
+        <ng-container matColumnDef="dataAlteracao">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'updateDate' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataAlteracao}} </mat-cell>
+        </ng-container>
+
+        <!-- updateDate Column -->
+        <ng-container matColumnDef="dataRegistro">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerDate' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataRegistro}} </mat-cell>
+        </ng-container>
+
+        <!-- updateDate Column -->
+        <ng-container matColumnDef="qtdRegistro">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'qtdRegister' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.qtdRegistro}} </mat-cell>
+        </ng-container>
 
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subject' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.assunto}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.assunto}} </mat-cell>
         </ng-container>
 
         <!-- process Column -->
         <ng-container matColumnDef="process">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.process' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000-00'}} 
-              <button mat-icon-button (click)="loadProcess(content.processo)">
-                  <mat-icon>search</mat-icon>
-              </button>
+          <mat-cell *matCellDef="let content"> {{content.processo | mask: '00000.000000/0000-00'}}
+            <button mat-icon-button (click)="loadProcess(content.processo)">
+              <mat-icon>search</mat-icon>
+            </button>
           </mat-cell>
         </ng-container>
 
         <!-- officehour Column -->
         <ng-container matColumnDef="officehour">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.officehour' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.expedienteProcesso}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.expedienteProcesso}} </mat-cell>
         </ng-container>
 
         <!-- transaction Column -->
         <ng-container matColumnDef="transaction">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.generatedTransaction' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.transacao}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.transacao}} </mat-cell>
         </ng-container>
 
         <!-- product Column -->
         <ng-container matColumnDef="product">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.product' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.produto}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.produto}} </mat-cell>
         </ng-container>
 
         <!-- company Column -->
         <ng-container matColumnDef="company">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.razaoSocial}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.razaoSocial}} </mat-cell>
         </ng-container>
 
         <!-- situation Column -->
         <ng-container matColumnDef="situation">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.situation' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.situacao}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.situacao}} </mat-cell>
         </ng-container>
 
         <!-- maturity Column -->
         <ng-container matColumnDef="maturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.vencimento | date:'dd/MM/yyyy'}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.vencimento | date:'dd/MM/yyyy'}}
+          </mat-cell>
         </ng-container>
 
         <!-- statusMaturity Column -->
-        <ng-container matColumnDef="statusMaturity">
+        <!-- <ng-container matColumnDef="statusMaturity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.statusMaturity' | translate }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)" > {{content.statusVencimento}} </mat-cell>
-        </ng-container>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.statusVencimento}} </mat-cell>
+        </ng-container> -->
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row  *matRowDef="let row; columns: displayedColumns;">
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
       </mat-table>
 
       <mat-paginator #paginator [pageSizeOptions]="[50,100]" showFirstLastButtons></mat-paginator>
       <div align="center">
-          <mat-dialog-actions>
-            <button  class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
-          </mat-dialog-actions>
-      </div> 
+        <mat-dialog-actions>
+          <button class="mat-raised-button" mat-button (click)="goBack()" tabindex="-1">{{ 'goback' | translate }}</button>
+        </mat-dialog-actions>
+      </div>
     </div>
   </mat-card-content>
 

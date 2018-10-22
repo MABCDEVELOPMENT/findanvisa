@@ -4,61 +4,79 @@
 // html { font-size: 100%; }// this is usually 16px by default }
 // body { font-size: 0.45em;} // 12px }
 // h1 { font-size: 2em;} // 24px }
-
-.mat-cell:nth-child(1), // subject
+.mat-cell:nth-child(1), // date update
 .mat-header-cell:nth-child(1),
+{
+flex: 8vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(2), // date register
+.mat-header-cell:nth-child(2),
+{
+flex: 8vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(3), // qtd register
+.mat-header-cell:nth-child(3),
+{
+flex: 6vh;
+font-size: $font-line-size;
+text-decoration: center;
+}
+.mat-cell:nth-child(4), // subject
+.mat-header-cell:nth-child(4),
 {
 flex: 30vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(2), // process
-.mat-header-cell:nth-child(2),
+.mat-cell:nth-child(5), // process
+.mat-header-cell:nth-child(5),
 {
 flex: 25vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(3), // officehour
-.mat-header-cell:nth-child(3),
+.mat-cell:nth-child(6), // officehour
+.mat-header-cell:nth-child(6),
 {
 flex: 12vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(4), // transaction
-.mat-header-cell:nth-child(4),
+.mat-cell:nth-child(7), // transaction
+.mat-header-cell:nth-child(7),
 {
 flex: 15vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(5), // product
-.mat-header-cell:nth-child(5),
+.mat-cell:nth-child(8), // product
+.mat-header-cell:nth-child(8),
 {
 flex: 35vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(6), // company
-.mat-header-cell:nth-child(6),
-{
-flex: 25vh;
-font-size: $font-line-size;
-}
-.mat-cell:nth-child(7), // situation
-.mat-header-cell:nth-child(7),
-{
-flex: 25vh;
-font-size: $font-line-size;
-}
-.mat-cell:nth-child(8), // maturity
-.mat-header-cell:nth-child(8),
-{
-flex: 10vh;
-font-size: $font-line-size;
-}
-.mat-cell:nth-child(9), // statusMaturity
+// .mat-cell:nth-child(6), // company
+// .mat-header-cell:nth-child(6),
+// {
+// flex: 25vh;
+// font-size: $font-line-size;
+// }
+.mat-cell:nth-child(9), // situation
 .mat-header-cell:nth-child(9),
 {
+flex: 25vh;
+font-size: $font-line-size;
+}
+.mat-cell:nth-child(10), // maturity
+.mat-header-cell:nth-child(10),
+{
 flex: 10vh;
 font-size: $font-line-size;
 }
+// .mat-cell:nth-child(11), // statusMaturity
+// .mat-header-cell:nth-child(11),
+// {
+// flex: 10vh;
+// font-size: $font-line-size;
+// }
 .mat-row {
     min-height: max-content;
     max-height: max-content;

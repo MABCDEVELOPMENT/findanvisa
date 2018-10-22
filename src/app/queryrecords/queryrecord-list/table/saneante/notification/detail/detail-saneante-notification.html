@@ -37,7 +37,7 @@
                         <td> {{content.situacao}} " - " {{content.dataNotificacao}}</td>
                     </tr>
                 </table>
-                <table class="table-detail" style="width:100%;">
+                <table *ngIf="content.rotulos" class="table-detail" style="width:100%;">
                         <tr>
                             <td style="width: 100%">{{ 'recordFootDetail.label' | translate }}</td>
                         </tr>
@@ -47,7 +47,7 @@
                                     Visualizar {{i+1}}º rótulo
                                 </button> -->
 
-                                <a href="https://consultas.anvisa.gov.br/api/consulta/saneantes/notificados/{{content.processo}}/rotulo/{{rotulo}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
+                                <a href="https://consultas.anvisa.gov.br/api/consulta/saneantes/notificados/{{content.processo}}/rotulo/{{rotulo.valor}}?Authorization=Guest">Visualizar {{i+1}}º rótulo</a>
 
                             </td>
                         </tr>
@@ -84,7 +84,7 @@
 
                     <tr *ngFor="let peticao of peticoes">
                         <td align="center">{{ peticao.expediente }}</td>
-                        <td align="center">{{ peticao.data }}</td>
+                        <td align="center">{{ peticao.publicacao }}</td>
                         <td align="center">{{ peticao.transacao}}</td>
                         <td align="left">{{ peticao.assunto }}</td>
                         <td align="left">{{ peticao.situacao }}</td>

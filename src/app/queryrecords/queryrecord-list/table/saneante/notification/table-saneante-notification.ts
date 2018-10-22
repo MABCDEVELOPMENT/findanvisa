@@ -32,7 +32,7 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
 
     error:string;
 
-    displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
+    displayedColumns = ['dataAlteracao','dataRegistro','qtdRegistro','subject','process','officehour','transaction','product','situation','maturity']; //,'statusMaturity'
    
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -142,6 +142,10 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
     getDetail(content:any) {
 
         this.spinnerService.show();
+        this.parent.detail = content['saneanteNotificationDetail'];
+        this.router.navigate(['/queryRecord/detail-saneante-notification'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*this.spinnerService.show();
           this.dataService.getQueryRegistersDetail(this.parent.category,this.parent.option,content.processo)
               .then(
                   data => {
@@ -154,7 +158,7 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
                           this.spinnerService.hide();
                           this.showMsg(this.error);
   
-                      });
+                      });*/
   
        }
   
@@ -183,6 +187,15 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
             case 'maturity': {
                 return compareDate(a['vencimento'], b['vencimento'], isAsc);
             }
+            case 'dataAlteracao': {
+               
+                return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
+            }
+            case 'dataRegistro': {
+               
+                return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
+            }
+            case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
             case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);
             default: return 0;
           }

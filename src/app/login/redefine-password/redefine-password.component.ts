@@ -6,6 +6,7 @@ import { LoginService } from '@app/login/login.service';
 import { User } from '@app/user/user-model';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Login } from '../login.model';
 
 @Component({
   selector: 'app-redefine-password',
@@ -18,6 +19,7 @@ export class RedefinePasswordComponent implements OnInit {
   redefineForm: FormGroup;
   isLoading: boolean = false;
   user: User;
+  token:string;
   id: any;
   constructor(private router: Router,
     private formBuilder: FormBuilder,
@@ -28,9 +30,9 @@ export class RedefinePasswordComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
    
-    this.id = this.GetParam('id');
+    
     this.createForm();
-    this.loadUser();
+    
   }
   GetParam(name:string) : any{
     const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -41,11 +43,13 @@ export class RedefinePasswordComponent implements OnInit {
   }
 
   PrintParams() {
-    console.log('id = ' + this.GetParam('id'));
+    console.log('id = ' + this.GetParam('?'));
 
   }
 
   ngOnInit() {
+    this.token = this.route.snapshot.paramMap.get('token');
+    this.loadUser();
   }
   private createForm() {
     this.redefineForm = this.formBuilder.group({
@@ -75,7 +79,7 @@ export class RedefinePasswordComponent implements OnInit {
   }
 
   loadUser() {
-    this.authenticationService.loadUser(this.id)
+    this.authenticationService.loadUserToken(this.token)
       .then(
         data => {
           this.user = data;
@@ -86,10 +90,9 @@ export class RedefinePasswordComponent implements OnInit {
         });
   }
   redefinePassword() {
-    this.loadUser();
     let pass = this.redefineForm.controls['password'].value;
     this.user.password = pass;
-    this.dataService.redefinePassword(this.user).then(
+    this.dataService.redefinePassword(this.user,this.token).then(
       data => {
         this.showMsg("Solicitação enviada com sucesso!");
       },

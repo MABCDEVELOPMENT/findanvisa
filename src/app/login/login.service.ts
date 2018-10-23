@@ -8,6 +8,7 @@ import { Login } from '@app/login/login.model';
 import { Observable } from 'rxjs';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 import { MatDialog } from '@angular/material';
+import { anyTypeAnnotation } from 'babel-types';
 
 @Injectable()
 export class LoginService {
@@ -18,6 +19,7 @@ export class LoginService {
   // Temporarily stores data from dialogs
   dialogData: any;
   user: User;
+  loginUser: Login;
   constructor (private httpClient: HttpClient,
               public dialog: MatDialog) {
      
@@ -54,11 +56,14 @@ export class LoginService {
     .catch(error => Observable.throw(error));
   }
 
-  redefinePassword (user: User): Promise<any> {
-   return this.httpClient.post(this.API_URL_USER+'/save', user)
-   .toPromise()
-   .then(response => response)
-   .catch(error => Observable.throw(error));
+  redefinePassword(user:User,token:string): Promise<any> {
+    this.loginUser = new Login(null,null,null);
+    this.loginUser.password = user.password;
+    this.loginUser.token = token; 
+   return this.httpClient.post(this.API_URL+'/changeuser', this.loginUser)
+   .map((response) => response)
+   .toPromise();
+   
   }
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

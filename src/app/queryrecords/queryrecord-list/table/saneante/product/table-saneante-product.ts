@@ -32,7 +32,7 @@ export class TableSaneanteProductComponent implements OnInit, AfterViewInit {
 
   error: string;
 
-  displayedColumns = ['dataAlteracao', 'dataRegistro', 'product', 'register', 'process', 'company', 'situation', 'maturity'];
+  displayedColumns = ['dataAlteracao', 'dataRegistro', 'product', 'register', 'process',  'situation', 'maturity']; //'company',
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;

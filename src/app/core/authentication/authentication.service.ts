@@ -90,6 +90,18 @@ export class AuthenticationService {
     
   }
 
+      /**
+   * Authenticates the user.
+   * @param {LoginContext} context The login parameters.
+   * @return {Observable<Credentials>} The user credentials.
+   */
+  loadUserToken(token: String): Promise<any> {
+    return this.httpClient.get(this.API_URL+'/token/'+token)
+    .toPromise()
+    .then(response => response)
+    .catch(error=> Observable.throw(error.message));
+    
+  }
 
   /**
    * Logs out the user and clear credentials.

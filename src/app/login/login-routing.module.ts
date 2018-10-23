@@ -8,7 +8,7 @@ import { RegisterComponent } from '@app/login/register-user/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: extract('Login') }},
-  { path: 'redefine', component: RedefinePasswordComponent, data: { title: extract('Redefine') }},
+  { path: 'redefine/:token', component: RedefinePasswordComponent, data: { title: extract('Redefine') }},
   { path: 'registerUser', component: RegisterComponent, data: { title: extract('registerUser') } 
 }
 ];

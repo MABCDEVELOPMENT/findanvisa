@@ -59,11 +59,11 @@
         </ng-container>
 
         <!-- company Column -->
-        <ng-container matColumnDef="company">
+        <!-- <ng-container matColumnDef="company">
           <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.company' | translate
             }}</mat-header-cell>
           <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.empresa}} </mat-cell>
-        </ng-container>
+        </ng-container> -->
 
         <!-- company Column -->
         <ng-container matColumnDef="situation">
@@ -76,7 +76,7 @@
         <ng-container matColumnDef="maturity">
           <mat-header-cell style="width: 10em" *matHeaderCellDef mat-sort-header>{{ 'queryRecord.maturity' | translate
             }}</mat-header-cell>
-          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.vencimento}} </mat-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataVencimento}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

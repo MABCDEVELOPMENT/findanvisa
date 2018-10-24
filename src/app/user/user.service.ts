@@ -7,9 +7,6 @@ import { Headers, Http } from '@angular/http';
  
 import 'rxjs/add/operator/toPromise';
 
-import { Alert, error } from 'selenium-webdriver';
-import { environment } from '@env/environment';
-import { RegisterCNPJ } from '@app/cnpj/cnpj-model';
 import { UserRegisterCNPJ } from '@app/user/userregisterCNPJ-model';
 
 
@@ -49,7 +46,6 @@ export class UserService {
                     .catch(error=> Observable.throw(error.message));
   }
 
-  // DEMO ONLY, you can find working methods below
   save (user: User): Promise<any> {
     //this.dialogData = user;
     return this.httpClient.post(this.API_URL+'/save', user).toPromise()

@@ -8,8 +8,8 @@
 
         
           <mat-form-field class="version">
-            <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.versao' | translate }}" formControlName="version"
-              [(ngModel)]="data.version">
+            <input matInput #input class="form-control" type="text" placeholder="{{ 'genericParameter.version' | translate }}" formControlName="version"
+              [(ngModel)]="data.versao">
             <mat-error *ngIf="form.controls.version.invalid">{{getErrorMessage() | translate}}</mat-error>
           </mat-form-field>
           <mat-form-field class="systemName">

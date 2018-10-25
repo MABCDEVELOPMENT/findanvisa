@@ -26,7 +26,8 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     error: any;
 
     //displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
-    displayedColumns = ['order', 'cnpj', 'socialName', 'process', 'subject'];
+    //displayedColumns = ['order', 'cnpj', 'socialName', 'process', 'subject'];
+    displayedColumns = ['dataAlteracao','dataRegistro','qtdRegistro','cnpj', 'process', 'subject'];
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
@@ -105,6 +106,10 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     getDetail(content: any) {
 
         this.spinnerService.show();
+        this.parentProcess.detail = content['processDetail'];
+        this.router.navigate(['/queryRecordProcess/detail-process'], { replaceUrl: false });
+        this.spinnerService.hide();
+        /*this.spinnerService.show();
         this.dataService.getQueryRegistersProcessDetail(this.parentProcess.category, this.parentProcess.option, content.processo)
             .then(
                 data => {
@@ -117,7 +122,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });
+                    });*/
 
     }
     goBack() {
@@ -140,6 +145,15 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
             case 'socialName':   return compare(a['razaoSocial'], b['razaoSocial'], isAsc);
             case 'process':   return compare(new Number(a['processo']), new Number(b['processo']),  isAsc);
             case 'subject':   return compare(a['assunto'], b['assunto'], isAsc);
+            case 'dataAlteracao': {
+               
+                return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
+            }
+            case 'dataRegistro': {
+               
+                return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
+            }
+            case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
             default: return 0;
           }
         });

@@ -20,7 +20,7 @@ import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
 export class UserListComponent  {
 
   error: string;
-  displayedColumns = ['id', 'fullName', 'userName', 'email', 'profile', 'active', 'actions'];
+  displayedColumns = ['fullName', 'userName', 'email', 'profile', 'active', 'actions'];
   ELEMENT_DATA: User[];
 
   isExpansionDetailRow = (i: number, row: any) =>

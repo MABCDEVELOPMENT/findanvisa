@@ -29,7 +29,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
     error:string;
 
-    displayedColumns       = ['dataAlteracao','dataRegistro','product','register','process','company','situation','maturity'];
+    displayedColumns       = ['dataAlteracao','dataRegistro','qtdRegistro','product','register','process','company','situation','maturity'];
     
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -188,6 +188,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
                
                 return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
             }
+            case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']),  isAsc);
             default: return 0;
           }
         });

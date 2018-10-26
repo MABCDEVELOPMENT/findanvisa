@@ -32,6 +32,11 @@
   flex: 0 0 10%;
   }
  
-
+  .mat-row:hover {
+    background-color: blue;
+    --webkit-text-stroke-color: white;
+    cursor: pointer;
+    cursor: hand;
+  }
   
   

@@ -1,45 +1,50 @@
 @import '../../../assets/styles/color.scss';
 @import '../../../assets/styles/crud.scss';
 
-.mat-cell:nth-child(1), // id
+// .mat-cell:nth-child(1), // id
+//   .mat-header-cell:nth-child(1),
+//   {
+//   flex: 0 0 40px;
+//   }
+  .mat-cell:nth-child(1), // fullName
   .mat-header-cell:nth-child(1),
   {
-  flex: 0 0 40px;
+  flex: 0 0 350px;
   }
-  .mat-cell:nth-child(2), // fullName
+  .mat-cell:nth-child(2), // userName
   .mat-header-cell:nth-child(2),
-  {
-  flex: 0 0 250px;
-  }
-  .mat-cell:nth-child(3), // userName
-  .mat-header-cell:nth-child(3),
-  {
-  flex: 0 0 200px;
-  }
-  .mat-cell:nth-child(4), // userEmail
-  .mat-header-cell:nth-child(4),
   {
   flex: 0 0 300px;
   }
-  .mat-cell:nth-child(5), // profile
-  .mat-header-cell:nth-child(5),
+  .mat-cell:nth-child(3), // userEmail
+  .mat-header-cell:nth-child(3),
   {
-  flex: 0 0 100px;
+  flex: 0 0 300px;
   }
-  .mat-cell:nth-child(6), // active
-  .mat-header-cell:nth-child(6),
+  .mat-cell:nth-child(4), // profile
+  .mat-header-cell:nth-child(4),
+  {
+  flex: 0 0 150px;
+  }
+  .mat-cell:nth-child(5), // active
+  .mat-header-cell:nth-child(5),
   {
   flex: 0 0 80px;
   }
-  .mat-cell:nth-child(7) { // Edit
+  .mat-cell:nth-child(6) { // Edit
     -webkit-text-fill-color: $systemColor
   }
-  .mat-header-cell:nth-child(8), // Delete
+  .mat-header-cell:nth-child(7), // Delete
   {
     -webkit-text-fill-color:white;
   flex: 0 0 10%;
   }
- 
+  .mat-row:hover {
+    background-color: blue;
+    --webkit-text-stroke-color: white;
+    cursor: pointer;
+    cursor: hand;
+  }
   .mat-checkbox {
     font-size: 14px;
     margin: 20px;

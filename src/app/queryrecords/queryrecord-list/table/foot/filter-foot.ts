@@ -73,7 +73,7 @@ export class FilterFootComponent implements OnInit {
                 //Pametros nulos para Categoria cosmetico produtos notificados
                 null);
 
-
+                
             this.spinnerService.show();
             this.dataService.getQueryRegisters(this.queryRecordParameter)
                 .then(

@@ -32,7 +32,7 @@ export class TableSaneanteProductComponent implements OnInit, AfterViewInit {
 
   error: string;
 
-  displayedColumns = ['dataAlteracao', 'dataRegistro', 'product', 'register', 'process',  'situation', 'maturity']; //'company',
+  displayedColumns = ['dataAlteracao', 'dataRegistro','qtdRegistro','product', 'register', 'process',  'situation', 'maturity']; //'company',
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;
@@ -187,6 +187,7 @@ export class TableSaneanteProductComponent implements OnInit, AfterViewInit {
 
           return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
         }
+        case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']),  isAsc);
         default: return 0;
       }
     });

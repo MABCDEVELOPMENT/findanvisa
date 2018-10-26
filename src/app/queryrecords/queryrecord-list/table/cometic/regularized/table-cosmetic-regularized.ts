@@ -30,7 +30,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
 
     error: string;
 
-    displayedColumns       = ['dataAlteracao','dataRegistro','process','product','type','situation','maturity'];
+    displayedColumns       = ['dataAlteracao','dataRegistro','qtdRegistro','process','product','type','situation','maturity'];
     
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -192,6 +192,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
                     return compareDate(a['updateDate'], b['updateDate'], isAsc);
 
                 }
+                case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']), isAsc);
                 default: return 0;
             }
         });

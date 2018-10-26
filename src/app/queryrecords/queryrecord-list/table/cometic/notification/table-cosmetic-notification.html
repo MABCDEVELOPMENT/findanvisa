@@ -32,6 +32,12 @@
           <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.dataRegistro}} </mat-cell>
         </ng-container>
 
+        <!-- updateDate Column -->
+        <ng-container matColumnDef="qtdRegistro">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'qtdRegister' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let content" (click)="getDetail(content)"> {{content.qtdRegistro}} </mat-cell>
+        </ng-container>
+
         <!-- subject Column -->
         <ng-container matColumnDef="subject">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'queryRecord.subject' | translate }}</mat-header-cell>

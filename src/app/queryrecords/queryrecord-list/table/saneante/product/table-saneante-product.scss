@@ -16,20 +16,26 @@ mat-cell:nth-child(1), // update
     flex: 10vh;
     font-size: $font-line-size;
 }
-.mat-cell:nth-child(3), // product
+.mat-cell:nth-child(3), // register
 .mat-header-cell:nth-child(3),
+{
+    flex: 10vh;
+    font-size: $font-line-size;
+}
+.mat-cell:nth-child(4), // product
+.mat-header-cell:nth-child(4),
 {
 flex:40vh;
 
 }
-.mat-cell:nth-child(4), // register
-.mat-header-cell:nth-child(4),
+.mat-cell:nth-child(5), // register
+.mat-header-cell:nth-child(5),
 {
 flex:8vh;
 
 }
-.mat-cell:nth-child(5), // process
-.mat-header-cell:nth-child(5),
+.mat-cell:nth-child(6), // process
+.mat-header-cell:nth-child(6),
 {
 flex:25vh;
 
@@ -40,14 +46,14 @@ flex:25vh;
 // flex:30vh;
 
 // }
-.mat-cell:nth-child(6), // situation
-.mat-header-cell:nth-child(6),
+.mat-cell:nth-child(7), // situation
+.mat-header-cell:nth-child(7),
 {
 flex:25vh;
 
 }
-.mat-cell:nth-child(7), // vencimento
-.mat-header-cell:nth-child(7),
+.mat-cell:nth-child(8), // vencimento
+.mat-header-cell:nth-child(8),
 {
 flex:10vh;
 

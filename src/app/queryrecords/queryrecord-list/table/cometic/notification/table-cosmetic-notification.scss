@@ -7,67 +7,73 @@
 .mat-cell:nth-child(1), // update
 .mat-header-cell:nth-child(1),
 {
-    flex: 10vh;
+    flex: 0 0 10vh;
     font-size: $font-line-size;
 }
 .mat-cell:nth-child(2), // register
 .mat-header-cell:nth-child(2),
 {
-    flex: 10vh;
+    flex: 0 0 10vh;
     font-size: $font-line-size;
 }
-.mat-cell:nth-child(3), // subject
+.mat-cell:nth-child(3), // register
 .mat-header-cell:nth-child(3),
 {
-    flex: 35vh;
+    flex: 0 0 8vh;
     font-size: $font-line-size;
 }
-.mat-cell:nth-child(4), // process
+.mat-cell:nth-child(4), // subject
 .mat-header-cell:nth-child(4),
 {
-    flex: 25vh;
+    flex: 0 0 30vh;
     font-size: $font-line-size;
-
 }
-.mat-cell:nth-child(5), // officehour
+.mat-cell:nth-child(5), // process
 .mat-header-cell:nth-child(5),
 {
-    flex: 15vh;
+    flex: 0 0 25vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(6), // transaction
+.mat-cell:nth-child(6), // officehour
 .mat-header-cell:nth-child(6),
 {
-    flex: 10vh;
+    flex: 0 0 12vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(7), // product
+.mat-cell:nth-child(7), // transaction
 .mat-header-cell:nth-child(7),
 {
-    flex: 40vh;
+    flex: 0 0 10vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(8), // company
+.mat-cell:nth-child(8), // product
 .mat-header-cell:nth-child(8),
 {
-    flex: 35vh;
+    flex: 0 0 40vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(9), // situation
+.mat-cell:nth-child(9), // company
 .mat-header-cell:nth-child(9),
 {
-    flex: 15vh;
+    flex: 0 0 35vh;
     font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(10), // maturity
+.mat-cell:nth-child(10), // situation
 .mat-header-cell:nth-child(10),
 {
-    flex: 10vh;
+    flex: 0 0 15vh;
+    font-size: $font-line-size;
+
+}
+.mat-cell:nth-child(11), // maturity
+.mat-header-cell:nth-child(11),
+{
+    flex: 0 0 10vh;
     font-size: $font-line-size;
 
 }

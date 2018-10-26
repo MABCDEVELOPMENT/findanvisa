@@ -195,7 +195,7 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
                
                 return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
             }
-            case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
+            case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']),  isAsc);
             case 'statusMaturity': return compare(a['statusVencimento'], b['statusVencimento'], isAsc);
             default: return 0;
           }

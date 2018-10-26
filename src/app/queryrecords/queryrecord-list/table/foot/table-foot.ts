@@ -141,7 +141,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
                     this.data = data;
                     this.parentProcess.data = this.data;
                     this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
+                    
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;
@@ -149,6 +149,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
                         this.showMsg(this.error);
 
                     });
+                    this.spinnerService.hide();
     }
 
     goBack () {

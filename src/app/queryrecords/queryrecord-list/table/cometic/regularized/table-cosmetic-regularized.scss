@@ -15,32 +15,39 @@ flex:10vh;
 font-size: $font-line-size;
 
 }
-.mat-cell:nth-child(3), // process 
+.mat-cell:nth-child(3), // qtdregister 
 .mat-header-cell:nth-child(3),
+{
+flex:10vh;
+font-size: $font-line-size;
+
+}
+.mat-cell:nth-child(4), // process 
+.mat-header-cell:nth-child(4),
 {
 flex:20vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(4), // product
-.mat-header-cell:nth-child(4),
+.mat-cell:nth-child(5), // product
+.mat-header-cell:nth-child(5),
 {
 flex:40vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(5), // type
-.mat-header-cell:nth-child(5),
+.mat-cell:nth-child(6), // type
+.mat-header-cell:nth-child(6),
 {
 flex:10vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(6), // situation
-.mat-header-cell:nth-child(6),
+.mat-cell:nth-child(7), // situation
+.mat-header-cell:nth-child(7),
 {
 flex:20vh;
 font-size: $font-line-size;
 }
-.mat-cell:nth-child(7), // vencimento
-.mat-header-cell:nth-child(7),
+.mat-cell:nth-child(8), // vencimento
+.mat-header-cell:nth-child(8),
 {
 flex:15vh;
 font-size: $font-line-size;

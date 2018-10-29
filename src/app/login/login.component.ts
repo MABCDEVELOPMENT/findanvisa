@@ -7,6 +7,7 @@ import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { MatDialog } from '@angular/material';
 import { ForgotPasswordComponent } from '@app/login/forgot-password-component/forgot-password-component';
 import { ErrorDialogComponent } from '@app/core/message/error-dialog.component';
+import { booleanLiteral } from 'babel-types';
 
 const log = new Logger('Login');
 
@@ -17,6 +18,7 @@ export interface Credentials {
   email: string;
   isAdm: boolean;
   token: string;
+  password: string;
   remember?: boolean;
 }
 
@@ -38,11 +40,11 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private i18nService: I18nService,
               private authenticationService: AuthenticationService) {
-    this.createForm();
+    
   }
 
   ngOnInit() { 
-
+      this.createForm();
   }
 
   login() {
@@ -57,8 +59,9 @@ export class LoginComponent implements OnInit {
            return;
         }    
         this.credential = { id:user.id, username: user.userName,email:user.email,
-          isAdm: (user.profile == 1) ,token: '123456',remember: this.loginForm.controls['remember'].value};
-        this.authenticationService.setCredentials(this.credential); 
+          isAdm: (user.profile == 1) ,token: '123456',remember: this.loginForm.controls['remember'].value,password:this.loginForm.controls['password'].value};
+          
+        this.authenticationService.setCredentials(this.credential,this.credential.remember); 
         this.router.navigate(['/'], { replaceUrl: true });
       }).catch(
       error => {
@@ -124,6 +127,14 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       remember: true
     });
+    if (this.authenticationService.credentials.remember) {
+      this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);
+      this.loginForm.controls['password'].patchValue(this.authenticationService.credentials.password);
+    } else {
+      this.loginForm.controls['email'].patchValue('');
+      this.loginForm.controls['password'].patchValue('');
+    } 
+    this.loginForm.controls['remember'].patchValue(this.authenticationService.credentials.remember);
   }
 
   showMsg(message : string) : void {

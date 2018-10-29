@@ -152,7 +152,7 @@ export class UserProfileComponent {
         this.data = data;
         
         this.credential = { id:data.id, username: data.userName,email:data.email,
-          isAdm: (data.profile == 1) ,token: '123456'};
+          isAdm: (data.profile == 1) ,token: '123456',password:''};
            
         this.authenticationService.setCredentials(this.credential); 
         this.spinnerService.hide();

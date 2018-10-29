@@ -3,11 +3,11 @@ import { ActivatedRoute } from "@angular/router";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
 import { Location } from "@angular/common";
-import { Observable } from "rxjs";
+
 import { HttpClient } from "@angular/common/http";
 import { environment } from "@env/environment.prod";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
-import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
+
 import { MatDialog } from "@angular/material";
 
 @Component({

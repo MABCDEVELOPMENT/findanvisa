@@ -9,6 +9,7 @@ import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { Location } from "@angular/common";
 import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
 import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
+import { DetailFootComponent } from "./detail/detail-foot";
 
 @Component({
     selector: 'table-foot',
@@ -102,10 +103,21 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
      getDetail(content:any) {
 
-        this.spinnerService.show();
+        //this.spinnerService.show();
         this.parent.detail = content['contentFootDetail'];
-        this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
-        this.spinnerService.hide();  
+        //this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
+       
+            let dialogRef = this.dialog.open(DetailFootComponent, {
+                data: {  }, width: '800px',
+                height:'600px'
+            });
+    
+            dialogRef.afterClosed().subscribe(result => {
+                // result is what you get after you close the Modal
+            });
+
+    
+        //this.spinnerService.hide();  
 
       /*this.spinnerService.show();
         this.dataService.getQueryRegistersDetail(this.parent.category,this.parent.option,content.processo)

@@ -10,6 +10,8 @@ import { Location } from "@angular/common";
 import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
 import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 import { DetailFootComponent } from "./detail/detail-foot";
+import { DetailProcessComponent } from "@app/queryrecords/queryrecordprocess-list/process/detail/detail-process";
+
 
 @Component({
     selector: 'table-foot',
@@ -21,6 +23,8 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
     ELEMENT_DATA: any[] = [];  
 
     sortedData: any[];
+
+    selectedRowIndex: number = -1;
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   
@@ -81,7 +85,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
 
             this.ELEMENT_DATA = this.parent.data['content'];
             this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-            //this.dataSource.sort = this.sort;
+  
             this.dataSource.sortingDataAccessor = (data, header) => data[header];
             this.dataSource.paginator = this.paginator;
             this.dataSource._updatePaginator;
@@ -100,42 +104,40 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
         var name = this.parent.user.userName+" "+ date + time;
         XLSX.writeFile(workbook, name+'.xls', { bookType: 'xls', type: 'buffer' });
      }
+    
+     getDetail(content:any,row:any) {
 
-     getDetail(content:any) {
+        this.selectedRowIndex = row.id;
 
-        //this.spinnerService.show();
         this.parent.detail = content['contentFootDetail'];
-        //this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
        
             let dialogRef = this.dialog.open(DetailFootComponent, {
-                data: {  }, width: '800px',
+                data: { data: this.parent.detail  }, width: '1200px',
                 height:'600px'
             });
     
             dialogRef.afterClosed().subscribe(result => {
                 // result is what you get after you close the Modal
             });
-
     
-        //this.spinnerService.hide();  
-
-      /*this.spinnerService.show();
-        this.dataService.getQueryRegistersDetail(this.parent.category,this.parent.option,content.processo)
-            .then(
-                data => {
-                    this.parent.detail = data['contentObject'];
-                    this.router.navigate(['/queryRecord/detail-foot'], { replaceUrl: false });
-                    this.spinnerService.hide();
-                }).catch(
-                    error => {
-                        this.error = error.error.errorMessage;
-                        this.spinnerService.hide();
-                        this.showMsg(this.error);
-
-                    });*/
-
     }
 
+    getDetailProcess(content:any,row:any) {
+
+        this.selectedRowIndex = row.id;
+
+        this.parentProcess = content.process;
+       
+            let dialogRef = this.dialog.open(DetailProcessComponent, {
+                data: { content: content.process }, width: '1200px',
+                height:'600px'
+            });
+    
+            dialogRef.afterClosed().subscribe(result => {
+                // result is what you get after you close the Modal
+            });
+    
+    }
     loadProcess(process:string) {
         this.queryRecordProcessParameter = new QueryRecordProcessParameter(null,
             null,
@@ -189,16 +191,16 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             case 'company':   return compare(a['empresa'],  b['empresa'],  isAsc);
             case 'situation': return compare(a['situacao'], b['situacao'], isAsc);
             case 'maturity': {
-               
-                return compareDate(a['dataVencimento'], b['dataVencimento'], isAsc);
+
+                return compare(dateNumber(a['vencimento']), dateNumber(b['vencimento']), isAsc);
             }
             case 'dataAlteracao': {
-               
-                return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
+
+                return compare(dateNumber(a['dataAlteracao']), dateNumber(b['dataAlteracao']), isAsc);
             }
             case 'dataRegistro': {
-               
-                return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
+
+                return compare(dateNumber(a['dataRegistro']), dateNumber(b['dataRegistro']), isAsc);
             }
             case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']),  isAsc);
             default: return 0;
@@ -206,8 +208,6 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
         });
 
         this.dataSource = new MatTableDataSource(this.sortedData);
-        //this.dataSource.sort = this.sort;
-       // this.dataSource.sortingDataAccessor = (data, header) => data[header];
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
 
@@ -222,3 +222,21 @@ function compare(a:any, b:any, isAsc:any) {
 function compareDate(a:Date, b:Date, isAsc:boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
+function dateNumber(strDate:string) {
+   
+ if (strDate && strDate != "") {
+   
+        let day:string = strDate.substring(0,2);
+        let month:string = strDate.substring(3,5)
+        let year:string = strDate.substring(6,10);
+   
+        return new Number(year+month+day)
+
+   } else {
+
+        return 0;
+
+   }
+
+} 

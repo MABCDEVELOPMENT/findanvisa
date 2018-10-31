@@ -33,3 +33,24 @@ table tr:nth-child(odd) td {
     height: 25px;
     font-size: 15px;
 }
+
+.dialog-overlay
+{
+    .mobile &
+    {
+        background: black;
+    }
+}
+
+.dialog-panel
+{
+    .mobile &
+    {
+        // important is used because MatDialog applies css to the elements
+        max-width: none !important;
+        max-height: none !important;
+    
+        width: calc(100% - 2em) !important;
+        height: calc(100% - 2em) !important;
+    }
+}

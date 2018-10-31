@@ -1,22 +1,15 @@
-import { Component, Inject, ViewChild, ElementRef, OnInit, ChangeDetectorRef, AfterViewInit } from "@angular/core";
-import { TableComponent } from "@app/queryrecords/queryrecord-list/table/table-component";
-import { MatTableDataSource, MatPaginator, MatSort, MatTableModule, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { ActivatedRoute } from "@angular/router";
-import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
-import * as XLSX from 'xlsx';
-import { Content } from "@app/queryrecords/modelquery/content.model";
+import { Component, Inject, OnInit, Renderer2 } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { FilterService } from "@app/queryrecords/queryrecord-list/table/filter-service";
-import { extend } from "webdriver-js-extender";
-import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
-import { Location } from "@angular/common";
 import { I18nService } from "@app/core";
+import { OverlayContainer } from "@angular/cdk/overlay";
 
 @Component({
     selector: 'detail-foot',
     templateUrl: './detail-foot.html',
     styleUrls:['./detail-foot.scss']
 })
-export class DetailFootComponent  {
+export class DetailFootComponent implements OnInit {
 
     content:any;
 
@@ -33,19 +26,18 @@ export class DetailFootComponent  {
     constructor(private dialogRef: MatDialogRef<DetailFootComponent>, 
         private i18nService: I18nService,   
         public parent: FilterService,
+        private renderer: Renderer2,
+         public overlayC: OverlayContainer,
         @Inject(MAT_DIALOG_DATA) public data : any) {
+            const overlay = overlayC.getContainerElement();
+            this.content = data.detail;
 
     }
   
-
     ngOnInit() {
         this.content = this.parent.detail;
     }
       
-    ngAfterViewInit() {
-
-    }
-
     onConfirm() {
         this.dialogRef.close(true);
     }

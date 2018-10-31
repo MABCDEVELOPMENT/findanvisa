@@ -69,6 +69,10 @@ font-size: $font-line-size;
   cursor: pointer;
   cursor: hand;
 }
+.highlight {
+  background-color: blue;
+  --webkit-text-stroke-color: white;
+}
 .contanier{
   background-color:	$systemBackgronwd;
 }

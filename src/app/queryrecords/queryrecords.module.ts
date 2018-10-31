@@ -119,7 +119,7 @@ import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/ta
     TableProcessComponent,
     DetailProcessComponent],
   providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService],
-  entryComponents: [DetailFootComponent],
+  entryComponents: [DetailFootComponent,DetailProcessComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class QueryrecordsModule { }

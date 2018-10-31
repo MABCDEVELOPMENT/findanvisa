@@ -145,13 +145,13 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
             case 'socialName':   return compare(a['razaoSocial'], b['razaoSocial'], isAsc);
             case 'process':   return compare(new Number(a['processo']), new Number(b['processo']),  isAsc);
             case 'subject':   return compare(a['assunto'], b['assunto'], isAsc);
-            case 'dataAlteracao': {
-               
-                return compareDate(a['dataAlteracao'], b['dataAlteracao'], isAsc);
+            case 'maturity': {
+
+                return compare(dateNumber(a['vencimento']), dateNumber(b['vencimento']), isAsc);
             }
-            case 'dataRegistro': {
-               
-                return compareDate(a['dataRegistro'], b['dataRegistro'], isAsc);
+            case 'dataAlteracao': {
+
+                return compare(dateNumber(a['dataAlteracao']), dateNumber(b['dataAlteracao']), isAsc);
             }
             case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
             default: return 0;
@@ -179,3 +179,21 @@ function compare(a:any, b:any, isAsc:any) {
 function compareDate(a:Date, b:Date, isAsc:boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
+function dateNumber(strDate:string) {
+   
+    if (strDate && strDate != "") {
+      
+           let day:string = strDate.substring(0,2);
+           let month:string = strDate.substring(3,5)
+           let year:string = strDate.substring(6,10);
+      
+           return new Number(year+month+day)
+   
+      } else {
+   
+           return 0;
+   
+      }
+   
+} 

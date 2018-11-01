@@ -19,7 +19,7 @@ export interface Credentials {
   isAdm: boolean;
   token: string;
   password: string;
-  remember?: boolean;
+  remember: boolean;
 }
 
 @Component({
@@ -34,72 +34,85 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
   email: string;
-  private credential:Credentials;
+  private credential: Credentials;
   constructor(private router: Router,
-              private dialog: MatDialog,
-              private formBuilder: FormBuilder,
-              private i18nService: I18nService,
-              private authenticationService: AuthenticationService) {
-    
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private i18nService: I18nService,
+    private authenticationService: AuthenticationService) {
+
   }
 
-  ngOnInit() { 
-      this.createForm();
+  ngOnInit() {
+    this.createForm();
+    // let remember: any = this.authenticationService.credentials['remember'];
+    // if (remember != null && remember === true) {
+    //   this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);
+    //   this.loginForm.controls['password'].patchValue(this.authenticationService.credentials.password);
+    // } else {
+    //   this.loginForm.controls['email'].patchValue('');
+    //   this.loginForm.controls['password'].patchValue('');
+    //   remember = false;
+    // }
+    // this.loginForm.controls['remember'].patchValue(remember);
   }
 
   login() {
 
     this.authenticationService.login(this.loginForm.value)
-    .then(
-      data => {
-        this.email = data['email'];
-        let user = data;
-        if (data.error) {
-           this.showMsg("Login invalido!");
-           return;
-        }    
-        this.credential = { id:user.id, username: user.userName,email:user.email,
-          isAdm: (user.profile == 1) ,token: '123456',remember: this.loginForm.controls['remember'].value,password:this.loginForm.controls['password'].value};
-          
-        this.authenticationService.setCredentials(this.credential,this.credential.remember); 
-        this.router.navigate(['/'], { replaceUrl: true });
-      }).catch(
-      error => {
-        this.error = error;
-        this.showMsg(this.error); 
-        this.router.navigate(['/login'], { replaceUrl: true });
-      });
+      .then(
+        data => {
+          this.email = data['email'];
+          let user = data;
+          if (data.error) {
+            this.showMsg("Login invalido!");
+            return;
+          }
+          this.credential = {
+            id: user.id, username: user.userName, email: user.email,
+            isAdm: (user.profile == 1), token: '123456', remember: this.loginForm.controls['remember'].value, password: this.loginForm.controls['password'].value
+          };
+
+          this.authenticationService.setCredentials(this.credential, this.credential.remember);
+          this.router.navigate(['/'], { replaceUrl: true });
+        }).catch(
+          error => {
+            this.error = error;
+            this.showMsg(this.error);
+            this.router.navigate(['/login'], { replaceUrl: true });
+          });
 
   }
 
   forgotPassword() {
     if (this.loginForm.controls.email.invalid) {
-       this.showMsg("Informe e-mail."); 
-       return;
+      this.showMsg("Informe e-mail.");
+      return;
     }
     this.authenticationService.getEmail(this.loginForm.controls.email.value)
-    .then(
-      data => {
-        this.email = data['email'];
-        this.isLoading = true;
-        this.sendEmail(this.email);
-        this.isLoading = false;
-      }).catch(
-      error => {
-        this.error = JSON.stringify(error);
-        this.showMsg('Usuário Inválido!'); 
-        return;
-      });
+      .then(
+        data => {
+          this.email = data['email'];
+          this.isLoading = true;
+          this.sendEmail(this.email);
+          this.isLoading = false;
+        }).catch(
+          error => {
+            this.error = JSON.stringify(error);
+            this.showMsg('Usuário Inválido!');
+            return;
+          });
   }
 
-  sendEmail(email:string) {
-    
+  sendEmail(email: string) {
+
     if (this.email) {
-      const dialogRef = this.dialog.open(ForgotPasswordComponent, {data: {email: this.email},
+      const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+        data: { email: this.email },
         height: '200px',
         width: '400px'
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         if (result === 1) {
 
@@ -127,19 +140,12 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       remember: true
     });
-    if (this.authenticationService.credentials.remember) {
-      this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);
-      this.loginForm.controls['password'].patchValue(this.authenticationService.credentials.password);
-    } else {
-      this.loginForm.controls['email'].patchValue('');
-      this.loginForm.controls['password'].patchValue('');
-    } 
-    this.loginForm.controls['remember'].patchValue(this.authenticationService.credentials.remember);
+
   }
 
-  showMsg(message : string) : void {
+  showMsg(message: string): void {
     this.dialog.open(ErrorDialogComponent, {
-      data: {errorMsg: message} ,width : '250px',height: '200px'
+      data: { errorMsg: message }, width: '250px', height: '200px'
     });
   }
 

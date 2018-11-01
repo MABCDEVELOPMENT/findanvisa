@@ -145,13 +145,13 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
             case 'socialName':   return compare(a['razaoSocial'], b['razaoSocial'], isAsc);
             case 'process':   return compare(new Number(a['processo']), new Number(b['processo']),  isAsc);
             case 'subject':   return compare(a['assunto'], b['assunto'], isAsc);
-            case 'maturity': {
-
-                return compare(dateNumber(a['vencimento']), dateNumber(b['vencimento']), isAsc);
-            }
             case 'dataAlteracao': {
 
                 return compare(dateNumber(a['dataAlteracao']), dateNumber(b['dataAlteracao']), isAsc);
+            }
+            case 'dataRegistro': {
+
+                return compare(dateNumber(a['dataRegistro']), dateNumber(b['dataRegistro']), isAsc);
             }
             case 'qtdRegistro': return compare(a['qtdRegistro'], b['qtdRegistro'], isAsc);
             default: return 0;

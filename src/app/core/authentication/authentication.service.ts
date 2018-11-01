@@ -15,7 +15,7 @@ export interface Credentials {
   isAdm: boolean;
   token: string;
   password: string;
-  remember?: boolean;
+  remember: boolean;
 }
 
 export interface LoginContext {

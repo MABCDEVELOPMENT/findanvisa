@@ -207,6 +207,8 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
           }
         });
 
+
+
         this.dataSource = new MatTableDataSource(this.sortedData);
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
@@ -225,18 +227,18 @@ function compareDate(a:Date, b:Date, isAsc:boolean) {
 
 function dateNumber(strDate:string) {
    
- if (strDate && strDate != "") {
+    if (strDate && strDate != "") {
+      
+           let day:string = strDate.substring(0,2);
+           let month:string = strDate.substring(3,5)
+           let year:string = strDate.substring(6,10);
+      
+           return new Number(year+month+day)
    
-        let day:string = strDate.substring(0,2);
-        let month:string = strDate.substring(3,5)
-        let year:string = strDate.substring(6,10);
+      } else {
    
-        return new Number(year+month+day)
-
-   } else {
-
-        return 0;
-
-   }
-
+           return 0;
+   
+      }
+   
 } 

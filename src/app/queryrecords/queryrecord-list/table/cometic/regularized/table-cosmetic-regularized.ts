@@ -179,19 +179,17 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
                 case 'situation': return compare(a['situacao'], b['situacao'], isAsc);
                 case 'maturity': {
 
-                    return compareDate(a['vencimento'], b['vencimento'], isAsc);
-
+                    return compare(dateNumber(a['vencimento']), dateNumber(b['vencimento']), isAsc);
                 }
                 case 'dataAlteracao': {
-
-                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
-
+    
+                    return compare(dateNumber(a['dataAlteracao']), dateNumber(b['dataAlteracao']), isAsc);
                 }
                 case 'dataRegistro': {
-
-                    return compareDate(a['updateDate'], b['updateDate'], isAsc);
-
+    
+                    return compare(dateNumber(a['dataRegistro']), dateNumber(b['dataRegistro']), isAsc);
                 }
+    
                 case 'qtdRegistro': return compare(new Number(a['qtdRegistro']), new Number(b['qtdRegistro']), isAsc);
                 default: return 0;
             }
@@ -214,3 +212,21 @@ function compare(a: any, b: any, isAsc: any) {
 function compareDate(a: Date, b: Date, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
+function dateNumber(strDate:string) {
+   
+    if (strDate && strDate != "") {
+      
+           let day:string = strDate.substring(0,2);
+           let month:string = strDate.substring(3,5)
+           let year:string = strDate.substring(6,10);
+      
+           return new Number(year+month+day)
+   
+      } else {
+   
+           return 0;
+   
+      }
+   
+} 

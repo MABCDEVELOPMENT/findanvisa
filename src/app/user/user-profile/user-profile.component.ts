@@ -149,10 +149,11 @@ export class UserProfileComponent {
     this.dataService.save(this.data)
     .then(
       data => {
+        
         this.data = data;
         
         this.credential = { id:data.id, username: data.userName,email:data.email,
-          isAdm: (data.profile == 1) ,token: '123456',password:''};
+          isAdm: (data.profile == 1) ,token: '123456',password:'',remember:null};
            
         this.authenticationService.setCredentials(this.credential); 
         this.spinnerService.hide();

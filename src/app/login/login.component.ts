@@ -45,16 +45,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    // let remember: any = this.authenticationService.credentials['remember'];
-    // if (remember != null && remember === true) {
-    //   this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);
-    //   this.loginForm.controls['password'].patchValue(this.authenticationService.credentials.password);
-    // } else {
-    //   this.loginForm.controls['email'].patchValue('');
-    //   this.loginForm.controls['password'].patchValue('');
-    //   remember = false;
-    // }
-    // this.loginForm.controls['remember'].patchValue(remember);
+    let remember: any;
+    if (this.authenticationService.credentials==undefined) {
+      remember=false;
+    } else {
+      remember=this.authenticationService.credentials.remember;
+    }
+    if (remember === true) {
+      this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);
+      this.loginForm.controls['password'].patchValue(this.authenticationService.credentials.password);
+    } else {
+      this.loginForm.controls['email'].patchValue('');
+      this.loginForm.controls['password'].patchValue('');
+      remember = false;
+    }
+    this.loginForm.controls['remember'].patchValue(remember);
   }
 
   login() {

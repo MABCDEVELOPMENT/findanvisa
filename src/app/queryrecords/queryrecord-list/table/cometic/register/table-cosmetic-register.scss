@@ -101,4 +101,7 @@ font-size: $font-line-size;
     max-height: 40vh;
     background-color:	$systemBackgronwd;
 }
-
+.highlight {
+    background-color: blue;
+    --webkit-text-stroke-color: white;
+}

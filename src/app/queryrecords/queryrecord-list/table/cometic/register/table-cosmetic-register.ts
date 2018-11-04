@@ -10,6 +10,7 @@ import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
 import { Location } from "@angular/common";
 import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
 import { QueryRecordProcessParameter } from "@app/queryrecords/queryrecordprocessparameter.model";
+import { DetailCosmeticRegisterComponent } from "./detail/detail-cosmetic-register";
 
 @Component({
     selector: 'table-cosmetic-retister',
@@ -22,6 +23,8 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
     ELEMENT_DATA: any[] = [];
 
     sortedData: any[];
+
+    selectedRowIndex: number = -1;
 
     dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
@@ -134,7 +137,24 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
     }
 
 
-    getDetail(content: any) {
+    getDetail(content:any,row:any) {
+
+        this.selectedRowIndex = row.id;
+
+        this.parent.detail = content['contentCosmeticRegisterDetail'];
+       
+            let dialogRef = this.dialog.open(DetailCosmeticRegisterComponent, {
+                data: { data: this.parent.detail  }, width: '1200px',
+                height:'600px'
+            });
+    
+            dialogRef.afterClosed().subscribe(result => {
+                // result is what you get after you close the Modal
+            });
+    
+    }
+
+    /*getDetail(content: any) {
 
         this.spinnerService.show();
         this.parent.detail = content['contentCosmeticRegisterDetail'];
@@ -152,9 +172,9 @@ export class TableCosmeticRegisterComponent implements OnInit, AfterViewInit {
                         this.spinnerService.hide();
                         this.showMsg(this.error);
 
-                    });*/
+                    });
 
-    }
+    }*/
     
     goBack() {
         this._location.back();

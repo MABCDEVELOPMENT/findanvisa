@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
     this.createForm();
     let remember: any;
     if (this.authenticationService.credentials==undefined) {
-      remember=false;
+      remember = false;
     } else {
-      remember=this.authenticationService.credentials.remember;
+      remember = this.authenticationService.credentials.remember;
     }
     if (remember === true) {
       this.loginForm.controls['email'].patchValue(this.authenticationService.credentials.email);

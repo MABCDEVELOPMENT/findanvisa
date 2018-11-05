@@ -35,7 +35,7 @@ export class UserProfileComponent {
 
   public categorys = [
     'Alimentos',
-    'Cosmeticos',
+    'Cosméticos',
     'Saneantes',
     'Todos'
   ];

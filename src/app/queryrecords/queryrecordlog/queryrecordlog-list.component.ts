@@ -11,33 +11,37 @@ import { FormGroup,  Validators, FormControl } from '@angular/forms';
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
-import { FilterService } from '@app/queryrecords/queryrecord-list/table/filter-service';
+
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-
+import { QueryRecordLogParameter } from '../queryrecordlogparameter.model';
+import { FilterLogService } from './filter-service-log';
 
 @Component({
-  selector: 'app-queryrecord-list',
-  templateUrl: './queryrecord-list.component.html',
-  styleUrls: ['./queryrecord-list.component.scss']
+  selector: 'app-queryrecordlog-list',
+  templateUrl: './queryrecordlog-list.component.html',
+  styleUrls: ['./queryrecordlog-list.component.scss']
 })
-export class QueryrecordListComponent implements OnInit, AfterViewInit {
+export class QueryrecordLogListComponent implements OnInit, AfterViewInit {
 
   public cnpjMask = [ /\d/ , /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/ , /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/,];
   
   error: string;
   
-
-  
-  displayedRegularized   = ['process','product','type','situation','maturity'];
-  
   typeProduct = 0;
+
+  data: any;
+
+  cnpj:any;
+  category:any;
+  option:any;
 
   ELEMENT_DATA: Content[];
   selected:RegisterCNPJ;
   cnpjs:RegisterCNPJ[];
   filteredOptions: Observable<RegisterCNPJ[]>;
+
+  queryRecordParameter: QueryRecordLogParameter;
 
   user:User;
   form: FormGroup;
@@ -56,7 +60,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
   constructor( public dialog: MatDialog,
                private router: Router,
                private spinnerService: Ng4LoadingSpinnerService,
-               private filterService: FilterService,
+               public parent: FilterLogService,
                public dataService: QueryrecordsService,
                private authenticationService: AuthenticationService,
                public i18nService: I18nService) { 
@@ -93,7 +97,9 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
     this.form =  new FormGroup({
       company: new FormControl('',[Validators.required]),
       category: new FormControl('', [Validators.required]),
-      option:new FormControl('', [Validators.required])
+      option:new FormControl('', [Validators.required]),  
+      dateStart:new  FormControl('', []),
+      dateEnd:new  FormControl('', [])
     });
   }
 
@@ -153,7 +159,6 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
             this.options = null;
         }
       }
-      this.filterService.cnpj = cnpj.cnpj;
       this.selected = cnpj;
       this.onChangeCategory();
       this.onChangeOption();
@@ -164,8 +169,6 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
           if (this.selectedCategory==0) {
  
             this.options = null;
-            this.filterService.user = this.user;
-            this.router.navigate(['/queryRecord/filter-foot'], { replaceUrl: false });
  
           } else if (this.selectedCategory==1) {
             
@@ -181,7 +184,7 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
               {value: 0,  viewValue: 'Registros Risco 2'}
             ]  
           }
-          this.filterService.category = this.selectedCategory;
+    
     }
 
     onChangeOption() {
@@ -194,34 +197,58 @@ export class QueryrecordListComponent implements OnInit, AfterViewInit {
       } else if (this.selectedCategory==1) { // Cosméticos
         
         if (this.selectedOption == 0) { // Produtos registrados
-          this.filterService.user = this.user;
-          this.router.navigate(['/queryRecord/filter-cosmetic-register'], { replaceUrl: false });
-
+          
         } else if (this.selectedOption == 1) { // Produtos notificados
-          this.filterService.user = this.user;
-          this.router.navigate(['/queryRecord/filter-cosmetic-notification'], { replaceUrl: false });          
-
+          
         } else if (this.selectedOption == 2) { // Produtos Regularizados
-          this.filterService.user = this.user;
-          this.router.navigate(['/queryRecord/filter-cosmetic-regularized'], { replaceUrl: false });          
-
+          
         }
       } else if (this.selectedCategory==2) { // Saneantes
          
         if (this.selectedOption == 0) { // Produtos
-          this.filterService.user = this.user;
-          this.router.navigate(['/queryRecord/filter-saneante-product'], { replaceUrl: false });
+          
 
          } else if (this.selectedOption == 1) { // Produtos Notificados
-          this.filterService.user = this.user;
-          this.router.navigate(['/queryRecord/filter-saneante-notification'], { replaceUrl: false });
-
+          
          }
       }
-      this.filterService.option = this.selectedOption;
 }
 
-    
+loadData() {
+  
+  if (this.selected != undefined )
+      this.cnpj = this.selected.cnpj;
+  
+  if (this.selectedCategory != undefined)    
+      this.category = this.selectedCategory;
+  
+  if (this.option != undefined)    
+      this.option   = this.selected;
+
+  this.queryRecordParameter = new QueryRecordLogParameter(
+    this.cnpj,
+    this.category,
+    this.option,
+    this.form.controls['dateStart'].value,
+    this.form.controls['dateEnd'].value);
+
+
+  this.spinnerService.show();
+  this.dataService.getQueryLogRegisters(this.queryRecordParameter)
+      .then(
+          data => {
+              this.data = data;
+              this.parent.data = this.data;
+              this.router.navigate(['/queryRecordLog/table-log'], { replaceUrl: false });
+              this.spinnerService.hide();
+          }).catch(
+              error => {
+                  this.error = error.error.errorMessage;
+                  this.spinnerService.hide();
+                  this.showMsg(this.error);
+
+              });
+}
 
   showMsg(message : string) : void {
     this.dialog.open(ErrorDialogComponent, {

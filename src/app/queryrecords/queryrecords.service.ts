@@ -9,6 +9,7 @@ import { QueryRecordParameter } from '@app/queryrecords/queryrecordparameter.mod
 import { Content } from '@app/queryrecords/modelquery/content.model';
 import { QueryRecordProcessParameter } from '@app/queryrecords/queryrecordprocessparameter.model';
 import { QueryRecordDetail } from '@app/queryrecords/queryrecorddetail.model';
+import { QueryRecordLogParameter } from './queryrecordlogparameter.model';
 
 @Injectable()
 export class QueryrecordsService {
@@ -40,6 +41,13 @@ export class QueryrecordsService {
       return this.httpClient.post(this.API_URL+'/process',queryrecordprocessparameter).timeout(800000).toPromise()
      .then(response => response)
      .catch(error=> Observable.throw(error.message));
+  }
+
+  getQueryLogRegisters(queryrecordlogparameter: QueryRecordLogParameter): Promise<any> {
+
+    return this.httpClient.post(this.API_URL+'/log',queryrecordlogparameter).timeout(800000).toPromise()
+   .then(response => response)
+   .catch(error=> Observable.throw(error.message));
   }
 
   getQueryAreas(): Promise<any> {

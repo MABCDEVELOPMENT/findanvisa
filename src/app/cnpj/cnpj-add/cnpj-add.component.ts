@@ -25,7 +25,7 @@ export class CNPJAddDialogComponent implements OnInit {
 
   categorys = [
     {value: 0,  viewValue: 'Alimentos'},
-    {value: 1,  viewValue: 'Cosmeticos'},
+    {value: 1,  viewValue: 'Cosméticos'},
     {value: 2,  viewValue: 'Saneantes'},
     {value: 3,  viewValue: 'Todas'}
   ];

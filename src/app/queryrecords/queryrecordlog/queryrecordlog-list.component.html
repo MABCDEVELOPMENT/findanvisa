@@ -1,0 +1,50 @@
+<div style="margin-left: 15px; margin-top: 5px" class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="40px"
+  fxLayoutGap.lt-md="20px" [formGroup]="form">
+
+  <mat-form-field class="company">
+    <input matInput [placeholder]="'queryRecord.company' | translate" [matAutocomplete]="auto" formControlName="company">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let cnpj of filteredOptions | async" [value]="cnpj.fullName" (onSelectionChange)="onChangeCompany(cnpj)">
+        {{ cnpj.fullName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="category" >
+    <mat-select [(value)]="selectedCategory" (selectionChange)="onChangeCategory()" [placeholder]="'queryRecord.category' | translate"
+      formControlName="category">
+      <mat-option *ngFor="let category of categorys" [value]="category.value">
+        {{ category.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="option" *ngIf="selectedCategory && selectedCategory!=0 && options">
+    <mat-select [(value)]="selectedOption" (selectionChange)="onChangeOption()" [placeholder]="'queryRecord.option' | translate"
+      formControlName="option">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="width: 200px">
+    <input matInput [matDatepicker]="pickerStart" [placeholder]="'queryRecord.dateStart' | translate" formControlName="dateStart">
+    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+    <mat-datepicker #pickerStart></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field style="width: 250px">
+    <input matInput [matDatepicker]="pickerEnd" [placeholder]="'queryRecord.dateEnd' | translate" formControlName="dateEnd">
+    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+    <mat-datepicker #pickerEnd></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-icon-button (click)="loadData()">
+    <mat-icon>search</mat-icon>
+  </button>
+
+</div>
+
+<div style="margin: 10px;" [ngClass]="'child-container'">
+  <router-outlet></router-outlet>
+</div>

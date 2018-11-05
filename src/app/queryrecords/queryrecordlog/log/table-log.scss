@@ -1,0 +1,42 @@
+@import '../../../../assets/styles/color.scss';
+@import '../../../../assets/styles/crud.scss';
+// html { font-size: 100%; }// this is usually 16px by default }
+body { font-size: $font-line-size;}
+// h1 { font-size: 2em;} // 24px }
+.mat-cell:nth-child(1), // cnpj
+.mat-header-cell:nth-child(1),
+{
+    flex: 0 0  12vw;
+
+}
+.mat-cell:nth-child(2), // process
+.mat-header-cell:nth-child(2),
+{
+    flex: 0 0 30vw;
+
+}
+.mat-row {
+    min-height: max-content;
+    max-height: max-content;
+    border: 0;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.mat-row:hover {
+    background-color: blue;
+    --webkit-text-stroke-color: white;
+    color: white;
+    cursor: pointer;
+    cursor: hand;
+}
+.table-container-log {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    max-height: 40vh;
+    background-color:	$systemBackgronwd;
+}
+.contanier{
+    background-color:	$systemBackgronwd;
+}
+

@@ -17,7 +17,7 @@ export class QueryRecordParameter {
 	
 	typeProdutc:number;
 
-	// Cosmeticos Registrados
+	// Cosméticos Registrados
 	authorizationNumber:string;
 		  
 	expedientProcess:string;
@@ -39,7 +39,7 @@ export class QueryRecordParameter {
 		option:number,
 		registerNumber:string,
 		typeProdutc:number,
-		// Cosmeticos Registrados
+		// Cosméticos Registrados
 		authorizationNumber:string,
 		expedientProcess:string,
 		generatedTransaction:string,
@@ -57,7 +57,7 @@ export class QueryRecordParameter {
 		this.registerNumber = registerNumber;
 		this.typeProdutc = typeProdutc;	
 
-		// Cosmeticos Registrados
+		// Cosméticos Registrados
 		this.authorizationNumber = authorizationNumber;
 		this.expedientProcess    = expedientProcess;
 		this.generatedTransaction= generatedTransaction;

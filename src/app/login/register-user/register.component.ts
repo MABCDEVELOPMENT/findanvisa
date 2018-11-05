@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
     this.user.fullName = fullName;
     this.user.profile = 2;
     this.registerService.register(this.user).then(data => {
-      this.showMsg("Registro realizado com sucesso! Você receberá um email para ativação do usuário!");
+      this.showMsg("Registro realizado com sucesso! Você receberá um e-mail para ativação do usuário!");
       this.router.navigate(['/login'], { replaceUrl: true });
     }).catch( error => {
       this.error = error.error.errorMessage;

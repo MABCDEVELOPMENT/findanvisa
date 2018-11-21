@@ -39,7 +39,7 @@ export class CNPJListComponent implements AfterViewInit {
 
   public categorys = [
     'Alimentos',
-    'Cosmeticos',
+    'Cosméticos',
     'Saneantes',
     'Todos'
   ];

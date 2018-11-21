@@ -28,6 +28,8 @@ import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-lis
 import { LabelSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/label/label-seneante-notification';
 import { RegisterApresentationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/apresentation/register-apresentation';
 import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/petition/register-petition';
+import { QueryrecordLogListComponent } from './queryrecordlog/queryrecordlog-list.component';
+import { TableLogComponent } from './queryrecordlog/log/table-log';
 
 const routes: Routes = [
   Route.withShell([
@@ -69,6 +71,12 @@ const routes: Routes = [
         { path: 'filter-process', component: FilteProcessComponent },
         { path: 'table-process', component: TableProcessComponent },
         { path: 'detail-process', component: DetailProcessComponent }
+      ]
+    },
+    {
+      path: 'queryRecordLog', component: QueryrecordLogListComponent, data: { title: extract('Synchronization') },
+      children: [
+        { path: 'table-log', component: TableLogComponent }
       ]
     }
   ])

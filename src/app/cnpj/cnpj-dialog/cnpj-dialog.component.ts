@@ -33,7 +33,7 @@ export class CNPJDialogComponent implements OnInit {
 
   public categorys = [
     'Alimentos',
-    'Cosmeticos',
+    'Cosméticos',
     'Saneantes',
     'Todos'
   ];

@@ -7,14 +7,14 @@ import * as XLSX from 'xlsx';
 import { ErrorDialogComponent } from "@app/core/message/error-dialog.component";
 import { Location } from "@angular/common";
 import { QueryrecordsService } from "@app/queryrecords/queryrecords.service";
-import { FilterProcessService } from "@app/queryrecords/queryrecordprocess-list/process/filter-service-process";
+import { FilterLogService } from "../filter-service-log";
 
 @Component({
-    selector: 'table-process',
-    templateUrl: './table-process.html',
-    styleUrls: ['./table-process.scss']
+    selector: 'table-log',
+    templateUrl: './table-log.html',
+    styleUrls: ['./table-log.scss']
 })
-export class TableProcessComponent implements OnInit, AfterViewInit {
+export class TableLogComponent implements OnInit, AfterViewInit {
 
     ELEMENT_DATA: Content[];
 
@@ -24,9 +24,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
 
     error: any;
 
-    //displayedColumns = ['subject','process','officehour','transaction','product','company','situation','maturity','statusMaturity'];
-    //displayedColumns = ['order', 'cnpj', 'socialName', 'process', 'subject'];
-    displayedColumns = ['dataAlteracao','dataRegistro','qtdRegistro','cnpj', 'process', 'subject'];
+    displayedColumns = ['cnpj','descricao'];
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
@@ -35,8 +33,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
     sortedData: Content[];
 
     constructor(public dialog: MatDialog,
-        private route: ActivatedRoute,
-        public parentProcess: FilterProcessService,
+        public parent: FilterLogService,
         private _location: Location,
         private router: Router,
         public dataService: QueryrecordsService,
@@ -63,16 +60,15 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
                 matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
             });
 
-            // Choose one
-            return matchFilter.every(Boolean); // AND condition
-            // return matchFilter.some(Boolean); // OR condition
+            return matchFilter.every(Boolean); 
+
         }
 
     }
 
     ngAfterViewInit() {
 
-        this.ELEMENT_DATA = this.parentProcess.data['content'];
+        this.ELEMENT_DATA = this.parent.data['content'];
         this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -90,7 +86,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         var today = new Date();
         var date = today.getFullYear() + '' + (today.getMonth() + 1) + '' + today.getDate();
         var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
-        var name = this.parentProcess.user.userName + " " + date + time;
+        var name = this.parent.user.userName + " " + date + time;
         // +
         XLSX.writeFile(workbook, name + '.xls', { bookType: 'xls', type: 'buffer' });
     }
@@ -101,29 +97,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         });
 
     }
-
-    getDetail(content: any) {
-
-        this.spinnerService.show();
-        this.parentProcess.detail = content['processDetail'];
-        this.router.navigate(['/queryRecordProcess/detail-process'], { replaceUrl: false });
-        this.spinnerService.hide();
-        /*this.spinnerService.show();
-        this.dataService.getQueryRegistersProcessDetail(this.parentProcess.category, this.parentProcess.option, content.processo)
-            .then(
-                data => {
-                    this.parentProcess.detail = data['contentObject'];
-                    this.router.navigate(['/queryRecordProcess/detail-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
-                }).catch(
-                    error => {
-                        this.error = error.error.errorMessage;
-                        this.spinnerService.hide();
-                        this.showMsg(this.error);
-
-                    });*/
-
-    }
+    
     goBack() {
         this._location.back();
     }

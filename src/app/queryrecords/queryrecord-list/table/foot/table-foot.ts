@@ -90,7 +90,7 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             this.dataSource.paginator = this.paginator;
             this.dataSource._updatePaginator;
             
-        }
+      }
 
       exportAsExcel(){
         this.exportExcel(this.ELEMENT_DATA);

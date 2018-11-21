@@ -13,6 +13,7 @@ import { QueryrecordsService } from './queryrecords.service';
 import { QueryrecordsRoutingModule } from './queryrecords-routing.module';
 import { QueryrecordListComponent } from './queryrecord-list/queryrecord-list.component';
 import { QueryrecordprocessListComponent } from '@app/queryrecords/queryrecordprocess-list/queryrecordprocess-list.component';
+import { QueryrecordLogListComponent } from './queryrecordlog/queryrecordlog-list.component';
 import { TableComponent } from '@app/queryrecords/queryrecord-list/table/table-component';
 
 //Categoria Alimentos
@@ -20,19 +21,25 @@ import {FilterService} from '@app/queryrecords/queryrecord-list/table/filter-ser
 import { FilterFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/filter-foot';
 import { TableFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/table-foot';
 
-//Categoria Cosmeticos->Produtos Registrados
+//Categoria Cosméticos->Produtos Registrados
 import { FilteCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/filter-cosmetic-register';
 import { TableCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/table-cosmetic-register';
+
 import { FilteCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/filter-cosmetic-notification';
 import { TableCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/table-cosmetic-notification';
+
 import { FilterCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/filter-cosmetic-regularized';
 import { TableCosmeticRegularizedComponent } from '@app/queryrecords/queryrecord-list/table/cometic/regularized/table-cosmetic-regularized';
+
 import { FilterSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/filter-saneante-product';
 import { TableSaneanteProductComponent } from '@app/queryrecords/queryrecord-list/table/saneante/product/table-saneante-product';
+
 import { FilteSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/filter-saneante-notification';
 import { TableSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/table-saneante-notification';
+
 import { FilteProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/filter-process';
 import { TableProcessComponent } from '@app/queryrecords/queryrecordprocess-list/process/table-process';
+
 import { DetailFootComponent } from '@app/queryrecords/queryrecord-list/table/foot/detail/detail-foot';
 import { DetailCosmeticRegisterComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/detail-cosmetic-register';
 import { DetailCosmeticNotificationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/notification/detail/detail-cosmetic-notification';
@@ -46,8 +53,8 @@ import { LabelSaneanteProductComponent } from '@app/queryrecords/queryrecord-lis
 import { LabelSaneanteNotificationComponent } from '@app/queryrecords/queryrecord-list/table/saneante/notification/label/label-seneante-notification';
 import { RegisterApresentationComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/apresentation/register-apresentation';
 import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/petition/register-petition';
-
-
+import { FilterLogService } from './queryrecordlog/filter-service-log';
+import { TableLogComponent } from './queryrecordlog/log/table-log';
 
 @NgModule({
   imports: [
@@ -64,6 +71,7 @@ import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/ta
   ],
   exports: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
+    QueryrecordLogListComponent,
     TableComponent, 
     FilterFootComponent,
     TableFootComponent,
@@ -89,9 +97,11 @@ import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/ta
     LabelSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent,
-    DetailProcessComponent],
+    DetailProcessComponent,
+    TableLogComponent],
   declarations: [QueryrecordListComponent, 
     QueryrecordprocessListComponent,
+    QueryrecordLogListComponent,
     TableComponent, 
     FilterFootComponent,
     TableFootComponent,
@@ -117,9 +127,14 @@ import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/ta
     LabelSaneanteNotificationComponent,
     FilteProcessComponent,
     TableProcessComponent,
-    DetailProcessComponent],
-  providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService],
-  entryComponents: [DetailFootComponent, DetailCosmeticRegisterComponent, DetailProcessComponent, RegisterApresentationComponent,RegisterPetitionComponent],
+    DetailProcessComponent,
+    TableLogComponent],
+  
+  entryComponents: [DetailFootComponent, DetailCosmeticRegisterComponent, DetailProcessComponent, RegisterApresentationComponent,RegisterPetitionComponent,
+    DetailProcessComponent,
+    TableLogComponent],
+  providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService,FilterLogService],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class QueryrecordsModule { }

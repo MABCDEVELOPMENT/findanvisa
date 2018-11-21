@@ -1,0 +1,104 @@
+<div fxFlex>
+  <mat-sidenav-container fxFill>
+    <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
+      <mat-toolbar>
+        <!--<span translate>APP_NAME</span>-->
+        <img style="height: 80%;" src="./assets/unilever.jpg" /> 
+        <div fxFlex></div> 
+          
+        <div fxFlex></div>
+        <div>
+          <mat-list>
+            
+            <mat-list-item style="align-self: center;">
+                <mat-icon>person</mat-icon>
+                <b  style="font-size: 6px">{{username}}</b>
+            </mat-list-item>
+
+          </mat-list>
+
+        </div>
+      </mat-toolbar>
+      <nav>
+        <mat-list>
+          <!--<mat-divider></mat-divider>
+          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            &nbsp;&nbsp;
+            <span translate>Home</span>
+          </a>
+
+          <mat-divider></mat-divider>-->
+          <mat-accordion >
+
+            <mat-expansion-panel *ngIf="username">
+
+              <mat-expansion-panel-header>
+                <span translate>Inquiries</span>
+              </mat-expansion-panel-header>
+
+              <a mat-list-item routerLink="/queryRecord" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>RecordsConsultation</span>
+              </a>
+
+              <a mat-list-item routerLink="/queryRecordProcess" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>ProcessConsulting</span>
+              </a>
+
+              <a  *ngIf="username && isAdm" mat-list-item routerLink="/queryRecordLog" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>Synchronization</span>
+              </a>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="username && isAdm">
+
+              <mat-expansion-panel-header>
+                <span translate>Register</span>
+              </mat-expansion-panel-header>
+
+              <a mat-list-item routerLink="/userList" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>User</span>
+              </a>
+              <a mat-list-item routerLink="/cnpjList" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>registerCnpj.insert</span>
+              </a>
+
+              <a mat-list-item routerLink="/generic" routerLinkActive="active" (click)="sidenav.close()">
+                <span translate>GenericParameters</span>
+              </a>
+
+            </mat-expansion-panel>
+            <a *ngIf="!username" mat-list-item routerLink="/login" routerLinkActive="active" (click)="sidenav.close()">  
+              <span translate>Login</span>
+            </a>  
+            <a *ngIf="username" mat-list-item routerLink="/userProfile" routerLinkActive="active" (click)="sidenav.close()">
+              <span translate>profile</span>
+            </a>
+
+            <a *ngIf="username" mat-list-item routerLink="/login" routerLinkActive="active" (click)="sidenav.close()">  
+              <span translate>Logout</span>
+            </a> 
+          </mat-accordion>
+ 
+        </mat-list>
+      </nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="container">
+
+      <mat-toolbar >
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{title}}</span>
+
+      </mat-toolbar>
+      <div style="position:fixed;width: 100%" layout="column" layout-align="center center center center">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+</div>

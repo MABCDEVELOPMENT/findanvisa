@@ -21,7 +21,7 @@ import { Credentials } from '@app/login/login.component';
 
 export class UserProfileComponent {
 
-  displayedColumns = ['cnpj', 'fullName', 'category',  'foot', 'cosmetic', 'saneante' ,'sendNotification','actions'];
+  displayedColumns = ['cnpj', 'fullName', 'category' ,'sendNotification','actions'];
   ELEMENT_DATA: RegisterCNPJ[]; 
 
   hide: any;

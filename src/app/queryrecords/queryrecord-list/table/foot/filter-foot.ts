@@ -81,13 +81,13 @@ export class FilterFootComponent implements OnInit {
                         this.data = data;
                         this.filterService.data = this.data;
                         this.router.navigate(['/queryRecord/table-foot'], { replaceUrl: false });
-                        this.spinnerService.hide();
+                        
                     }).catch(
                         error => {
                             this.error = error.error.errorMessage;
                             this.spinnerService.hide();
                             this.showMsg(this.error);
-
+                            this.spinnerService.hide();
                         });
         }
     

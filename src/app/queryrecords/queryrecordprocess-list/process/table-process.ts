@@ -77,7 +77,7 @@ export class TableProcessComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
-
+        this.spinnerService.hide();
     }
 
     exportAsExcel() {

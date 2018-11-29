@@ -29,16 +29,15 @@ export class QueryrecordsService {
     return this.dataChange;
   }
 
-  getQueryRegisters(queryrecordparameter: QueryRecordParameter): Promise<any> {
-
-     return this.httpClient.post(this.API_URL+'/product',queryrecordparameter).timeout(800000).toPromise()
+  async getQueryRegisters(queryrecordparameter: QueryRecordParameter): Promise<any> {
+     return await this.httpClient.post(this.API_URL+'/product',queryrecordparameter).toPromise()
     .then(response => response)
     .catch(error=> Observable.throw(error.message));
   }
 
   getQueryProcessoRegisters(queryrecordprocessparameter: QueryRecordProcessParameter): Promise<any> {
 
-      return this.httpClient.post(this.API_URL+'/process',queryrecordprocessparameter).timeout(800000).toPromise()
+      return this.httpClient.post(this.API_URL+'/process',queryrecordprocessparameter).toPromise()
      .then(response => response)
      .catch(error=> Observable.throw(error.message));
   }

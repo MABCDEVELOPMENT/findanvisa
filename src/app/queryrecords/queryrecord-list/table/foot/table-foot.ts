@@ -85,8 +85,10 @@ export class TableFootComponent implements OnInit,AfterViewInit  {
             this.dataSource.sortingDataAccessor = (data, header) => data[header];
             this.dataSource.paginator = this.paginator;
             this.dataSource._updatePaginator;
+            this.spinnerService.hide();
             
         }
+
 
       exportAsExcel(){
         this.exportExcel(this.ELEMENT_DATA);

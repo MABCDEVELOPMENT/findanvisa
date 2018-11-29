@@ -44,7 +44,7 @@
       </ng-container>
 
 
-      <!-- foot Column -->
+      <!-- foot Column
       <ng-container matColumnDef="foot">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.foot' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
@@ -53,7 +53,7 @@
         </mat-cell>
       </ng-container>
 
-      <!-- cometic Column -->
+      
       <ng-container matColumnDef="cosmetic">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.cosmetic' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
@@ -62,14 +62,14 @@
         </mat-cell>
       </ng-container>
 
-      <!-- saneante Column -->
+
       <ng-container matColumnDef="saneante">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'registerCnpj.saneante' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let CNPJ">
           <mat-checkbox *ngIf="CNPJ.category == 3" [(ngModel)]="CNPJ.saneante">
           </mat-checkbox>
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       
       <!-- sendNotification Column -->

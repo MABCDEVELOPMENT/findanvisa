@@ -88,7 +88,7 @@ export class FilteCosmeticNotificationComponent {
                     this.data = data;
                     this.filterService.data = this.data;
                     this.router.navigate(['/queryRecord/table-cosmetic-notification'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

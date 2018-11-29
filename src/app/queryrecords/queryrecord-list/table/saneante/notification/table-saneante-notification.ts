@@ -130,7 +130,7 @@ export class TableSaneanteNotificationComponent implements OnInit, AfterViewInit
                     this.data = data;
                     this.parentProcess.data = this.data;
                     this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

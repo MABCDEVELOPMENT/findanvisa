@@ -20,7 +20,7 @@ export class CNPJDialogComponent implements OnInit {
   
 
   error: string;  
-  displayedColumns = ['select', 'cnpj', 'fullName', 'category', 'foot', 'cosmetic', 'saneante', 'sendNotification',];
+  displayedColumns = ['select', 'cnpj', 'fullName', 'category', 'sendNotification'];
   
   cnpjs: RegisterCNPJ[];
   selectedOptions:RegisterCNPJ[];

@@ -25,33 +25,33 @@
     overflow: visible;
     align-self: center;
   }
-  .mat-cell:nth-child(5), // foot
+  // .mat-cell:nth-child(5), // foot
+  // .mat-header-cell:nth-child(5),
+  // {
+  //   flex: 0 0 100px;
+  //   overflow: visible;
+  //   align-self: center;
+  // }  
+  // .mat-cell:nth-child(6), // cosmetic 
+  // .mat-header-cell:nth-child(6),
+  // {
+  //   flex: 0 0 100px;
+  //   overflow: visible;
+  //   align-content: center;
+  // } 
+  // .mat-cell:nth-child(7), // saneante 
+  // .mat-header-cell:nth-child(7),
+  // {
+  //   flex: 0 0 100px;
+  //   overflow: visible;
+  //   align-content: center;
+  // } 
+  .mat-cell:nth-child(5), //  sendNotification
   .mat-header-cell:nth-child(5),
   {
-    flex: 0 0 100px;
-    overflow: visible;
-    align-self: center;
-  }  
-  .mat-cell:nth-child(6), // cosmetic 
-  .mat-header-cell:nth-child(6),
-  {
-    flex: 0 0 100px;
-    overflow: visible;
-    align-content: center;
-  } 
-  .mat-cell:nth-child(7), // saneante 
-  .mat-header-cell:nth-child(7),
-  {
-    flex: 0 0 100px;
-    overflow: visible;
-    align-content: center;
-  } 
-  .mat-cell:nth-child(8), //  sendNotification
-  .mat-header-cell:nth-child(8),
-  {
-    flex: 0 0 200px;
-    overflow: visible;
-    align-content: center;
+     flex: 0 0 200px;
+     overflow: visible;
+     align-content: center;
   } 
   .custom-modalbox {
       overflow: hidden !important;

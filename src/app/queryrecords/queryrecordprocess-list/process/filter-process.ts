@@ -81,7 +81,7 @@ export class FilteProcessComponent implements OnInit, AfterViewInit {
                     this.data = data;
                     this.filterService.data = this.data;
                     this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

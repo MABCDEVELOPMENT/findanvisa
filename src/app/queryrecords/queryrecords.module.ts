@@ -55,6 +55,7 @@ import { RegisterApresentationComponent } from '@app/queryrecords/queryrecord-li
 import { RegisterPetitionComponent } from '@app/queryrecords/queryrecord-list/table/cometic/register/detail/petition/register-petition';
 import { FilterLogService } from './queryrecordlog/filter-service-log';
 import { TableLogComponent } from './queryrecordlog/log/table-log';
+import { ExcelService } from './ExcelService';
 
 @NgModule({
   imports: [
@@ -129,7 +130,7 @@ import { TableLogComponent } from './queryrecordlog/log/table-log';
     TableProcessComponent,
     DetailProcessComponent,
     TableLogComponent],
-  providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService,FilterLogService],
+  providers: [QueryrecordsService, Queryrecords,FilterService,FilterProcessService,FilterLogService,ExcelService],
   entryComponents: [DetailFootComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

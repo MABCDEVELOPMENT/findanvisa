@@ -81,7 +81,6 @@ export class FilterCosmeticRegularizedComponent implements OnInit {
                         this.data = data;
                         this.filterService.data = this.data;
                         this.router.navigate(['/queryRecord/table-cosmetic-regularized'], { replaceUrl: false });
-                        this.spinnerService.hide();
                     }).catch(
                         error => {
                             this.error = error.error.errorMessage;

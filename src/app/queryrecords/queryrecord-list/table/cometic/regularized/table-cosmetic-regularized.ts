@@ -84,7 +84,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
         this.dataSource.sort      = this.sort;
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
-
+        this.spinnerService.hide();
       }
 
       exportAsExcel(){
@@ -124,7 +124,7 @@ export class TableCosmeticRegularizedComponent implements OnInit,AfterViewInit  
                     this.data = data;
                     this.parentProcess.data = this.data;
                     this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

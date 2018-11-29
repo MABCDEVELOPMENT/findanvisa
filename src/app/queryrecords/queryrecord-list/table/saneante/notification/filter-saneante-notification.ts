@@ -88,7 +88,7 @@ export class FilteSaneanteNotificationComponent {
                     this.data = data;
                     this.filterService.data = this.data;
                     this.router.navigate(['/queryRecord/table-saneante-notification'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

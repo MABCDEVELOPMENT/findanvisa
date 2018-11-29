@@ -84,13 +84,20 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.dataSource._updatePaginator;
-
+        this.spinnerService.hide();
     }
 
     exportAsExcel() {
-        this.exportExcel(this.ELEMENT_DATA);
+        let usersJsons: Array<any>[] = new Array<any>(this.ELEMENT_DATA.length);
+        let i = 0;
+        for (let index = 0; index < this.ELEMENT_DATA.length; index++) {
+            let usersJson = Array.of(JSON.stringify(this.ELEMENT_DATA[index]));
+            usersJsons[index] = usersJson;
+        }
+        this.exportExcel(usersJsons);
     }
     exportExcel(data: any[]) {
+
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
         const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
         var today = new Date();
@@ -124,7 +131,7 @@ export class TableCosmeticNotificationComponent implements OnInit, AfterViewInit
                     this.data = data;
                     this.parentProcess.data = this.data;
                     this.router.navigate(['/queryRecordProcess/table-process'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;

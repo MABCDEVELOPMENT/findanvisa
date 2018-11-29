@@ -81,7 +81,6 @@ export class FilterSaneanteProductComponent implements OnInit {
                         this.data = data;
                         this.filterService.data = this.data;
                         this.router.navigate(['/queryRecord/table-saneante-product'], { replaceUrl: false });
-                        this.spinnerService.hide();
                     }).catch(
                         error => {
                             this.error = error.error.errorMessage;

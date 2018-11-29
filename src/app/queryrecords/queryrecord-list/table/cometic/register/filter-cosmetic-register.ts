@@ -84,13 +84,14 @@ export class FilteCosmeticRegisterComponent {
 
 
         this.spinnerService.show();
+        
         this.dataService.getQueryRegisters(this.queryRecordParameter)
             .then(
                 data => {
                     this.data = data;
                     this.filterService.data = this.data;
                     this.router.navigate(['/queryRecord/table-cosmetic-register'], { replaceUrl: false });
-                    this.spinnerService.hide();
+
                 }).catch(
                     error => {
                         this.error = error.error.errorMessage;
